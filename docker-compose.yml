@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  php:
+    container_name: php
+    build:
+      context: .
+      target: php
+      args:
+        - APP_ENV=${APP_ENV}
+    environment:
+      - APP_ENV=${APP_ENV}
+      - CONTAINER_ROLE=app
+    working_dir: /var/www
+    volumes:
+      - ./:/var/www
+    ports:
+      - 8000:8000
+    depends_on:
+      - database
+
+  database:
+    image: public.ecr.aws/docker/library/mysql:5.7.41
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+
+  npm:
+    image: public.ecr.aws/docker/library/node:14.21.3-alpine
+    container_name: npm
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    ports:
+      - ${VITE_PORT:-5173}:${VITE_PORT:-5173}
+    # entrypoint:
+    #   - ./docker/node_start.sh
+
+
+volumes:
+  db-data: ~
+
