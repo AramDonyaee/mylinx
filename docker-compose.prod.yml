@@ -32,8 +32,8 @@ services:
       - /bin/bash
       - "-c"
       - |
-        echo "GRANT ALL PRIVILEGES ON mylinx_jetstream.* TO 'root'@'172.27.0.4' IDENTIFIED BY '4#!^1NJD7T$IX*8XkA&&3uqonCnC9q5P^II';" \
-        | mysql -u root -p 4#!^1NJD7T$IX*8XkA&&3uqonCnC9q5P^II -h mysql
+        echo "GRANT ALL PRIVILEGES ON mylinx_jetstream.* TO 'root'@'172.27.0.4' IDENTIFIED BY 'F450pH3Af*v9kGfLzfYxgSAlH1V@PnZ*pC4';" \
+        | mysql -u root -p F450pH3Af*v9kGfLzfYxgSAlH1V@PnZ*pC4 -h mysql
     volumes:
       - db-data:/var/lib/mysql
 
