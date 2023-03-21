@@ -24,10 +24,8 @@ services:
     ports:
       - 3306:3306
     environment:
-      - "MYSQL_ROOT_PASSWORD=rootpassword"
-      - "MYSQL_USER=dbuser"
-      - "MYSQL_PASSWORD=dbpassword"
-      - "MYSQL_DATABASE=mylinx_jetstream"
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_RANDOM_ROOT_PASSWORD: 1
     volumes:
       - db-data:/var/lib/mysql
 
