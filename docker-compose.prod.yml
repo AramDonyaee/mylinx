@@ -27,7 +27,7 @@ services:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_ROOT_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: F450pH3Af*v9kGfLzfYxgSAlH1V@PnZ*pC4
-      MYSQL_ROOT_PASSWORD: 4#!^1NJD7T$IX*8XkA&&3uqonCnC9q5P^II
+      MYSQL_ROOT_PASSWORD: F450pH3Af*v9kGfLzfYxgSAlH1V@PnZ*pC4
     volumes:
       - db-data:/var/lib/mysql
 
