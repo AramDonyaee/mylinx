@@ -29,7 +29,11 @@ services:
       MYSQL_PASSWORD: F450pH3Af*v9kGfLzfYxgSAlH1V@PnZ*pC4
       MYSQL_ROOT_PASSWORD: 4#!^1NJD7T$IX*8XkA&&3uqonCnC9q5P^II
     command:
-      - bash -c "mysql -u root -p 4#!^1NJD7T$IX*8XkA&&3uqonCnC9q5P^II -h mysql -e 'GRANT ALL PRIVILEGES ON mylinx_jetstream.* TO 'root'@'172.27.0.4' IDENTIFIED BY '4#!^1NJD7T$IX*8XkA&&3uqonCnC9q5P^II';'"
+      - /bin/bash
+      - "-c"
+      - |
+        echo "GRANT ALL PRIVILEGES ON mylinx_jetstream.* TO 'root'@'172.27.0.4' IDENTIFIED BY '4#!^1NJD7T$IX*8XkA&&3uqonCnC9q5P^II';" \
+        | mysql -u root -p 4#!^1NJD7T$IX*8XkA&&3uqonCnC9q5P^II -h mysql
     volumes:
       - db-data:/var/lib/mysql
 
