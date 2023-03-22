@@ -16,14 +16,12 @@ services:
       - ./:/var/www
     ports:
       - 80:80
-    depends_on:
-      - database
     networks:
       - mylinx
 
-  database:
+  dblinx:
     image: public.ecr.aws/docker/library/mysql:8
-    container_name: database
+    container_name: dblinx
     ports:
       - 3306:3306
     environment:
