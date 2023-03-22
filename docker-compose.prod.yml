@@ -16,6 +16,8 @@ services:
       - ./:/var/www
     ports:
       - 80:80
+    depends_on:
+      - dblinx
     networks:
       - mylinx
 
