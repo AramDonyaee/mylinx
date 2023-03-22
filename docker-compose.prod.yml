@@ -18,6 +18,7 @@ services:
       - 80:80
     depends_on:
       - database
+    command: ["./docker/wait-for-it.sh", "database:3306"]
     networks:
       - mylinx
 
