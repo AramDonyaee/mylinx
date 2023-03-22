@@ -22,7 +22,7 @@ services:
       - mylinx
 
   database:
-    image: public.ecr.aws/docker/library/mysql:5.7.41
+    image: public.ecr.aws/docker/library/mysql:8
     container_name: database
     ports:
       - 3307:3307
