@@ -25,7 +25,7 @@ services:
     image: public.ecr.aws/docker/library/mysql:8
     container_name: database
     ports:
-      - 3307:3307
+      - 3306:3306
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_ROOT_USER: ${DB_USERNAME}
