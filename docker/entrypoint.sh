@@ -9,11 +9,11 @@ else
     echo "env file exists."
 fi
 
-php artisan migrate
 php artisan key:generate
 php artisan config:clear
 php artisan view:clear
 php artisan cache:clear
+php artisan migrate
 
 php-fpm -D
 nginx -g "daemon off;"
