@@ -1,169 +1,147 @@
 <template>
     <PhotoCropperModal v-show="isModalVisible" @close="closeModal" />
-    <div class="flex mx-autoh-screen">
 
-        <!-- content - start -->
-        <div class="flex flex-col w-1/2">
-            <!-- content - start -->
-            <div class="mt-10 ml-8 mb-8 mr-8 ">
-                <!-- name - start -->
+    <div class="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2">
+        <div class="mt-10 ml-8 mb-8 mr-8">
 
-                <div class="bg-white p-4 rounded-lg flex gap-2 mb-4">
+            <div class="bg-white p-4 rounded-lg flex gap-2 mb-4">
 
-                    <div class="flex-none items-center justify-center overflow-hidden bg-gray-100 rounded-full w-24 h-24">
-                        <img v-bind:src="this.$store.state.image ? this.$store.state.image : this.avatar" />
-                    </div>
-
-                    <div class="flex-auto">
-                        <button type="button" @click="showModal"
-                            class="mb-1 w-full h-12 text-white bg-rose-500 font-medium rounded-xl text-normal px-5 py-2.5 text-center">Add
-                            a Profile Picture</button>
-                        <button disabled type="button" @click="showModal"
-                            class=" w-full h-12 text-black bg-white font-medium rounded-xl border border-rose-200 text-normal px-5 py-2.5 text-center">
-                            Remove
-                        </button>
-                    </div>
-
-
+                <div class="flex-none items-center justify-center overflow-hidden bg-gray-100 rounded-full w-24 h-24">
+                    <img v-bind:src="this.$store.state.image ? this.$store.state.image : this.avatar" />
                 </div>
 
-                <span class="text-xl text-black font-bold">Profile</span>
-                <div class="bg-white p-4 rounded-lg gap-2 mt-4">
-                    <div class="rounded-lg overflow-hidden ">
-                        <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
-                            v-model="title" />
+                <div class="flex-auto">
+                    <button type="button" @click="showModal"
+                        class="mb-1 w-full h-12 text-white bg-rose-500 font-medium rounded-xl text-normal px-5 py-2.5 text-center">Add
+                        a Profile Picture</button>
+                    <button disabled type="button" @click="showModal"
+                        class=" w-full h-12 text-black bg-white font-medium rounded-xl border border-rose-200 text-normal px-5 py-2.5 text-center">
+                        Remove
+                    </button>
+                </div>
+            </div>
+
+            <span class="text-xl text-black font-bold">Profile</span>
+            <div class="bg-white p-4 rounded-lg gap-2 mt-4">
+                <div class="rounded-lg overflow-hidden ">
+                    <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text" v-model="title" />
+                </div>
+
+                <div class="rounded-lg overflow-hidden mt-2">
+                    <input class="h-24 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text" v-model="bio" />
+                </div>
+
+                <div class="flex gap-2.5 mt-2">
+                    <button @click="storePage"
+                        class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">Save</button>
+                </div>
+                <loading v-model:active="storePage_isLoading" :can-cancel="false" color="#0000FF" />
+            </div>
+
+            <!-- color - start -->
+            <div class="mb-2 mt-4 ">
+                <span class="inline-block text-black text-xl font-bold md:text-xl font-semibold mb-3">Custom
+                    Appearance</span>
+
+                <div class="flex flex-wrap gap-2 rounded-lg p-5 bg-white">
+
+                    <button type="button"
+                        class="w-8 h-8 bg-[red] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-full transition duration-100 focus:ring-gray-800"
+                        @click="backgroundChange('red')"></button>
+                    <button type="button"
+                        class="w-8 h-8 bg-[blue] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-full transition duration-100 focus:ring-gray-800"
+                        @click="backgroundChange('blue')"></button>
+                    <button type="button"
+                        class="w-8 h-8 bg-[black] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-full transition duration-100 focus:ring-gray-800"
+                        @click="backgroundChange('black')"></button>
+                </div>
+            </div>
+            <!-- color - end -->
+
+
+            <!-- size - start -->
+            <div class="mb-8 md:mb-10 mt-2">
+                <div class="flex flex-wrap gap-6 justify-center bg-white rounded-lg p-5">
+                    <div v-for="bg in background_urls" type="button"
+                        class="cursor-pointer w-24 h-32 flex overflow-hidden justify-center items-center bg-white hover:bg-gray-100 active:ring-gray-800 active:bg-gray-200 text-gray-800 text-sm font-semibold text-center border rounded-md transition duration-100">
+                        <img @click=backgroundImageSetter(bg.id) class="object-cover overflow-hidden" :src=bg.url />
+                    </div>
+                </div>
+                <loading v-model:active="storeBackground_isLoading" :can-cancel="false" color="#0000FF" />
+
+            </div>
+            <!-- size - end -->
+
+            <div class="mb-8 md:mb-10 mt-2">
+                <span class="inline-block text-black text-xl font-bold md:text-xl font-semibold mb-3">Link Style</span>
+
+                <div class="bg-white rounded-lg p-5">
+
+                    <div class="m-auto grid">
+                        Link Border
+                        <input type="range" min="0" max="5" step="1" v-model="link.border.thickness" />
                     </div>
 
-                    <div class="rounded-lg overflow-hidden mt-2">
-                        <input class="h-24 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
-                            v-model="bio" />
+                    <div class="m-auto grid">
+                        Border Radius
+                        <input type="range" min="0" max="35" step="1" v-model="link.border.radius" />
                     </div>
 
-                    <div class="flex gap-2.5 mt-2">
-                        <button @click="storePage"
+                    <div class="container m-auto grid grid-cols-2 mt-3 bg-gray-200 rounded-lg p-3">
+                        <div>
+                            <h1>Link Backgroud Color</h1>
+                        </div>
+                        <div class="grid place-items-end">
+                            <color-picker v-model:pureColor="link.bgColor" shape="circle" />
+                        </div>
+                    </div>
+
+                    <div class="container m-auto grid grid-cols-2 mt-3 bg-gray-200 rounded-lg p-3">
+                        <div>
+                            <h1>Link Border Color</h1>
+                        </div>
+                        <div class="grid place-items-end">
+                            <color-picker v-model:pureColor="link.border.color" shape="circle" />
+                        </div>
+                    </div>
+
+                    <div class="container m-auto grid grid-cols-2 mt-3 bg-gray-200 rounded-lg p-3">
+                        <div>
+                            <h1>Link Text Color</h1>
+                        </div>
+                        <div class="grid place-items-end">
+                            <color-picker v-model:pureColor="link.textColor" shape="circle" />
+                        </div>
+                    </div>
+
+                    <div class="container m-auto grid mt-3">
+                        <button @click="storeLinkStyles"
                             class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">Save</button>
                     </div>
-                    <loading v-model:active="storePage_isLoading" :can-cancel="false" color="#0000FF"/>
-                </div>
 
+                    <loading v-model:active="storeLinkStyles_isLoading" :can-cancel="false" color="#0000FF" />
 
-                <!-- color - start -->
-                <div class="mb-2 mt-4 ">
-                    <span class="inline-block text-black text-xl font-bold md:text-xl font-semibold mb-3">Custom
-                        Appearance</span>
-
-                    <div class="flex flex-wrap gap-2 rounded-lg p-5 bg-white">
-
-                        <button type="button"
-                            class="w-8 h-8 bg-[red] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-full transition duration-100 focus:ring-gray-800"
-                            @click="backgroundChange('red')"></button>
-                        <button type="button"
-                            class="w-8 h-8 bg-[blue] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-full transition duration-100 focus:ring-gray-800"
-                            @click="backgroundChange('blue')"></button>
-                        <button type="button"
-                            class="w-8 h-8 bg-[black] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-full transition duration-100 focus:ring-gray-800"
-                            @click="backgroundChange('black')"></button>
-                    </div>
-                </div>
-                <!-- color - end -->
-
-
-
-                <!-- size - start -->
-                <div class="mb-8 md:mb-10 mt-2">
-                    <div class="flex flex-wrap gap-6 justify-center bg-white rounded-lg p-5">
-                        <div v-for="bg in background_urls" type="button"
-                            class="cursor-pointer w-24 h-32 flex overflow-hidden justify-center items-center bg-white hover:bg-gray-100 active:ring-gray-800 active:bg-gray-200 text-gray-800 text-sm font-semibold text-center border rounded-md transition duration-100">
-                            <img @click=backgroundImageSetter(bg.id) class="object-cover overflow-hidden" :src=bg.url />
-                        </div>
-                    </div>
-                    <loading v-model:active="storeBackground_isLoading" :can-cancel="false" color="#0000FF"/>
-
-                </div>
-                <!-- size - end -->
-
-
-
-                <div class="mb-8 md:mb-10 mt-2">
-                    <span class="inline-block text-black text-xl font-bold md:text-xl font-semibold mb-3">Link Style</span>
-
-                    <div class="bg-white rounded-lg p-5">
-
-                        <div class="m-auto grid">
-                            Link Border
-                            <input type="range" min="0" max="5" step="1" v-model="link.border.thickness" />
-                        </div>
-
-                        <div class="m-auto grid">
-                            Border Radius
-                            <input type="range" min="0" max="35" step="1" v-model="link.border.radius" />
-                        </div>
-
-                        <div class="container m-auto grid grid-cols-2 mt-3 bg-gray-200 rounded-lg p-3">
-                            <div>
-                                <h1>Link Backgroud Color</h1>
-                            </div>
-                            <div class="grid place-items-end">
-                                <color-picker v-model:pureColor="link.bgColor" shape="circle"/>
-                            </div>
-                        </div>
-
-                        <div class="container m-auto grid grid-cols-2 mt-3 bg-gray-200 rounded-lg p-3">
-                            <div>
-                                <h1>Link Border Color</h1>
-                            </div>
-                            <div class="grid place-items-end">
-                                <color-picker v-model:pureColor="link.border.color" shape="circle" />
-                            </div>
-                        </div>
-
-                        <div class="container m-auto grid grid-cols-2 mt-3 bg-gray-200 rounded-lg p-3">
-                            <div>
-                                <h1>Link Text Color</h1>
-                            </div>
-                            <div class="grid place-items-end">
-                                <color-picker v-model:pureColor="link.textColor" shape="circle" />
-                            </div>
-                        </div>
-
-                        <div class="container m-auto grid mt-3">
-                            <button @click="storeLinkStyles"
-                            class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">Save</button>
-                        </div>
-
-                        <loading v-model:active="storeLinkStyles_isLoading" :can-cancel="false" color="#0000FF"/>
-
-
-                    </div>
 
                 </div>
 
             </div>
-            <!-- content - end -->
+
+
+
+
         </div>
 
-
-
-        <div class="flex flex-col w-1/2 h-screen sticky top-0 justify-center items-center bg-slate-200">
-
-            <!-------------------------------mockup start-------------------------------->
-            <div class="space-y-4">
-
-                <div class="grid min-h-screen">
-                    <!-- The iPhone shell -->
-                    <Mockup class="scale-[0.55] mt-1"
-                        :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
-                        :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.selected_background"
-                        :borderThickness="link.border.thickness" :borderRadius="link.border.radius"
-                        :linkBgColor="link.bgColor" :borderColor="link.border.color" :linkTextColor="link.textColor" />
-                </div>
-            </div>
-            <!------------------------mockup end------------------------------>
-
+        <div class="h-screen sticky top-0 justify-center items-center bg-slate-200">
+            <Mockup class="scale-[0.55] origin-top mt-10"
+                :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
+                :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.selected_background"
+                :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
+                :borderColor="link.border.color" :linkTextColor="link.textColor" />
         </div><!--second half end-->
 
     </div>
-<!--container end--></template>
+
+</template>
 
 <script>
 import PhotoCropperModal from './PhotoCropperModal.vue'
@@ -231,10 +209,10 @@ export default {
                 this.selected_background = response.data.background_path;
                 this.avatar = response.data.avatar_path;
                 this.link.border.thickness = response.data.link_border_thickness,
-                this.link.border.radius = response.data.link_border_radius,
-                this.link.border.color = response.data.link_border_color,
-                this.link.bgColor = response.data.link_background_color,
-                this.link.textColor = response.data.link_text_color
+                    this.link.border.radius = response.data.link_border_radius,
+                    this.link.border.color = response.data.link_border_color,
+                    this.link.bgColor = response.data.link_background_color,
+                    this.link.textColor = response.data.link_text_color
             });
     },
 
@@ -297,7 +275,7 @@ export default {
             }
         },
 
-        
+
         async storeLinkStyles() {
             try {
                 this.storeLinkStyles_isLoading = true;
