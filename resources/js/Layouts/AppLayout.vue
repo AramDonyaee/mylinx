@@ -204,7 +204,13 @@ const logout = () => {
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink :href="route('content')" :active="route().current('content')">
-                            Dashboard
+                            Content
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('design')" :active="route().current('design')">
+                            Design
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="route('stats')" :active="route().current('stats')">
+                            Stats
                         </ResponsiveNavLink>
                     </div>
 

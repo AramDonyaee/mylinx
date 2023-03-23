@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Inertia\Inertia;
 use App\Models\Page;
 use App\Models\User;
@@ -16,22 +17,20 @@ class PagesController extends Controller
 {
 
     public function show(Request $request, $username) {
-
-        $user = User::where('username', $username)->first();
-        $page = Page::where('user_id', $user->id)->first();
-
-        if ($page->links){
-            return Inertia::render('Mylinx/UserPage', [
-                'page' => $page,
-                'links' => $page->links,
-            ]);
-        }else{
-            return Inertia::render('Mylinx/UserPage', [
-                'page' => $page,
+        try {
+            $user = User::where('username', $username)->firstOrFail();
+        } catch (ModelNotFoundException $e) {
+            return Inertia::render('Mylinx/UserNotFound', [
+                'username' => $username
             ]);
         }
 
-
+        $page = $user->page;
+    
+        return Inertia::render('Mylinx/UserPage', [
+            'page' => $page,
+            'links' => $page->links ?? null,
+        ]);
     }
 
     public function store(Request $request){

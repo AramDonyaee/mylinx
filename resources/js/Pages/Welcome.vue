@@ -11,11 +11,11 @@ defineProps({
 
 
 <template>
-
-
     <Nav />
-    <Hero />
-    <Footer />
+            <Hero />
+            <Footer /> 
+
+
 
 </template>
     
@@ -23,11 +23,15 @@ defineProps({
 import Hero from '../Components/Hero.vue'
 import Nav from '../Components/Nav.vue'
 import Footer from '../Components/Footer.vue'
+import ApplicationMark from '@/Components/ApplicationMark.vue';
+import Mockup from '../Components/Mockup.vue'
+
+
 
 export default {
     components: {
-      Hero, Nav, Footer
-    }
+        Hero, Nav, Footer, Mockup
+    },
 }
 
 </script>
