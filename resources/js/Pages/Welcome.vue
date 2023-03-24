@@ -31,8 +31,8 @@ defineProps({
 
         </div>
 
-        <div class="flex flex-wrap mb-4 items-center justify-center">
-            <label class="relative w-full md:w-3/4 lg:w-1/2 rounded-[50px] shadow bg-white z-0 mx-6 inline-flex items-center" for='txt'>
+        <div class="flex flex-wrap mb-4 items-center justify-center px-6">
+            <label class="relative w-full md:w-3/4 lg:w-1/2 rounded-[50px] shadow bg-white z-0 inline-flex items-center" for='txt'>
                 <v-icon name="fa-link" scale="1.1" />
                 <span class="pl-2 text-lg text-gray-600">mylinx.me/</span>
                 <input type="text" value=""
