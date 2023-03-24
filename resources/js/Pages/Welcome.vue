@@ -32,7 +32,7 @@ defineProps({
         </div>
 
         <div class="flex flex-wrap mb-4 items-center justify-center">
-            <label class="relative w-full md:w-3/4 lg:w-1/2 rounded-[50px] shadow bg-white z-0 mx-4 inline-flex items-center" for='txt'>
+            <label class="relative w-full md:w-3/4 lg:w-1/2 rounded-[50px] shadow bg-white z-0 mx-6 inline-flex items-center" for='txt'>
                 <v-icon name="fa-link" scale="1.1" />
                 <span class="pl-2 text-lg text-gray-600">mylinx.me/</span>
                 <input type="text" value=""
@@ -56,7 +56,7 @@ defineProps({
         </div>
 
         <div class="mx-auto flex flex-col items-center">
-            <Mockup class="scale-[1] origin-top mt-8"
+            <Mockup class="scale-[0.9] md:scale-[1] lg:scale-[1] origin-top mt-8 "
                 avatarImage="https://www.theaudiodb.com/images/media/artist/thumb/yuqyst1582723681.jpg" title="Satin"
                 bio="Iranian Singer"
                 backgroundImage="https://images.unsplash.com/photo-1541661538396-53ba2d051eed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1854&q=80" />
