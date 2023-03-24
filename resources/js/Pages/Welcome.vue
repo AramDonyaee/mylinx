@@ -32,7 +32,7 @@ defineProps({
         </div>
 
         <div class="flex flex-wrap mb-4 items-center justify-center">
-            <label class="relative w-full md:w-1/2 lg:w-1/2 rounded-[50px] shadow bg-white z-0 mx-4" for='txt'>
+            <label class="relative w-full md:w-3/4 lg:w-1/2 rounded-[50px] shadow bg-white z-0 mx-4" for='txt'>
                 <v-icon name="fa-link" scale="1.1" />
                 <span class="pl-2 text-lg text-gray-600">mylinx.me/</span>
                 <input type="text" value=""
@@ -40,15 +40,22 @@ defineProps({
                     style="border:none; margin-left: -10px; background: transparent;" />
 
                 <button
-                    class="absolute right-4 z-10 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-full">
+                    class="hidden lg:absolute lg:block md:block md:absolute lg:right-4 md:right-4 lg:top-4 md:top-4 z-10 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-full">
                     Claim your mylinx
                 </button>
+
             </label>
+
+
+            <button
+                class="flex mt-4 lg:mt-0 md:mt-0 lg:hidden md:hidden bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-full">
+                Claim your mylinx
+            </button>
 
 
         </div>
 
-        <div class="mx-auto w-11/12 md:w-8/12 lg:w-7/12 xl:w-6/12 flex flex-col items-center">
+        <div class="mx-auto flex flex-col items-center">
             <Mockup class="scale-[1] origin-top mt-8"
                 avatarImage="https://www.theaudiodb.com/images/media/artist/thumb/yuqyst1582723681.jpg" title="Satin"
                 bio="Iranian Singer"
