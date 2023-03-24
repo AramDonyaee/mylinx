@@ -14,7 +14,7 @@
         </div>
     </div> -->
 
-    <nav class="bg-white border-gray-200 px-20 sm:px-4 py-10 rounded dark:bg-gray-900">
+    <nav class="bg-gray-100 border-gray-200 px-20 sm:px-4 py-5 rounded dark:bg-gray-900">
         <div class="container flex flex-wrap items-center justify-between mx-auto">
             <a href="https://flowbite.com/" class="flex items-center">
                 <span class="self-center text-3xl font-bold whitespace-nowrap dark:text-white">

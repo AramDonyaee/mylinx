@@ -12,11 +12,45 @@ defineProps({
 
 <template>
     <Nav />
-            <Hero />
-            <Footer /> 
+
+    <section class="bg-gray-100 py-12">
+        <div class="mx-auto w-11/12 md:w-8/12 lg:w-7/12 xl:w-6/12 flex flex-col items-center">
+            <h2
+                class="text-center text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl w-full mb-4">
+                All of you in one <span class="text-indigo-600"> Link </span> with <span class="text-rose-600">
+                    <ApplicationMark class="-ml-6 inline h-14" />
+                </span>
+            </h2>
+
+            <p class="text-center text-lg mb-6">
+                Gather all your links, social media, music, videos, and more in one place. Create a page that
+                matches your style and never worry about changing your bio link again.
+            </p>
+            <div class="flex mb-4 items-center">
+                <label class="w-full rounded-[50px] shadow bg-white z-0" for='txt'>
+                    <v-icon name="fa-link" scale="1.1" />
+                    <span class="pl-2 text-lg text-gray-600">mylinx.me/</span>
+                    <input type="text" value=""
+                        class="text-indigo-500 relative bg-white outline-none focus:outline-none focus:ring-0 font-bold text-xl"
+                        style="border:none; margin-left: -10px; background: transparent;" />
+
+                </label>
+
+                <button class="min-w-max z-10 -ml-16 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-full">
+                    Claim your mylinx
+                </button>
+
+            </div>
 
 
 
+            <Mockup class="scale-[1] origin-top mt-8"
+                avatarImage="https://www.theaudiodb.com/images/media/artist/thumb/yuqyst1582723681.jpg" title="Satin"
+                bio="Iranian Singer"
+                backgroundImage="https://images.unsplash.com/photo-1541661538396-53ba2d051eed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1854&q=80" />
+
+        </div>
+    </section>
 </template>
     
 <script>
@@ -28,9 +62,14 @@ import Mockup from '../Components/Mockup.vue'
 
 
 
+
 export default {
     components: {
-        Hero, Nav, Footer, Mockup
+        Hero,
+        Nav,
+        Footer,
+        Mockup,
+        ApplicationMark
     },
 }
 
