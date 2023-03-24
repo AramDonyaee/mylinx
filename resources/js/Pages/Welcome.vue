@@ -32,7 +32,7 @@ defineProps({
         </div>
 
         <div class="flex flex-wrap mb-4 items-center justify-center">
-            <label class="relative w-full md:w-3/4 lg:w-1/2 rounded-[50px] shadow bg-white z-0 mx-4" for='txt'>
+            <label class="relative w-full md:w-3/4 lg:w-1/2 rounded-[50px] shadow bg-white z-0 mx-4 items-center justify-center contents-center" for='txt'>
                 <v-icon name="fa-link" scale="1.1" />
                 <span class="pl-2 text-lg text-gray-600">mylinx.me/</span>
                 <input type="text" value=""
