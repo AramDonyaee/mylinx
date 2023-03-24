@@ -13,7 +13,7 @@ defineProps({
 <template>
     <Nav />
 
-    <section class="bg-gray-100 py-12">
+    <section class="bg-gray-100 py-6 lg:py-16 md:py-16">
         <div class="mx-auto w-11/12 md:w-8/12 lg:w-7/12 xl:w-6/12 flex flex-col items-center">
             <h2
                 class="text-center text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl w-full mb-4">
