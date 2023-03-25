@@ -12,61 +12,39 @@ defineProps({
 
 <template>
     <Nav />
+    <Hero class="pb-12" />
 
-    <section class="bg-gray-100 py-6 lg:py-16 md:py-16">
-        <div class="mx-auto w-11/12 md:w-8/12 lg:w-7/12 xl:w-6/12 flex flex-col items-center">
-            <h2
-                class="text-center text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl w-full mb-4">
-                All of you in one <span class="text-indigo-600"> Link </span> with <span class="text-rose-600">
-                    <ApplicationMark class="-ml-6 inline h-14" />
-                </span>
+    <div class="p-10 mx-auto flex flex-wrap bg-gradient-to-r from-purple-500 to-pink-500">
+        <div class="w-full md:w-1/2 md:pr-6 mb-8">
+            <h2 class="text-5xl font-bold mb-4 text-white">
+                How is
+                <ApplicationMark class="-ml-6 inline h-14" />
+                different than other link-in-bio tools?
             </h2>
-
-            <p class="text-center text-lg mb-6">
-                Gather all your links, social media, music, videos, and more in one place. Create a page that
-                matches your style and never worry about changing your bio link again.
-            </p>
-
-
-
+            <p class="mb-4">Mylinx is the best solution for your link management needs. With intuitive features and
+                easy-to-use interface, it saves you time and increases your productivity. Plus, with affordable pricing
+                plans, you can get started today!</p>
+            <button class="font-bold py-2 px-8 rounded-full text-white hover:shadow-md bg-gradient-to-r from-yellow-500 to-purple-700">Get Started</button>
         </div>
-
-        <div class="flex flex-wrap mb-4 items-center justify-center px-6">
-            <label class="relative w-full md:w-3/4 lg:w-1/2 rounded-[50px] shadow bg-white z-0 inline-flex items-center" for='txt'>
-                <v-icon name="fa-link" scale="1.1" />
-                <span class="pl-2 text-lg text-gray-600">mylinx.me/</span>
-                <input type="text" value=""
-                    class="text-indigo-500 relative bg-white outline-none focus:outline-none focus:ring-0 font-bold text-xl "
-                    style="border:none; margin-left: -10px; background: transparent;" />
-
-                <button
-                    class="hidden lg:absolute lg:block md:block md:absolute lg:right-4 md:right-4 lg:top-4 md:top-4 z-10 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-full">
-                    Claim your mylinx
-                </button>
-
-            </label>
-
-
-            <button
-                class="flex mt-4 lg:mt-0 md:mt-0 lg:hidden md:hidden bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-full">
-                Claim your mylinx
-            </button>
-
-
+        <div class="w-full md:w-1/2 flex flex-wrap justify-around">
+            <div class="w-full md:w-5/12 p-6 bg-white rounded-md shadow-md mb-4 md:mb-0">
+                <h3 class="text-2xl font-bold mb-2">Feature 1</h3>
+                <p>A description of feature 1</p>
+            </div>
+            <div class="w-full md:w-5/12 p-6 bg-white rounded-md shadow-md mb-4 md:mb-0">
+                <h3 class="text-2xl font-bold mb-2">Feature 2</h3>
+                <p>A description of feature 2</p>
+            </div>
+            <div class="w-full md:w-5/12 p-6 bg-white rounded-md mt-4 shadow-md">
+                <h3 class="text-2xl font-bold mb-2">Feature 3</h3>
+                <p>A description of feature 3</p>
+            </div>
+            <div class="w-full md:w-5/12 p-6 bg-white rounded-md mt-4 shadow-md">
+                <h3 class="text-2xl font-bold mb-2">Feature 4</h3>
+                <p>A description of feature 4</p>
+            </div>
         </div>
-
-        <div class="mx-auto flex flex-col items-center">
-            <Mockup class="scale-[0.9] md:scale-[1] lg:scale-[1] origin-top mt-8 "
-                avatarImage="https://www.theaudiodb.com/images/media/artist/thumb/yuqyst1582723681.jpg" title="Satin"
-                bio="Iranian Singer"
-                backgroundImage="https://images.unsplash.com/photo-1541661538396-53ba2d051eed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1854&q=80" />
-
-        </div>
-
-
-
-
-    </section>
+    </div>
 </template>
     
 <script>
@@ -75,8 +53,6 @@ import Nav from '../Components/Nav.vue'
 import Footer from '../Components/Footer.vue'
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Mockup from '../Components/Mockup.vue'
-
-
 
 
 export default {

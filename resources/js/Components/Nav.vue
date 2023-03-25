@@ -98,9 +98,9 @@
                 <!-- Links -->
                 <div class="hidden md:block">
                     <div class="ml-4 flex items-center md:ml-6">
-                        <a href="#" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Sign
-                            up</a>
-                        <a href="#" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Log in</a>
+                        <Link href="/pricing" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Pricing</Link>
+                        <Link href="/register" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Sign Up</Link>
+                        <Link href="/login" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Log in</Link>
                     </div>
                 </div>
                 <!-- Hamburger -->

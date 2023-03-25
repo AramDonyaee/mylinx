@@ -36,7 +36,7 @@
 
                 <!-- Main, current panel -->
 
-                <div v-for="n in 1"
+                <div v-for="n in 3"
                     id="link" class=" h-16 p-4 flex bg-white text-xl font-bold mb-2 text-center justify-center items-center contents-center ">
                     My Link #{{ n }}
                 </div>
