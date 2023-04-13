@@ -11,21 +11,21 @@
                 <div class="relative">
 
                     <!-- Avatar - Title - Bio -->
-                    <div class="mt-2 flex flex-col items-center pt-12">
+                    <div class="flex flex-col items-center pt-12">
 
                         <div
-                            class="relative inline-flex items-center justify-center w-32 h-32 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 ">
+                            class="relative inline-flex items-center justify-center w-32 h-32 sm:w-64 sm:h-64 lg:w-64 lg:h-64 md:w-64 md:h-64 overflow-hidden bg-gray-100 rounded-lg dark:bg-gray-600 ">
                             <!-- <span class="font-medium text-gray-600 dark:text-gray-300">JL</span> -->
                             <img v-bind:src=page.avatar_path class="shadow-2xl" />
                         </div>
 
-                        <p class="mt-2 text-white text-center text-2xl font-bold">{{ page.title }}</p>
-                        <p class="mt-2 text-white text-normal font-normal">{{ page.bio }}</p>
-                        <div class="flex flex-wrap justify-evenly mt-2">
-                            <v-icon name="fa-instagram" scale="1.5" fill="white" />
-                            <v-icon name="fa-twitter" scale="1.5" fill="white" />
-                            <v-icon name="fa-linkedin" scale="1.5" fill="white" />
-                            <v-icon name="fa-facebook" scale="1.5" fill="white" />
+                        <p class="mt-8 text-white text-center text-2xl font-bold">{{ page.title }}</p>
+                        <!-- <p class="mt-4 text-white text-normal font-normal">{{ page.bio }}</p> -->
+                        <div class="flex flex-wrap justify-evenly mt-4">
+                            <v-icon name="fa-instagram" scale="2" fill="white" />
+                            <v-icon name="fa-twitter" scale="2" fill="white" />
+                            <v-icon name="fa-linkedin" scale="2" fill="white" />
+                            <v-icon name="fa-facebook" scale="2" fill="white" />
                         </div>
 
 

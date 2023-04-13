@@ -13,7 +13,7 @@
             <div class="mt-2 flex flex-col items-center pt-12">
 
                 <div
-                    class="relative inline-flex items-center justify-center w-24 h-24 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                    class="relative inline-flex items-center justify-center w-32 h-32 overflow-hidden bg-gray-100 rounded-lg dark:bg-gray-600">
                     <!-- <span class="font-medium text-gray-600 dark:text-gray-300">JL</span> -->
                     <img v-if="avatarImage" v-bind:src=avatarImage />
                 </div>
