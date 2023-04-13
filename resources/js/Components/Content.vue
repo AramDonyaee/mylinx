@@ -1,8 +1,5 @@
 <template>
     <div class="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2">
-
-        <ChatComponent />
-
         <div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
@@ -175,7 +172,6 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel'
 import swipeModal from '@takuma-ru/vue-swipe-modal'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
-import ChatComponent from './ChatComponent.vue'
 
 
 export default {
@@ -188,7 +184,6 @@ export default {
     Mockup,
     swipeModal,
     Loading,
-    ChatComponent
 },
 
     created() {
