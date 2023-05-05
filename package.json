@@ -30,6 +30,7 @@
         "vue-swatches": "^2.1.1",
         "vue3-carousel": "^0.2.9",
         "vue3-colorpicker": "^2.1.2",
+        "vuedraggable": "^4.1.0",
         "vuex": "^4.0.2"
     }
 }

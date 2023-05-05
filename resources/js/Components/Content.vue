@@ -17,8 +17,7 @@
                     </div>
                 </div>
                 
-
-
+                
                 <div class="bg-white shadow-2xl p-6 rounded-2xl cursor-pointer" @click="showLinkModal">
                     <div class="content flex justify-center items-center text-center" >
                         <div class="flex-col">
@@ -124,10 +123,13 @@
     <swipe-modal v-model="isLinkModal" contents-height="50vh" v-bind:contents-width=this.modalWidth border-top-radius="30px"
         contents-color="white" tip-color="red">
         <loading v-model:active="isLoading" :can-cancel="false" color="#0000FF" />
-        <div class="grid gap-4">
-            <div class="pr-8 pl-8 pt-4">
+        <div class="grid gap-4 ">
+            <div class="pr-8 pl-8 pt-4 ">
+
                 <div v-bind:style="{ 'background-image': 'url(' + this.background_path + ')' }"
-                    class="bg-cover w-full bg-gray-300 h-24 flex justify-center items-center content-center rounded-lg">
+                    class="relative bg-cover w-full bg-gray-300 h-24 flex justify-center items-center content-center rounded-lg overflow-hidden">
+                    <span class="absolute left-0 top-0 bg-black text-[yellow] text-xs font-bold mr-2 px-2.5 py-0.5 dark:bg-purple-900 dark:text-purple-300">Preview</span>
+
                     <div class="w-1/2 flex justify-center text-center items-center content-center h-14" v-bind:style="
                         {
                             'border-width': link.border.thickness + 'px',

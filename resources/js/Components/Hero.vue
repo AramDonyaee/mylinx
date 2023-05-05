@@ -18,7 +18,7 @@
             <label class="relative w-full md:w-3/4 lg:w-1/2 rounded-[50px] shadow bg-white z-0 inline-flex items-center"
                 for='txt'>
                 <v-icon name="fa-link" scale="1.1" />
-                <span class="pl-2 text-lg text-gray-600">mylinx.me/</span>
+                <span class="pl-2 text-lg text-gray-600">mylinx.site/</span>
                 <input type="text" value=""
                     class="text-indigo-500 relative bg-white outline-none focus:outline-none focus:ring-0 font-bold text-xl "
                     style="border:none; margin-left: -10px; background: transparent;" />

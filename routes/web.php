@@ -45,12 +45,23 @@ Route::middleware([
         return Inertia::render('Stats');
     })->name('stats');
 
+    Route::get('/links', function () {
+        return Inertia::render('Links');
+    })->name('links');
+
     Route::post('pages/store', [Controllers\PagesController::class, 'store'])->name('pages.store');
     Route::post('links/store', [Controllers\LinksController::class, 'store'])->name('links.store');
+    Route::post('links/destroy', [Controllers\LinksController::class, 'destroy'])->name('links.destroy');
+
     Route::post('links/styles/store', [Controllers\PagesController::class, 'storeLinkStyles'])->name('linkstyles.store');
     Route::post('pages/updateBackground', [Controllers\PagesController::class, 'updateBackground'])->name('pages.updateBackground');
     Route::post('pages/storeAvatar', [Controllers\PagesController::class, 'storeAvatar'])->name('pages.storeAvatar');
+    Route::post('pages/removeAvatar', [Controllers\PagesController::class, 'removeAvatar'])->name('pages.removeAvatar');
+
     Route::get('/mockupData', [Controllers\PagesController::class, 'mockupData'])->name('mockupData');
+
+    Route::get('/getLinks', [Controllers\LinksController::class, 'getLinks']);
+
 
 });
 

@@ -9,9 +9,16 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import store from './store'
 
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-import * as FaIcons from "oh-vue-icons/icons/fa";
-const Fa = Object.values({ ...FaIcons });
-addIcons(...Fa);
+// import * as FaIcons from "oh-vue-icons/icons/fa";
+// const Fa = Object.values({ ...FaIcons });
+// addIcons(...Fa);
+
+// import * as MaterialIcons from "oh-vue-icons/icons/md";
+// const Md = Object.values({ ...MaterialIcons });
+// addIcons(...Md);
+import { MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook} from "oh-vue-icons/icons";
+addIcons(MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook);
+
 
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';

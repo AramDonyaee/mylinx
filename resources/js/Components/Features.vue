@@ -1,7 +1,10 @@
 <template>
     <div class="bg-gray-100 py-6 sm:py-8 lg:py-6">
-        <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-            <div class="flex flex-col overflow-hidden rounded-lg bg-gray-900 sm:flex-row md:h-80">
+        <div class="mx-auto max-w-screen-2xl px-4 md:px-8 ">
+            
+            <div class="relative flex flex-col overflow-hidden rounded-lg bg-gray-900 sm:flex-row md:h-80 ">
+                <span class="absolute right-1 top-3 bg-[yellow] text-black text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300">Coming Soon</span>
+
                 <!-- content - start -->
                 <div class="flex w-full flex-col p-4 sm:w-1/2 sm:p-8 lg:w-2/5">
                     <h2 class="mb-4 text-xl font-bold text-white md:text-2xl lg:text-4xl">Chat with your<br />Audience</h2>
@@ -32,7 +35,9 @@
 
     <div class="bg-gray-100 py-6 sm:py-8 lg:py-6">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-            <div class="flex flex-col overflow-hidden rounded-lg bg-white border-2 sm:flex-row md:h-80">
+            <div class="relative flex flex-col overflow-hidden rounded-lg bg-white border-2 sm:flex-row md:h-80">
+                <span class="absolute right-1 top-3 bg-[yellow] text-black text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300">Coming Soon</span>
+
                 <!-- image - start -->
                 <div class="order-first h-48 w-full bg-gray-300 sm:order-none sm:h-auto sm:w-1/2 lg:w-2/5">
                     <img src="https://cdn.dribbble.com/users/1165321/screenshots/5948047/media/da59826b8e66e82228d03f9ac735334b.png"

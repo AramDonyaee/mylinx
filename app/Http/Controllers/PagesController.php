@@ -97,6 +97,14 @@ class PagesController extends Controller
         return response('success');
     }
 
+    public function removeAvatar(Request $request){
+        $user = $request->user()->id;
+        $page = Page::where('user_id', $user)->first();
+        $page->avatar_path = '';
+        $page->save();
+    }
+
+
     public function storeLinkStyles(Request $request){
         $user = $request->user()->id;
         $page = Page::where('user_id', $user)->first();

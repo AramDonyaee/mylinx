@@ -49,7 +49,8 @@ const logout = () => {
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('content')" :active="route().current('content')">
-                                    Content
+                                    <v-icon name="fa-plus-square" scale="1" class="mr-1" />
+                                    Add Content
                                 </NavLink>
                             </div>
 
@@ -62,6 +63,12 @@ const logout = () => {
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink :href="route('stats')" :active="route().current('stats')">
                                     Stats
+                                </NavLink>
+                            </div>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink :href="route('links')" :active="route().current('links')">
+                                    Links
                                 </NavLink>
                             </div>
                         </div>

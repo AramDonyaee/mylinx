@@ -14,7 +14,7 @@
                     <button type="button" @click="showModal"
                         class="mb-1 w-full h-12 text-white bg-rose-500 font-medium rounded-xl text-normal px-5 py-2.5 text-center">Add
                         a Profile Picture</button>
-                    <button disabled type="button" @click="showModal"
+                    <button  type="button" @click="removeAvatar"
                         class=" w-full h-12 text-black bg-white font-medium rounded-xl border border-rose-200 text-normal px-5 py-2.5 text-center">
                         Remove
                     </button>
@@ -39,11 +39,11 @@
             </div>
 
             <!-- color - start -->
-            <div class="mb-2 mt-4 ">
+            <div class="mb-2 mt-8 ">
                 <span class="inline-block text-black text-xl font-bold md:text-xl font-semibold mb-3">Custom
                     Appearance</span>
 
-                <div class="flex flex-wrap gap-2 rounded-lg p-5 bg-white">
+                <!-- <div class="flex flex-wrap gap-2 rounded-lg p-5 bg-white">
 
                     <button type="button"
                         class="w-8 h-8 bg-[red] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-full transition duration-100 focus:ring-gray-800"
@@ -54,7 +54,7 @@
                     <button type="button"
                         class="w-8 h-8 bg-[black] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-full transition duration-100 focus:ring-gray-800"
                         @click="backgroundChange('black')"></button>
-                </div>
+                </div> -->
             </div>
             <!-- color - end -->
 
@@ -300,9 +300,22 @@ export default {
             }
         },
 
+        async removeAvatar() {
+            try {
+                await axios.post(
+                    route('pages.removeAvatar')
+                );
+                this.$store.replaceState({});
+                this.storeLinkStyles_isLoading = true;
+                // simulate AJAX
+                setTimeout(() => {
+                    this.storeLinkStyles_isLoading = false
+                }, 5000);
 
-
-
+            } catch (e) {
+                console.log(e);
+            }
+        },
     }
 
 }

@@ -3,7 +3,7 @@
     <div class="ease-linear duration-200 mx-auto h-[712px] w-[350px] bg-black rounded-[50px] border-[10px] border-black relative overflow-hidden ring ring-purple-400 shadow-xl"
         :style="{backgroundColor: backgroundColor}">
 
-        <loading v-model:active="isLoading" :can-cancel="false" background-color="#000000" color="#fff" opacity="0.7" transition="fade" />
+        <!-- <loading v-model:active="isLoading" :can-cancel="false" background-color="#000000" color="#fff" opacity="0.7" transition="fade" /> -->
         
         <img v-if="backgroundImage" class="absolute inset-0 h-full w-full object-cover" v-bind:src=backgroundImage />
 
@@ -13,7 +13,7 @@
             <div class="mt-2 flex flex-col items-center pt-12">
 
                 <div
-                    class="relative inline-flex items-center justify-center w-32 h-32 overflow-hidden bg-gray-100 rounded-lg dark:bg-gray-600">
+                    class="relative inline-flex items-center justify-center w-32 h-32 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                     <!-- <span class="font-medium text-gray-600 dark:text-gray-300">JL</span> -->
                     <img v-if="avatarImage" v-bind:src=avatarImage />
                 </div>
@@ -26,9 +26,6 @@
                         <v-icon name="fa-linkedin" scale="1.5" fill="white"/>
                         <v-icon name="fa-facebook" scale="1.5" fill="white"/>
                     </div>
-
-
-
             </div>
             <!-- Notification Summary -->
             <div class="relative mt-4 mx-2">
