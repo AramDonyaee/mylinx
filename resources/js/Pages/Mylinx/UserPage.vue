@@ -2,13 +2,13 @@
 <template>
     <div v-bind:style="{ 'background-image': 'url(' + page.background_path + ')' }" class="">
         <div class="w-full h-full flex flex-col justify-center items-center backdrop-blur-xl ">
-            <div class="ease-linear duration-200 mx-auto md:w-1/2 w-full h-fit bg-black relative overflow-hidden  shadow-xl pb-24 "
+            <div class="ease-linear duration-200 mx-auto md:w-1/2 w-full h-fit bg-black relative overflow-hidden shadow-xl pb-24 "
                 :style="{ backgroundColor: backgroundColor }">
 
 
                 <img v-if="page.background_path" class="absolute inset-0 h-full w-full object-cover" v-bind:src=page.background_path />
 
-                <div class="relative">
+                <div class="relative mb-[300px]">
 
                     <!-- Avatar - Title - Bio -->
                     <div class="flex flex-col items-center pt-12">
@@ -38,7 +38,7 @@
                         <!-- Main, current panel -->
 
                             <div v-for="link in links"
-                                id="link" class="flex hover:scale-[1.01] transition duration-100 h-16 p-4  text-xl font-bold  shadow mb-64 text-center justify-center items-center contents-center"
+                                id="link" class="flex hover:scale-[1.01] transition duration-100 h-16 p-4  text-xl font-bold  shadow  text-center justify-center items-center contents-center"
                                 v-bind:style="
                                     {
                                     'border-width': page.link_border_thickness + 'px',

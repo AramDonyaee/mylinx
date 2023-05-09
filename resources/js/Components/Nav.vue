@@ -33,10 +33,12 @@
         <!-- Responsive menu -->
         <div :class="[isOpen ? 'block' : 'hidden', 'md:hidden']">
             <div class="px-2 pt-2 sm:px-3">
-                <a href="#" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 rounded-tl-lg rounded-tr-lg   text-base font-medium">Sign
-                    up</a>
-                <a href="#" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 rounded-bl-lg rounded-br-lg  text-base font-medium">Log
-                    in</a>
+                <Link href="/pricing" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 rounded-tl-lg rounded-tr-lg   text-base font-medium">Pricing
+                    </Link>
+                <Link href="/register" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 text-base font-medium">Sign
+                    up</Link>
+                <Link href="/login" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 rounded-bl-lg rounded-br-lg  text-base font-medium">Log
+                    in</Link>
             </div>
         </div>
     </nav>
