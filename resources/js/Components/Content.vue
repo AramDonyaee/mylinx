@@ -1,7 +1,7 @@
 <template>
     <div class="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2">
         <div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
 
                 <div class="bg-white shadow-2xl p-6 rounded-2xl cursor-pointer" @click="showSocialModal">
@@ -16,10 +16,10 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="bg-white shadow-2xl p-6 rounded-2xl cursor-pointer" @click="showLinkModal">
-                    <div class="content flex justify-center items-center text-center" >
+                    <div class="content flex justify-center items-center text-center">
                         <div class="flex-col">
                             <div><v-icon name="fa-link" scale="1.2" /></div>
                             <div>Add a link</div>
@@ -69,11 +69,11 @@
                         </div>
                     </div>
                 </div> -->
-           
+
             </div>
 
 
-       </div>
+        </div>
 
         <div class="h-screen sticky top-0 justify-center items-center bg-slate-200">
 
@@ -114,8 +114,6 @@
             </div>
 
         </div>
-
-
     </swipe-modal>
 
     <!-- Links Modal -->
@@ -125,25 +123,62 @@
         <loading v-model:active="isLoading" :can-cancel="false" color="#0000FF" />
         <div class="grid gap-4 ">
             <div class="pr-8 pl-8 pt-4 ">
-
                 <div v-bind:style="{ 'background-image': 'url(' + this.background_path + ')' }"
                     class="relative bg-cover w-full bg-gray-300 h-24 flex justify-center items-center content-center rounded-lg overflow-hidden">
-                    <span class="absolute left-0 top-0 bg-black text-[yellow] text-xs font-bold mr-2 px-2.5 py-0.5 dark:bg-purple-900 dark:text-purple-300">Preview</span>
+                    <span
+                        class="absolute left-0 top-0 bg-black text-[yellow] text-xs font-bold mr-2 px-2.5 py-0.5 dark:bg-purple-900 dark:text-purple-300">Preview</span>
 
-                    <div class="w-1/2 flex justify-center text-center items-center content-center h-14" v-bind:style="
-                        {
+                    <div class="w-3/4 md:w-1/2 lg:w-1/2 flex justify-center text-center items-center content-center h-14"
+                        v-bind:style="{
                             'border-width': link.border.thickness + 'px',
                             'border-color': link.border.color,
                             'border-radius': link.border.radius + 'px',
                             'background-color': link.bgColor,
                             'color': link.textColor
                         }">
-                        {{ this.linkTitle }}</div>
-                </div>
+                        {{ this.linkTitle }}
+                    </div>
 
+                </div>
             </div>
+
             <div>
                 <div class="bg-white pr-8 pl-8 pb-8 rounded-lg gap-2">
+                    <div class="grid grid-cols-5 md:grid-cols-5 gap-2 mb-2">
+                        <div class="bg-gray-200 rounded-sm flex justify-center items-center">
+                            <img src="/button.png" class="scale-[0.4]" />
+                        </div>
+                        <div class="bg-gray-200 rounded-sm flex justify-center items-center">
+                            <img src="/thumbnail-basic.png" class="scale-[0.4]" />
+                        </div>
+                        <div class="bg-gray-200 rounded-sm flex justify-center items-center">
+                            <img src="/thumbnail-basic.png" class="scale-[0.4]" />
+
+                        </div>
+                        <div class="bg-gray-200 rounded-sm flex justify-center items-center">
+                            <img src="/thumbnail-highlight.png" class="scale-[0.4]" />
+                        </div>
+                        <div class="bg-gray-200 rounded-sm flex justify-center items-center">
+                            <img src="/button-image-background.png" class="scale-[0.4]" />
+                        </div>
+
+
+                    </div>
+
+                    <label for="dropzone-file"
+                        class="flex flex-col items-center justify-center w-full h-12 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 mb-2">
+                        <div class="flex items-center justify-center  ">
+                            <p class="text-sm text-gray-500 dark:text-gray-400 flex justify-center items-center ">
+                                <v-icon class="mr-1" name="fa-image" scale="1.4" />
+                                <span class="font-semibold">
+                                    Click to upload your image
+                                </span>
+                            </p>
+                        </div>
+                        <input type="file" class="hidden" ref="file" accept="image/*" />
+
+                    </label>
+
                     <div class="rounded-lg overflow-hidden ">
                         <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
                             placeholder="Link Title" v-model="linkTitle" />
@@ -176,17 +211,19 @@ import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
 
 
+
+
 export default {
 
     name: 'Content',
     components: {
-    Carousel,
-    Slide,
-    Navigation,
-    Mockup,
-    swipeModal,
-    Loading,
-},
+        Carousel,
+        Slide,
+        Navigation,
+        Mockup,
+        swipeModal,
+        Loading,
+    },
 
     created() {
         window.addEventListener('resize', this.handleResize);
@@ -225,6 +262,7 @@ export default {
             modalWidth: null,
             linkTitle: '',
             linkUrl: '',
+            linkType: '',
             isLoading: false,
             fullPage: false,
             link: {
@@ -268,6 +306,7 @@ export default {
                 const link = await axios.post(
                     route('links.store'),
                     {
+                        type: this.linkType,
                         title: this.linkTitle,
                         url: this.linkUrl
                     }
@@ -284,6 +323,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
