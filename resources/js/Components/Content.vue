@@ -121,14 +121,15 @@
     <swipe-modal v-model="isLinkModal" contents-height="50vh" v-bind:contents-width=this.modalWidth border-top-radius="30px"
         contents-color="white" tip-color="red">
         <loading v-model:active="isLoading" :can-cancel="false" color="#0000FF" />
-        <div class="grid gap-4 ">
+        <div class="grid gap-2 ">
             <div class="pr-8 pl-8 pt-4 ">
                 <div v-bind:style="{ 'background-image': 'url(' + this.background_path + ')' }"
-                    class="relative bg-cover w-full bg-gray-300 h-24 flex justify-center items-center content-center rounded-lg overflow-hidden">
+                    class="relative bg-cover w-full bg-gray-300 h-auto flex justify-center items-center content-center rounded-lg overflow-hidden py-6">
                     <span
                         class="absolute left-0 top-0 bg-black text-[yellow] text-xs font-bold mr-2 px-2.5 py-0.5 dark:bg-purple-900 dark:text-purple-300">Preview</span>
 
-                    <div class="w-3/4 md:w-1/2 lg:w-1/2 flex justify-center text-center items-center content-center h-14"
+                    <div v-if="this.isFirstLinkTypeVisible"
+                        class="w-3/4 md:w-1/2 lg:w-1/2 flex justify-center text-center items-center content-center h-14"
                         v-bind:style="{
                             'border-width': link.border.thickness + 'px',
                             'border-color': link.border.color,
@@ -139,35 +140,91 @@
                         {{ this.linkTitle }}
                     </div>
 
+                    <div v-if="this.isSecondLinkTypeVisible"
+                        class="overflow-hidden w-3/4 md:w-1/2 lg:w-1/2 flex justify-center text-center items-center content-center h-24"
+                        v-bind:style="{
+                            'border-width': link.border.thickness + 'px',
+                            'border-color': link.border.color,
+                            'border-radius': link.border.radius + 'px',
+                            'background-color': link.bgColor,
+                            'color': link.textColor
+                        }">
+                        <div class="w-1/4">
+                            <img class="object-cover "
+                                src="https://images.unsplash.com/photo-1683645760526-33780e9345bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2038&q=80" />
+                        </div>
+                        <div class="w-3/4">{{ this.linkTitle }}</div>
+
+                    </div>
+
+                    <div v-if="this.isThirdLinkTypeVisible"
+                        class="overflow-hidden w-3/4 md:w-1/2 lg:w-1/2 flex justify-center text-center items-center content-center h-24"
+                        v-bind:style="{
+                            'border-width': link.border.thickness + 'px',
+                            'border-color': link.border.color,
+                            'border-radius': link.border.radius + 'px',
+                            'background-color': link.bgColor,
+                            'color': link.textColor
+                        }">
+                        <div class="w-1/4 flex justify-center">
+                            <img class="object-cover rounded-xl w-[60px] h-[60px]"
+                                src="https://images.unsplash.com/photo-1683645760526-33780e9345bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2038&q=80" />
+                        </div>
+                        <div class="w-3/4">{{ this.linkTitle }}</div>
+
+                    </div>
+
+                    <div v-if="this.isForthLinkTypeVisible"
+                        class="overflow-hidden w-3/4 md:w-1/2 lg:w-1/2 flex flex-col justify-center text-center items-center content-center h-auto"
+                        v-bind:style="{
+                            'border-width': link.border.thickness + 'px',
+                            'border-color': link.border.color,
+                            'border-radius': link.border.radius + 'px',
+                            'background-color': link.bgColor,
+                            'color': link.textColor
+                        }">
+                        <div class="w-full">
+                            <img class="object-cover w-full h-[200px]"
+                                src="https://images.unsplash.com/photo-1683645760526-33780e9345bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2038&q=80" />
+                        </div>
+                        <div class="py-4">{{ this.linkTitle }}</div>
+                    </div>
+
+
                 </div>
             </div>
 
             <div>
                 <div class="bg-white pr-8 pl-8 pb-8 rounded-lg gap-2">
-                    <div class="grid grid-cols-5 md:grid-cols-5 gap-2 mb-2">
-                        <div class="bg-gray-200 rounded-sm flex justify-center items-center">
+                    <div class="grid grid-cols-4 md:grid-cols-4 gap-2 mb-2 ">
+                        <div class="bg-gray-200 rounded-lg flex justify-center items-center cursor-pointer h-20"
+                            v-bind:class="{ 'border-4 border-indigo-600': isFirstLinkSelected }"
+                            @click="this.chooseFirstLinkType">
                             <img src="/button.png" class="scale-[0.4]" />
                         </div>
-                        <div class="bg-gray-200 rounded-sm flex justify-center items-center">
+                        <div class="bg-gray-200 rounded-lg flex justify-center items-center cursor-pointer h-20"
+                            v-bind:class="{ 'border-4 border-indigo-600': isSecondLinkSelected }"
+                            @click="this.chooseSecondLinkType">
                             <img src="/thumbnail-basic.png" class="scale-[0.4]" />
                         </div>
-                        <div class="bg-gray-200 rounded-sm flex justify-center items-center">
+                        <div class="bg-gray-200 rounded-lg flex justify-center items-center cursor-pointer h-20"
+                            v-bind:class="{ 'border-4 border-indigo-600': isThirdLinkSelected }"
+                            @click="this.chooseThirdLinkType">
                             <img src="/thumbnail-basic.png" class="scale-[0.4]" />
-
                         </div>
-                        <div class="bg-gray-200 rounded-sm flex justify-center items-center">
+                        <div class="bg-gray-200 rounded-lg flex justify-center items-center cursor-pointer h-20"
+                            v-bind:class="{ 'border-4 border-indigo-600': isForthLinkSelected }"
+                            @click="this.chooseForthLinkType">
                             <img src="/thumbnail-highlight.png" class="scale-[0.4]" />
                         </div>
-                        <div class="bg-gray-200 rounded-sm flex justify-center items-center">
-                            <img src="/button-image-background.png" class="scale-[0.4]" />
-                        </div>
+
 
 
                     </div>
 
-                    <label for="dropzone-file"
+                    <label v-if="this.isLinkImageUploadVisible" for="dropzone-file"
                         class="flex flex-col items-center justify-center w-full h-12 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 mb-2">
-                        <div class="flex items-center justify-center  ">
+                        <div class="flex items-center justify-center" @click="$refs.file.click()">
                             <p class="text-sm text-gray-500 dark:text-gray-400 flex justify-center items-center ">
                                 <v-icon class="mr-1" name="fa-image" scale="1.4" />
                                 <span class="font-semibold">
@@ -175,8 +232,7 @@
                                 </span>
                             </p>
                         </div>
-                        <input type="file" class="hidden" ref="file" accept="image/*" />
-
+                        <input type="file" class="hidden" ref="file" accept="image/*" @change="handleImageUpload()" />
                     </label>
 
                     <div class="rounded-lg overflow-hidden ">
@@ -184,16 +240,17 @@
                             placeholder="Link Title" v-model="linkTitle" />
                     </div>
 
-                    <div class="rounded-lg overflow-hidden mt-3">
+                    <div class="rounded-lg overflow-hidden mt-2">
                         <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
                             placeholder="URL" v-model="linkUrl" />
                     </div>
 
-                    <div class="flex gap-2.5 mt-3">
+                    <div class="flex gap-2.5 mt-2">
                         <button @click="storeLink"
                             class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">Add
                             Link</button>
                     </div>
+
                 </div>
             </div>
 
@@ -264,6 +321,7 @@ export default {
             linkUrl: '',
             linkType: '',
             isLoading: false,
+            isLinkImageUploadVisible: false,
             fullPage: false,
             link: {
                 border: {
@@ -273,12 +331,27 @@ export default {
                 },
                 bgColor: null,
                 textColor: null
-            }
+            },
+            isFirstLinkTypeVisible: true,
+            isSecondLinkTypeVisible: false,
+            isThirdLinkTypeVisible: false,
+            isForthLinkTypeVisible: false,
+
+            isFirstLinkSelected: true,
+            isSecondLinkSelected: false,
+            isThirdtLinkSelected: false,
+            isForthLinkSelected: false,
+
+            image: '',
 
 
         };
     },
     methods: {
+
+        handleImageUpload() {
+            this.file = this.$refs.file.files[0];
+        },
 
         showSocialModal() {
             this.isSocialModal = true
@@ -286,6 +359,70 @@ export default {
 
         showLinkModal() {
             this.isLinkModal = true
+        },
+
+        showImageUpload() {
+            this.isLinkImageUploadVisible = true
+        },
+
+        hideImageUpload() {
+            this.isLinkImageUploadVisible = false
+        },
+
+        chooseFirstLinkType() {
+            this.isFirstLinkTypeVisible = true;
+            this.isSecondLinkTypeVisible = false;
+            this.isThirdLinkTypeVisible = false;
+            this.isForthLinkTypeVisible = false;
+            this.linkType = 1;
+            this.isLinkImageUploadVisible = false;
+
+            this.isFirstLinkSelected = true;
+            this.isSecondLinkSelected = false;
+            this.isThirdLinkSelected = false;
+            this.isForthLinkSelected = false;
+        },
+
+        chooseSecondLinkType() {
+            this.isFirstLinkTypeVisible = false;
+            this.isSecondLinkTypeVisible = true;
+            this.isThirdLinkTypeVisible = false;
+            this.isForthLinkTypeVisible = false;
+            this.linkType = 2;
+            this.isLinkImageUploadVisible = true;
+
+            this.isFirstLinkSelected = false;
+            this.isSecondLinkSelected = true;
+            this.isThirdLinkSelected = false;
+            this.isForthLinkSelected = false;
+        },
+
+        chooseThirdLinkType() {
+            this.isFirstLinkTypeVisible = false;
+            this.isSecondLinkTypeVisible = false;
+            this.isThirdLinkTypeVisible = true;
+            this.isForthLinkTypeVisible = false;
+            this.linkType = 3;
+            this.isLinkImageUploadVisible = true;
+
+            this.isFirstLinkSelected = false;
+            this.isSecondLinkSelected = false;
+            this.isThirdLinkSelected = true;
+            this.isForthLinkSelected = false;
+        },
+
+        chooseForthLinkType() {
+            this.isFirstLinkTypeVisible = false;
+            this.isSecondLinkTypeVisible = false;
+            this.isThirdLinkTypeVisible = false;
+            this.isForthLinkTypeVisible = true;
+            this.linkType = 4;
+            this.isLinkImageUploadVisible = true;
+
+            this.isFirstLinkSelected = false;
+            this.isSecondLinkSelected = false;
+            this.isThirdLinkSelected = false;
+            this.isForthLinkSelected = true;
         },
 
         handleResize() {
@@ -306,10 +443,17 @@ export default {
                 const link = await axios.post(
                     route('links.store'),
                     {
+                        image: this.image,
                         type: this.linkType,
                         title: this.linkTitle,
                         url: this.linkUrl
-                    }
+                    },
+                    {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    },
+
                 );
 
                 console.log(link)

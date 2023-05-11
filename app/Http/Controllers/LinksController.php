@@ -15,6 +15,19 @@ class LinksController extends Controller
 {
     public function store(Request $request){
 
+        if($request->input('image')){
+            $image = $request->input('image');
+            $folderPath = public_path() . '/' . 'images/';
+            $image_parts = explode(";base64,", $image);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $image_name = time() . '.' . $image_type;
+            $file = $folderPath . $image_name;
+            file_put_contents($file, $image_base64);
+            $image_path = 'images/'. $image_name;
+        }
+
         $user_id = $request->user()->id;
         $page = Page::where('user_id', $user_id)->first();
         $previous_link = Link::where('page_id', $page->id)->latest()->first();
@@ -22,7 +35,9 @@ class LinksController extends Controller
             $previous_link_order = $previous_link->link_order;
             $link_order = $previous_link_order + 1;
             Link::create([
+                'thumbnail_path' => $image_path ?? null,
                 'title' => $request->input('title'),
+                'type' => $request->input('type'),
                 'hyperlink' => 'http://' . $request->input('url'),
                 'page_id' => $page->id,
                 'link_order' => $link_order
@@ -30,6 +45,7 @@ class LinksController extends Controller
         }else{
             Link::create([
                 'title' => $request->input('title'),
+                'type' => $request->input('type'),
                 'hyperlink' => 'http://' . $request->input('url'),
                 'page_id' => $page->id,
                 'link_order' => 0

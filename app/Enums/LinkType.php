@@ -11,5 +11,4 @@ final class LinkType extends Enum
     const image_on_left_no_padding = 2;
     const image_on_left_padding = 3;
     const image_on_top = 4;
-    const image_behind_text = 5;
 }
