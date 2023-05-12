@@ -149,9 +149,8 @@
                             'background-color': link.bgColor,
                             'color': link.textColor
                         }">
-                        <div class="w-1/4">
-                            <img class="object-cover "
-                                src="https://images.unsplash.com/photo-1683645760526-33780e9345bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2038&q=80" />
+                        <div class="w-1/4 h-full">
+                            <img class="object-cover h-full" :src="imagePreview"/>
                         </div>
                         <div class="w-3/4">{{ this.linkTitle }}</div>
 
@@ -166,9 +165,8 @@
                             'background-color': link.bgColor,
                             'color': link.textColor
                         }">
-                        <div class="w-1/4 flex justify-center">
-                            <img class="object-cover rounded-xl w-[60px] h-[60px]"
-                                src="https://images.unsplash.com/photo-1683645760526-33780e9345bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2038&q=80" />
+                        <div class="w-1/4 flex justify-center ">
+                            <img class="object-cover rounded-xl w-[52px] h-[52px] ml-8 " :src="imagePreview" />
                         </div>
                         <div class="w-3/4">{{ this.linkTitle }}</div>
 
@@ -184,8 +182,7 @@
                             'color': link.textColor
                         }">
                         <div class="w-full">
-                            <img class="object-cover w-full h-[200px]"
-                                src="https://images.unsplash.com/photo-1683645760526-33780e9345bb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2038&q=80" />
+                            <img class="object-cover w-full" :src="imagePreview" />
                         </div>
                         <div class="py-4">{{ this.linkTitle }}</div>
                     </div>
@@ -233,7 +230,9 @@
                             </p>
                         </div>
                         <input type="file" class="hidden" ref="file" accept="image/*" @change="handleImageUpload()" />
+                        <progress max="100" :value.prop="uploadPercentage"></progress>
                     </label>
+
 
                     <div class="rounded-lg overflow-hidden ">
                         <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
@@ -266,8 +265,6 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel'
 import swipeModal from '@takuma-ru/vue-swipe-modal'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
-
-
 
 
 export default {
@@ -343,6 +340,8 @@ export default {
             isForthLinkSelected: false,
 
             image: '',
+            imagePreview: 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=',
+            uploadPercentage: 0,
 
 
         };
@@ -350,7 +349,29 @@ export default {
     methods: {
 
         handleImageUpload() {
-            this.file = this.$refs.file.files[0];
+            this.image = this.$refs.file.files[0];
+
+            let reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                this.imagePreview = reader.result;
+            }.bind(this), false);
+
+            if (this.image) {
+                /*
+                  Ensure the file is an image file.
+                */
+                if (/\.(jpe?g|png|gif)$/i.test(this.image.name)) {
+                    /*
+                      Fire the readAsDataURL method which will read the file in and
+                      upon completion fire a 'load' event which we will listen to and
+                      display the image in the preview.
+                    */
+                    reader.readAsDataURL(this.image);
+                }
+            }
+
+
         },
 
         showSocialModal() {
@@ -440,6 +461,7 @@ export default {
                 setTimeout(() => {
                     this.isLoading = false
                 }, 5000);
+
                 const link = await axios.post(
                     route('links.store'),
                     {
@@ -451,7 +473,10 @@ export default {
                     {
                         headers: {
                             'Content-Type': 'multipart/form-data'
-                        }
+                        },
+                        onUploadProgress: function (progressEvent) {
+                            this.uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100));
+                        }.bind(this)
                     },
 
                 );

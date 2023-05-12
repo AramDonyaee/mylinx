@@ -6,7 +6,8 @@
                 :style="{ backgroundColor: backgroundColor }">
 
 
-                <img v-if="page.background_path" class="absolute inset-0 h-full w-full object-cover" v-bind:src=page.background_path />
+                <img v-if="page.background_path" class="absolute inset-0 h-full w-full object-cover"
+                    v-bind:src=page.background_path />
 
                 <div class="relative mb-[300px]">
 
@@ -28,8 +29,6 @@
                             <v-icon name="fa-facebook" scale="2" fill="white" />
                         </div>
 
-
-
                     </div>
                     <!-- Notification Summary -->
                     <div class="relative mt-4 mx-2">
@@ -37,19 +36,46 @@
 
                         <!-- Main, current panel -->
 
-                            <div v-for="link in links"
-                                id="link" class="flex hover:scale-[1.01] transition duration-100 h-16 p-4  text-xl font-bold  shadow  text-center justify-center items-center contents-center"
-                                v-bind:style="
-                                    {
-                                    'border-width': page.link_border_thickness + 'px',
-                                    'border-color': page.link_border_color,
-                                    'border-radius': page.link_border_radius + 'px',
-                                    'background-color': page.link_background_color,
-                                    'color': page.link_text_color
-                                    
-                                    }">
-                                <a v-bind:href=link.hyperlink>{{ link.title }}</a>
-                            </div> 
+                        <a v-for="link in links" id="link"
+                            class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-2 text-xl justify-center text-center content-center"
+                            v-bind:style="{
+                                'border-width': page.link_border_thickness + 'px',
+                                'border-color': page.link_border_color,
+                                'border-radius': page.link_border_radius + 'px',
+                                'background-color': page.link_background_color,
+                                'color': page.link_text_color
+
+                            }" v-bind:href=link.hyperlink>
+
+                            <span v-if="link.type == 1" class="flex w-full items-center">
+                                <div class="w-full h-12 flex items-center justify-center">{{ link.title }}</div>
+                            </span>
+
+                            <span v-if="link.type == 2" class="flex w-full items-center ">
+                                <div class="w-1/4 h-full">
+                                    <img class="object-cover h-full" :src="link.thumbnail_path" />
+                                </div>
+                                <div class="w-3/4">{{ link.title }}</div>
+                            </span>
+
+                            <span v-if="link.type == 3" class="flex w-full items-center py-2">
+                                <div class="w-1/4 flex justify-center ">
+                                    <img class="object-cover rounded-xl w-[52px] h-[52px] ml-8 "
+                                        :src="link.thumbnail_path" />
+                                </div>
+                                <div class="w-3/4">{{ link.title }}</div>
+                            </span>
+
+                            <span v-if="link.type == 4" class="flex flex-col w-full items-center">
+                                <div class="w-full">
+                                    <img class="object-cover w-full" :src="link.thumbnail_path" />
+                                </div>
+                                <div class="py-4">{{ link.title }}</div>
+                            </span>
+
+
+                        </a>
+
 
 
 
@@ -66,7 +92,8 @@
                 </div>
                 <!-- Flashlight, camera and bottom swipe menu -->
                 <div class="absolute left-1/2 transform -translate-x-1/2 font-bold bg-white rounded-full py-2 pl-6 pr-4">
-                    powered by <ApplicationMark class="inline h-6 -ml-2" />
+                    powered by
+                    <ApplicationMark class="inline h-6 -ml-2" />
                 </div>
 
             </div>
@@ -74,9 +101,6 @@
         </div>
 
     </div>
-
-
-
 </template>
 
 <script>
