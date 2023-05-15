@@ -1,1 +1,0 @@
-import{_ as t}from"./AppLayout-62be0b52.js";import{c as o,o as r}from"./app-096d5cde.js";import"./ApplicationMark-c37e0158.js";import"./_plugin-vue_export-helper-c27b6911.js";const n={__name:"Links",setup(e){return(s,_)=>(r(),o(t,{title:"Links"}))}};export{n as default};
