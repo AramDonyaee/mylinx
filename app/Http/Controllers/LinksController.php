@@ -15,39 +15,67 @@ class LinksController extends Controller
 {
     public function store(Request $request){
 
-        if($request->file()){
-            $file = $request->file('image');
-            $filename = $file->getClientOriginalName();//or you can give a name
-            $path = '/images';
-            $file->move(public_path($path),$filename);
-            $filename = 'images/'. $filename;
-        }
+        if($request->input('type') == 1){
+            $user_id = $request->user()->id;
+            $page = Page::where('user_id', $user_id)->first();
+            $previous_link = Link::where('page_id', $page->id)->latest()->first();
+            if ($previous_link){
+                $previous_link_order = $previous_link->link_order;
+                $link_order = $previous_link_order + 1;
+                Link::create([
+                    'title' => $request->input('title'),
+                    'type' => $request->input('type'),
+                    'hyperlink' => 'http://' . $request->input('url'),
+                    'page_id' => $page->id,
+                    'link_order' => $link_order
+                ]);
+            }else{
+                Link::create([
+                    'title' => $request->input('title'),
+                    'type' => $request->input('type'),
+                    'hyperlink' => 'http://' . $request->input('url'),
+                    'page_id' => $page->id,
+                    'link_order' => 0
+                ]);
+            }
+            return response('success');
+        } else {
+            if ($request->file()) {
+                $file = $request->file('image');
+                $filename = $file->getClientOriginalName(); //or you can give a name
+                $path = '/images';
+                $file->move(public_path($path),$filename);
+                $filename = 'images/'. $filename;
+            }
 
-        $user_id = $request->user()->id;
-        $page = Page::where('user_id', $user_id)->first();
-        $previous_link = Link::where('page_id', $page->id)->latest()->first();
-        if ($previous_link){
-            $previous_link_order = $previous_link->link_order;
-            $link_order = $previous_link_order + 1;
-            Link::create([
-                'thumbnail_path' => $filename ?? null,
-                'title' => $request->input('title'),
-                'type' => $request->input('type'),
-                'hyperlink' => 'http://' . $request->input('url'),
-                'page_id' => $page->id,
-                'link_order' => $link_order
-            ]);
-        }else{
-            Link::create([
-                'title' => $request->input('title'),
-                'type' => $request->input('type'),
-                'hyperlink' => 'http://' . $request->input('url'),
-                'page_id' => $page->id,
-                'link_order' => 0
-            ]);
+            $user_id = $request->user()->id;
+            $page = Page::where('user_id', $user_id)->first();
+            $previous_link = Link::where('page_id', $page->id)->latest()->first();
+            if ($previous_link){
+                $previous_link_order = $previous_link->link_order;
+                $link_order = $previous_link_order + 1;
+                Link::create([
+                    'thumbnail_path' => $filename,
+                    'title' => $request->input('title'),
+                    'type' => $request->input('type'),
+                    'hyperlink' => 'http://' . $request->input('url'),
+                    'page_id' => $page->id,
+                    'link_order' => $link_order
+                ]);
+            }else{
+                Link::create([
+                    'thumbnail_path' => $filename,
+                    'title' => $request->input('title'),
+                    'type' => $request->input('type'),
+                    'hyperlink' => 'http://' . $request->input('url'),
+                    'page_id' => $page->id,
+                    'link_order' => 0
+                ]);
+            }
+
+            return response('success');
         }
        
-        return response('scuccess');
     }
 
     public function update(Request $request)

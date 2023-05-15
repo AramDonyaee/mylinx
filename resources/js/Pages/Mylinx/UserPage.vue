@@ -47,8 +47,8 @@
 
                             }" v-bind:href=link.hyperlink>
 
-                            <span v-if="link.type == 1" class="flex w-full items-center">
-                                <div class="w-full h-12 flex items-center justify-center">{{ link.title }}</div>
+                            <span v-if="link.type == 1" class="flex w-full items-center py-2">
+                                <div class="w-full h-12 flex items-center justify-center ">{{ link.title }}</div>
                             </span>
 
                             <span v-if="link.type == 2" class="flex w-full items-center ">

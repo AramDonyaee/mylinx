@@ -150,7 +150,7 @@
                             'color': link.textColor
                         }">
                         <div class="w-1/4 h-full">
-                            <img class="object-cover h-full" :src="imagePreview"/>
+                            <img class="object-cover h-full" :src="imagePreview" />
                         </div>
                         <div class="w-3/4">{{ this.linkTitle }}</div>
 
@@ -314,9 +314,9 @@ export default {
             isSocialModal: false,
             isLinkModal: false,
             modalWidth: null,
-            linkTitle: '',
-            linkUrl: '',
-            linkType: '',
+            linkTitle: null,
+            linkUrl: null,
+            linkType: 1,
             isLoading: false,
             isLinkImageUploadVisible: false,
             fullPage: false,
@@ -462,7 +462,7 @@ export default {
                     this.isLoading = false
                 }, 5000);
 
-                const link = await axios.post(
+                axios.post(
                     route('links.store'),
                     {
                         image: this.image,
@@ -479,9 +479,10 @@ export default {
                         }.bind(this)
                     },
 
-                );
+                ).catch(function (error) {
+                        console.log(error);
+                })
 
-                console.log(link)
             } catch (e) {
                 console.log(e);
             }
