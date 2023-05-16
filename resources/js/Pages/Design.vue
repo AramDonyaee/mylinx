@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Design from '@/Components/Design.vue'
+import Design from '@/Components/Design.vue';
 
 </script>
 

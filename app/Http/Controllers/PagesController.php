@@ -26,10 +26,8 @@ class PagesController extends Controller
         }
 
         $page = $user->page;
-    
         return Inertia::render('Mylinx/UserPage', [
             'page' => $page,
-            'links' => $page->links ?? null,
         ]);
     }
 

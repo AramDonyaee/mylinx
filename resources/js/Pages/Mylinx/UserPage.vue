@@ -1,6 +1,7 @@
 
 <template>
     <div v-bind:style="{ 'background-image': 'url(' + page.background_path + ')' }" class="">
+
         <div class="w-full h-full flex flex-col justify-center items-center backdrop-blur-xl ">
             <div class="ease-linear duration-200 mx-auto md:w-1/2 w-full h-fit bg-black relative overflow-hidden shadow-xl pb-24 "
                 :style="{ backgroundColor: backgroundColor }">
@@ -30,13 +31,11 @@
                         </div>
 
                     </div>
-                    <!-- Notification Summary -->
-                    <div class="relative mt-4 mx-2">
-                        <!-- Stacked panels (sitting below) -->
 
-                        <!-- Main, current panel -->
 
-                        <a v-for="link in links" id="link"
+                    <!-- links -->
+                    <div class="relative mt-4 mx-2" id="links_id">
+                        <a v-for="link in this.links" id="link"
                             class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-2 text-xl justify-center text-center content-center"
                             v-bind:style="{
                                 'border-width': page.link_border_thickness + 'px',
@@ -76,18 +75,8 @@
 
                         </a>
 
-
-
-
-
-                        <!-- <Carousel :items-to-show="1">
-                            <Slide class="bg-white backdrop-blur h-48 rounded-3xl mr-4" v-for="slide in 10"
-                                :key="slide">
-                                <div class="carousel__item">{{ slide }}</div>
-                            </Slide>
-                        </Carousel> -->
-
                     </div>
+                    <!-- end of links -->
 
                 </div>
                 <!-- Flashlight, camera and bottom swipe menu -->
@@ -107,11 +96,10 @@
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Navigation, Slide } from 'vue3-carousel'
 import ApplicationMark from '../../Components/ApplicationMark.vue';
+import { onMounted } from 'vue';
 
 
 export default {
-
-
 
     components: {
         Carousel, Slide, Navigation, ApplicationMark
@@ -119,8 +107,22 @@ export default {
 
     props: {
         page: String,
-        links: String
     },
+
+    data() {
+        return {
+            links: null,
+        };
+    },
+
+    mounted() {
+        axios
+            .get('/getLinks')
+            .then(response => {
+                this.links = response.data.links;
+            });
+    },
+
 
 }
 </script>

@@ -103,5 +103,11 @@ class LinksController extends Controller
         return response()->json(['links' => $links]);
     }
 
+    public function move(Request $request, Link $link){
+        $link->update([
+            'link_order' => round($request->input('link_order'), 5)
+        ]);
+    }
+
 
 }

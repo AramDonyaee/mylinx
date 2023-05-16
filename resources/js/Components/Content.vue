@@ -220,17 +220,17 @@
                     </div>
 
                     <label v-if="this.isLinkImageUploadVisible" for="dropzone-file"
-                        class="flex flex-col items-center justify-center w-full h-12 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 mb-2">
+                        class=" overflow-hidden relative flex flex-col items-center justify-center w-full h-12 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 mb-2">
                         <div class="flex items-center justify-center" @click="$refs.file.click()">
-                            <p class="text-sm text-gray-500 dark:text-gray-400 flex justify-center items-center ">
+                            <p class="z-10 text-sm text-black dark:text-gray-400 flex justify-center items-center ">
                                 <v-icon class="mr-1" name="fa-image" scale="1.4" />
                                 <span class="font-semibold">
                                     Click to upload your image
                                 </span>
                             </p>
+                            <progress v-if="isProgressVisible" class="absolute h-full w-full opacity-60 z-0" max="100" :value.prop="uploadPercentage"></progress>
                         </div>
                         <input type="file" class="hidden" ref="file" accept="image/*" @change="handleImageUpload()" />
-                        <progress max="100" :value.prop="uploadPercentage"></progress>
                     </label>
 
 
@@ -342,6 +342,8 @@ export default {
             image: '',
             imagePreview: 'https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=',
             uploadPercentage: 0,
+
+            isProgressVisible: false,
 
 
         };
@@ -475,6 +477,7 @@ export default {
                             'Content-Type': 'multipart/form-data'
                         },
                         onUploadProgress: function (progressEvent) {
+                            this.isProgressVisible = true;
                             this.uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100));
                         }.bind(this)
                     },

@@ -1,6 +1,6 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Content from '@/Components/Content.vue'
+import Content from '@/Components/Content.vue';
 
 </script>
 

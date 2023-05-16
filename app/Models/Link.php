@@ -10,8 +10,13 @@ class Link extends Model
     use HasFactory;
 
     protected $guarded = [];
+    const ORDER_GAP = 6000;
 
-
+    public static function booted(){
+        static::creating(function($model){
+            $model->link_order = self::query()->where('page_id', $model->page_id)->orderByDesc('link_order')->first()?->link_order + self::ORDER_GAP;
+        });
+    }
 
     public function clicks()
     {

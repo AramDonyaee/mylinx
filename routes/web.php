@@ -52,6 +52,7 @@ Route::middleware([
     Route::post('pages/store', [Controllers\PagesController::class, 'store'])->name('pages.store');
     Route::post('links/store', [Controllers\LinksController::class, 'store'])->name('links.store');
     Route::post('links/destroy', [Controllers\LinksController::class, 'destroy'])->name('links.destroy');
+    Route::put('links/{link}/move', [Controllers\LinksController::class, 'move'])->name('links.move');
 
     Route::post('links/styles/store', [Controllers\PagesController::class, 'storeLinkStyles'])->name('linkstyles.store');
     Route::post('pages/updateBackground', [Controllers\PagesController::class, 'updateBackground'])->name('pages.updateBackground');
