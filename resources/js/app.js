@@ -17,7 +17,7 @@ import { OhVueIcon, addIcons } from "oh-vue-icons";
 // const Md = Object.values({ ...MaterialIcons });
 // addIcons(...Md);
 import { FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook} from "oh-vue-icons/icons";
-addIcons( FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook);
+addIcons(  FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook);
 
 
 
