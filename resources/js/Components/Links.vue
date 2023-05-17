@@ -1,40 +1,39 @@
 <template>
     <div class="flex justify-center mt-6 mr-6 ml-6">
         <draggable v-model="links" item-key="id" class="w-full md:w-1/2 lg:w-1/2 sm:w-3/4 m-2" ghost-class="ghost"
-            @change="onChange">
+            @change="onChange" delay="400"  chosen-class="chosen" drag-class="drag">
             <template #item="{ element }">
-                    <div
-                        class="flex hover:scale-[1.01] bg-white border-gray-300 border-[3px] border-dashed rounded-lg p-4 overflow-hidden transition duration-100 mb-2 text-xl justify-center text-center content-center">
+                <div
+                    class="flex bg-white border-gray-300 border-[3px] border-dashed rounded-lg p-4 overflow-hidden transition duration-100 mb-2 text-xl justify-center text-center content-center">
 
-                        <span v-if="element.type == 1" class="flex w-full items-center py-2">
-                            <div><v-icon name="md-dragindicator" scale="1.2" /></div>
-                            <div class="w-full h-12 flex items-center justify-center ">{{ element.title }}</div>
-                        </span>
+                    <span v-if="element.type == 1" class="flex w-full items-center py-2">
+                        <div><v-icon name="md-dragindicator" scale="1.2" /></div>
+                        <div class="w-full h-12 flex items-center justify-center ">{{ element.title }}</div>
+                    </span>
 
-                        <span v-if="element.type == 2" class="flex w-full items-center ">
-                            <div class="w-1/4 h-full">
-                                <img class="object-cover h-full" :src="element.thumbnail_path" />
-                            </div>
-                            <div class="w-3/4">{{ element.title }}</div>
-                        </span>
+                    <span v-if="element.type == 2" class="flex w-full items-center ">
+                        <div class="w-1/4 h-full">
+                            <img class="object-cover h-full" :src="element.thumbnail_path" />
+                        </div>
+                        <div class="w-3/4">{{ element.title }}</div>
+                    </span>
 
-                        <span v-if="element.type == 3" class="flex w-full items-center py-2">
-                            <div class="w-1/4 flex justify-center ">
-                                <img class="object-cover rounded-xl w-[52px] h-[52px] ml-8 "
-                                    :src="element.thumbnail_path" />
-                            </div>
-                            <div class="w-3/4">{{ element.title }}</div>
-                        </span>
+                    <span v-if="element.type == 3" class="flex w-full items-center py-2">
+                        <div class="w-1/4 flex justify-center ">
+                            <img class="object-cover rounded-xl w-[52px] h-[52px] ml-8 " :src="element.thumbnail_path" />
+                        </div>
+                        <div class="w-3/4">{{ element.title }}</div>
+                    </span>
 
-                        <span v-if="element.type == 4" class="flex flex-col w-full items-center">
-                            <div class="w-full">
-                                <img class="object-cover w-full" :src="element.thumbnail_path" />
-                            </div>
-                            <div class="py-4">{{ element.title }}</div>
-                        </span>
+                    <span v-if="element.type == 4" class="flex flex-col w-full items-center">
+                        <div class="w-full">
+                            <img class="object-cover w-full" :src="element.thumbnail_path" />
+                        </div>
+                        <div class="py-4">{{ element.title }}</div>
+                    </span>
 
 
-                    </div>
+                </div>
 
             </template>
         </draggable>
@@ -62,6 +61,8 @@ export default {
             links: null,
         };
     },
+
+   
 
     mounted() {
         axios
@@ -117,5 +118,9 @@ export default {
 
 .ghost>div {
     visibility: hidden;
+}
+
+.chosen {
+    scale: 1.03
 }
 </style>
