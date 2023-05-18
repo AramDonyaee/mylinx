@@ -1,7 +1,7 @@
 <template>
     <div class="flex justify-center mt-6 mr-6 ml-6">
         <draggable v-model="links" item-key="id" class="w-full md:w-1/2 lg:w-1/2 sm:w-3/4 m-2" ghost-class="ghost"
-            @change="onChange" delay="400"  chosen-class="chosen" drag-class="drag">
+            @change="onChange" chosen-class="chosen" drag-class="drag">
             <template #item="{ element }">
                 <div
                     class="flex bg-white border-gray-300 border-[3px] border-dashed rounded-lg p-4 overflow-hidden transition duration-100 mb-2 text-xl justify-center text-center content-center">
@@ -116,9 +116,6 @@ export default {
     background-color: yellow;
 }
 
-.ghost>div {
-    visibility: hidden;
-}
 
 .chosen {
     scale: 1.03

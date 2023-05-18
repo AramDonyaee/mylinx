@@ -99,8 +99,8 @@ class LinksController extends Controller
     public function getLinks(Request $request) {  
         $user_id = $request->user()->id;
         $page = Page::where('user_id', $user_id)->first();
-        $links = Link::where('page_id', $page->id)->orderBy('link_order', 'asc')->get();
-        return response()->json(['links' => $links]);
+        $links = Link::where('page_id', $page->id)->orderBy('link_order', 'asc')->get()->toArray();
+        return ['links' => $links];
     }
 
     public function move(Request $request, Link $link){
