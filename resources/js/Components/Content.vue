@@ -13,6 +13,7 @@
                                 <v-icon class="-ml-2" name="fa-youtube" fill="red" scale="1.2" />
                             </div>
                             <div>Add Social Icons</div>
+                            <div class="text-sm text-gray-500 mx-2 leading-[1.1]">Show off your online presence!</div>
                         </div>
                     </div>
                 </div>
@@ -24,6 +25,17 @@
                             <div><v-icon name="fa-link" scale="1.2" /></div>
                             <div>Add a link</div>
                             <div class="text-sm text-gray-500 mx-2 leading-[1.1]">link to another part of the web
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white shadow-2xl p-6 rounded-2xl cursor-pointer">
+                    <div class="content flex justify-center items-center text-center">
+                        <div class="flex-col">
+                            <div><v-icon name="fc-doughnut-chart" scale="1.2" /></div>
+                            <div>Add a pool</div>
+                            <div class="text-sm text-gray-500 mx-2 leading-[1.1]">Find out what exactly your audience wants
                             </div>
                         </div>
                     </div>
@@ -241,8 +253,15 @@
 
                     <div class="rounded-lg overflow-hidden mt-2">
                         <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
+                            placeholder="Description" v-model="linkDescription" />
+                    </div>
+
+                    <div class="rounded-lg overflow-hidden mt-2">
+                        <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
                             placeholder="URL" v-model="linkUrl" />
                     </div>
+
+                    
 
                     <div class="flex gap-2.5 mt-2">
                         <button @click="storeLink"
@@ -316,6 +335,7 @@ export default {
             modalWidth: null,
             linkTitle: null,
             linkUrl: null,
+            linkDescription: null,
             linkType: 1,
             isLoading: false,
             isLinkImageUploadVisible: false,
@@ -470,6 +490,7 @@ export default {
                         image: this.image,
                         type: this.linkType,
                         title: this.linkTitle,
+                        description: this.linkDescription,
                         url: this.linkUrl
                     },
                     {

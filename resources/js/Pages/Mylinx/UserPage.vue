@@ -46,8 +46,9 @@
 
                             }" v-bind:href=link.hyperlink>
 
-                            <span v-if="link.type == 1" class="flex w-full items-center py-2">
-                                <div class="w-full h-12 flex items-center justify-center ">{{ link.title }}</div>
+                            <span v-if="link.type == 1" class="flex flex-col w-full items-center py-4">
+                                <div>{{ link.title }}</div>
+                                <div class="text-sm font-normal">{{ link.description }}</div>
                             </span>
 
                             <span v-if="link.type == 2" class="flex w-full items-center ">
@@ -80,9 +81,10 @@
 
                 </div>
                 <!-- Flashlight, camera and bottom swipe menu -->
-                <div class="absolute left-1/2 transform -translate-x-1/2 font-bold bg-white rounded-full py-2 pl-6 pr-4">
+                <div class="absolute flex flex-col left-1/2 transform -translate-x-1/2 font-normal py-2 pl-6 pr-4">
                     powered by
-                    <ApplicationMark class="inline h-6 -ml-2" />
+        
+                    <ApplicationMark class="inline h-4 -ml-2" />
                 </div>
 
             </div>

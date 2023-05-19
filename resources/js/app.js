@@ -16,8 +16,8 @@ import { OhVueIcon, addIcons } from "oh-vue-icons";
 // import * as MaterialIcons from "oh-vue-icons/icons/md";
 // const Md = Object.values({ ...MaterialIcons });
 // addIcons(...Md);
-import { BiArrowDownSquareFill, BiArrowUpSquareFill, FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook} from "oh-vue-icons/icons";
-addIcons(  BiArrowDownSquareFill, BiArrowUpSquareFill, FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook);
+import {  FcDoughnutChart, BiArrowDownSquareFill, BiArrowUpSquareFill, FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook} from "oh-vue-icons/icons";
+addIcons(   FcDoughnutChart, BiArrowDownSquareFill, BiArrowUpSquareFill, FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook);
 
 
 

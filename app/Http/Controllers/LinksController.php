@@ -24,6 +24,7 @@ class LinksController extends Controller
                 $link_order = $previous_link_order + 1;
                 Link::create([
                     'title' => $request->input('title'),
+                    'description' => $request->input('description'),
                     'type' => $request->input('type'),
                     'hyperlink' => 'http://' . $request->input('url'),
                     'page_id' => $page->id,
@@ -32,6 +33,7 @@ class LinksController extends Controller
             }else{
                 Link::create([
                     'title' => $request->input('title'),
+                    'description' => $request->input('description'),
                     'type' => $request->input('type'),
                     'hyperlink' => 'http://' . $request->input('url'),
                     'page_id' => $page->id,
@@ -57,6 +59,7 @@ class LinksController extends Controller
                 Link::create([
                     'thumbnail_path' => $filename,
                     'title' => $request->input('title'),
+                    'description' => $request->input('description'),
                     'type' => $request->input('type'),
                     'hyperlink' => 'http://' . $request->input('url'),
                     'page_id' => $page->id,
@@ -66,6 +69,7 @@ class LinksController extends Controller
                 Link::create([
                     'thumbnail_path' => $filename,
                     'title' => $request->input('title'),
+                    'description' => $request->input('description'),
                     'type' => $request->input('type'),
                     'hyperlink' => 'http://' . $request->input('url'),
                     'page_id' => $page->id,
