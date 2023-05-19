@@ -19,7 +19,7 @@
                 </div>
 
                 <p class="mt-2 text-white text-center text-2xl font-bold">{{ title }}</p>
-                <p class="mt-2 text-white text-normal font-normal">{{ bio }}</p>
+                <p class="w-3/4 mt-2 text-white text-sm font-normal flex text-center justify-center items-center">{{ bio }}</p>
                 <div class="flex flex-wrap justify-evenly mt-2">
                         <v-icon name="fa-instagram" scale="1.5" fill="white" />
                         <v-icon name="fa-twitter" scale="1.5" fill="white"/>

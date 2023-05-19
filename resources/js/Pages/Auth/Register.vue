@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, Link, router, useForm } from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
 import Checkbox from '@/Components/Checkbox.vue';
 import InputError from '@/Components/InputError.vue';
@@ -9,7 +9,7 @@ import TextInput from '@/Components/TextInput.vue';
 import ApplicationMark from '../../Components/ApplicationMark.vue';
 
 const form = useForm({
-    username: '',
+    username: location.search.substring(1) ?? null,
     email: '',
     password: '',
     password_confirmation: '',
@@ -21,6 +21,7 @@ const submit = () => {
         onFinish: () => form.reset('password', 'password_confirmation'),
     });
 };
+
 </script>
 
 <template>
