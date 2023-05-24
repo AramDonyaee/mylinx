@@ -24,7 +24,7 @@ addIcons(   FcDoughnutChart, BiArrowDownSquareFill, BiArrowUpSquareFill, FaImage
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => `Mylinx | All of you in one AI-Powered Link`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })

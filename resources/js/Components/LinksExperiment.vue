@@ -121,6 +121,12 @@ export default {
         };
     },
 
+    watch: {
+        links(newLinks) {
+            this.links = newLinks;
+        }
+    },
+
 
     data() {
         return {

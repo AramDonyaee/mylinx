@@ -1,6 +1,6 @@
 
 <template>
-    <div v-bind:style="{ 'background-image': 'url(' + page.background_path + ')' }" class="">
+    <div v-bind:style="{ 'background-image': 'url(' + page.background_path + ')' }">
 
         <div class="w-full h-full flex flex-col justify-center items-center backdrop-blur-xl ">
             <div class="ease-linear duration-200 mx-auto md:w-1/2 w-full h-fit bg-black relative overflow-hidden shadow-xl pb-24 "
@@ -13,10 +13,10 @@
                 <div class="relative mb-[300px]">
 
                     <!-- Avatar - Title - Bio -->
-                    <div class="flex flex-col items-center pt-12">
+                    <div class="flex flex-col items-center lg:pt-12 md:pt-12 sm:pt-12">
 
                         <div
-                            class="relative inline-flex items-center justify-center w-32 h-32 sm:w-64 sm:h-64 lg:w-32 lg:h-32 md:w-32 md:h-32 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600 ">
+                            class="relative inline-flex items-center justify-center w-full h-full  lg:w-3/4 lg:h-3/4 md:w-3/4 md:h-3/4 sm:w-3/4 sm:h-3/4 lg:rounded-lg md:rounded-lg sm:rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-600 ">
                             <!-- <span class="font-medium text-gray-600 dark:text-gray-300">JL</span> -->
                             <img v-bind:src=page.avatar_path class="shadow-2xl" />
                         </div>
@@ -35,7 +35,7 @@
 
                     <!-- links -->
                     <div class="relative mt-4 mx-2" id="links_id">
-                        <a v-for="link in this.links" id="link"
+                        <a v-for="link in links" id="link"
                             class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-2 text-xl justify-center text-center content-center"
                             v-bind:style="{
                                 'border-width': page.link_border_thickness + 'px',
@@ -81,8 +81,8 @@
 
                 </div>
                 <!-- Flashlight, camera and bottom swipe menu -->
-                <div class="absolute flex flex-col left-1/2 transform -translate-x-1/2 font-normal py-2 pl-6 pr-4">
-                    powered by
+                <div class="text-[10px] absolute flex flex-col left-1/2 transform -translate-x-1/2 font-normal py-2 pl-6 pr-4">
+                    POWERED BY
         
                     <ApplicationMark class="inline h-4 -ml-2" />
                 </div>
@@ -109,21 +109,14 @@ export default {
 
     props: {
         page: String,
+        links: String,
     },
 
     data() {
-        return {
-            links: null,
-        };
+
     },
 
-    mounted() {
-        axios
-            .get('/getLinks')
-            .then(response => {
-                this.links = response.data.links;
-            });
-    },
+
 
 
 }

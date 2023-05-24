@@ -23,6 +23,8 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'title' => 'This is a titke'
+
     ]);
 })->name('welcome');
 

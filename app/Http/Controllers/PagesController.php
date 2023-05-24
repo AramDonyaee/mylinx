@@ -26,8 +26,10 @@ class PagesController extends Controller
         }
 
         $page = $user->page;
+        $links = Link::where('page_id', $page->id)->orderBy('link_order', 'asc')->get();
         return Inertia::render('Mylinx/UserPage', [
             'page' => $page,
+            'links' => $links ?? null
         ]);
     }
 

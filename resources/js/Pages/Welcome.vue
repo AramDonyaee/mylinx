@@ -68,6 +68,7 @@ import Features from '../Components/Features.vue'
 
 
 export default {
+
     components: {
         Hero,
         Nav,

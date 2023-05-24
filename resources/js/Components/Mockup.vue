@@ -10,10 +10,10 @@
         <div class="relative">
 
             <!-- Avatar - Title - Bio -->
-            <div class="mt-2 flex flex-col items-center pt-12">
+            <div class=" flex flex-col items-center ">
 
                 <div
-                    class="relative inline-flex items-center justify-center w-32 h-32 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                    class="relative inline-flex items-center justify-center w-full h-full overflow-hidden bg-gray-100 dark:bg-gray-600">
                     <!-- <span class="font-medium text-gray-600 dark:text-gray-300">JL</span> -->
                     <img v-if="avatarImage" v-bind:src=avatarImage />
                 </div>
@@ -33,7 +33,7 @@
 
                 <!-- Main, current panel -->
 
-                <div v-for="n in 3"
+                <div v-for="n in 2"
                     id="link" class=" h-16 p-4 flex bg-white text-xl font-bold mb-2 text-center justify-center items-center contents-center ">
                     My Link #{{ n }}
                 </div>
