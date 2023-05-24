@@ -112,11 +112,6 @@ export default {
         links: String,
     },
 
-    data() {
-
-    },
-
-
 
 
 }
