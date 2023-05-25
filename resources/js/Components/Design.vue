@@ -1,5 +1,5 @@
 <template>
-    <PhotoCropperModal v-show="isModalVisible" @close="closeModal" />
+    <PhotoCropperModal v-show="isModalVisible" @loading="showLoading($event)" @close="closeModal" />
 
     <div class="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2">
         <div class="mt-10 ml-8 mb-8 mr-8">
@@ -236,6 +236,10 @@ export default {
     },
 
     methods: {
+
+        showLoading(loading){
+            this.storePage_isLoading = loading;
+        },
 
         showModal() {
             this.isModalVisible = true;

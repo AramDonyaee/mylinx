@@ -2,7 +2,7 @@
     <section class="bg-gray-100 py-6">
         <div class="mx-auto w-11/12 md:w-8/12 lg:w-7/12 xl:w-6/12 flex flex-col items-center">
             <h2
-                class="leading-8 lg:leading-[1.1] text-center text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-5xl w-full mb-4">
+                class="leading-8 lg:leading-[1.1]  text-center text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-5xl w-full mb-4">
                 All of you in one <span class="text-pink-500"> AI Powered </span><span class="text-indigo-600"> Link </span> with <span class="text-rose-600">
                     <ApplicationMark class="ml-5 mb-2 inline h-11" />
 
