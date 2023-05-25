@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
-                <ApplicationMark class="h-9" />
+                <ApplicationMark class="h-9 ml-6" />
                 <!-- Links -->
                 <div class="hidden md:block">
                     <div class="ml-4 flex items-center md:ml-6">

@@ -1,6 +1,8 @@
 import {createStore} from "vuex"
 
+
 const store = createStore({
+
     state: {
         image: null,
     },
@@ -12,8 +14,12 @@ const store = createStore({
     mutations: {
         updateImageSource(state, newSource){
             state.image = newSource
+        },
+        deleteImage(state) {
+            state.image = null;
         }
     },
+
 });
 
 export default store

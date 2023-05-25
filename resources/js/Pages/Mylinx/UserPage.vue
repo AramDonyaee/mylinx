@@ -16,7 +16,7 @@
                     <div class="flex flex-col items-center lg:pt-12 md:pt-12 sm:pt-12">
 
                         <div
-                            class="relative inline-flex items-center justify-center w-full h-full  lg:w-3/4 lg:h-3/4 md:w-3/4 md:h-3/4 sm:w-3/4 sm:h-3/4 lg:rounded-lg md:rounded-lg sm:rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-600 ">
+                            class="relative inline-flex items-center justify-center w-48 h-48 mt-12 rounded-full lg:w-3/4 lg:h-3/4 md:w-3/4 md:h-3/4 sm:w-3/4 sm:h-3/4 lg:rounded-lg md:rounded-lg sm:rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-600 ">
                             <!-- <span class="font-medium text-gray-600 dark:text-gray-300">JL</span> -->
                             <img v-bind:src=page.avatar_path class="shadow-2xl" />
                         </div>
@@ -81,10 +81,10 @@
 
                 </div>
                 <!-- Flashlight, camera and bottom swipe menu -->
-                <div class="text-[10px] absolute flex flex-col left-1/2 transform -translate-x-1/2 font-normal py-2 pl-6 pr-4">
-                    POWERED BY
+                <div class="text-[12px] absolute flex left-1/2 transform -translate-x-1/2 font-bold ">
+                    <span class="text-white [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">POWERED BY</span> <ApplicationMark class=" h-5 ml-4" />
         
-                    <ApplicationMark class="inline h-4 -ml-2" />
+                    
                 </div>
 
             </div>

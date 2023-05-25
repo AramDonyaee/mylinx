@@ -69,6 +69,11 @@ Route::middleware([
 });
 
 
+Route::get('{username}', [Controllers\PagesController::class, 'show'])
+->where('username', '^(?!admin(?:\/login)?)[\w.-]+$')
+->name('userpage');
 
 
-Route::get('/{username}', [Controllers\PagesController::class, 'show'])->name('userpage');
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

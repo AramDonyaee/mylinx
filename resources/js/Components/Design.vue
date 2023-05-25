@@ -7,14 +7,14 @@
             <div class="bg-white p-4 rounded-lg flex gap-2 mb-4">
 
                 <div class="flex-none items-center justify-center overflow-hidden bg-gray-100 rounded-full w-24 h-24">
-                    <img v-bind:src="this.$store.state.image ? this.$store.state.image : this.avatar" />
+                    <img v-bind:src="imageSrc" />
                 </div>
 
                 <div class="flex-auto">
                     <button type="button" @click="showModal"
                         class="mb-1 w-full h-12 text-white bg-rose-500 font-medium rounded-xl text-normal px-5 py-2.5 text-center">Add
                         a Profile Picture</button>
-                    <button  type="button" @click="removeAvatar"
+                    <button type="button" @click="removeAvatar"
                         class=" w-full h-12 text-black bg-white font-medium rounded-xl border border-rose-200 text-normal px-5 py-2.5 text-center">
                         Remove
                     </button>
@@ -133,14 +133,13 @@
 
         <div class="h-screen sticky top-0 justify-center items-center bg-slate-200 hidden sm:block">
             <Mockup class="scale-[0.55] origin-top mt-10"
-                :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
+                :avatarImage="imageSrc" :title="this.title"
                 :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.selected_background"
                 :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
                 :borderColor="link.border.color" :linkTextColor="link.textColor" />
         </div><!--second half end-->
 
     </div>
-
 </template>
 
 <script>
@@ -155,6 +154,7 @@ import 'vue-loading-overlay/dist/css/index.css';
 
 
 
+
 export default {
 
     name: 'Content',
@@ -162,6 +162,7 @@ export default {
         PhotoCropperModal, Carousel, Slide, Navigation, Mockup, ColorPicker, Loading
 
     },
+
 
     data() {
         return {
@@ -214,6 +215,24 @@ export default {
                     this.link.bgColor = response.data.link_background_color,
                     this.link.textColor = response.data.link_text_color
             });
+    },
+
+    computed: {
+        imageSrc() {
+            return this.$store.state.image;
+        },
+        hasImage() {
+            return this.$store.state.image !== null;
+        }
+    },
+    watch: {
+        imageSrc(newSrc) {
+            if (newSrc !== null) {
+                return newSrc;
+            } else {
+                return null;
+            }
+        }
     },
 
     methods: {
@@ -305,7 +324,7 @@ export default {
                 await axios.post(
                     route('pages.removeAvatar')
                 );
-                this.$store.replaceState({});
+                this.$store.commit('deleteImage');
                 this.storeLinkStyles_isLoading = true;
                 // simulate AJAX
                 setTimeout(() => {

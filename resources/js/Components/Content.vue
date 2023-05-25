@@ -478,11 +478,6 @@ export default {
 
         async storeLink() {
             try {
-                this.isLoading = true;
-                // simulate AJAX
-                setTimeout(() => {
-                    this.isLoading = false
-                }, 5000);
 
                 axios.post(
                     route('links.store'),
@@ -498,8 +493,10 @@ export default {
                             'Content-Type': 'multipart/form-data'
                         },
                         onUploadProgress: function (progressEvent) {
+                            this.isLoading = true
                             this.isProgressVisible = true;
                             this.uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100));
+                            if(this.uploadPercentage == 100){this.isLoading = false}
                         }.bind(this)
                     },
 
