@@ -183,6 +183,17 @@ export default {
                 { id: 9, url: '/bg10.jpg' },
                 { id: 10, url: '/bg11.jpg' },
                 { id: 11, url: '/bg12.jpg' },
+                { id: 12, url: '/bg13.jpg' },
+                { id: 13, url: '/bg14.jpg' },
+                { id: 14, url: '/bg15.jpg' },
+                { id: 15, url: '/bg16.jpg' },
+                { id: 16, url: '/bg17.jpg' },
+                { id: 17, url: '/bg18.jpg' },
+                { id: 18, url: '/bg19.jpg' },
+                { id: 19, url: '/bg20.jpg' },
+                { id: 20, url: '/bg21.jpg' },
+                { id: 21, url: '/bg22.jpg' },
+                { id: 22, url: '/bg23.jpg' },
 
                 
             ],

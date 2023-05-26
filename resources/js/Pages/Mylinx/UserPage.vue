@@ -7,7 +7,7 @@
                 :style="{ backgroundColor: backgroundColor }">
 
 
-                <img v-if="page.background_path" class="absolute inset-0 h-full w-full object-cover"
+                <img v-if="page.background_path" class="absolute inset-0 object-cover h-full w-full"
                     v-bind:src=page.background_path />
 
                 <div class="relative mb-[300px]">
