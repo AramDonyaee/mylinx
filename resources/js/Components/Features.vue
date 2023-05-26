@@ -48,7 +48,7 @@
                 <!-- content - start -->
                 <div class="flex w-full flex-col p-4 sm:w-1/2 sm:p-8 lg:w-3/5">
                     <h2 class="mb-4 text-xl font-bold text-gray-800 md:text-2xl lg:text-3xl">With
-                        <ApplicationMark class="-ml-6 -mr-4 inline h-10" /> polls, know what exactly your audience wants
+                        mylinx polls, know what exactly your audience wants
                         from you
                     </h2>
 
@@ -73,7 +73,7 @@
 
                 <h1 class="text-black-800 mb-8 text-3xl font-bold sm:text-4xl md:mb-12 md:text-4xl">Everything you would
                     expect from a link-in-bio tool,
-                    <ApplicationMark class="-ml-6 -mr-4 inline h-10" /> always delivers!
+                    mylinx always delivers!
                 </h1>
 
                 <div class="flex w-full flex-col gap-2.5 sm:flex-row sm:justify-center">
@@ -89,7 +89,7 @@
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
             <div class="grid gap-4 sm:grid-cols-4 md:gap-8 xl:grid-cols-3">
                 <!-- feature - start -->
-                <div class="flex divide-x rounded-lg border-2 bg-white">
+                <!-- <div class="flex divide-x rounded-lg border-2 bg-white">
                     <div class="p-4 md:p-6">
                         <h3 class="mb-2 text-lg font-semibold md:text-lg">
                             <v-icon name="fa-link" scale="1" />
@@ -98,11 +98,11 @@
                         <p class="text-gray-500">This is a section of some simple filler text, also known as placeholder
                         </p>
                     </div>
-                </div>
+                </div> -->
                 <!-- feature - end -->
 
                 <!-- feature - start -->
-                <div class="flex divide-x rounded-lg border-2 bg-white">
+                <!-- <div class="flex divide-x rounded-lg border-2 bg-white">
                     <div class="p-4 md:p-6">
                         <h3 class="mb-2 text-lg font-semibold md:text-lg">
                             <v-icon name="fa-paint-brush" scale="1" />
@@ -111,11 +111,11 @@
                         <p class="text-gray-500">This is a section of some simple filler text, also known as placeholder
                         </p>
                     </div>
-                </div>
+                </div> -->
                 <!-- feature - end -->
 
                 <!-- feature - start -->
-                <div class="flex divide-x rounded-lg border-2 bg-white">
+                <!-- <div class="flex divide-x rounded-lg border-2 bg-white">
                     <div class="p-4 md:p-6">
                         <h3 class="mb-2 text-lg font-semibold md:text-lg">
                             <v-icon name="fa-chart-bar" scale="1" />
@@ -124,11 +124,11 @@
                         <p class="text-gray-500">This is a section of some simple filler text, also known as placeholder
                         </p>
                     </div>
-                </div>
+                </div> -->
                 <!-- feature - end -->
 
                 <!-- feature - start -->
-                <div class="flex divide-x rounded-lg border-2 bg-white">
+                <!-- <div class="flex divide-x rounded-lg border-2 bg-white">
                     <div class="p-4 md:p-6">
                         <h3 class="mb-2 text-lg font-semibold md:text-lg">
                             <v-icon name="fa-plus-square" scale="1" />
@@ -137,7 +137,7 @@
                         <p class="text-gray-500">This is a section of some simple filler text, also known as placeholder
                         </p>
                     </div>
-                </div>
+                </div> -->
                 <!-- feature - end -->
 
 

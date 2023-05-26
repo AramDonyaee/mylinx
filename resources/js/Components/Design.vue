@@ -1,7 +1,8 @@
 <template>
     <PhotoCropperModal v-show="isModalVisible" @loading="showLoading($event)" @close="closeModal" />
 
-    <div class="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2">
+
+    <div class="grid grid-flow-col grid-rows-2 md:grid-rows-1 md:grid-cols-2">
         <div class="mt-10 ml-8 mb-8 mr-8">
 
             <div class="bg-white p-4 rounded-lg flex gap-2 mb-4">
@@ -12,7 +13,7 @@
 
                 <div class="flex-auto">
                     <button type="button" @click="showModal"
-                        class="mb-1 w-full h-12 text-white bg-rose-500 font-medium rounded-xl text-normal px-5 py-2.5 text-center">Add
+                        class="mb-1 w-full h-12 text-white bg-rose-500 font-medium rounded-xl text-sm md:text-normal lg:text-normal px-5 py-2.5 text-center">Add
                         a Profile Picture</button>
                     <button type="button" @click="removeAvatar"
                         class=" w-full h-12 text-black bg-white font-medium rounded-xl border border-rose-200 text-normal px-5 py-2.5 text-center">
@@ -170,14 +171,20 @@ export default {
             backgroundColor: '#111111',
             selected_background: null,
             background_urls: [
-                { id: 0, url: 'https://images.unsplash.com/photo-1579547944457-8b954f21e1f8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1878&q=80' },
-                { id: 1, url: 'https://images.unsplash.com/photo-1604871000636-074fa5117945?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80' },
-                { id: 2, url: 'https://images.unsplash.com/photo-1541661538396-53ba2d051eed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1854&q=80' },
-                { id: 3, url: 'https://wallpapers.hector.me/wavey/Rainbow%20iPhone%20P3.jpg' },
-                { id: 4, url: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1935&q=80' },
-                { id: 5, url: 'https://images.unsplash.com/photo-1591393223703-56fe1347ac62?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80' },
-                { id: 6, url: 'https://images.unsplash.com/photo-1627704442358-61c8e05c7bf4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2069&q=80' },
-                { id: 7, url: 'https://images.unsplash.com/photo-1557683325-3ba8f0df79de?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1700&q=80' },
+                { id: 0, url: '/bg1.jpg' },
+                { id: 1, url: '/bg2.jpg' },
+                { id: 2, url: '/bg3.jpg' },
+                { id: 3, url: '/bg4.jpg' },
+                { id: 4, url: '/bg5.jpg' },
+                { id: 5, url: '/bg6.jpg' },
+                { id: 6, url: '/bg7.jpg' },
+                { id: 7, url: '/bg8.jpg' },
+                { id: 8, url: '/bg9.jpg' },
+                { id: 9, url: '/bg10.jpg' },
+                { id: 10, url: '/bg11.jpg' },
+                { id: 11, url: '/bg12.jpg' },
+
+                
             ],
             title: null,
             bio: null,

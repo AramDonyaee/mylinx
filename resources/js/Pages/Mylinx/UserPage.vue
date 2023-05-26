@@ -22,7 +22,7 @@
                         </div>
 
                         <p class="mt-8 text-white text-center text-2xl font-bold">{{ page.title }}</p>
-                        <p class="mt-4 text-white text-normal font-normal">{{ page.bio }}</p>
+                        <p class="mt-4 text-white text-normal font-normal [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">{{ page.bio }}</p>
                         <div class="flex flex-wrap justify-evenly mt-4">
                             <v-icon name="fa-instagram" scale="2" fill="white" />
                             <v-icon name="fa-twitter" scale="2" fill="white" />
@@ -53,14 +53,14 @@
 
                             <span v-if="link.type == 2" class="flex w-full items-center ">
                                 <div class="w-1/4 h-full">
-                                    <img class="object-cover h-full" :src="link.thumbnail_path" />
+                                    <img loading="lazy" class="object-cover h-full" :src="link.thumbnail_path" />
                                 </div>
                                 <div class="w-3/4">{{ link.title }}</div>
                             </span>
 
                             <span v-if="link.type == 3" class="flex w-full items-center py-2">
                                 <div class="w-1/4 flex justify-center ">
-                                    <img class="object-cover rounded-xl w-[52px] h-[52px] ml-8 "
+                                    <img loading="lazy" class="object-cover rounded-xl w-[52px] h-[52px] ml-8 "
                                         :src="link.thumbnail_path" />
                                 </div>
                                 <div class="w-3/4">{{ link.title }}</div>
@@ -68,7 +68,7 @@
 
                             <span v-if="link.type == 4" class="flex flex-col w-full items-center">
                                 <div class="w-full">
-                                    <img class="object-cover w-full" :src="link.thumbnail_path" />
+                                    <img loading="lazy" class="object-cover w-full" :src="link.thumbnail_path" />
                                 </div>
                                 <div class="py-4">{{ link.title }}</div>
                             </span>
@@ -83,8 +83,6 @@
                 <!-- Flashlight, camera and bottom swipe menu -->
                 <div class="text-[12px] absolute flex left-1/2 transform -translate-x-1/2 font-bold ">
                     <span class="text-white [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">POWERED BY</span> <ApplicationMark class=" h-5 ml-4" />
-        
-                    
                 </div>
 
             </div>
