@@ -12,6 +12,8 @@ class Click extends Model
 
     protected $guarded = [];
 
+    protected $table = 'link_stats';
+
     public function link(){
         return $this->belongsTo(Link::class);
     }

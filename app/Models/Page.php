@@ -26,6 +26,11 @@ class Page extends Model
         return $this->hasMany(Link::class);
     }
 
+    public function socials()
+    {
+        return $this->hasMany(Social::class);
+    }
+
 
     
 }

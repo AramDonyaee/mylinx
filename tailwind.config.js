@@ -13,7 +13,8 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+                sans: ['Poppins', ...defaultTheme.fontFamily.sans],
+                lobster: ['"Lobster"', ...defaultTheme.fontFamily.sans]
             },
             padding: {
                 '1/2': '50%',

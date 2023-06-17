@@ -8,8 +8,9 @@
                 <div class="hidden md:block">
                     <div class="ml-4 flex items-center md:ml-6">
                         <!-- <Link href="/pricing" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Pricing</Link> -->
-                        <Link href="/register" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Sign Up</Link>
-                        <Link href="/login" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Log in</Link>
+                        <Link v-if="!$page.props.user" href="/register" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Sign Up</Link>
+                        <Link v-if="!$page.props.user" href="/login" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Log in</Link>
+                        <Link v-if="$page.props.user" href="/content" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Dashboard</Link>
                     </div>
                 </div>
                 <!-- Hamburger -->

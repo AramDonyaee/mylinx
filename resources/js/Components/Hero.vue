@@ -1,19 +1,18 @@
 <template>
     <section class="bg-gray-100 py-6">
         <div class="mx-auto w-11/12 md:w-8/12 lg:w-7/12 xl:w-6/12 flex flex-col items-center">
+            
             <h2
                 class="leading-8 lg:leading-[1.1]  text-center text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-5xl w-full mb-4">
-                All of you in one <span class="text-pink-500"> AI Powered </span><span class="text-indigo-600"> Link </span> with <span class="text-rose-600">
-                    <ApplicationMark class="ml-5 mb-2 inline h-11" />
-
-                
-                </span>
+                All of you in one
+                 <span class="text-indigo-600"> AI Powered </span>Link 
             </h2>
 
             <p class="text-center text-lg mb-6">
-                Centeralize all of your online presence in one place. Create a custom personal page
+                Centralize all of your online presence in one place. Create a custom personal page
                 that showcases your personality, services, abilities and a lot more...
             </p>
+
         </div>
 
         <div class="flex flex-wrap mb-4 items-center justify-center px-6">
@@ -47,7 +46,7 @@
 
         <div class="slider bg-gray-100 mb-6">
             <div class="slide-track ">
-                <div v-for="n in 30" class="slide">
+                <div v-once v-for="n in 30" class="slide">
                     <Mockup class="shadow-none scale-[0.9] md:scale-[1] lg:scale-[1] origin-center mt-8 "
                         :avatarImage=this.getRandomAvatar() :title=this.getRandomName() :bio=this.getRandomBio()
                         :backgroundImage=this.getRandomBackgroundImage() :borderThickness=this.getRandomNumber(6)
@@ -86,6 +85,17 @@ export default {
                 { url: '/bg10.jpg' },
                 { url: '/bg11.jpg' },
                 { url: '/bg12.jpg' },
+                { url: '/bg13.jpg' },
+                { url: '/bg14.jpg' },
+                { url: '/bg15.jpg' },
+                { url: '/bg16.jpg' },
+                { url: '/bg17.jpg' },
+                { url: '/bg18.jpg' },
+                { url: '/bg19.jpg' },
+                { url: '/bg20.jpg' },
+                { url: '/bg21.jpg' },
+                { url: '/bg22.jpg' },
+                { url: '/bg23.jpg' },
             ],
 
             avatar_urls: [

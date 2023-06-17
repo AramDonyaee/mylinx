@@ -64,6 +64,7 @@ Route::middleware([
     Route::get('/mockupData', [Controllers\PagesController::class, 'mockupData'])->name('mockupData');
 
     Route::get('/getLinks', [Controllers\LinksController::class, 'getLinks']);
+    Route::get('/getTotalClicks', [Controllers\LinksController::class, 'getTotalClicks']);
 
 
 });
@@ -77,3 +78,5 @@ Route::get('{username}', [Controllers\PagesController::class, 'show'])
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+Route::post('/linkClick', [Controllers\LinksController::class, 'linkClick'])->name('linkClick');

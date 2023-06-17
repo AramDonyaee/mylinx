@@ -1,70 +1,79 @@
 <template>
-    <div class="bg-gray-100 py-6 sm:py-8 lg:py-6">
+    <!-- <div class="bg-gray-100 py-6 sm:py-8 lg:py-6">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8 ">
-            
+
             <div class="relative flex flex-col overflow-hidden rounded-lg bg-gray-900 sm:flex-row md:h-80 ">
-                <span class="absolute right-1 top-3 bg-[yellow] text-black text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300">Coming Soon</span>
+                <span
+                    class="absolute right-1 top-3 bg-[yellow] text-black text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300">Coming
+                    Soon</span> -->
 
                 <!-- content - start -->
-                <div class="flex w-full flex-col p-4 sm:w-1/2 sm:p-8 lg:w-2/5">
+                <!-- <div class="flex w-full flex-col p-4 sm:w-1/2 sm:p-8 lg:w-2/5">
                     <h2 class="mb-4 text-xl font-bold text-white md:text-2xl lg:text-4xl">Chat with your<br />Audience</h2>
 
-                    <p class="mb-8 max-w-md text-gray-400">mylinx is the first link-in-bio tool that lets you chat with your
+                    <p class="mb-8 max-w-md text-gray-400">Mylinx is the first link-in-bio tool that lets you chat with your
                         audience directly from your page.<br />Engage with your audience, get feedback and have fun!</p>
 
                     <div class="mt-auto">
-                        <a href="#"
-                            class="inline-block rounded-full text-center text-white font-bold px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500">Get
-                            Started</a>
+                        <Link href="/login"
+                            class="inline-block rounded-full text-center text-white font-bold px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500">
+                        Get
+                        Started</Link>
                     </div>
-                </div>
+                </div> -->
                 <!-- content - end -->
 
                 <!-- image - start -->
-                <div class="order-first h-48 w-full bg-gray-700 sm:order-none sm:h-auto sm:w-1/2 lg:w-3/5">
+                <!-- <div class="order-first h-48 w-full bg-gray-700 sm:order-none sm:h-auto sm:w-1/2 lg:w-3/5">
                     <img src="https://images.unsplash.com/photo-1662974770404-468fd9660389?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80"
                         loading="lazy" alt="Photo by Dom Hill" class="h-full w-full object-cover object-center" />
-                </div>
+                </div> -->
                 <!-- image - end -->
-            </div>
+            <!-- </div>
         </div>
-    </div>
+    </div> -->
 
 
 
 
-    <div class="bg-gray-100 py-6 sm:py-8 lg:py-6">
+    <!-- <div class="bg-gray-100 py-6 sm:py-8 lg:py-6">
         <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
-            <div class="relative flex flex-col overflow-hidden rounded-lg bg-white border-2 sm:flex-row md:h-80">
-                <span class="absolute right-1 top-3 bg-[yellow] text-black text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300">Coming Soon</span>
+            <div class="relative flex flex-col overflow-hidden rounded-lg bg-white border-4 sm:flex-row h-auto">
+                <span
+                    class="absolute right-1 top-3 bg-[yellow] text-black text-xs font-bold mr-2 px-2.5 py-0.5 rounded-full dark:bg-purple-900 dark:text-purple-300">Coming
+                    Soon</span> -->
 
                 <!-- image - start -->
-                <div class="order-first h-48 w-full bg-gray-300 sm:order-none sm:h-auto sm:w-1/2 lg:w-2/5">
+                <!-- <div class="order-first h-48 w-full bg-gray-300 sm:order-none sm:h-auto sm:w-1/2 lg:w-2/5">
                     <img src="https://cdn.dribbble.com/users/1165321/screenshots/5948047/media/da59826b8e66e82228d03f9ac735334b.png"
                         loading="lazy" alt="Photo by Andras Vas" class="h-full w-full object-cover object-center" />
-                </div>
+                </div> -->
                 <!-- image - end -->
 
                 <!-- content - start -->
-                <div class="flex w-full flex-col p-4 sm:w-1/2 sm:p-8 lg:w-3/5">
-                    <h2 class="mb-4 text-xl font-bold text-gray-800 md:text-2xl lg:text-3xl">With
-                        mylinx polls, know what exactly your audience wants
-                        from you
+                <!-- <div class="flex flex-col p-4 sm:w-1/2 sm:p-8 lg:w-3/5">
+                    <h2 class="mb-4 text-xl font-bold text-gray-800 md:text-3xl lg:text-4xl">
+                        Create Stunning Polls
                     </h2>
 
-                    <p class="mb-8 max-w-md text-gray-600">This is a section of some simple filler text, also known as
-                        placeholder text. It shares some characteristics of a real written text.</p>
 
-                    <div class="mt-auto">
-                        <a href="#"
-                            class="inline-block text-white font-bold rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-2 text-center">Get
-                            Started</a>
+                    <p class="text-justify">
+                        Want to know which product your followers prefer? Or maybe what type of content
+                        they want to see more of? mylinx polls allow you to effortlessly gather opinions and
+                        feedback, letting you make informed decisions to better engage with your audience.
+                    </p>
+
+                    <div class="mt-4 ">
+                        <Link href="/login"
+                            class="cursor-pointer inline-block text-white font-bold rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-2 text-center">
+                        Get
+                        Started</Link>
                     </div>
-                </div>
+                </div> -->
                 <!-- content - end -->
-            </div>
+            <!-- </div>
         </div>
-    </div>
+    </div> -->
 
 
     <div class="bg-gray-100 py-6 sm:py-8 lg:py-12">
@@ -77,9 +86,10 @@
                 </h1>
 
                 <div class="flex w-full flex-col gap-2.5 sm:flex-row sm:justify-center">
-                    <a href="#"
-                        class="inline-block rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 text-center font-bold text-white">Start
-                        now for free</a>
+                    <Link href="/login"
+                        class="inline-block rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 text-center font-bold text-white">
+                    Start
+                    now for free</Link>
                 </div>
             </div>
         </div>
@@ -152,12 +162,14 @@
 <script>
 
 import ApplicationMark from '@/Components/ApplicationMark.vue';
+import { Link } from '@inertiajs/vue3';
+
 
 
 
 export default {
     components: {
-        ApplicationMark,
+        ApplicationMark, Link
     },
 }
 </script>

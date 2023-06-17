@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Inertia\Inertia;
 use App\Models\Page;
@@ -35,6 +36,15 @@ class PagesController extends Controller
 
     public function store(Request $request){
 
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string',
+            'bio' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
         $user_id = $request->user()->id;
 
         $page = Page::where('user_id', $user_id);
@@ -49,6 +59,15 @@ class PagesController extends Controller
     }
 
     public function updateBackground(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'background_path' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
         $user = $request->user()->id;
         $page = Page::where('user_id', $user)->first();
         $page->background_path = $request->input('background_path');
@@ -77,6 +96,15 @@ class PagesController extends Controller
     }
 
     public function storeAvatar(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'avatar_path' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
         $user = $request->user()->id;
         $page = Page::where('user_id', $user)->first();
         $image = $request->input('avatar_path');
@@ -106,6 +134,19 @@ class PagesController extends Controller
 
 
     public function storeLinkStyles(Request $request){
+
+        $validator = Validator::make($request->all(), [
+            'thickness' => 'required|integer',
+            'radius' => 'required|integer',
+            'bgcolor' => 'required|string',
+            'bordercolor' => 'required|string',
+            'textcolor' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
         $user = $request->user()->id;
         $page = Page::where('user_id', $user)->first();
 

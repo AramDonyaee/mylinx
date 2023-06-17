@@ -25,11 +25,11 @@
             <span class="text-xl text-black font-bold">Profile</span>
             <div class="bg-white p-4 rounded-lg gap-2 mt-4">
                 <div class="rounded-lg overflow-hidden ">
-                    <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text" v-model="title" />
+                    <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text" placeholder="Your Name" v-model="title" required />
                 </div>
 
                 <div class="rounded-lg overflow-hidden mt-2">
-                    <input class="h-24 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text" v-model="bio" />
+                    <input class="h-24 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text" placeholder="Write a brief bio about yourself" v-model="bio" required />
                 </div>
 
                 <div class="flex gap-2.5 mt-2">
