@@ -6,7 +6,7 @@
             <h1 class="text-4xl font-bold mb-8">Contact Us</h1>
 
             <div class="flex">
-                <div class="w-1/2 pr-4">
+                <div class="pr-4">
                     <p class="mb-4">We'd love to hear from you! If you have any questions or feedback, feel free to reach
                         out.</p>
                     <p class="mb-4">For general inquiries, please email <a href="mailto:info@mylinx.site"
