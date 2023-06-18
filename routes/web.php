@@ -70,7 +70,7 @@ Route::middleware([
 });
 
 
-Route::get('{username}', [Controllers\PagesController::class, 'show'])
+Route::get('@{username}', [Controllers\PagesController::class, 'show'])
 ->where('username', '^(?!admin(?:\/login)?)[\w.-]+$')
 ->name('userpage');
 
@@ -80,3 +80,15 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::post('/linkClick', [Controllers\LinksController::class, 'linkClick'])->name('linkClick');
+
+Route::get('/tos', function () {
+    return Inertia::render('TermsOfService');
+})->name('tos');
+
+Route::get('/privacy-policy', function () {
+    return Inertia::render('PrivacyPolicy');
+})->name('privacy-policy');
+
+Route::get('/contact-us', function () {
+    return Inertia::render('ContactUs');
+})->name('contact-us');
