@@ -100,12 +100,7 @@ export default {
             axios.put(route('links.move', { link: link.id }), {
                 link_order: position,
             });
-
-
-
-
         },
-
     },
 
     mounted() {

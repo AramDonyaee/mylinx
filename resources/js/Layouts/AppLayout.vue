@@ -67,11 +67,11 @@ const logout = () => {
                                 </NavLink>
                             </div>
 
-                            <div class="hidden lg:flex space-x-8 sm:-my-px sm:ml-10 ">
+                            <!-- <div class="hidden lg:flex space-x-8 sm:-my-px sm:ml-10 ">
                                 <NavLink :href="route('links')" :active="route().current('links')">
                                     Links
                                 </NavLink>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -145,6 +145,15 @@ const logout = () => {
 
                             <!-- Settings Dropdown -->
                             <div class="ml-3  flex lg:flex-row">
+                                <!-- <button type="button"
+                                    class="inline-flex invisible lg:visible justify-center items-center px-2 py-2 mr-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-400 hover:text-[yellow] text-center">
+                                    <Link href="/upgrade">
+                                    <span>
+                                        <v-icon name="bi-lightning-charge-fill" scale="0.8"  />
+                                        Upgrade
+                                    </span>
+                                    </Link>
+                                </button> -->
                                 <button type="button"
                                     class="inline-flex invisible lg:visible items-center px-3 py-2 mr-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-[yellow]">
                                     <Link :href="'/@' +  $page.props.user.username">

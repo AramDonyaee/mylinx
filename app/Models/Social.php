@@ -9,6 +9,13 @@ class Social extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'hyperlink',
+        'page_id',
+        'type'
+    ];
+
+
     public function page()
     {
         return $this->belongsTo(Page::class);

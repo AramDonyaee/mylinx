@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Page;
+use Laravel\Cashier\Billable;
 
 class User extends \TCG\Voyager\Models\User
 {
@@ -18,6 +19,7 @@ class User extends \TCG\Voyager\Models\User
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use Billable;
 
     /**
      * The attributes that are mass assignable.

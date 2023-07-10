@@ -6,18 +6,23 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Inertia\Inertia;
 use App\Models\Page;
 use App\Models\User;
 use App\Models\Link;
+use App\Models\Social;
+use App\Enums\SocialType;
+
 
 
 
 class PagesController extends Controller
 {
 
-    public function show(Request $request, $username) {
+    public function show(Request $request, $username)
+    {
         try {
             $user = User::where('username', $username)->firstOrFail();
         } catch (ModelNotFoundException $e) {
@@ -28,13 +33,17 @@ class PagesController extends Controller
 
         $page = $user->page;
         $links = Link::where('page_id', $page->id)->orderBy('link_order', 'asc')->get();
+        $socials = Social::where('page_id', $page->id)->get();
+
         return Inertia::render('Mylinx/UserPage', [
             'page' => $page,
-            'links' => $links ?? null
+            'links' => $links ?? null,
+            'socials' => $socials ?? null,
         ]);
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
@@ -48,17 +57,17 @@ class PagesController extends Controller
         $user_id = $request->user()->id;
 
         $page = Page::where('user_id', $user_id);
-        if ($page){
+        if ($page) {
             $page->update([
                 'title' => $request->input('title'),
                 'bio' => $request->input('bio'),
             ]);
         }
         return response('success');
-
     }
 
-    public function updateBackground(Request $request){
+    public function updateBackground(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
             'background_path' => 'required|string',
@@ -76,7 +85,8 @@ class PagesController extends Controller
         return response('success');
     }
 
-    public function mockupData (Request $request){
+    public function mockupData(Request $request)
+    {
         $user = $request->user()->id;
         $page = Page::where('user_id', $user)->first();
 
@@ -95,7 +105,8 @@ class PagesController extends Controller
         return response()->json($data);
     }
 
-    public function storeAvatar(Request $request){
+    public function storeAvatar(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
             'avatar_path' => 'required|string',
@@ -119,13 +130,14 @@ class PagesController extends Controller
         $file = $folderPath . $image_name;
         file_put_contents($file, $image_base64);
 
-        $page->avatar_path = 'images/'. $image_name;
+        $page->avatar_path = 'images/' . $image_name;
         $page->save();
-        
+
         return response('success');
     }
 
-    public function removeAvatar(Request $request){
+    public function removeAvatar(Request $request)
+    {
         $user = $request->user()->id;
         $page = Page::where('user_id', $user)->first();
         $page->avatar_path = '';
@@ -133,7 +145,8 @@ class PagesController extends Controller
     }
 
 
-    public function storeLinkStyles(Request $request){
+    public function storeLinkStyles(Request $request)
+    {
 
         $validator = Validator::make($request->all(), [
             'thickness' => 'required|integer',
@@ -157,8 +170,6 @@ class PagesController extends Controller
         $page->link_text_color = $request->input('textcolor');
 
         $page->save();
-
     }
-
 
 }

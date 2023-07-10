@@ -21,23 +21,29 @@
                 <p
                     class="w-3/4 mt-2 text-white text-sm font-normal flex text-center justify-center items-center [text-shadow:_0_1px_2px_rgb(0_0_0_/_100%)]">
                     {{ bio }}</p>
-                <div class="flex flex-wrap justify-evenly mt-2">
+                <!-- <div class="flex flex-wrap justify-evenly mt-2">
                     <v-icon name="fa-instagram" scale="1.5" fill="white" />
                     <v-icon name="fa-twitter" scale="1.5" fill="white" />
                     <v-icon name="fa-linkedin" scale="1.5" fill="white" />
-                    <v-icon name="fa-facebook" scale="1.5" fill="white" />
-                </div>
+                </div> -->
             </div>
             <!-- Notification Summary -->
-            <div class="relative mt-4 mx-2">
+            <div class="relative mt-4 mx-4 ">
                 <!-- Stacked panels (sitting below) -->
 
                 <!-- Main, current panel -->
 
-                <div v-for="n in 2" id="link"
-                    class=" h-16 p-4 flex bg-white text-xl font-bold mb-2 text-center justify-center items-center contents-center ">
-                    My Link #{{ n }}
+                <div v-for="n in 1" id="link"
+                    class=" h-16 p-4 flex bg-white text-sm font-bold mb-2 text-center justify-center items-center contents-center ">
+                    Example Link
                 </div>
+
+                <span class="flex flex-col w-full items-center overflow-hidden" id="link">
+                    <div class="w-full ">
+                        <img loading="lazy" class="object-cover w-full h-32" src="landscape.jpg" />
+                    </div>
+                    <div class="py-4 font-bold">Example link with picture!</div>
+                </span>
 
                 <!-- <Carousel :items-to-show="1">
                     <Slide class="bg-white backdrop-blur h-48 rounded-3xl mr-4" v-for="slide in 10" :key="slide">
@@ -48,12 +54,12 @@
             </div>
         </div>
         <!-- Flashlight, camera and bottom swipe menu -->
-        <div class="absolute bottom-1 inset-x-0">
+        <!-- <div class="absolute bottom-1 inset-x-0">
             <div class="flex justify-center pb-3 text-white">
                 <span class=" text-sm  [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">POWERED BY</span>
                 <ApplicationMark class=" h-5 ml-4" />
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 

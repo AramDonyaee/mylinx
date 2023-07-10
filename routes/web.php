@@ -35,6 +35,7 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
+
     Route::get('/content', function () {
         return Inertia::render('Content');
     })->name('content');
@@ -43,20 +44,18 @@ Route::middleware([
         return Inertia::render('Design');
     })->name('design');
 
-    Route::get('/stats', function () {
-        return Inertia::render('Stats');
-    })->name('stats');
+    Route::get('/stats', [Controllers\StatsController::class, 'show'])->name('stats');
 
     Route::get('/links', function () {
         return Inertia::render('Links');
     })->name('links');
 
-    Route::post('pages/store', [Controllers\PagesController::class, 'store'])->name('pages.store');
     Route::post('links/store', [Controllers\LinksController::class, 'store'])->name('links.store');
     Route::post('links/destroy', [Controllers\LinksController::class, 'destroy'])->name('links.destroy');
     Route::put('links/{link}/move', [Controllers\LinksController::class, 'move'])->name('links.move');
-
     Route::post('links/styles/store', [Controllers\PagesController::class, 'storeLinkStyles'])->name('linkstyles.store');
+    
+    Route::post('pages/store', [Controllers\PagesController::class, 'store'])->name('pages.store');
     Route::post('pages/updateBackground', [Controllers\PagesController::class, 'updateBackground'])->name('pages.updateBackground');
     Route::post('pages/storeAvatar', [Controllers\PagesController::class, 'storeAvatar'])->name('pages.storeAvatar');
     Route::post('pages/removeAvatar', [Controllers\PagesController::class, 'removeAvatar'])->name('pages.removeAvatar');
@@ -65,6 +64,17 @@ Route::middleware([
 
     Route::get('/getLinks', [Controllers\LinksController::class, 'getLinks']);
     Route::get('/getTotalClicks', [Controllers\LinksController::class, 'getTotalClicks']);
+    Route::post('/getSingleLinkClicks', [Controllers\LinksController::class, 'getSingleLinkClicks']);
+
+    Route::get('/upgrade', [Controllers\SubscriptionController::class, 'index']);
+
+    Route::get('/get-setup-intent', [Controllers\PaymentController::class, 'getSetupIntent']);
+    Route::get('/get-monthly-plan-id', [Controllers\PaymentController::class, 'getMonthlyPlanId']);
+    Route::get('/payment', [Controllers\PaymentController::class, 'index']);
+    Route::post('/subscribe', [Controllers\PaymentController::class, 'subscribe']);
+
+    Route::get('/getSocials', [Controllers\SocialsController::class, 'getSocials']);
+    Route::post('socials/store', [Controllers\SocialsController::class, 'store'])->name('socials.store');
 
 
 });

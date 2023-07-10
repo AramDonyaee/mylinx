@@ -25,6 +25,7 @@
                             </a>
                         </li>
                     </ul>
+                    <p class="text-sm">5051 Alton Pkwy, Irvine,<br/> CA 92604, USA</p>
                 </div>
 
             </div>

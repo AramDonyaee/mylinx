@@ -44,7 +44,7 @@ class LinksController extends Controller
                     'title' => $request->input('title'),
                     'description' => $request->input('description'),
                     'type' => $request->input('type'),
-                    'hyperlink' => 'http://' . $request->input('url'),
+                    'hyperlink' => self::fixURL($request->input('url')),
                     'page_id' => $page->id,
                     'link_order' => $link_order
                 ]);
@@ -53,7 +53,7 @@ class LinksController extends Controller
                     'title' => $request->input('title'),
                     'description' => $request->input('description'),
                     'type' => $request->input('type'),
-                    'hyperlink' => 'http://' . $request->input('url'),
+                    'hyperlink' => self::fixURL($request->input('url')),
                     'page_id' => $page->id,
                     'link_order' => 0
                 ]);
@@ -79,7 +79,7 @@ class LinksController extends Controller
                     'title' => $request->input('title'),
                     'description' => $request->input('description'),
                     'type' => $request->input('type'),
-                    'hyperlink' => 'http://' . $request->input('url'),
+                    'hyperlink' => self::fixURL($request->input('url')),
                     'page_id' => $page->id,
                     'link_order' => $link_order
                 ]);
@@ -89,7 +89,7 @@ class LinksController extends Controller
                     'title' => $request->input('title'),
                     'description' => $request->input('description'),
                     'type' => $request->input('type'),
-                    'hyperlink' => 'http://' . $request->input('url'),
+                    'hyperlink' => self::fixURL($request->input('url')),
                     'page_id' => $page->id,
                     'link_order' => 0
                 ]);
@@ -184,16 +184,25 @@ class LinksController extends Controller
         $links = Link::where('page_id', $page->id)->get();
         $count = 0;
         foreach ($links as $link) {
-            $count += self::singleLinkClickCount($link->id);
+            $count += self::getSingleLinkClicks($link->id);
         }
         return $count;
     }
 
-    public function singleLinkClickCount($id)
+    public function getSingleLinkClicks(Request $request)
     {
-        $link = Link::where('id', $id)->first();
-        $click = Click::where('link_id', $link->id)->get();
-        $count = $click->count();
-        return $count;
+            $id = $request->input('id');
+            $link = Link::where('id', $id)->first();
+            $click = Click::where('link_id', $link->id)->get();
+            $count = $click->count();
+            return $count; 
     }
+
+    public function fixURL($url){
+        if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+            $url = "http://" . $url;
+        }
+        return $url;
+    }
+
 }

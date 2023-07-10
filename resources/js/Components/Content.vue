@@ -1,93 +1,104 @@
 <template>
+    <Toast v-if="showNotification" :message="toastMessage" :isError="isToastError" />
+
     <div class="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2">
         <div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
-
-                <Toast v-if="showNotification" :message="toastMessage" :isError="isToastError" />
-
-                <div class="bg-white shadow-2xl p-6 rounded-2xl cursor-pointer" @click="showSocialModal">
-                    <div class="content flex justify-center items-center text-center cursor-pointer">
-                        <div class="flex-col">
-                            <div>
-                                <v-icon class="-mr-2" name="fa-tiktok" fill="blue" scale="1.2" />
-                                <v-icon class="z-5" name="fa-instagram" scale="1.5" />
-                                <v-icon class="-ml-2" name="fa-youtube" fill="red" scale="1.2" />
-                            </div>
-                            <div>Add Social Icons</div>
-                            <div class="text-sm text-gray-500 mx-2 leading-[1.1]">Show off your online presence!</div>
-                        </div>
-                    </div>
+            <div class="grid grid-cols-4 ">
+                <div class="cursor-pointer hover:bg-gray-50 text-center bg-white py-4" v-for="(tab, index) in tabs"
+                    :key="index" @click="this.activeTab = tab">
+                    {{ tab }}
                 </div>
-
-
-                <div class="bg-white shadow-2xl p-6 rounded-2xl cursor-pointer" @click="showLinkModal">
-                    <div class="content flex justify-center items-center text-center">
-                        <div class="flex-col">
-                            <div><v-icon name="fa-link" scale="1.2" /></div>
-                            <div>Add a link</div>
-                            <div class="text-sm text-gray-500 mx-2 leading-[1.1]">link to another part of the web
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-2xl p-6 rounded-2xl cursor-pointer">
-                    <div class="content flex justify-center items-center text-center">
-                        <div class="flex-col">
-                            <div><v-icon name="fc-doughnut-chart" scale="1.2" /></div>
-                            <div>Add a pool</div>
-                            <div class="text-sm text-gray-500 mx-2 leading-[1.1]">Find out what exactly your audience wants
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- <div class="bg-white shadow-2xl p-6 rounded-2xl">
-                    <div class="content flex justify-center items-center text-center cursor-pointer">
-                            <div class="flex-col">
-                                <div class="text-2xl font-bold">@</div>
-                                <div>Mailing list</div>
-                                <div class="text-sm text-gray-500 mx-2 leading-[1.1]">Add an email sign-up field to your
-                                    mylinx so visitors can join your mailing list.</div>
-                            </div>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-2xl p-6 rounded-2xl">
-                    <div class="content flex justify-center items-center text-center cursor-pointer">
-                        <div class="flex-col">
-                            <div><v-icon name="fa-instagram" scale="2" /></div>
-                            <div>Show Your Entire Instagram Feed</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white shadow-2xl p-6 rounded-2xl">
-                    <div class="content flex justify-center items-center text-center cursor-pointer rounded-lg">
-                        <div class="flex-col">
-                            <div><v-icon name="fa-tiktok" scale="2" /></div>
-                            <div>Show Your Latest TikToks</div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="bg-white shadow-2xl p-6 rounded-2xl">
-                    <div class="content flex justify-center items-center text-center cursor-pointer rounded-lg">
-                        <div class="flex-col">
-                            <div><v-icon name="fa-shopify" scale="2" /></div>
-                            <div>Ecommerce Integration</div>
-                        </div>
-                    </div>
-                </div> -->
-
             </div>
 
+            <transition name="fade">
+                <div class="grid grid-cols-1 gap-4 mx-8 mt-4" v-show="this.activeTab === 'Link'">
+                    <div class="bg-white p-4 rounded-lg gap-2 mt-2">
+                        <div class="flex flex-col">
+                            <button @click="showLinkModal"
+                                class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">
+                                <v-icon name="fa-link" scale="1.2" />
+                                Add a Link
+                            </button>
+                        </div>
+                    </div>
+
+                    <transition-group name="list" tag="ul" class="mt-2">
+
+                        <li v-for="(link, index) in this.links"
+                            class="flex bg-white rounded-lg  overflow-hidden transition duration-100 mb-2 text-xl justify-center"
+                            :key="link">
+
+                            <div class="flex flex-row w-full">
+                                <div class="w-full flex flex-col ">
+                                    <div class="flex-grow p-4">
+                                        <p>{{ link.title }}</p>
+                                        <p class="text-sm font-normal">{{ link.description }}</p>
+                                    </div>
+
+                                    <div class="flex flex-row flex-none items-center pl-4 pb-4">
+                                        <button @click="destroyLink(link)">
+                                            <v-icon name="bi-trash-fill" fill="black" scale="1" />
+                                        </button>
+                                        <button class="ml-2">
+                                            <v-icon name="md-edit-outlined" fill="black" scale="1" />
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-col items-center">
+                                    <div class="h-full bg-black flex items-center cursor-pointer hover:bg-gray-700 px-2"
+                                        @click="move(index, index - 1)" :disabled="index == 0">
+                                        <button>
+                                            <v-icon name="bi-arrow-up" fill="white" scale="1.2" />
+                                        </button>
+                                    </div>
+                                    <div class="h-full bg-black flex items-center cursor-pointer hover:bg-gray-700 px-2"
+                                        @click="move(index, index + 1)" :disabled="index == (this.links.length - 1)">
+
+                                        <button>
+                                            <v-icon name="bi-arrow-down" fill="white" scale="1.2" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </li>
+                    </transition-group>
+                </div>
+            </transition>
+
+            <transition name="fade">
+            <div class="grid grid-cols-1 gap-4 mx-8 mt-4" v-show="this.activeTab === 'Social'">
+                <div class="bg-white p-4 rounded-lg gap-2 mt-2">
+                    <div class="flex flex-col">
+                        <button @click="showSocialModal"
+                            class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">
+                            Add a Social Icon
+                        </button>
+                    </div>
+                </div>
+
+
+                <div v-for="social in this.socials" class="bg-white rounded-lg" :key="social">
+                    <div class="p-4 flex items-center relative">
+                        <v-icon :name="'fa-' + social.type" scale="1.8" fill="black" />
+                        <span class="pl-4">{{ social.hyperlink }}</span>
+                        <div class="absolute right-4">
+                            <button @click="destroySocial(social)">
+                                <v-icon name="bi-trash-fill" fill="black" scale="1.2" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </transition>
+        
 
         </div>
+
+
 
         <div class="h-screen sticky top-0 justify-center items-center bg-slate-200">
 
@@ -116,57 +127,96 @@
     <swipe-modal v-model="isSocialModal" contents-height="auto" v-bind:contents-width=this.modalWidth
         border-top-radius="30px" contents-color="white" tip-color="red">
 
-        <!-- <div class="grid-cols-1">
-            <div class="flex justify-between pl-5 pr-5 pt-2 rounded-xl">
-                <div class="flex h-14 w-14 bg-gray-100 justify-center items-center rounded-2xl ">
-                    <v-icon name="fa-youtube" fill="red" scale="1.5" />
-                </div> -->
-        <!-- <div class="grow h-14 bg-gray-100"></div>
-                <div class="flex flex-none h-14 w-14 bg-gray-100 justify-center items-center rounded-tr-2xl rounded-br-2xl">
-                    <v-icon name="fa-youtube" fill="black" scale="1.5" />
-                </div> -->
-        <!-- </div>
+        <div class="flex flex-wrap gap-2 justify-center bg-white rounded-lg p-1 mb-3 ">
 
-        </div> -->
-
-        <div class="flex flex-wrap gap-2 justify-center bg-white rounded-lg p-1 mb-3">
-            <div type="button" class="cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl">
+            <div type="button"
+                class="relative hover:bg-gray-100 cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl"
+                v-bind:class="{ 'border-4 border-indigo-600': selectedSocial === 'youtube' }">
+                <input type="radio" id="youtube" value="youtube" v-model="selectedSocial"
+                    class="w-full absolute h-full cursor-pointer opacity-0">
                 <v-icon name="fa-youtube" fill="red" scale="1.5" />
             </div>
-            <div type="button" class="cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl">
+
+            <div type="button"
+                class="relative hover:bg-gray-100 cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl"
+                v-bind:class="{ 'border-4 border-indigo-600': selectedSocial === 'facebook' }">
+                <input type="radio" id="facebook" value="facebook" v-model="selectedSocial"
+                    class="w-full absolute h-full cursor-pointer opacity-0">
                 <v-icon name="fa-facebook" fill="blue" scale="1.5" />
             </div>
-            <div type="button" class="cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl">
+            <div type="button"
+                class="relative hover:bg-gray-100 cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl"
+                v-bind:class="{ 'border-4 border-indigo-600': selectedSocial === 'twitter' }">
+                <input type="radio" id="twitter" value="twitter" v-model="selectedSocial"
+                    class="w-full absolute h-full cursor-pointer opacity-0">
                 <v-icon name="fa-twitter" fill="#00acee" scale="1.5" />
             </div>
-            <div type="button" class="cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl">
+            <div type="button"
+                class="relative hover:bg-gray-100 cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl"
+                v-bind:class="{ 'border-4 border-indigo-600': selectedSocial === 'instagram' }">
+                <input type="radio" id="instagram" value="instagram" v-model="selectedSocial"
+                    class="w-full absolute h-full cursor-pointer opacity-0">
+
                 <v-icon name="fa-instagram" fill="#c13584" scale="1.5" />
             </div>
-            <div type="button" class="cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl">
+            <div type="button"
+                class="relative hover:bg-gray-100 cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl"
+                v-bind:class="{ 'border-4 border-indigo-600': selectedSocial === 'linkedin' }">
+                <input type="radio" id="linkedin" value="linkedin" v-model="selectedSocial"
+                    class="w-full absolute h-full cursor-pointer opacity-0">
+
                 <v-icon name="fa-linkedin" fill="#0e76a8" scale="1.5" />
             </div>
-            <div type="button" class="cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl">
-                <v-icon name="fa-tiktok" fill="#69C9D0" scale="1.5" />
+            <div type="button"
+                class="relative hover:bg-gray-100 cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl"
+                v-bind:class="{ 'border-4 border-indigo-600': selectedSocial === 'tiktok' }">
+                <input type="radio" id="tiktok" value="tiktok" v-model="selectedSocial"
+                    class="w-full absolute h-full cursor-pointer opacity-0">
+
+                <v-icon name="fa-tiktok" fill="#000000" scale="1.5" />
             </div>
-            <div type="button" class="cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl">
+            <div type="button"
+                class="relative hover:bg-gray-100 cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl"
+                v-bind:class="{ 'border-4 border-indigo-600': selectedSocial === 'pinterest' }">
+                <input type="radio" id="pinterest" value="pinterest" v-model="selectedSocial"
+                    class="w-full absolute h-full cursor-pointer opacity-0">
+
                 <v-icon name="fa-pinterest" fill="#E60023" scale="1.5" />
             </div>
-            <div type="button" class="cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl">
+            <div type="button"
+                class="relative hover:bg-gray-100 cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl"
+                v-bind:class="{ 'border-4 border-indigo-600': selectedSocial === 'reddit' }">
+                <input type="radio" id="reddit" value="reddit" v-model="selectedSocial"
+                    class="w-full absolute h-full cursor-pointer opacity-0">
+
                 <v-icon name="fa-reddit" fill="#FF4500" scale="1.5" />
             </div>
-            <div type="button" class="cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl">
-                <v-icon name="fa-whatsapp" fill="#25D366" scale="1.5" />
-            </div>
-            <div type="button" class="cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl">
+            <div type="button"
+                class="relative hover:bg-gray-100 cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl"
+                v-bind:class="{ 'border-4 border-indigo-600': selectedSocial === 'spotify' }">
+                <input type="radio" id="spotify" value="spotify" v-model="selectedSocial"
+                    class="w-full absolute h-full cursor-pointer opacity-0">
+
                 <v-icon name="fa-spotify" fill="#1DB954" scale="1.5" />
             </div>
-            <div type="button" class="cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl">
+            <div type="button"
+                class="relative hover:bg-gray-100 cursor-pointer bg-gray-50 w-14 h-14 flex justify-center items-center rounded-2xl"
+                v-bind:class="{ 'border-4 border-indigo-600': selectedSocial === 'twitch' }">
+                <input type="radio" id="twitch" value="twitch" v-model="selectedSocial"
+                    class="w-full absolute h-full cursor-pointer opacity-0">
+
                 <v-icon name="fa-twitch" fill="#9146FF" scale="1.5" />
             </div>
         </div>
-        <div class="rounded-2xl overflow-hidden px-5 mb-4">
-            <input class="rounded-2xl h-12 px-4 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
-                placeholder="Enter your social media address here" />
+
+        <div class="relative rounded-2xl overflow-hidden px-5 mb-4">
+            <input class="rounded-lg h-12 px-4 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
+                :placeholder="socialPlaceholder" v-model="socialValue" />
+            <p class="font-normal text-sm pl-2 pt-4 pb-2">{{ socialExample }}</p>
+            <div class="w-full text-center inline-block flex-1 cursor-pointer sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3 mt-2"
+                @click="storeSocial">
+                Add Social Icon
+            </div>
         </div>
 
 
@@ -235,9 +285,6 @@
                             <div class="font-bold">{{ this.linkTitle }}</div>
                             <div class="truncate-to-next-line">{{ this.linkDescription }}</div>
                         </div>
-
-
-
                     </div>
 
                     <div v-if="this.isForthLinkTypeVisible"
@@ -376,6 +423,12 @@ export default {
         window.removeEventListener('resize', this.handleResize);
     },
 
+    watch: {
+        links(newLinks) {
+            this.links = newLinks;
+        }
+    },
+
     mounted() {
         axios
             .get(route('mockupData'))
@@ -390,6 +443,12 @@ export default {
                     this.link.bgColor = response.data.link_background_color,
                     this.link.textColor = response.data.link_text_color
             });
+        this.getLinks();
+        this.getSocials();
+        Array.prototype.move = function (from, to) {
+            this.splice(to, 0, this.splice(from, 1)[0]);
+            return this;
+        };
     },
 
     data() {
@@ -440,10 +499,116 @@ export default {
             toastMessage: "",
             isToastError: false,
 
+            selectedSocial: null,
+            socialValue: null,
+
+            socials: [],
+            links: [],
+
+            tabs: ['Link', 'Social', 'Polls', 'Newsletter'],
+            activeTab: 'Link',
+
+
 
         };
     },
+
+    computed: {
+        socialPlaceholder() {
+            switch (this.selectedSocial) {
+                case 'youtube':
+                    return 'Enter Youtube URL';
+                    break;
+                case 'instagram':
+                    return 'Enter Instagram URL';
+                    break;
+                case 'facebook':
+                    return 'Enter Facebook URL';
+                    break;
+                case 'twitter':
+                    return 'Enter Twitter URL';
+                    break;
+                case 'twitch':
+                    return 'Enter Twitch URL';
+                    break;
+                case 'spotify':
+                    return 'Enter Spotify URL';
+                    break;
+                case 'pinterest':
+                    return 'Enter Pinterest URL';
+                    break;
+                case 'linkedin':
+                    return 'Enter Linkedin URL';
+                    break;
+                case 'tiktok':
+                    return 'Enter TikTok URL';
+                    break;
+                case 'reddit':
+                    return 'Enter Reddit URL';
+                    break;
+            }
+        },
+
+        socialExample() {
+            switch (this.selectedSocial) {
+                case 'youtube':
+                    return 'Example: https://youtube.com/channel/youtubechannelurl';
+                    break;
+                case 'instagram':
+                    return 'Eample: https://instagram.com/yourusername';
+                    break;
+                case 'facebook':
+                    return 'Eample: https://facebook.com/yourpageurl';
+                    break;
+                case 'twitter':
+                    return 'Eample: https://twitter.com/yourhandle';
+                    break;
+                case 'twitch':
+                    return 'Eample: https://twitch.com/yourusername';
+                    break;
+                case 'spotify':
+                    return 'Eample: https://spotify.com/yourusername';
+                    break;
+                case 'pinterest':
+                    return 'Eample: https://pinterest.com/yourusername';
+                    break;
+                case 'linkedin':
+                    return 'Eample: https://linkedin.com/yourusername';
+                    break;
+                case 'tiktok':
+                    return 'Eample: https://tiktok.com/yourusername';
+                    break;
+                case 'reddit':
+                    return 'Eample: https://reddit.com/yourusername';
+                    break;
+            }
+        }
+    },
     methods: {
+
+
+        move(from, to) {
+            this.links.move(from, to);
+            let index = to;
+
+            let prevLink = this.links[index - 1];
+            let nextLink = this.links[index + 1];
+            let link = this.links[index];
+
+            let position = link.link_order;
+
+            if (prevLink && nextLink) {
+                position = (prevLink.link_order + nextLink.link_order) / 2;
+            } else if (prevLink) {
+                position = prevLink.link_order + (prevLink.link_order / 2);
+            } else if (nextLink) {
+                position = nextLink.link_order / 2;
+            }
+
+            axios.put(route('links.move', { link: link.id }), {
+                link_order: position,
+            });
+        },
 
         handleImageUpload() {
             this.image = this.$refs.file.files[0];
@@ -611,15 +776,16 @@ export default {
                 this.imagePreview = '/thumbnail_placeholder.jpg';
                 this.imageName = '';
                 this.isLinkModal = false;
-                this.isFirstLinkSelected=true;
-                this.isFirstLinkTypeVisible=true;
-                this.isSecondLinkSelected=false;
-                this.isSecondLinkTypeVisible=false;
-                this.isThirdLinkSelected=false;
-                this.isThirdLinkTypeVisible=false;
-                this.isForthLinkSelected=false;
-                this.isForthLinkTypeVisible=false;
+                this.isFirstLinkSelected = true;
+                this.isFirstLinkTypeVisible = true;
+                this.isSecondLinkSelected = false;
+                this.isSecondLinkTypeVisible = false;
+                this.isThirdLinkSelected = false;
+                this.isThirdLinkTypeVisible = false;
+                this.isForthLinkSelected = false;
+                this.isForthLinkTypeVisible = false;
                 this.isLinkImageUploadVisible = false;
+                this.getLinks();
 
             })
                 .catch(error => {
@@ -627,12 +793,61 @@ export default {
                     this.isToastError = true;
                     this.toastMessage = error.response.data;
                     this.showToast();
-
-
                 })
-
-
         },
+
+        async destroyLink($link) {
+            await axios.post(
+                route('links.destroy'), {
+                id: $link['id']
+            }
+            );
+            this.getLinks();
+        },
+
+        async storeSocial() {
+            axios.post(
+                route('socials.store'),
+                {
+                    social: this.selectedSocial,
+                    socialvalue: this.socialValue
+                }, {
+                onUploadProgress: function (progressEvent) {
+                    this.isLoading = true;
+                }.bind(this)
+            }
+            ).then((response) => {
+                this.isLoading = false;
+                this.isToastError = false;
+                this.toastMessage = "The social icon was added successfully!";
+                this.showToast();
+            })
+                .catch(error => {
+                    this.isLoading = false;
+                    this.isToastError = true;
+                    this.toastMessage = error.response.data.errors;
+                    this.showToast();
+                })
+        },
+
+        async getLinks() {
+            axios
+                .get('/getLinks')
+                .then(response => {
+                    this.links = response.data.links;
+                    console.log(this.links);
+                });
+        },
+
+
+        async getSocials() {
+            axios.get('/getSocials')
+                .then(response => {
+                    this.socials = response.data.socials;
+                });
+        }
+
+
 
     }
 
@@ -642,4 +857,31 @@ export default {
 <style>
 .truncate-to-next-line {
     word-wrap: break-word
-}</style>
+}
+
+.list-move,
+/* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+    transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+    opacity: 0;
+
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+transition: opacity 1s ease-out;
+  opacity: 0;
+}
+
+</style>
+

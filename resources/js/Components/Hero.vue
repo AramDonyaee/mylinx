@@ -1,50 +1,50 @@
 <template>
-    <section class="bg-gray-100 py-6">
-        <div class="mx-auto w-11/12 md:w-8/12 lg:w-7/12 xl:w-6/12 flex flex-col items-center">
-            
-            <h2
-                class="leading-8 lg:leading-[1.1]  text-center text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-5xl w-full mb-4">
-                All of you in one
-                 <span class="text-indigo-600"> AI Powered </span>Link 
-            </h2>
-
-            <p class="text-center text-lg mb-6">
+    <div class="flex flex-col lg:flex-row bg-gray-100 lg:pl-12 lg:py-8 mx-auto justify-center">
+        <div class="w-full lg:w-1/2 text-center lg:text-left">
+            <h1
+                class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
+                All of your online <br>presence in one link.</h1>
+            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
                 Centralize all of your online presence in one place. Create a custom personal page
                 that showcases your personality, services, abilities and a lot more...
             </p>
+            <div class="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
 
+                <label class="relative w-full md:w-3/4 lg:w-full rounded-[50px] shadow bg-white z-0 inline-flex items-center"
+                    for='txt'>
+                    <v-icon name="fa-link" scale="1.1" />
+                    <span class="pl-2 text-lg text-gray-600">mylinx.site/</span>
+                    <form @submit.prevent="submit">
+                        <input type="text" v-model="username" placeholder="yourname"
+                            class="text-indigo-500 relative bg-white outline-none focus:outline-none focus:ring-0 font-bold text-xl "
+                            style="border:none; margin-left: -10px; background: transparent;" />
+
+
+                        <button
+                            class="hidden lg:absolute lg:block md:block md:absolute lg:right-4 md:right-4 lg:top-4 md:top-4 z-10 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-full">
+                            Claim your mylinx, its free!
+                        </button>
+                    </form>
+
+                </label>
+
+                <button
+                    class="flex mt-4 lg:mt-0 md:mt-0 lg:hidden md:hidden bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-full">
+                    Claim your mylinx
+                </button>
+
+            </div>
         </div>
-
-        <div class="flex flex-wrap mb-4 items-center justify-center px-6">
-            <label class="relative w-full md:w-3/4 lg:w-1/2 rounded-[50px] shadow bg-white z-0 inline-flex items-center"
-                for='txt'>
-                <v-icon name="fa-link" scale="1.1" />
-                <span class="pl-2 text-lg text-gray-600">mylinx.site/</span>
-                <form @submit.prevent="submit">
-                    <input type="text" v-model="username" placeholder="yourname"
-                        class="text-indigo-500 relative bg-white outline-none focus:outline-none focus:ring-0 font-bold text-xl "
-                        style="border:none; margin-left: -10px; background: transparent;" />
-
-
-                    <button
-                        class="hidden lg:absolute lg:block md:block md:absolute lg:right-4 md:right-4 lg:top-4 md:top-4 z-10 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-full">
-                        Claim your mylinx
-                    </button>
-                </form>
-
-
-            </label>
-
-
-            <button
-                class="flex mt-4 lg:mt-0 md:mt-0 lg:hidden md:hidden bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-full">
-                Claim your mylinx
-            </button>
-
-
+        <div class="w-full lg:w-1/2 ">
+            <Mockup v-once class="shadow-none  origin-top"
+                :avatarImage=this.getRandomAvatar() :title=this.getRandomName() :bio=this.getRandomBio()
+                :backgroundImage=this.getRandomBackgroundImage() :borderThickness=3 :borderRadius=10
+                linkBgColor="white" :borderColor=this.generateRandomColors()
+                :linkTextColor=this.generateRandomColors() />
         </div>
+    </div>
 
-        <div class="slider bg-gray-100 mb-6">
+            <!-- <div class="slider bg-gray-100 mb-6">
             <div class="slide-track ">
                 <div v-once v-for="n in 30" class="slide">
                     <Mockup class="shadow-none scale-[0.9] md:scale-[1] lg:scale-[1] origin-center mt-8 "
@@ -54,9 +54,9 @@
                         :borderColor=this.generateRandomColors() :linkTextColor=this.generateRandomColors() />
                 </div>
             </div>
-        </div>
+        </div> -->
 
-    </section>
+
 </template>
 
 <script>
@@ -129,10 +129,10 @@ export default {
         generateRandomColors() {
             return '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
         },
-        getRandomName(){
+        getRandomName() {
             return this.names[this.getRandomNumber(this.names.length)];
         },
-        getRandomBio(){
+        getRandomBio() {
             return this.bios[this.getRandomNumber(this.bios.length)];
         },
         getRandomBackgroundImage() {
@@ -205,4 +205,6 @@ label[for="txt"] {
         transform: translateX(calc(-250px * 15));
     }
 }
+
+
 </style>

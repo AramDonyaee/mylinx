@@ -28,10 +28,11 @@
                         <p class="mt-4 text-white text-normal font-normal [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">{{
                             page.bio }}</p>
                         <div class="flex flex-wrap justify-evenly mt-4">
-                            <v-icon name="fa-instagram" scale="2" fill="white" />
-                            <v-icon name="fa-twitter" scale="2" fill="white" />
-                            <v-icon name="fa-linkedin" scale="2" fill="white" />
-                            <v-icon name="fa-facebook" scale="2" fill="white" />
+                            <a id="social"
+                            v-for="social in socials"
+                            v-bind:href=social.hyperlink>
+                                <v-icon :name="'fa-' + social.type" scale="2" fill="white" />
+                            </a>
                         </div>
 
                     </div>
@@ -115,6 +116,7 @@ export default {
     props: {
         page: String,
         links: String,
+        socials: String,
     },
 
     methods: {
@@ -126,7 +128,11 @@ export default {
                 }
             );
         },
-    }
+
+
+    },
+
+    
 
 
 
