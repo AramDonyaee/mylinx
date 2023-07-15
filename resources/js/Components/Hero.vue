@@ -4,13 +4,13 @@
             <h1
                 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
                 All of your online <br>presence in one link.</h1>
-            <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+            <p class="max-w-2xl px-8 lg:px-0 md:px-0 mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
                 Centralize all of your online presence in one place. Create a custom personal page
                 that showcases your personality, services, abilities and a lot more...
             </p>
             <div class="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
 
-                <label class="relative w-full md:w-3/4 lg:w-full rounded-[50px] shadow bg-white z-0 inline-flex items-center"
+                <label class="relative w-3/4 md:w-3/4 lg:w-full rounded-[50px] shadow bg-white z-0 inline-flex items-center "
                     for='txt'>
                     <v-icon name="fa-link" scale="1.1" />
                     <span class="pl-2 text-lg text-gray-600">mylinx.site/</span>
@@ -29,13 +29,13 @@
                 </label>
 
                 <button
-                    class="flex mt-4 lg:mt-0 md:mt-0 lg:hidden md:hidden bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-full">
+                    class="flex mt-4 mx-auto lg:mt-0 md:mt-0 lg:hidden md:hidden bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-2 px-4 rounded-full ">
                     Claim your mylinx
                 </button>
 
             </div>
         </div>
-        <div class="w-full lg:w-1/2 ">
+        <div class="w-full lg:w-1/2 mt-8 md:mt-0 lg:mt-0">
             <Mockup v-once class="shadow-none  origin-top"
                 :avatarImage=this.getRandomAvatar() :title=this.getRandomName() :bio=this.getRandomBio()
                 :backgroundImage=this.getRandomBackgroundImage() :borderThickness=3 :borderRadius=10

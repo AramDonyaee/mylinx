@@ -16,8 +16,8 @@ import { OhVueIcon, addIcons } from "oh-vue-icons";
 // import * as MaterialIcons from "oh-vue-icons/icons/md";
 // const Md = Object.values({ ...MaterialIcons });
 // addIcons(...Md);
-import {  MdEmailOutlined, BiArrowDown, BiArrowUp, MdEditOutlined, BiTrashFill, BiLightningChargeFill, HiSolidCursorClick, FaTwitch, FaSpotify, FaWhatsapp, FaReddit, FaSnapchat, FaPinterest, BiClockFill, BiEyeFill, BiHandIndexThumb, FcDoughnutChart, BiArrowDownSquareFill, BiArrowUpSquareFill, FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook} from "oh-vue-icons/icons";
-addIcons(  MdEmailOutlined, BiArrowDown, BiArrowUp, MdEditOutlined, BiTrashFill, BiLightningChargeFill, HiSolidCursorClick, FaTwitch, FaSpotify, FaWhatsapp, FaReddit, FaSnapchat, FaPinterest, BiClockFill, BiEyeFill, BiHandIndexThumb, FcDoughnutChart, BiArrowDownSquareFill, BiArrowUpSquareFill, FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook);
+import { IoClose, MdEmailOutlined, BiArrowDown, BiArrowUp, MdEditOutlined, BiTrashFill, BiLightningChargeFill, HiSolidCursorClick, FaTwitch, FaSpotify, FaWhatsapp, FaReddit, FaSnapchat, FaPinterest, BiClockFill, BiEyeFill, BiHandIndexThumb, FcDoughnutChart, BiArrowDownSquareFill, BiArrowUpSquareFill, FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook} from "oh-vue-icons/icons";
+addIcons( IoClose, MdEmailOutlined, BiArrowDown, BiArrowUp, MdEditOutlined, BiTrashFill, BiLightningChargeFill, HiSolidCursorClick, FaTwitch, FaSpotify, FaWhatsapp, FaReddit, FaSnapchat, FaPinterest, BiClockFill, BiEyeFill, BiHandIndexThumb, FcDoughnutChart, BiArrowDownSquareFill, BiArrowUpSquareFill, FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook);
 
 
 

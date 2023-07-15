@@ -1,12 +1,12 @@
 <template>
     <div class="modal-backdrop">
-        <div class="modal relative w-full h-full max-w-2xl md:h-auto rounded-lg">
+        <div class="modal relative w-full h-full max-w-2xl md:h-auto rounded-xl">
             <header class="modal-header">
                 <slot name="header">
                     Upload your Profile Picture
                 </slot>
                 <button type="button" class="btn-close" @click="close">
-                    x
+                    <v-icon name="io-close" scale="1.2" />
                 </button>
             </header>
 
@@ -119,6 +119,7 @@ export default {
 
         close() {
             this.$emit('close');
+            this.reset();
         },
 
         crop() {
@@ -204,7 +205,6 @@ export default {
 
 .modal {
     background: #FFFFFF;
-    box-shadow: 8px 8px 0 0;
     overflow-x: auto;
     display: flex;
     flex-direction: column;

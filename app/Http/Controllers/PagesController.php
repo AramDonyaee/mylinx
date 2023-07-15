@@ -47,7 +47,7 @@ class PagesController extends Controller
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
-            'bio' => 'required|string',
+            'bio' => 'nullable|string',
         ]);
 
         if ($validator->fails()) {
@@ -149,10 +149,10 @@ class PagesController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'thickness' => 'required|integer',
+            'thickness' => 'integer',
             'radius' => 'required|integer',
             'bgcolor' => 'required|string',
-            'bordercolor' => 'required|string',
+            'bordercolor' => 'nullable|string',
             'textcolor' => 'required|string',
         ]);
 

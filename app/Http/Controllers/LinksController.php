@@ -19,9 +19,9 @@ class LinksController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
-            'description' => 'string',
+            'description' => 'nullable|string',
             'type' => 'required|integer',
-            'url' => 'required|regex:/^[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$/',
+            'url' => 'required',
             'image' => $request->input('type') == 2
              | $request->input('type') == 3 
              | $request->input('type') == 4
@@ -103,19 +103,26 @@ class LinksController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'id' => 'required|string',
             'title' => 'required|string',
-            'hyperlink' => 'required|url',
+            'description' => 'nullable|string',
+            'type' => 'required|integer',
+            'url' => 'required',
+            'image' => $request->input('type') == 2
+             | $request->input('type') == 3 
+             | $request->input('type') == 4
+             ? 'required|mimes:jpeg,jpg,png|max:2048'
+             : 'nullable|mimes:jpeg,jpg,png|max:2048',
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
+            return response()->json($validator->messages(), 422);
         }
 
         if ($request->has('id')) {
             $link = Link::find($request->input('id'));
             $link->title = $request->input('title');
-            $link->hyperlink = $request->input('hyperlink');
+            $link->description = $request->input('description');
+            $link->hyperlink = self::fixURL($request->input('url'));
             $link->save();
             return response('scuccess');
         }
@@ -136,6 +143,8 @@ class LinksController extends Controller
         $link->delete();
         return back();
     }
+
+    
 
     public function getLinks(Request $request)
     {

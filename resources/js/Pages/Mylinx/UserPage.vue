@@ -3,7 +3,7 @@
     <div class="bg-scroll" v-bind:style="{ 'background-image': 'url(' + page.background_path + ')' }">
 
         <div class="w-full h-full flex flex-col justify-center items-center backdrop-blur-xl ">
-            <div class="ease-linear duration-200 mx-auto md:w-1/2 w-full h-fit relative overflow-hidden bg-cover bg-center shadow-xl pb-24 bg-fixed"
+            <div class="ease-linear duration-200 mx-auto md:w-3/5 w-full h-fit relative overflow-hidden bg-cover bg-center shadow-xl pb-24 bg-fixed"
                 :style="{ backgroundColor: backgroundColor }"
                 v-bind:style="{ 'background-image': 'url(' + page.background_path + ')' }">
 
@@ -17,18 +17,20 @@
                     <div class="flex flex-col items-center lg:pt-12 md:pt-12 sm:pt-12">
 
                         <div
-                            class="relative inline-flex items-center justify-center w-48 h-48 mt-12 rounded-full lg:w-3/4 lg:h-3/4 md:w-3/4 md:h-3/4 sm:w-3/4 sm:h-3/4 lg:rounded-lg md:rounded-lg sm:rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-600 ">
+                            class="relative inline-flex items-center justify-center w-48 h-48 mt-12 rounded-full lg:w-2/4 lg:h-2/4 md:w-3/4 md:h-3/4 sm:w-2/4 sm:h-2/4 lg:rounded-lg md:rounded-lg sm:rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-600 ">
                             <!-- <span class="font-medium text-gray-600 dark:text-gray-300">JL</span> -->
                             <img v-bind:src=page.avatar_path class="shadow-2xl" />
                         </div>
 
                         <p
-                            class="font-lobster mt-4 text-white text-center text-5xl font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
+                            class="mt-4 text-white text-center text-5xl font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
                             {{ page.title }}</p>
-                        <p class="mt-4 text-white text-normal font-normal [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">{{
-                            page.bio }}</p>
-                        <div class="flex flex-wrap justify-evenly mt-4">
+                        <pre class="mt-4 text-white text-center w-3/4 text-normal font-normal [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">{{
+                            page.bio }}
+                        </pre>
+                        <div class="flex flex-wrap justify-evenly mt-2 mb-6">
                             <a id="social"
+                            class="mx-1"
                             v-for="social in socials"
                             v-bind:href=social.hyperlink>
                                 <v-icon :name="'fa-' + social.type" scale="2" fill="white" />
@@ -39,7 +41,7 @@
 
 
                     <!-- links -->
-                    <div class="relative mt-4 mx-2 cursor-pointer" id="links_id">
+                    <div class="relative mt-4 mx-2 px-4 sm:px-8 md:px-8 lg:px-12 cursor-pointer" id="links_id">
                         <a v-for="link in links" id="link" @click="linkClick(link)"
                             class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-2 text-xl justify-center text-center content-center"
                             v-bind:style="{

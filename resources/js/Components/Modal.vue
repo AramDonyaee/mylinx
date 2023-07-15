@@ -1,91 +1,56 @@
-<script setup>
-import { computed, onMounted, onUnmounted, watch } from 'vue';
-
-const props = defineProps({
-    show: {
-        type: Boolean,
-        default: false,
+<script>
+export default {
+    name: 'Modal',
+    methods: {
+        close() {
+            this.$emit('close');
+        },
     },
-    maxWidth: {
-        type: String,
-        default: '2xl',
-    },
-    closeable: {
-        type: Boolean,
-        default: true,
-    },
-});
-
-const emit = defineEmits(['close']);
-
-watch(() => props.show, () => {
-    if (props.show) {
-        document.body.style.overflow = 'hidden';
-    } else {
-        document.body.style.overflow = null;
-    }
-});
-
-const close = () => {
-    if (props.closeable) {
-        emit('close');
-    }
 };
-
-const closeOnEscape = (e) => {
-    if (e.key === 'Escape' && props.show) {
-        close();
-    }
-};
-
-onMounted(() => document.addEventListener('keydown', closeOnEscape));
-
-onUnmounted(() => {
-    document.removeEventListener('keydown', closeOnEscape);
-    document.body.style.overflow = null;
-});
-
-const maxWidthClass = computed(() => {
-    return {
-        'sm': 'sm:max-w-sm',
-        'md': 'sm:max-w-md',
-        'lg': 'sm:max-w-lg',
-        'xl': 'sm:max-w-xl',
-        '2xl': 'sm:max-w-2xl',
-    }[props.maxWidth];
-});
 </script>
 
 <template>
-    <teleport to="body">
-        <transition leave-active-class="duration-200">
-            <div v-show="show" class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50" scroll-region>
-                <transition
-                    enter-active-class="ease-out duration-300"
-                    enter-from-class="opacity-0"
-                    enter-to-class="opacity-100"
-                    leave-active-class="ease-in duration-200"
-                    leave-from-class="opacity-100"
-                    leave-to-class="opacity-0"
-                >
-                    <div v-show="show" class="fixed inset-0 transform transition-all" @click="close">
-                        <div class="absolute inset-0 bg-gray-500 opacity-75" />
-                    </div>
-                </transition>
+    <div class="modal-backdrop">
+        <div class="modal w-full p-4 mx-8 sm:mx-0 sm:w-3/4 md:mx-0 md:w-1/2 lg:mx-0 lg:w-1/2">
+            <header class="relative justify-center items-center flex relative mb-4">
+                <slot name="header">
+                    This is the default title!
+                </slot>
+                <button type="button" class="absolute right-0.5 top-0.5" @click="close">
+                    <v-icon name="io-close" scale="1.2" />
+                </button>
+            </header>
 
-                <transition
-                    enter-active-class="ease-out duration-300"
-                    enter-from-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    enter-to-class="opacity-100 translate-y-0 sm:scale-100"
-                    leave-active-class="ease-in duration-200"
-                    leave-from-class="opacity-100 translate-y-0 sm:scale-100"
-                    leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                >
-                    <div v-show="show" class="mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto" :class="maxWidthClass">
-                        <slot v-if="show" />
-                    </div>
-                </transition>
-            </div>
-        </transition>
-    </teleport>
+            <section class="modal-body">
+                <slot name="body">
+                    This is the default body!
+                </slot>
+            </section>
+
+        </div>
+    </div>
 </template>
+
+<style>
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.modal {
+    background: #FFFFFF;
+    overflow-x: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+}
+
+</style>

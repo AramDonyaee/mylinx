@@ -95,6 +95,22 @@ class SocialsController extends Controller
         $page->socials()->save($socialItem);
     }
 
+    public function destroy(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
+        $social = Social::find($request->input('id'));
+        $social->delete();
+        return back();
+    }
+
     public function fixURL($url){
         if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
             $url = "http://" . $url;

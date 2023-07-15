@@ -52,6 +52,7 @@ Route::middleware([
 
     Route::post('links/store', [Controllers\LinksController::class, 'store'])->name('links.store');
     Route::post('links/destroy', [Controllers\LinksController::class, 'destroy'])->name('links.destroy');
+    Route::post('links/update', [Controllers\LinksController::class, 'update'])->name('links.update');
     Route::put('links/{link}/move', [Controllers\LinksController::class, 'move'])->name('links.move');
     Route::post('links/styles/store', [Controllers\PagesController::class, 'storeLinkStyles'])->name('linkstyles.store');
     
@@ -75,6 +76,8 @@ Route::middleware([
 
     Route::get('/getSocials', [Controllers\SocialsController::class, 'getSocials']);
     Route::post('socials/store', [Controllers\SocialsController::class, 'store'])->name('socials.store');
+    Route::post('socials/destroy', [Controllers\SocialsController::class, 'destroy'])->name('socials.destroy');
+
 
 
 });

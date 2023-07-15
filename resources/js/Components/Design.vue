@@ -8,7 +8,7 @@
             <div class="bg-white p-4 rounded-lg flex gap-2 mb-4">
 
                 <div class="flex-none items-center justify-center overflow-hidden bg-gray-100 rounded-full w-24 h-24">
-                    <img v-bind:src="imageSrc" />
+                    <img v-bind:src="this.$store.state.image ? this.$store.state.image : this.avatar" />
                 </div>
 
                 <div class="flex-auto">
@@ -16,20 +16,22 @@
                         class="mb-1 w-full h-12 text-white bg-rose-500 font-medium rounded-xl text-sm md:text-normal lg:text-normal px-5 py-2.5 text-center">Add
                         a Profile Picture</button>
                     <button type="button" @click="removeAvatar"
-                        class=" w-full h-12 text-black bg-white font-medium rounded-xl border border-rose-200 text-normal px-5 py-2.5 text-center">
+                        class=" w-full h-12 text-black bg-white font-medium rounded-xl border border-rose-200 text-normal px-5 py-2.5 text-center hover:bg-gray-100">
                         Remove
                     </button>
                 </div>
             </div>
 
             <span class="text-xl text-black font-bold">Profile</span>
-            <div class="bg-white p-4 rounded-lg gap-2 mt-4">
+            <div class="bg-white p-4 rounded-lg gap-2 mt-4 mb-4">
                 <div class="rounded-lg overflow-hidden ">
-                    <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text" placeholder="Your Name" v-model="title" required />
+                    <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
+                        placeholder="Your Name" v-model="title" required />
                 </div>
 
-                <div class="rounded-lg overflow-hidden mt-2">
-                    <input class="h-24 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text" placeholder="Write a brief bio about yourself" v-model="bio" required />
+                <div class="mt-2">
+                    <textarea class="rounded-lg h-24 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
+                        placeholder="Write a brief bio about yourself" v-model="bio" required></textarea>
                 </div>
 
                 <div class="flex gap-2.5 mt-2">
@@ -38,6 +40,31 @@
                 </div>
                 <loading v-model:active="storePage_isLoading" :can-cancel="false" color="#0000FF" />
             </div>
+
+            <span class="text-xl text-black font-bold">Themes</span>
+            <div class="mb-8 md:mb-10 mt-4">
+                <div class="flex flex-wrap gap-2 justify-center bg-white rounded-lg p-5">
+                    <div v-for="theme in this.themes" type="button"
+                        class="cursor-pointer w-36 h-32 flex flex-col overflow-hidden justify-center items-center bg-white hover:bg-gray-100 active:ring-gray-800 active:bg-gray-200 text-gray-800 text-sm font-semibold text-center border rounded-md transition duration-100"
+                        @click=storeTheme(theme)>
+                        <div v-for="n in 2" class=" my-1 flex justify-center flex-wrap gap-2 items-center h-10 w-3/4"
+                            v-bind:style="{
+                                'border-width': theme.link.border.thickness + 'px',
+                                'border-color': theme.link.border.color,
+                                'border-radius': theme.link.border.radius + 'px',
+                                'background-color': theme.link.bgColor,
+                                'color': theme.link.textColor
+                            }">
+                            <span class="text-sm">Link Text</span>
+
+                        </div>
+                    </div>
+                </div>
+                <loading v-model:active="storeBackground_isLoading" :can-cancel="false" color="#0000FF" />
+            </div>
+
+
+
 
             <!-- color - start -->
             <div class="mb-2 mt-8 ">
@@ -69,7 +96,6 @@
                     </div>
                 </div>
                 <loading v-model:active="storeBackground_isLoading" :can-cancel="false" color="#0000FF" />
-
             </div>
             <!-- size - end -->
 
@@ -134,10 +160,10 @@
 
         <div class="h-screen sticky top-0 justify-center items-center bg-slate-200 hidden sm:block">
             <Mockup class="scale-[0.55] origin-top mt-10"
-                :avatarImage="imageSrc" :title="this.title"
+                :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
                 :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.selected_background"
                 :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
-                :borderColor="link.border.color" :linkTextColor="link.textColor" />
+                :borderColor="link.border.color" :linkTextColor="link.textColor" :links="this.links" :socials="this.socials"/>
         </div><!--second half end-->
 
     </div>
@@ -195,7 +221,7 @@ export default {
                 { id: 21, url: '/bg22.jpg' },
                 { id: 22, url: '/bg23.jpg' },
 
-                
+
             ],
             title: null,
             bio: null,
@@ -204,15 +230,89 @@ export default {
                 border: {
                     thickness: 0,
                     radius: 0,
-                    color: 'black'
+                    color: '#000000'
                 },
                 bgColor: 'white',
                 textColor: 'black'
             },
+
+            themes: {
+                theme1: {
+                    link: {
+                        border: {
+                            thickness: 0,
+                            radius: 40,
+                            color: '#000000'
+                        },
+                        bgColor: 'yellow',
+                        textColor: 'black'
+                    },
+                },
+                theme2: {
+                    link: {
+                        border: {
+                            thickness: 0,
+                            radius: 15,
+                            color: '#000000'
+                        },
+                        bgColor: '#1B113D',
+                        textColor: 'white'
+                    },
+                },
+                theme3: {
+                    link: {
+                        border: {
+                            thickness: 0,
+                            radius: 4,
+                            color: '#000000'
+                        },
+                        bgColor: '#221551',
+                        textColor: '#A5E844'
+                    },
+                },
+                theme4: {
+                    link: {
+                        border: {
+                            thickness: 0,
+                            radius: 12,
+                            color: '#000000'
+                        },
+                        bgColor: '#423F00',
+                        textColor: '#A5E844'
+                    },
+                },
+                theme5: {
+                    link: {
+                        border: {
+                            thickness: 0,
+                            radius: 4,
+                            color: '#000000'
+                        },
+                        bgColor: '#212121',
+                        textColor: '#CFCFCF'
+                    },
+                },
+                theme6: {
+                    link: {
+                        border: {
+                            thickness: 0,
+                            radius: 4,
+                            color: '#000000'
+                        },
+                        bgColor: '#345CA8',
+                        textColor: '#D8DDEE'
+                    },
+                },
+
+            },
+
             storePage_isLoading: false,
             storeBackground_isLoading: false,
             storeLinkStyles_isLoading: false,
             fullPage: false,
+
+            links: [],
+            socials: [],
 
 
 
@@ -233,29 +333,31 @@ export default {
                     this.link.bgColor = response.data.link_background_color,
                     this.link.textColor = response.data.link_text_color
             });
+        this.getLinks();
+        this.getSocials();
     },
 
-    computed: {
-        imageSrc() {
-            return this.$store.state.image;
-        },
-        hasImage() {
-            return this.$store.state.image !== null;
-        }
-    },
-    watch: {
-        imageSrc(newSrc) {
-            if (newSrc !== null) {
-                return newSrc;
-            } else {
-                return null;
-            }
-        }
-    },
+    // computed: {
+    //     imageSrc() {
+    //         return this.$store.state.image;
+    //     },
+    //     hasImage() {
+    //         return this.$store.state.image !== null;
+    //     }
+    // },
+    // watch: {
+    //     imageSrc(newSrc) {
+    //         if (newSrc !== null) {
+    //             return newSrc;
+    //         } else {
+    //             return null;
+    //         }
+    //     }
+    // },
 
     methods: {
 
-        showLoading(loading){
+        showLoading(loading) {
             this.storePage_isLoading = loading;
         },
 
@@ -316,6 +418,15 @@ export default {
             }
         },
 
+        async storeTheme(theme){
+            this.link.border.thickness = theme.link.border.thickness;
+            this.link.border.radius = theme.link.border.radius;
+            this.link.border.color = theme.link.border.color;
+            this.link.bgColor = theme.link.bgColor;
+            this.link.textColor = theme.link.textColor;
+            this.storeLinkStyles();
+        },
+
 
         async storeLinkStyles() {
             try {
@@ -348,15 +459,34 @@ export default {
                 );
                 this.$store.commit('deleteImage');
                 this.storeLinkStyles_isLoading = true;
+                this.avatar = null;
                 // simulate AJAX
                 setTimeout(() => {
                     this.storeLinkStyles_isLoading = false
                 }, 5000);
 
+
             } catch (e) {
                 console.log(e);
             }
         },
+
+        async getLinks() {
+            axios
+                .get('/getLinks')
+                .then(response => {
+                    this.links = response.data.links;
+                    console.log(this.links);
+                });
+        },
+
+
+        async getSocials() {
+            axios.get('/getSocials')
+                .then(response => {
+                    this.socials = response.data.socials;
+                });
+        }
     }
 
 }

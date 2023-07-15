@@ -1,5 +1,6 @@
 <template>
-    <svg class="scale-[2.2] origin-center" viewBox="0 0 912 445" version="1.1"
+    <div class="flex flex-row">
+        <svg class="scale-[2.2] origin-center" viewBox="0 0 912 445" version="1.1"
         xmlns="http://www.w3.org/2000/svg">
         <g id="#000000ff">
         </g>
@@ -179,4 +180,10 @@
         <path fill="#889ef9" opacity="1.00"
             d=" M 319.97 322.05 C 330.16 324.50 340.66 324.72 351.07 323.94 C 340.92 326.73 329.66 326.24 319.97 322.05 Z" />
     </g>
-</svg></template>
+</svg>
+<div class="bg-rose-600 px-2 text-white ml-4 pb-0.5 flex justify-center items-center h-4 text-[12px] rounded-[4px] text-sm ">
+    Beta
+</div>
+    </div>
+    
+</template>
