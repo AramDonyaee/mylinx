@@ -1,9 +1,9 @@
-<template>
+<template class="box-border">
     <Toast v-if="showNotification" :message="toastMessage" :isError="isToastError" />
 
 
     <div class="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2">
-        <div class="">
+        <div>
 
             <div class="grid grid-cols-2 overflow-hidden mx-8 mt-10 rounded-xl">
                 <div class="cursor-pointer hover:bg-gray-50 text-center bg-white py-4 " v-for="(tab, index) in tabs"
