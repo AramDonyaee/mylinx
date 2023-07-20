@@ -1,4 +1,4 @@
-<template class="box-border">
+<template>
     <Toast v-if="showNotification" :message="toastMessage" :isError="isToastError" />
 
 
