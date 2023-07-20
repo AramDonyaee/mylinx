@@ -1,42 +1,12 @@
 <template>
     <Toast v-if="showNotification" :message="toastMessage" :isError="isToastError" />
-    <!-- <Modal v-show="isLinkEditModalVisible" @close="closeEditModal">
-        <template v-slot:header >
-            Update Link
-        </template>
 
-        <template v-slot:body>
-            <div class="rounded-lg overflow-hidden ">
-                <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
-                    placeholder="Link Title" v-model="linkTitle" />
-            </div>
-
-            <div class="rounded-lg overflow-hidden mt-2">
-                <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
-                    placeholder="Description (optional)" v-model="linkDescription" />
-            </div>
-
-            <div class="rounded-lg overflow-hidden mt-2">
-                <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text" placeholder="URL"
-                    v-model="linkUrl" />
-            </div>
-
-            <div class="flex gap-2.5 mt-2">
-                <button @click="storeLink"
-                    class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">
-                    Update Link
-                    </button>
-            </div>
-
-        </template>
-
-    </Modal> -->
 
     <div class="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2">
-        <div class="col-span-2">
+        <div class="">
 
-            <div class="grid grid-cols-2 px-8 pt-4 ">
-                <div class="cursor-pointer hover:bg-gray-50 text-center bg-white py-4" v-for="(tab, index) in tabs"
+            <div class="grid grid-cols-2 overflow-hidden mx-8 mt-10 rounded-xl">
+                <div class="cursor-pointer hover:bg-gray-50 text-center bg-white py-4 " v-for="(tab, index) in tabs"
                     :key="index" @click="this.activeTab = tab">
                     {{ tab }}
                 </div>
@@ -44,6 +14,7 @@
 
             <transition name="fade">
                 <div class="grid grid-cols-1 gap-4 mx-8 mt-4" v-show="this.activeTab === 'Link'">
+
                     <div class="bg-white p-4 rounded-lg gap-2 mt-2">
                         <div class="flex flex-col">
                             <button @click="showLinkModal"
@@ -262,7 +233,7 @@
         <loading v-model:active="isLoading" :can-cancel="false" color="#0000FF" />
         <div class="grid gap-2 ">
             <div class="pr-8 pl-8 pt-4 ">
-                <div v-bind:style="{ 'background-image': 'url(' + this.background_path + ')' }"
+                <div :style="{backgroundColor: this.backgroundColor, background: this.background_path ? 'url('+this.background_path+') center/95%':this.backgroundColor}"
                     class="relative bg-cover w-full bg-gray-300 h-auto flex justify-center items-center content-center rounded-lg overflow-hidden py-6 bg-center">
                     <span
                         class="absolute left-0 top-0 bg-black text-[yellow] text-xs font-bold mr-2 px-2.5 py-0.5 dark:bg-purple-900 dark:text-purple-300">Preview</span>
@@ -276,14 +247,14 @@
                             'background-color': link.bgColor,
                             'color': link.textColor
                         }">
-                        <span class="font-bold">{{ this.linkTitle }}</span>
-                        <div class="truncate-to-next-line">
+                        <span class="truncate-to-next-line font-bold px-2">{{ this.linkTitle }}</span>
+                        <div class="truncate-to-next-line px-2">
                             {{ this.linkDescription }}
                         </div>
                     </div>
 
                     <div v-if="this.isSecondLinkTypeVisible"
-                        class="overflow-hidden w-3/4 md:w-1/2 lg:w-1/2 flex justify-center text-center items-center content-center h-24"
+                        class="overflow-hidden w-3/4 md:w-1/2 lg:w-1/2 flex  text-center items-center content-center h-24"
                         v-bind:style="{
                             'border-width': link.border.thickness + 'px',
                             'border-color': link.border.color,
@@ -291,12 +262,13 @@
                             'background-color': link.bgColor,
                             'color': link.textColor
                         }">
-                        <div class="w-1/4 h-full">
-                            <img class="object-cover h-full" :src="imagePreview" />
+                        <div class="w-24 h-full">
+                            <img class="object-cover w-24 h-full" :src="imagePreview" />
                         </div>
-                        <div class="flex flex-col w-3/4">
-                            <div class="font-bold">{{ this.linkTitle }}</div>
-                            <div class="truncate-to-next-line">{{ this.linkDescription }}</div>
+                        <div class="flex flex-col">
+                            <div class="font-bold pl-4 text-left">{{ this.linkTitle }}</div>
+                            <div class="truncate-to-next-line text-sm font-normal pl-4 text-left">{{ this.linkDescription }}
+                            </div>
                         </div>
 
                     </div>
@@ -314,8 +286,8 @@
                             <img class="object-cover rounded-xl w-[52px] h-[52px] ml-8 " :src="imagePreview" />
                         </div>
                         <div class="flex flex-col w-3/4">
-                            <div class="font-bold">{{ this.linkTitle }}</div>
-                            <div class="truncate-to-next-line">{{ this.linkDescription }}</div>
+                            <div class="font-bold px-2">{{ this.linkTitle }}</div>
+                            <div class="truncate-to-next-line px-2">{{ this.linkDescription }}</div>
                         </div>
                     </div>
 
@@ -332,8 +304,8 @@
                             <img class="object-cover w-full h-48" :src="imagePreview" />
                         </div>
                         <div class="w-3/4">
-                            <div class="pt-4 font-bold">{{ this.linkTitle }}</div>
-                            <div class="pb-4 truncate-to-next-line">{{ this.linkDescription }}</div>
+                            <div class="pt-4 font-bold px-2">{{ this.linkTitle }}</div>
+                            <div class="pb-4 truncate-to-next-line px-2">{{ this.linkDescription }}</div>
                         </div>
 
 
@@ -425,13 +397,13 @@
         <loading v-model:active="isLoading" :can-cancel="false" color="#0000FF" />
         <div class="grid gap-2 ">
             <div class="text-center font-bold">Update Link</div>
-            <div class="pr-8 pl-8 pt-2 ">
-                <div v-bind:style="{ 'background-image': 'url(' + this.background_path + ')' }"
+            <div class="pr-8 pl-8 pt-2">
+                <div :style="{backgroundColor: this.backgroundColor, background: this.background_path ? 'url('+this.background_path+') center/95%':this.backgroundColor}"
                     class="relative bg-cover w-full bg-gray-300 h-auto flex justify-center items-center content-center rounded-lg overflow-hidden py-6 bg-center">
                     <span
                         class="absolute left-0 top-0 bg-black text-[yellow] text-xs font-bold mr-2 px-2.5 py-0.5 dark:bg-purple-900 dark:text-purple-300">Preview</span>
 
-                    <div v-if="this.isFirstLinkTypeVisible"
+                    <div v-if="this.isFirstLinkTypeVisibleEdit"
                         class="w-3/4 md:w-1/2 lg:w-1/2 flex flex-col justify-center text-center items-center content-center h-fit py-4"
                         v-bind:style="{
                             'border-width': link.border.thickness + 'px',
@@ -440,13 +412,35 @@
                             'background-color': link.bgColor,
                             'color': link.textColor
                         }">
-                        <span class="font-bold">{{ this.editableLink.title }}</span>
-                        <div class="truncate-to-next-line">
+                        <span class="font-bold px-2">{{ this.editableLink.title }}</span>
+                        <div class="truncate-to-next-line px-2">
                             {{ this.editableLink.description }}
                         </div>
                     </div>
 
-                    <div v-if="this.isSecondLinkTypeVisible"
+                    <div v-if="this.isSecondLinkTypeVisibleEdit"
+                        class="overflow-hidden w-3/4 md:w-1/2 lg:w-1/2 flex  text-center items-center content-center h-24"
+                        v-bind:style="{
+                            'border-width': link.border.thickness + 'px',
+                            'border-color': link.border.color,
+                            'border-radius': link.border.radius + 'px',
+                            'background-color': link.bgColor,
+                            'color': link.textColor
+                        }">
+                        <div class="w-24 h-full">
+                            <img class="object-cover w-24 h-full"
+                                :src="this.editableLink.thumbnail_path ? this.editableLink.thumbnail_path : imagePreviewEdit" />
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="font-bold pl-4 text-left">{{ this.editableLink.title }}</div>
+                            <div class="truncate-to-next-line text-sm font-normal pl-4 text-left">{{
+                                this.editableLink.description }}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div v-if="this.isThirdLinkTypeVisibleEdit"
                         class="overflow-hidden w-3/4 md:w-1/2 lg:w-1/2 flex justify-center text-center items-center content-center h-24"
                         v-bind:style="{
                             'border-width': link.border.thickness + 'px',
@@ -455,35 +449,17 @@
                             'background-color': link.bgColor,
                             'color': link.textColor
                         }">
-                        <div class="w-1/4 h-full">
-                            <img class="object-cover h-full" :src="imagePreview" />
+                        <div class="w-1/4 flex justify-center">
+                            <img class="object-cover rounded-xl w-[52px] h-[52px] ml-8 "
+                                :src="this.editableLink.thumbnail_path ? this.editableLink.thumbnail_path : imagePreviewEdit" />
                         </div>
                         <div class="flex flex-col w-3/4">
-                            <div class="font-bold">{{ this.editableLink.title }}</div>
-                            <div class="truncate-to-next-line">{{ this.editableLink.description }}</div>
-                        </div>
-
-                    </div>
-
-                    <div v-if="this.isThirdLinkTypeVisible"
-                        class="overflow-hidden w-3/4 md:w-1/2 lg:w-1/2 flex justify-center text-center items-center content-center h-24"
-                        v-bind:style="{
-                            'border-width': link.border.thickness + 'px',
-                            'border-color': link.border.color,
-                            'border-radius': link.border.radius + 'px',
-                            'background-color': link.bgColor,
-                            'color': link.textColor
-                        }">
-                        <div class="w-1/4 flex justify-center ">
-                            <img class="object-cover rounded-xl w-[52px] h-[52px] ml-8 " :src="imagePreview" />
-                        </div>
-                        <div class="flex flex-col w-3/4">
-                            <div class="font-bold">{{ this.editableLink.title }}</div>
-                            <div class="truncate-to-next-line">{{ this.editableLink.description }}</div>
+                            <div class="font-bold px-2">{{ this.editableLink.title }}</div>
+                            <div class="truncate-to-next-line px-2">{{ this.editableLink.description }}</div>
                         </div>
                     </div>
 
-                    <div v-if="this.isForthLinkTypeVisible"
+                    <div v-if="this.isForthLinkTypeVisibleEdit"
                         class="overflow-hidden w-3/4 md:w-1/2 lg:w-1/2 flex flex-col justify-center text-center items-center content-center h-auto"
                         v-bind:style="{
                             'border-width': link.border.thickness + 'px',
@@ -493,11 +469,12 @@
                             'color': link.textColor
                         }">
                         <div class="w-full">
-                            <img class="object-cover w-full h-48" :src="imagePreview" />
+                            <img class="object-cover w-full h-48"
+                                :src="this.editableLink.thumbnail_path ? this.editableLink.thumbnail_path : imagePreviewEdit" />
                         </div>
                         <div class="w-3/4">
-                            <div class="pt-4 font-bold">{{ this.editableLink.title }}</div>
-                            <div class="pb-4 truncate-to-next-line">{{ this.editableLink.description }}</div>
+                            <div class="pt-4 font-bold px-2">{{ this.editableLink.title }}</div>
+                            <div class="pb-4 truncate-to-next-line px-2">{{ this.editableLink.description }}</div>
                         </div>
 
 
@@ -511,45 +488,44 @@
                 <div class="bg-white pr-8 pl-8 pb-8 rounded-lg gap-2">
                     <div class="grid grid-cols-4 md:grid-cols-4 gap-2 mb-2 ">
                         <div class="bg-white rounded-lg flex justify-center items-center cursor-pointer h-20"
-                            v-bind:class="{ 'border-4 border-indigo-600': isFirstLinkSelected }"
-                            @click="this.chooseFirstLinkType">
+                            v-bind:class="{ 'border-4 border-indigo-600': isFirstLinkSelectedEdit }"
+                            @click="this.chooseFirstLinkTypeEdit">
                             <img src="/button.png" class="scale-[0.4]" />
                         </div>
                         <div class="bg-white rounded-lg flex justify-center items-center cursor-pointer h-20"
-                            v-bind:class="{ 'border-4 border-indigo-600': isSecondLinkSelected }"
-                            @click="this.chooseSecondLinkType">
+                            v-bind:class="{ 'border-4 border-indigo-600': isSecondLinkSelectedEdit }"
+                            @click="this.chooseSecondLinkTypeEdit">
                             <img src="/thumbnail-basic.png" class="scale-[0.4]" />
                         </div>
                         <div class="bg-white rounded-lg flex justify-center items-center cursor-pointer h-20"
-                            v-bind:class="{ 'border-4 border-indigo-600': isThirdLinkSelected }"
-                            @click="this.chooseThirdLinkType">
+                            v-bind:class="{ 'border-4 border-indigo-600': isThirdLinkSelectedEdit }"
+                            @click="this.chooseThirdLinkTypeEdit">
                             <img src="/thumbnail-basic-padding.jpg" class="scale-[0.4]" />
                         </div>
                         <div class="bg-white rounded-lg flex justify-center items-center cursor-pointer h-20"
-                            v-bind:class="{ 'border-4 border-indigo-600': isForthLinkSelected }"
-                            @click="this.chooseForthLinkType">
+                            v-bind:class="{ 'border-4 border-indigo-600': isForthLinkSelectedEdit }"
+                            @click="this.chooseForthLinkTypeEdit">
                             <img src="/thumbnail-highlight.png" class="scale-[0.4]" />
                         </div>
-
-
-
                     </div>
 
-                    <label v-if="this.isLinkImageUploadVisible" for="dropzone-file"
+                    <label v-if="this.isLinkImageUploadVisibleEdit" for="dropzone-file"
                         class=" overflow-hidden relative flex flex-col items-center justify-center w-full h-12 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600 mb-2">
-                        <div class="flex items-center justify-center" @click="$refs.file.click()">
+                        <div class="flex items-center justify-center" @click="$refs.fileEdit.click()">
                             <p class="z-10 text-sm text-black dark:text-gray-400 flex justify-center items-center ">
                                 <v-icon class="mr-1" name="fa-image" scale="1.4" />
                                 <span class="font-semibold">
                                     Click to upload your image
-                                    <span v-if="imageName" class="rounded-full bg-indigo-700 py-[2px] text-white px-2">{{
-                                        imageName }}</span>
+                                    <span v-if="imageNameEdit"
+                                        class="rounded-full bg-indigo-700 py-[2px] text-white px-2">{{
+                                            imageNameEdit }}</span>
                                 </span>
                             </p>
-                            <progress v-if="isProgressVisible" class="absolute h-full w-full opacity-60 z-0" max="100"
-                                :value.prop="uploadPercentage"></progress>
+                            <progress v-if="isProgressVisibleEdit" class="absolute h-full w-full opacity-60 z-0" max="100"
+                                :value.prop="uploadPercentageEdit"></progress>
                         </div>
-                        <input type="file" class="hidden" ref="file" accept="image/*" @change="handleImageUpload()" />
+                        <input type="file" class="hidden" ref="fileEdit" accept="image/*"
+                            @change="handleImageUploadEdit()" />
                     </label>
 
 
@@ -634,6 +610,7 @@ export default {
                 this.title = response.data.title;
                 this.bio = response.data.bio;
                 this.background_path = response.data.background_path;
+                this.backgroundColor = response.data.background_color;
                 this.avatar = response.data.avatar_path;
                 this.link.border.thickness = response.data.link_border_thickness,
                     this.link.border.radius = response.data.link_border_radius,
@@ -660,12 +637,14 @@ export default {
             isSocialModal: false,
             isLinkModal: false,
             modalWidth: null,
+            backgroundColor: '#111111',
             linkTitle: null,
             linkUrl: null,
             linkDescription: null,
             linkType: 1,
             isLoading: false,
             isLinkImageUploadVisible: false,
+            isLinkImageUploadVisibleEdit: false,
             fullPage: false,
             link: {
                 border: {
@@ -681,23 +660,38 @@ export default {
             isThirdLinkTypeVisible: false,
             isForthLinkTypeVisible: false,
 
+            isFirstLinkTypeVisibleEdit: false,
+            isSecondLinkTypeVisibleEdit: false,
+            isThirdLinkTypeVisibleEdit: false,
+            isForthLinkTypeVisibleEdit: false,
+
             isFirstLinkSelected: true,
             isSecondLinkSelected: false,
-            isThirdtLinkSelected: false,
+            isThirdLinkSelected: false,
             isForthLinkSelected: false,
 
-            image: '',
-            imageName: '',
-            imagePreview: '/thumbnail_placeholder.jpg',
-            uploadPercentage: 0,
+            isFirstLinkSelectedEdit: false,
+            isSecondLinkSelectedEdit: false,
+            isThirdLinkSelectedEdit: false,
+            isForthLinkSelectedEdit: false,
 
+            image: '',
+            imageEdit: '',
+            imageName: '',
+            imageNameEdit: '',
+            imagePreview: '/thumbnail_placeholder.jpg',
+            imagePreviewEdit: '/thumbnail_placeholder.jpg',
+            uploadPercentage: 0,
+            uploadPercentageEdit: 0,
             isProgressVisible: false,
+            isProgressVisibleEdit: false,
+
 
             showNotification: false,
             toastMessage: "",
             isToastError: false,
 
-            selectedSocial: null,
+            selectedSocial: 'youtube',
             socialValue: null,
 
             socials: [],
@@ -792,6 +786,22 @@ export default {
         showEditModal(link) {
             this.isLinkEditModalVisible = true;
             this.editableLink = link;
+            switch (this.editableLink.type) {
+                case 1:
+                    this.chooseFirstLinkTypeEdit();
+                    break;
+                case 2:
+                    this.chooseSecondLinkTypeEdit();
+                    break;
+                case 3:
+                    this.chooseThirdLinkTypeEdit();
+                    break;
+                case 4:
+                    this.chooseForthLinkTypeEdit();
+                    break;
+                    break;
+            };
+
             console.log(this.editableLink);
         },
         closeEditModal() {
@@ -845,8 +855,35 @@ export default {
                     reader.readAsDataURL(this.image);
                 }
             }
+        },
 
+        handleImageUploadEdit() {
+            this.imageEdit = this.$refs.fileEdit.files[0];
+            this.imageNameEdit = this.$refs.fileEdit.files[0].name;
 
+            let reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                if (this.editableLink.thumbnail_path) {
+                    this.editableLink.thumbnail_path = reader.result
+                } else {
+                    this.imagePreviewEdit = reader.result;
+                }
+            }.bind(this), false);
+
+            if (this.imageEdit) {
+                /*
+                  Ensure the file is an image file.
+                */
+                if (/\.(jpe?g|png|gif)$/i.test(this.imageEdit.name)) {
+                    /*
+                      Fire the readAsDataURL method which will read the file in and
+                      upon completion fire a 'load' event which we will listen to and
+                      display the image in the preview.
+                    */
+                    reader.readAsDataURL(this.imageEdit);
+                }
+            }
         },
 
         showSocialModal() {
@@ -896,6 +933,20 @@ export default {
             this.isForthLinkSelected = false;
         },
 
+        chooseFirstLinkTypeEdit() {
+            this.isFirstLinkTypeVisibleEdit = true;
+            this.isSecondLinkTypeVisibleEdit = false;
+            this.isThirdLinkTypeVisibleEdit = false;
+            this.isForthLinkTypeVisibleEdit = false;
+            this.editableLink.type = 1;
+            this.isLinkImageUploadVisibleEdit = false;
+
+            this.isFirstLinkSelectedEdit = true;
+            this.isSecondLinkSelectedEdit = false;
+            this.isThirdLinkSelectedEdit = false;
+            this.isForthLinkSelectedEdit = false;
+        },
+
         chooseSecondLinkType() {
             this.isFirstLinkTypeVisible = false;
             this.isSecondLinkTypeVisible = true;
@@ -908,6 +959,20 @@ export default {
             this.isSecondLinkSelected = true;
             this.isThirdLinkSelected = false;
             this.isForthLinkSelected = false;
+        },
+
+        chooseSecondLinkTypeEdit() {
+            this.isFirstLinkTypeVisibleEdit = false;
+            this.isSecondLinkTypeVisibleEdit = true;
+            this.isThirdLinkTypeVisibleEdit = false;
+            this.isForthLinkTypeVisibleEdit = false;
+            this.editableLink.type = 2;
+            this.isLinkImageUploadVisibleEdit = true;
+
+            this.isFirstLinkSelectedEdit = false;
+            this.isSecondLinkSelectedEdit = true;
+            this.isThirdLinkSelectedEdit = false;
+            this.isForthLinkSelectedEdit = false;
         },
 
         chooseThirdLinkType() {
@@ -924,6 +989,20 @@ export default {
             this.isForthLinkSelected = false;
         },
 
+        chooseThirdLinkTypeEdit() {
+            this.isFirstLinkTypeVisibleEdit = false;
+            this.isSecondLinkTypeVisibleEdit = false;
+            this.isThirdLinkTypeVisibleEdit = true;
+            this.isForthLinkTypeVisibleEdit = false;
+            this.editableLink.type = 3;
+            this.isLinkImageUploadVisibleEdit = true;
+
+            this.isFirstLinkSelectedEdit = false;
+            this.isSecondLinkSelectedEdit = false;
+            this.isThirdLinkSelectedEdit = true;
+            this.isForthLinkSelectedEdit = false;
+        },
+
         chooseForthLinkType() {
             this.isFirstLinkTypeVisible = false;
             this.isSecondLinkTypeVisible = false;
@@ -936,6 +1015,20 @@ export default {
             this.isSecondLinkSelected = false;
             this.isThirdLinkSelected = false;
             this.isForthLinkSelected = true;
+        },
+
+        chooseForthLinkTypeEdit() {
+            this.isFirstLinkTypeVisibleEdit = false;
+            this.isSecondLinkTypeVisibleEdit = false;
+            this.isThirdLinkTypeVisibleEdit = false;
+            this.isForthLinkTypeVisibleEdit = true;
+            this.editableLink.type = 4;
+            this.isLinkImageUploadVisibleEdit = true;
+
+            this.isFirstLinkSelectedEdit = false;
+            this.isSecondLinkSelectedEdit = false;
+            this.isThirdLinkSelectedEdit = false;
+            this.isForthLinkSelectedEdit = true;
         },
 
         handleResize() {
@@ -1014,7 +1107,7 @@ export default {
                 route('links.update'),
                 {
                     id: this.editableLink.id,
-                    image: this.image,
+                    image: this.imageEdit ? this.imageEdit : this.editableLink.thumbnail_path,
                     type: this.editableLink.type,
                     title: this.editableLink.title,
                     description: this.editableLink.description,
@@ -1025,11 +1118,11 @@ export default {
                         'Content-Type': 'multipart/form-data'
                     },
                     onUploadProgress: function (progressEvent) {
-                        if (this.image) {
+                        if (this.imageEdit) {
                             this.isLoading = true
-                            this.isProgressVisible = true;
-                            this.uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100));
-                            if (this.uploadPercentage == 100) { this.isLoading = false }
+                            this.isProgressVisibleEdit = true;
+                            this.uploadPercentageEdit = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100));
+                            if (this.uploadPercentageEdit == 100) { this.isLoading = false }
                         } else {
                             this.isLoading = true;
                         }
@@ -1039,11 +1132,14 @@ export default {
             ).then((response) => {
                 this.isLoading = false;
                 this.isToastError = false;
+                this.imageEdit = ''
+                this.imagePreviewEdit = '/thumbnail_placeholder.jpg';
+                this.imageNameEdit = '';
                 this.toastMessage = "The Link was updated successfully!";
                 this.showToast();
-                this.uploadPercentage = 0;
-                this.isProgressVisible = false;
-                this.isLinkModal = false;
+                this.uploadPercentageEdit = 0;
+                this.isProgressVisibleEdit = false;
+                this.isLinkEditModalVisible = false;
                 this.getLinks();
             })
                 .catch(error => {

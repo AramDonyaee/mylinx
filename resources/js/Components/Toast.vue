@@ -1,14 +1,19 @@
 <template>
-  <div v-if="isError" class="toast bg-red-600 text-white w-full md:w-1/2 lg:w-1/2">
+  <div v-if="isError" class="toast bg-white w-full md:w-2/5 lg:w-2/5 rounded-xl">
     <div v-for="(field, k) in message" :key="k">
       <p v-for="error in field" :key="error">
-        {{ error }}
+      <div class="flex flex-row items-center">
+        <div><v-icon name="md-error-round" scale="2" fill="red" /></div>
+        <div class="ml-2">{{ error }}</div>
+      </div>
+
       </p>
     </div>
   </div>
 
-  <div v-if="!isError" class="toast bg-green-300 w-full md:w-1/2 lg:w-1/2 ">
-    <span>{{ message }}</span>
+  <div v-if="!isError" class="toast flex flex-row w-full bg-white md:w-2/5 lg:w-2/5 rounded-xl items-center">
+    <div><v-icon name="fa-check-square" scale="2" fill="lightgreen" /></div>
+    <div class="ml-2">{{ message }}</div>
   </div>
 </template>
 
@@ -43,10 +48,9 @@ export default {
   box-shadow: 0 0 5px gray;
   transition: all 0.5s ease;
   padding: 15px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
   z-index: 999999;
   animation: slide-in-out 7s forwards;
+  margin: 25px;
 
 }
 

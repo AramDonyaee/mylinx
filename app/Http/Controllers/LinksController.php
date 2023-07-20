@@ -23,10 +23,10 @@ class LinksController extends Controller
             'type' => 'required|integer',
             'url' => 'required',
             'image' => $request->input('type') == 2
-             | $request->input('type') == 3 
-             | $request->input('type') == 4
-             ? 'required|mimes:jpeg,jpg,png|max:2048'
-             : 'nullable|mimes:jpeg,jpg,png|max:2048',
+                | $request->input('type') == 3
+                | $request->input('type') == 4
+                ? 'required|mimes:jpeg,jpg,png|max:2048'
+                : 'nullable|mimes:jpeg,jpg,png|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -102,16 +102,31 @@ class LinksController extends Controller
     public function update(Request $request)
     {
 
+        Validator::extend('image_or_path', function ($attribute, $value) {
+            $patternJPG = '/images\/[\w.-]+\.jpg/';
+            $patternJPEG = '/images\/[\w.-]+\.jpeg/';
+            $patternPNG = '/images\/[\w.-]+\.png/';
+
+            if (preg_match($patternJPG, $value) || preg_match($patternJPEG, $value) || preg_match($patternPNG, $value)) {
+                return true;
+            }
+            if (in_array($value->getClientOriginalExtension(), ['jpeg', 'jpg', 'png'])) {
+                return true;
+            }
+
+            return false;
+        });
+
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
             'description' => 'nullable|string',
             'type' => 'required|integer',
             'url' => 'required',
             'image' => $request->input('type') == 2
-             | $request->input('type') == 3 
-             | $request->input('type') == 4
-             ? 'required|mimes:jpeg,jpg,png|max:2048'
-             : 'nullable|mimes:jpeg,jpg,png|max:2048',
+                | $request->input('type') == 3
+                | $request->input('type') == 4
+                ? 'required|image_or_path|max:2048'
+                : 'nullable|image_or_path|max:2048',
         ]);
 
         if ($validator->fails()) {
@@ -120,11 +135,43 @@ class LinksController extends Controller
 
         if ($request->has('id')) {
             $link = Link::find($request->input('id'));
-            $link->title = $request->input('title');
-            $link->description = $request->input('description');
-            $link->hyperlink = self::fixURL($request->input('url'));
-            $link->save();
-            return response('scuccess');
+            if ($request->input('type') == 1) {
+                $link->title = $request->input('title');
+                $link->description = $request->input('description');
+                $link->hyperlink = self::fixURL($request->input('url'));
+                $link->type = $request->input('type');
+                $link->save();
+                return response('scuccess');
+            } else {
+                if ($request->file()) {
+                    $file = $request->file('image');
+                    $filename = $file->getClientOriginalName(); //or you can give a name
+                    $path = '/images';
+                    $file->move(public_path($path), $filename);
+                    $filename = 'images/' . $filename;
+
+                    $link->title = $request->input('title');
+                    $link->description = $request->input('description');
+                    $link->hyperlink = self::fixURL($request->input('url'));
+                    $link->type = $request->input('type');
+                    $link->thumbnail_path = $filename;
+                    $link->save();
+                    return response('scuccess');
+                } else {
+                    $link->title = $request->input('title');
+                    $link->description = $request->input('description');
+                    $link->hyperlink = self::fixURL($request->input('url'));
+                    $link->type = $request->input('type');
+                    if ($request->input('image')) {
+                        $link->thumbnail_path = $request->input('image');
+                    } else {
+                        $link->thumbnail_path = '';
+                    }
+
+                    $link->save();
+                    return response('scuccess');
+                }
+            }
         }
     }
 
@@ -144,7 +191,7 @@ class LinksController extends Controller
         return back();
     }
 
-    
+
 
     public function getLinks(Request $request)
     {
@@ -200,18 +247,18 @@ class LinksController extends Controller
 
     public function getSingleLinkClicks(Request $request)
     {
-            $id = $request->input('id');
-            $link = Link::where('id', $id)->first();
-            $click = Click::where('link_id', $link->id)->get();
-            $count = $click->count();
-            return $count; 
+        $id = $request->input('id');
+        $link = Link::where('id', $id)->first();
+        $click = Click::where('link_id', $link->id)->get();
+        $count = $click->count();
+        return $count;
     }
 
-    public function fixURL($url){
+    public function fixURL($url)
+    {
         if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
             $url = "http://" . $url;
         }
         return $url;
     }
-
 }

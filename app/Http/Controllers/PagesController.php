@@ -80,10 +80,38 @@ class PagesController extends Controller
         $user = $request->user()->id;
         $page = Page::where('user_id', $user)->first();
         $page->background_path = $request->input('background_path');
+        if($page->background_color){
+            $page->background_color = '';
+        }
         $page->save();
 
         return response('success');
     }
+
+
+    public function updateBackgroundColor(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'background_color' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
+        $user = $request->user()->id;
+        $page = Page::where('user_id', $user)->first();
+        $page->background_color = $request->input('background_color');
+        if($page->background_path){
+            $page->background_path = '';
+        }
+        $page->save();
+
+
+        return response('success');
+    }
+
 
     public function mockupData(Request $request)
     {
@@ -94,6 +122,7 @@ class PagesController extends Controller
             'title' => $page->title,
             'bio' => $page->bio,
             'background_path' => $page->background_path,
+            'background_color' => $page->background_color,
             'avatar_path' => $page->avatar_path,
             'link_border_thickness' => $page->link_border_thickness,
             'link_border_radius' => $page->link_border_radius,

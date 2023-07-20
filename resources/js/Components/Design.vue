@@ -68,21 +68,40 @@
 
             <!-- color - start -->
             <div class="mb-2 mt-8 ">
-                <span class="inline-block text-black text-xl font-bold md:text-xl font-semibold mb-3">Custom
-                    Appearance</span>
+                <span class="inline-block text-black text-xl font-bold md:text-xl font-semibold mb-3">Background</span>
 
-                <!-- <div class="flex flex-wrap gap-2 rounded-lg p-5 bg-white">
+                <div class="flex flex-wrap gap-2 rounded-lg py-2 bg-white justify-center items-center">
 
                     <button type="button"
-                        class="w-8 h-8 bg-[red] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-full transition duration-100 focus:ring-gray-800"
+                        class="w-12 h-12 bg-[red] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
                         @click="backgroundChange('red')"></button>
                     <button type="button"
-                        class="w-8 h-8 bg-[blue] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-full transition duration-100 focus:ring-gray-800"
+                        class="w-12 h-12 bg-[blue] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
                         @click="backgroundChange('blue')"></button>
                     <button type="button"
-                        class="w-8 h-8 bg-[black] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-full transition duration-100 focus:ring-gray-800"
+                        class="w-12 h-12 bg-[black] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
                         @click="backgroundChange('black')"></button>
-                </div> -->
+                    <button type="button"
+                        class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                        style="background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)"
+                        @click="backgroundChange('linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)')"></button>
+                    <button type="button"
+                        class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                        style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)"
+                        @click="backgroundChange('radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)')"></button>
+                    <button type="button"
+                        class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                        style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)"
+                        @click="backgroundChange('linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)')"></button>
+                    <button type="button"
+                        class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                        style="background: linear-gradient(0deg, rgba(240,255,0,1) 0%, rgba(45,47,253,1) 100%)"
+                        @click="backgroundChange('linear-gradient(0deg, rgba(240,255,0,1) 0%, rgba(45,47,253,1) 100%)')"></button>
+
+
+
+
+                </div>
             </div>
             <!-- color - end -->
 
@@ -161,9 +180,10 @@
         <div class="h-screen sticky top-0 justify-center items-center bg-slate-200 hidden sm:block">
             <Mockup class="scale-[0.55] origin-top mt-10"
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
-                :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.selected_background"
-                :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
-                :borderColor="link.border.color" :linkTextColor="link.textColor" :links="this.links" :socials="this.socials"/>
+                :bio="this.bio" :backgroundColor="this.selected_background_color"
+                :backgroundImage="this.selected_background" :borderThickness="link.border.thickness"
+                :borderRadius="link.border.radius" :linkBgColor="link.bgColor" :borderColor="link.border.color"
+                :linkTextColor="link.textColor" :links="this.links" :socials="this.socials" />
         </div><!--second half end-->
 
     </div>
@@ -194,7 +214,7 @@ export default {
     data() {
         return {
             isModalVisible: false,
-            backgroundColor: '#111111',
+            selected_background_color: '#111111',
             selected_background: null,
             background_urls: [
                 { id: 0, url: '/bg1.jpg' },
@@ -320,19 +340,7 @@ export default {
     },
 
     mounted() {
-        axios
-            .get(route('mockupData'))
-            .then(response => {
-                this.title = response.data.title;
-                this.bio = response.data.bio;
-                this.selected_background = response.data.background_path;
-                this.avatar = response.data.avatar_path;
-                this.link.border.thickness = response.data.link_border_thickness,
-                    this.link.border.radius = response.data.link_border_radius,
-                    this.link.border.color = response.data.link_border_color,
-                    this.link.bgColor = response.data.link_background_color,
-                    this.link.textColor = response.data.link_text_color
-            });
+        this.getMockupData();
         this.getLinks();
         this.getSocials();
     },
@@ -370,11 +378,16 @@ export default {
 
 
         backgroundChange(value) {
-            this.backgroundColor = value;
+            this.selected_background = '';
+            this.selected_background_color = value;
+            this.storeBackgroundColor().then(this.getMockupData());
+
+
         },
         backgroundImageSetter(value) {
+            this.selected_background_color = '';
             this.selected_background = this.background_urls[value].url;
-            this.storeBackground();
+            this.storeBackground().then(this.getMockupData());
         },
 
         async storeBackground() {
@@ -388,6 +401,26 @@ export default {
                     route('pages.updateBackground'),
                     {
                         background_path: this.selected_background,
+                    }
+                );
+
+                console.log(bg)
+            } catch (e) {
+                console.log(e);
+            }
+        },
+
+        async storeBackgroundColor() {
+            try {
+                this.storeBackground_isLoading = true;
+                // simulate AJAX
+                setTimeout(() => {
+                    this.storeBackground_isLoading = false
+                }, 5000);
+                const bg = await axios.post(
+                    route('pages.updateBackgroundColor'),
+                    {
+                        background_color: this.selected_background_color,
                     }
                 );
 
@@ -418,7 +451,7 @@ export default {
             }
         },
 
-        async storeTheme(theme){
+        async storeTheme(theme) {
             this.link.border.thickness = theme.link.border.thickness;
             this.link.border.radius = theme.link.border.radius;
             this.link.border.color = theme.link.border.color;
@@ -485,6 +518,24 @@ export default {
             axios.get('/getSocials')
                 .then(response => {
                     this.socials = response.data.socials;
+                });
+        },
+
+        async getMockupData() {
+            axios
+                .get(route('mockupData'))
+                .then(response => {
+                    this.title = response.data.title;
+                    this.bio = response.data.bio;
+                    this.selected_background = response.data.background_path;
+                    this.selected_background_color = response.data.background_color;
+                    this.avatar = response.data.avatar_path;
+                    this.link.border.thickness = response.data.link_border_thickness,
+                        this.link.border.radius = response.data.link_border_radius;
+                    this.link.border.color = response.data.link_border_color;
+                    this.link.bgColor = response.data.link_background_color;
+                    this.link.textColor = response.data.link_text_color;
+
                 });
         }
     }

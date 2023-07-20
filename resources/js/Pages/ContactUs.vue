@@ -20,7 +20,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://www.instagram.com/mylinx.site" class="text-gray-700 hover:text-gray-900">
+                            <a href="https://www.instagram.com/mylinx_official" class="text-gray-700 hover:text-gray-900">
                                 <v-icon class="-mr-2" name="fa-instagram" scale="1.2" />
                             </a>
                         </li>

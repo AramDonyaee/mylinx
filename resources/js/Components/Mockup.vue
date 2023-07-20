@@ -1,6 +1,6 @@
 <template>
     <div class="ease-linear duration-200 mx-auto h-[712px] w-[350px] bg-black rounded-[50px] border-[10px] border-black relative overflow-hidden ring ring-purple-400 shadow-xl"
-        :style="{ backgroundColor: backgroundColor }">
+        :style="{ backgroundColor: backgroundColor, background: backgroundColor}">
         <div class="max-h-[712px] overflow-y-auto no-scroll" v-bind:style="{
             'padding-right': '1em',
             'padding-left': '1em'
@@ -58,15 +58,19 @@
                             <!-- -->
 
                             <span v-if="link.type == 1" class="flex flex-col w-full items-center py-4">
-                                <div class="font-bold">{{ link.title }}</div>
-                                <div class="text-sm font-normal">{{ link.description }}</div>
+                                <div class="font-bold px-2">{{ link.title }}</div>
+                                <div class="text-sm font-normal px-2">{{ link.description }}</div>
                             </span>
 
-                            <span v-if="link.type == 2" class="flex w-full items-center ">
-                                <div class="w-1/4 h-full">
-                                    <img loading="lazy" class="object-cover h-full" :src="link.thumbnail_path" />
+                            <span v-if="link.type == 2" class="flex w-full items-center h-28">
+                                <div class="w-28 h-full">
+                                    <img loading="lazy" class="object-cover w-28 h-full" :src="link.thumbnail_path" />
                                 </div>
-                                <div class="w-3/4 font-bold">{{ link.title }}</div>
+
+                                <div class="flex flex-col">
+                                    <div class="font-bold pl-4 text-left">{{ link.title }}</div>
+                                    <div class="text-sm font-normal pl-4 text-left">{{ link.description }}</div>
+                                </div>
                             </span>
 
                             <span v-if="link.type == 3" class="flex w-full items-center py-2">
@@ -74,14 +78,21 @@
                                     <img loading="lazy" class="object-cover rounded-xl w-[52px] h-[52px] ml-8 "
                                         :src="link.thumbnail_path" />
                                 </div>
-                                <div class="w-3/4 font-bold">{{ link.title }}</div>
+                                
+                                <div class="flex flex-col w-3/4">
+                                    <div class="font-bold ">{{ link.title }}</div>
+                                    <div class="text-sm font-normal ">{{ link.description }}</div>
+                                </div>
                             </span>
 
                             <span v-if="link.type == 4" class="flex flex-col w-full items-center">
                                 <div class="w-full">
-                                    <img loading="lazy" class="object-cover w-full h-48" :src="link.thumbnail_path" />
+                                    <img loading="lazy" class="object-cover w-full h-full" :src="link.thumbnail_path" />
                                 </div>
-                                <div class="py-4 font-bold">{{ link.title }}</div>
+                                <div class="flex flex-col py-2">
+                                    <div class="font-bold px-4">{{ link.title }}</div>
+                                    <div class="text-sm font-normal px-4">{{ link.description }}</div>
+                                </div>
                             </span>
 
 
