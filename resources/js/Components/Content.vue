@@ -231,10 +231,15 @@
     <swipe-modal v-model="isLinkModal" contents-height="50vh" v-bind:contents-width=this.modalWidth border-top-radius="30px"
         contents-color="white" tip-color="red">
         <loading v-model:active="isLoading" :can-cancel="false" color="#0000FF" />
-        <div class="grid gap-2 ">
-            <div class="pr-8 pl-8 pt-4 ">
-                <div :style="{backgroundColor: this.backgroundColor, background: this.background_path ? 'url('+this.background_path+') center/95%':this.backgroundColor}"
+        <div class="grid gap-2 relative">
+            <div class="cursor-pointer absolute right-8" @click="closeLinkModal()">
+                <v-icon name="io-close" scale="1.2" />
+            </div>
+            <div class="text-center font-bold">Add Link</div>
+            <div class="pr-8 pl-8 pt-2 ">
+                <div :style="{ backgroundColor: this.backgroundColor, background: this.background_path ? 'url(' + this.background_path + ') center/95%' : this.backgroundColor }"
                     class="relative bg-cover w-full bg-gray-300 h-auto flex justify-center items-center content-center rounded-lg overflow-hidden py-6 bg-center">
+
                     <span
                         class="absolute left-0 top-0 bg-black text-[yellow] text-xs font-bold mr-2 px-2.5 py-0.5 dark:bg-purple-900 dark:text-purple-300">Preview</span>
 
@@ -395,10 +400,13 @@
     <swipe-modal v-model="isLinkEditModalVisible" contents-height="50vh" v-bind:contents-width=this.modalWidth
         border-top-radius="30px" contents-color="white" tip-color="red">
         <loading v-model:active="isLoading" :can-cancel="false" color="#0000FF" />
-        <div class="grid gap-2 ">
+        <div class="grid gap-2 relative">
+            <div class="cursor-pointer absolute right-8" @click="closeEditModal()">
+                <v-icon name="io-close" scale="1.2" />
+            </div>
             <div class="text-center font-bold">Update Link</div>
             <div class="pr-8 pl-8 pt-2">
-                <div :style="{backgroundColor: this.backgroundColor, background: this.background_path ? 'url('+this.background_path+') center/95%':this.backgroundColor}"
+                <div :style="{ backgroundColor: this.backgroundColor, background: this.background_path ? 'url(' + this.background_path + ') center/95%' : this.backgroundColor }"
                     class="relative bg-cover w-full bg-gray-300 h-auto flex justify-center items-center content-center rounded-lg overflow-hidden py-6 bg-center">
                     <span
                         class="absolute left-0 top-0 bg-black text-[yellow] text-xs font-bold mr-2 px-2.5 py-0.5 dark:bg-purple-900 dark:text-purple-300">Preview</span>
@@ -804,6 +812,7 @@ export default {
 
             console.log(this.editableLink);
         },
+
         closeEditModal() {
             this.isLinkEditModalVisible = false;
         },
@@ -893,11 +902,12 @@ export default {
         showLinkModal() {
             this.isLinkModal = true
         },
-
+        closeLinkModal() {
+            this.isLinkModal = false
+        },
         showImageUpload() {
             this.isLinkImageUploadVisible = true
         },
-
         showToast(type) {
             if (type == "error") {
                 this.isToastError = true;

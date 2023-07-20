@@ -1,8 +1,8 @@
 <template>
-    <PhotoCropperModal v-show="isModalVisible" @loading="showLoading($event)" @close="closeModal" />
+    <PhotoCropperModal v-show="isCropperModalVisible" @loading="showLoading($event)" @close="closeModal" />
 
 
-    <div class="grid grid-flow-col grid-rows-2 md:grid-rows-1 md:grid-cols-2">
+    <div class="grid grid-flow-col md:grid-rows-1 md:grid-cols-2 relative">
         <div class="mt-10 ml-8 mb-8 mr-8">
 
             <div class="bg-white p-4 rounded-lg flex gap-2 mb-4">
@@ -43,11 +43,12 @@
 
             <span class="text-xl text-black font-bold">Themes</span>
             <div class="mb-8 md:mb-10 mt-4">
-                <div class="flex flex-wrap gap-2 justify-center bg-white rounded-lg p-5">
+                <div class="flex flex-wrap gap-1 lg:gap-2 justify-center bg-white rounded-lg p-2 lg:p-5">
                     <div v-for="theme in this.themes" type="button"
-                        class="cursor-pointer w-36 h-32 flex flex-col overflow-hidden justify-center items-center bg-white hover:bg-gray-100 active:ring-gray-800 active:bg-gray-200 text-gray-800 text-sm font-semibold text-center border rounded-md transition duration-100"
+                        class="cursor-pointer w-28 h-18 lg:w-36 lg:h-32 flex flex-col overflow-hidden justify-center items-center bg-white hover:bg-gray-100 active:ring-gray-800 active:bg-gray-200 text-gray-800 text-sm font-semibold text-center border rounded-md transition duration-100"
                         @click=storeTheme(theme)>
-                        <div v-for="n in 2" class=" my-1 flex justify-center flex-wrap gap-2 items-center h-10 w-3/4"
+                        <div v-for="n in 2"
+                            class=" my-1 flex justify-center flex-wrap gap-1 lg:gap-2 items-center h-6 lg:h-10 w-3/4"
                             v-bind:style="{
                                 'border-width': theme.link.border.thickness + 'px',
                                 'border-color': theme.link.border.color,
@@ -62,9 +63,6 @@
                 </div>
                 <loading v-model:active="storeBackground_isLoading" :can-cancel="false" color="#0000FF" />
             </div>
-
-
-
 
             <!-- color - start -->
             <div class="mb-2 mt-8 ">
@@ -171,10 +169,12 @@
                 </div>
 
             </div>
+        </div>
 
-
-
-
+        <div @click="showMockupModal"
+            class="bg-indigo-600 text-white h-8 py-6 px-4 text-center rounded-full fixed bottom-4 left-1/2 transform -translate-x-1/2 z-10 cursor-pointer flex items-center justify-center block sm:hidden">
+            <v-icon name="bi-eye-fill" scale="1.2" class="mr-2" />
+            <div class="pb-0.5">Preview</div>
         </div>
 
         <div class="h-screen sticky top-0 justify-center items-center bg-slate-200 hidden sm:block">
@@ -184,9 +184,24 @@
                 :backgroundImage="this.selected_background" :borderThickness="link.border.thickness"
                 :borderRadius="link.border.radius" :linkBgColor="link.bgColor" :borderColor="link.border.color"
                 :linkTextColor="link.textColor" :links="this.links" :socials="this.socials" />
-        </div><!--second half end-->
+        </div>
 
     </div>
+    <swipe-modal v-model="isMockupModalVisible" contents-height="100vh"  
+        contents-color="white" tip-color="red" class="relative">
+        <div @click="closeMockupModal" class="cursor-pointer flex items-center justify-center bg-indigo-600 rounded-full absolute top-4 px-4 py-2 text-white text-sm font-bold left-1/2 transform -translate-x-1/2">
+            <v-icon name="bi-arrow-left" scale="1.2" />
+            <div class="pb-0.5 ml-1">Back to Dashboard</div>
+        </div>
+        <div class="justify-center items-center w-full ">
+            <Mockup class="scale-[1] origin-top mt-14 mb-14"
+                :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
+                :bio="this.bio" :backgroundColor="this.selected_background_color"
+                :backgroundImage="this.selected_background" :borderThickness="link.border.thickness"
+                :borderRadius="link.border.radius" :linkBgColor="link.bgColor" :borderColor="link.border.color"
+                :linkTextColor="link.textColor" :links="this.links" :socials="this.socials" />
+        </div>
+    </swipe-modal>
 </template>
 
 <script>
@@ -198,6 +213,7 @@ import { ColorPicker } from "vue3-colorpicker";
 import "vue3-colorpicker/style.css";
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
+import swipeModal from '@takuma-ru/vue-swipe-modal';
 
 
 
@@ -206,14 +222,15 @@ export default {
 
     name: 'Content',
     components: {
-        PhotoCropperModal, Carousel, Slide, Navigation, Mockup, ColorPicker, Loading
+        PhotoCropperModal, Carousel, Slide, Navigation, Mockup, ColorPicker, Loading, swipeModal
 
     },
 
 
     data() {
         return {
-            isModalVisible: false,
+            isMockupModalVisible: false,
+            isCropperModalVisible: false,
             selected_background_color: '#111111',
             selected_background: null,
             background_urls: [
@@ -370,12 +387,19 @@ export default {
         },
 
         showModal() {
-            this.isModalVisible = true;
+            this.isCropperModalVisible = true;
         },
         closeModal() {
-            this.isModalVisible = false;
+            this.isCropperModalVisible = false;
         },
 
+        showMockupModal() {
+            this.isMockupModalVisible = true;
+        },
+
+        closeMockupModal() {
+            this.isMockupModalVisible = false;
+        },
 
         backgroundChange(value) {
             this.selected_background = '';

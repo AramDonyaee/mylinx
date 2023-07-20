@@ -115,7 +115,7 @@ class LinksController extends Controller
             }
 
             return false;
-        });
+        }, '');
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
@@ -140,6 +140,9 @@ class LinksController extends Controller
                 $link->description = $request->input('description');
                 $link->hyperlink = self::fixURL($request->input('url'));
                 $link->type = $request->input('type');
+                if($link->thumbnail_path){
+                    $link->thumbnail_path = '';
+                }
                 $link->save();
                 return response('scuccess');
             } else {
