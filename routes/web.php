@@ -18,14 +18,15 @@ use App\Http\Controllers;
 
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-        'title' => 'This is a titke'
+    // return Inertia::render('Welcome', [
+    //     'canLogin' => Route::has('login'),
+    //     'canRegister' => Route::has('register'),
+    //     'laravelVersion' => Application::VERSION,
+    //     'phpVersion' => PHP_VERSION,
+    //     'title' => 'This is a titke'
 
-    ]);
+    // ]);
+    return view('welcome');
 })->name('welcome');
 
 
@@ -45,6 +46,8 @@ Route::middleware([
     })->name('design');
 
     Route::get('/stats', [Controllers\StatsController::class, 'show'])->name('stats');
+    Route::get('/getDailyClicks', [Controllers\StatsController::class, 'getDailyClicks'])->name('getDailyClicks');
+
 
     Route::get('/links', function () {
         return Inertia::render('Links');
@@ -66,7 +69,6 @@ Route::middleware([
 
     Route::get('/getLinks', [Controllers\LinksController::class, 'getLinks']);
     Route::get('/getTotalClicks', [Controllers\LinksController::class, 'getTotalClicks']);
-    Route::post('/getSingleLinkClicks', [Controllers\LinksController::class, 'getSingleLinkClicks']);
 
     Route::get('/upgrade', [Controllers\SubscriptionController::class, 'index']);
 

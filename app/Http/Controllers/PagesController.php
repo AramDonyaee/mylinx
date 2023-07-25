@@ -79,7 +79,12 @@ class PagesController extends Controller
 
         $user = $request->user()->id;
         $page = Page::where('user_id', $user)->first();
-        $page->background_path = $request->input('background_path');
+        $image = $request->input('background_path');
+        $pathinfo = pathinfo($image);
+        $image_without_extension = basename($image, '.' . $pathinfo['extension']);
+        $temp = explode('.', $image);
+        $image_extension = end($temp);
+        $page->background_path = $image_without_extension . '-high.'. $image_extension;
         if($page->background_color){
             $page->background_color = '';
         }

@@ -46,8 +46,8 @@
 </template>
 
 <script setup>
-import { StripeElements, StripeElement } from 'vue-stripe-js'
-import { loadStripe } from '@stripe/stripe-js';
+// import { StripeElements, StripeElement } from 'vue-stripe-js'
+// import { loadStripe } from '@stripe/stripe-js';
 import { ref, onMounted, onBeforeMount } from 'vue';
 import axios from 'axios';
 

@@ -5,7 +5,7 @@
     <div class="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2">
         <div>
 
-            <div class="grid grid-cols-2 overflow-hidden mx-8 mt-10 rounded-xl">
+            <div class="grid grid-cols-2 overflow-hidden mx-8 mt-10 rounded-xl ">
                 <div class="cursor-pointer hover:bg-gray-50 text-center bg-white py-4 " v-for="(tab, index) in tabs"
                     :key="index" @click="this.activeTab = tab">
                     {{ tab }}
@@ -94,7 +94,59 @@
                                 </button>
                             </div>
                         </div>
+                    </div>   
+                </div>
+            </transition>
+
+            <transition name="fade">
+                <div class="grid grid-cols-1 gap-4 mx-8 mt-4" v-show="this.activeTab === 'Questionnaire'">
+                    <div class="bg-white p-4 rounded-lg gap-2 mt-2">
+                        <div class="flex flex-col">
+                            <!-- <button @click="addInput">Add Input</button>
+
+
+                            <div v-for="(input, index) in inputs" :key="index">
+                                <textarea v-model="input.value" type="text"></textarea>
+                                <button @click="removeInput(index)">Remove</button>
+                            </div>
+
+                            <button @click="addQuestion">add question</button>
+                            <div v-for="(question, index) in questions" :key="index">
+                                <input v-model="question.question" placeholder="question" />
+                                <button @click="addChoice(question)">add choice</button>
+                                <div v-for="(choice, choiceIndex) in question.choices" :key="choiceIndex">
+                                    <input type="radio" v-model="question.selectedChoice" :value="choiceIndex" />
+                                    <input v-model="question.choices[choiceIndex]" placeholder="choice" />
+                                </div>
+                            </div> -->
+<!-- 
+
+                            <button @click="createGenderField">Gender</button>
+                            <button @click="createTelField">Tel</button>
+
+                            <div v-if="genderField">
+                                <label>What is your gender?</label>
+                                <br />
+                                <input type="radio" id="male" name="gender" value="male" />
+                                <label for="male">Male</label>
+                                <br />
+                                <input type="radio" id="female" name="gender" value="female" />
+                                <label for="female">Female</label>
+                                <br />
+                                <input type="radio" id="preferNotToSay" name="gender" value="preferNotToSay" />
+                                <label for="preferNotToSay">Prefer not to say</label>
+                            </div>
+
+                            <div v-if="telField">
+                                <label>What is your phone number?</label>
+                                <input type="text" v-model="phoneNumber" />
+                            </div> -->
+
+
+
+                        </div>
                     </div>
+
                 </div>
             </transition>
 
@@ -306,7 +358,7 @@
                             'color': link.textColor
                         }">
                         <div class="w-full">
-                            <img class="object-cover w-full h-48" :src="imagePreview" />
+                            <img class="object-cover w-full h-full" :src="imagePreview" />
                         </div>
                         <div class="w-3/4">
                             <div class="pt-4 font-bold px-2">{{ this.linkTitle }}</div>
@@ -477,7 +529,7 @@
                             'color': link.textColor
                         }">
                         <div class="w-full">
-                            <img class="object-cover w-full h-48"
+                            <img class="object-cover w-full h-full"
                                 :src="this.editableLink.thumbnail_path ? this.editableLink.thumbnail_path : imagePreviewEdit" />
                         </div>
                         <div class="w-3/4">
@@ -712,6 +764,11 @@ export default {
 
             isLinkEditModalVisible: false,
 
+            // inputs: [],
+            // questions: [],
+
+            genderField: false,
+            telField: false,
 
 
 
@@ -790,6 +847,29 @@ export default {
         }
     },
     methods: {
+
+        // addQuestion() {
+        //     this.questions.push({ question: "", choices: [] });
+        // },
+
+        // addChoice(question) {
+        //     question.choices.push("");
+        // },
+
+        // addInput() {
+        //     this.inputs.push({ value: "" });
+        // },
+        // removeInput(index) {
+        //     this.inputs.splice(index, 1);
+        // },
+
+        // createGenderField() {
+        //     this.genderField = true;
+        // },
+
+        // createTelField() {
+        //     this.telField = true;
+        // },
 
         showEditModal(link) {
             this.isLinkEditModalVisible = true;

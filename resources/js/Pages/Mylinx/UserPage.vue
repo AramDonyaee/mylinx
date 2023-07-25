@@ -25,10 +25,10 @@
                             <p
                                 class="mt-4 text-white text-center text-5xl font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
                                 {{ page.title }}</p>
-                            <pre
-                                class="mt-4 text-white text-center w-3/4 text-normal font-normal [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">{{
+                            <p
+                                class="mt-4  mb-4 text-white font-bold text-center px-4 w-full lg:w-3/4 md:w-3/4 text-normal [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">{{
                                     page.bio }}
-                        </pre>
+                        </p>
                             <div class="flex flex-wrap justify-evenly mt-2 mb-6">
                                 <a id="social" class="mx-1" v-for="social in socials" v-bind:href=social.hyperlink>
                                     <v-icon :name="'fa-' + social.type" scale="2" fill="white" />

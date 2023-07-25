@@ -189,12 +189,12 @@
     </div>
     <swipe-modal v-model="isMockupModalVisible" contents-height="100vh"  
         contents-color="white" tip-color="red" class="relative">
-        <div @click="closeMockupModal" class="cursor-pointer flex items-center justify-center bg-indigo-600 rounded-full absolute top-4 px-4 py-2 text-white text-sm font-bold left-1/2 transform -translate-x-1/2">
+        <div @click="closeMockupModal" class="cursor-pointer flex items-center justify-center bg-indigo-600 rounded-full absolute top-8 px-4 py-2 text-white text-sm font-bold left-1/2 transform -translate-x-1/2">
             <v-icon name="bi-arrow-left" scale="1.2" />
             <div class="pb-0.5 ml-1">Back to Dashboard</div>
         </div>
         <div class="justify-center items-center w-full ">
-            <Mockup class="scale-[1] origin-top mt-14 mb-14"
+            <Mockup class="scale-[0.7] origin-top mt-20 mb-14"
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
                 :bio="this.bio" :backgroundColor="this.selected_background_color"
                 :backgroundImage="this.selected_background" :borderThickness="link.border.thickness"

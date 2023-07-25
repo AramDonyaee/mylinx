@@ -42,9 +42,9 @@ const logout = () => {
                         <div class="flex">
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
-                                <Link :href="route('welcome')">
+                                <a href="/">
                                 <ApplicationMark class="ml-4 block h-8 w-auto" />
-                                </Link>
+                                </a>
                             </div>
 
                             <!-- Navigation Links -->
@@ -157,7 +157,7 @@ const logout = () => {
                                 <button type="button"
                                     class="inline-flex invisible lg:visible items-center px-3 py-2 mr-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-[yellow]">
                                     <Link :href="'/@' +  $page.props.user.username">
-                                    Desktop Version
+                                    Your Page
                                     </Link>
                                 </button>
                                 <Dropdown align="right" width="48">
@@ -222,8 +222,8 @@ const logout = () => {
                         <div class="-mr-2 flex items-center lg:hidden">
                             <button type="button"
                                     class="items-center px-3 py-2 mr-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-[yellow]">
-                                    <Link :href="'/' + $page.props.user.username">
-                                   See Your mylinx Page!
+                                    <Link :href="'/@' + $page.props.user.username">
+                                   Your Page
                                     </Link>
                             </button>
                             <button

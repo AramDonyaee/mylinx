@@ -200,7 +200,14 @@ class LinksController extends Controller
     {
         $user_id = $request->user()->id;
         $page = Page::where('user_id', $user_id)->first();
-        $links = Link::where('page_id', $page->id)->orderBy('link_order', 'asc')->get()->toArray();
+        $links = Link::where('page_id', $page->id)->orderBy('link_order', 'asc')->get();
+
+        $links = $links->map(function ($link) {
+            $link->click_count = self::getSingleLinkClicksByID($link->id);
+            return $link;
+        });
+        $links->toArray();
+
         return ['links' => $links];
     }
 
@@ -243,14 +250,13 @@ class LinksController extends Controller
         $links = Link::where('page_id', $page->id)->get();
         $count = 0;
         foreach ($links as $link) {
-            $count += self::getSingleLinkClicks($link->id);
+            $count += self::getSingleLinkClicksByID($link->id);
         }
         return $count;
     }
 
-    public function getSingleLinkClicks(Request $request)
+    public function getSingleLinkClicksByID($id)
     {
-        $id = $request->input('id');
         $link = Link::where('id', $id)->first();
         $click = Click::where('link_id', $link->id)->get();
         $count = $click->count();

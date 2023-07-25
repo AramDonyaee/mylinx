@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-slate-900 text-white pt-4 sm:pt-4 lg:pt-4">
+  <div class="bg-black text-white pt-4 sm:pt-4 lg:pt-4">
     <footer class="max-w-screen-2xl px-4 md:px-8 mx-auto">
       <div class="flex flex-col md:flex-row justify-between items-center gap-4 py-1">
         <!-- nav - start -->

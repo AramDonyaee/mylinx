@@ -6,11 +6,11 @@
                 <Link href="/"><ApplicationMark class="h-9 ml-6" /></Link>
                 <!-- Links -->
                 <div class="hidden md:block">
-                    <div class="ml-4 flex items-center md:ml-6">
+                    <div class="ml-4 flex items-center md:ml-6 gap-x-2">
                         <!-- <Link href="/pricing" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Pricing</Link> -->
-                        <Link v-if="!$page.props.user" href="/register" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Sign Up</Link>
-                        <Link v-if="!$page.props.user" href="/login" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Log in</Link>
-                        <Link v-if="$page.props.user" href="/content" class="text-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Dashboard</Link>
+                        <Link v-if="!$page.props.user" href="/register" class="text-white bg-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Sign Up</Link>
+                        <Link v-if="!$page.props.user" href="/login" class="text-white bg-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Log in</Link>
+                        <Link v-if="$page.props.user" href="/content" class="text-white bg-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Dashboard</Link>
                     </div>
                 </div>
                 <!-- Hamburger -->

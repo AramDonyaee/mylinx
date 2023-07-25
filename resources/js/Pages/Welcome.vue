@@ -11,12 +11,13 @@ defineProps({
 
 
 <template>
-<Nav />
-<Hero />
-<Features />
-<!-- <Pricing /> -->
-<Footer />
 
+        <Nav />
+        <Hero />
+
+    <Features />
+    <!-- <Pricing /> -->
+    <Footer />
 </template>
     
 <script>

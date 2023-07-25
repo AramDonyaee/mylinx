@@ -9,13 +9,7 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import store from './store'
 import '@stripe/stripe-js';
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-// import * as FaIcons from "oh-vue-icons/icons/fa";
-// const Fa = Object.values({ ...FaIcons });
-// addIcons(...Fa);
 
-// import * as MaterialIcons from "oh-vue-icons/icons/md";
-// const Md = Object.values({ ...MaterialIcons });
-// addIcons(...Md);
 import { BiArrowLeft, MdErrorRound, FaCheckSquare, IoClose, MdEmailOutlined, BiArrowDown, BiArrowUp, MdEditOutlined, BiTrashFill, BiLightningChargeFill, HiSolidCursorClick, FaTwitch, FaSpotify, FaWhatsapp, FaReddit, FaSnapchat, FaPinterest, BiClockFill, BiEyeFill, BiHandIndexThumb, FcDoughnutChart, BiArrowDownSquareFill, BiArrowUpSquareFill, FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook} from "oh-vue-icons/icons";
 addIcons( BiArrowLeft, MdErrorRound, FaCheckSquare, IoClose, MdEmailOutlined, BiArrowDown, BiArrowUp, MdEditOutlined, BiTrashFill, BiLightningChargeFill, HiSolidCursorClick, FaTwitch, FaSpotify, FaWhatsapp, FaReddit, FaSnapchat, FaPinterest, BiClockFill, BiEyeFill, BiHandIndexThumb, FcDoughnutChart, BiArrowDownSquareFill, BiArrowUpSquareFill, FaImage, MdDragindicator, FaTiktok, FaLink, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaFacebook);
 
