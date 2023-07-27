@@ -2,7 +2,7 @@
     <PhotoCropperModal v-show="isCropperModalVisible" @loading="showLoading($event)" @close="closeModal" />
 
 
-    <div class="grid grid-flow-col md:grid-rows-1 md:grid-cols-2 relative">
+    <div v-show="!isMockupModalVisible" class="grid grid-flow-col md:grid-rows-1 md:grid-cols-2 relative">
         <div class="mt-10 ml-8 mb-8 mr-8">
 
             <div class="bg-white p-4 rounded-lg flex gap-2 mb-4">
@@ -187,21 +187,20 @@
         </div>
 
     </div>
-    <swipe-modal v-model="isMockupModalVisible" contents-height="100vh"  
-        contents-color="white" tip-color="red" class="relative">
-        <div @click="closeMockupModal" class="cursor-pointer flex items-center justify-center bg-indigo-600 rounded-full absolute top-8 px-4 py-2 text-white text-sm font-bold left-1/2 transform -translate-x-1/2">
+    <div v-show="isMockupModalVisible" class="absolute top-0 z-10 inset-0 mx-auto bg-white h-full w-full">
+        <div @click="closeMockupModal" class="cursor-pointer flex items-center justify-center bg-indigo-600 rounded-full absolute top-10 px-4 py-2 text-white text-sm font-bold left-1/2 transform -translate-x-1/2">
             <v-icon name="bi-arrow-left" scale="1.2" />
             <div class="pb-0.5 ml-1">Back to Dashboard</div>
         </div>
         <div class="justify-center items-center w-full ">
-            <Mockup class="scale-[0.7] origin-top mt-20 mb-14"
+            <Mockup class="scale-[0.7] origin-top top-28 "
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
                 :bio="this.bio" :backgroundColor="this.selected_background_color"
                 :backgroundImage="this.selected_background" :borderThickness="link.border.thickness"
                 :borderRadius="link.border.radius" :linkBgColor="link.bgColor" :borderColor="link.border.color"
                 :linkTextColor="link.textColor" :links="this.links" :socials="this.socials" />
         </div>
-    </swipe-modal>
+    </div>
 </template>
 
 <script>

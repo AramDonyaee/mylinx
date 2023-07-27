@@ -21,7 +21,7 @@ class LinksController extends Controller
             'title' => 'required|string',
             'description' => 'nullable|string',
             'type' => 'required|integer',
-            'url' => 'required',
+            'url' => 'required|url',
             'image' => $request->input('type') == 2
                 | $request->input('type') == 3
                 | $request->input('type') == 4
@@ -115,13 +115,13 @@ class LinksController extends Controller
             }
 
             return false;
-        }, '');
+        }, 'Supported Image Formats are: jpg, jpeg, and png');
 
         $validator = Validator::make($request->all(), [
             'title' => 'required|string',
             'description' => 'nullable|string',
             'type' => 'required|integer',
-            'url' => 'required',
+            'url' => 'required|url',
             'image' => $request->input('type') == 2
                 | $request->input('type') == 3
                 | $request->input('type') == 4
