@@ -25,6 +25,9 @@
                             </a>
                         </li>
                     </ul>
+
+                    <p class="text-sm">5051 Alton Parkway</p>
+                    <p class="text-sm">Irvine, CA, 92604</p>
                 </div>
 
             </div>
