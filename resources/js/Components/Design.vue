@@ -403,14 +403,15 @@ export default {
         backgroundChange(value) {
             this.selected_background = '';
             this.selected_background_color = value;
-            this.storeBackgroundColor().then(this.getMockupData());
+            this.storeBackgroundColor();
 
 
         },
         backgroundImageSetter(value) {
             this.selected_background_color = '';
             this.selected_background = this.background_urls[value].url;
-            this.storeBackground().then(this.getMockupData());
+            this.storeBackground();
+
         },
 
         async storeBackground() {
