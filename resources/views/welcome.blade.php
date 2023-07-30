@@ -22,14 +22,12 @@
         <meta property="twitter:url" content="https://www.mylinx.site/">
         <meta property="twitter:title" content="Mylinx | All of your online presence in one link">
         <meta property="twitter:description" content="Mylinx is a link in bio platform that gathers all of your online presence in one link. Create a custom page that showcases your personality, services, and abilities.">
-        <meta property="twitter:image" content="https://d1ym67wyom4bkd.cloudfront.net/assets/bundles/7395c1837c66443b7d88b501f1919f856b9aa771/images/meta.png">
 
         <!-- Open Graph -->
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mylinx | All of your online presence in one link" />
         <meta property="og:description" content="Mylinx is a link in bio platform that gathers all of your online presence in one link. Create a custom page that showcases your personality, services, and abilities." />
         <meta property="og:url" content="https://www.mylinx.site/" />
-        <meta property="og:image" content="https://html.sammy-codes.com/images/large-profile.jpg" />
 
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
