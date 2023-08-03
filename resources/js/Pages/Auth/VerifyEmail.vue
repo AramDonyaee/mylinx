@@ -4,6 +4,7 @@ import { Head, Link, useForm } from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
 import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import ApplicationMark from '../../Components/ApplicationMark.vue';
 
 const props = defineProps({
     status: String,
@@ -23,7 +24,7 @@ const verificationLinkSent = computed(() => props.status === 'verification-link-
 
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+            <ApplicationMark class="h-12 origin-center"/>
         </template>
 
         <div class="mb-4 text-sm text-gray-600">
