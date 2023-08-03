@@ -21,7 +21,7 @@ class LinksController extends Controller
             'title' => 'required|string',
             'description' => 'nullable|string',
             'type' => 'required|integer',
-            'url' => ['required', 'regex:/^(https?:\/\/)?(www\.)?[a-zA-Z0-9]+(\.[a-zA-Z]{2,})$/'],
+            'url' => ['required', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'],
             'image' => $request->input('type') == 2
                 | $request->input('type') == 3
                 | $request->input('type') == 4
@@ -121,7 +121,7 @@ class LinksController extends Controller
             'title' => 'required|string',
             'description' => 'nullable|string',
             'type' => 'required|integer',
-            'url' => ['required', 'regex:/^(https?:\/\/)?(www\.)?[a-zA-Z0-9]+(\.[a-zA-Z]{2,})$/'],
+            'url' => ['required', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'],
             'image' => $request->input('type') == 2
                 | $request->input('type') == 3
                 | $request->input('type') == 4
