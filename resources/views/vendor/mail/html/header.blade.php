@@ -3,7 +3,7 @@
 <td class="header">
 <a href="{{ $url }}" style="display: inline-block;">
 @if (trim($slot) === 'Mylinx')
-<svg class="h-20 -ml-2" viewBox="0 0 912 445" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<svg style="height: 6rem;" viewBox="0 0 912 445" version="1.1" xmlns="http://www.w3.org/2000/svg">
                             <g id="#000000ff">
                             </g>
                             <g id="#666668ff">
