@@ -12,7 +12,8 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Page;
 use Laravel\Cashier\Billable;
 
-class User extends \TCG\Voyager\Models\User
+
+class User extends \TCG\Voyager\Models\User implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;

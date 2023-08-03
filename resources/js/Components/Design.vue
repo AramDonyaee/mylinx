@@ -95,10 +95,14 @@
                         class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
                         style="background: linear-gradient(0deg, rgba(240,255,0,1) 0%, rgba(45,47,253,1) 100%)"
                         @click="backgroundChange('linear-gradient(0deg, rgba(240,255,0,1) 0%, rgba(45,47,253,1) 100%)')"></button>
+                    <button type="button"
+                        class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                        style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(239,255,0,1) 0%, rgba(255,166,0,1) 100%)"
+                        @click="backgroundChange('linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(239,255,0,1) 0%, rgba(255,166,0,1) 100%)')"></button>
 
 
 
-
+                    
                 </div>
             </div>
             <!-- color - end -->
@@ -188,7 +192,8 @@
 
     </div>
     <div v-show="isMockupModalVisible" class="absolute top-0 z-10 inset-0 mx-auto bg-white h-full w-full">
-        <div @click="closeMockupModal" class="cursor-pointer flex items-center justify-center bg-indigo-600 rounded-full absolute top-10 px-4 py-2 text-white text-sm font-bold left-1/2 transform -translate-x-1/2">
+        <div @click="closeMockupModal"
+            class="cursor-pointer flex items-center justify-center bg-indigo-600 rounded-full absolute top-10 px-4 py-2 text-white text-sm font-bold left-1/2 transform -translate-x-1/2">
             <v-icon name="bi-arrow-left" scale="1.2" />
             <div class="pb-0.5 ml-1">Back to Dashboard</div>
         </div>
