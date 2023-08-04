@@ -180,12 +180,12 @@
                     d=" M 319.97 322.05 C 330.16 324.50 340.66 324.72 351.07 323.94 C 340.92 326.73 329.66 326.24 319.97 322.05 Z" />
             </g>
         </svg>
-        <div class="flex flex-col justify-end">
+        <!-- <div class="flex flex-col justify-end">
         <div
             class="px-2 z-10 flex justify-center items-center ml-2 h-4 text-[10px] rounded-[4px] text-sm ">
             Beta
         </div>
-        </div>
+        </div> -->
 
     </div>
 </template>

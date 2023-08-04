@@ -39,6 +39,41 @@
             label[for="txt"] {
                 padding: 15px 0 15px 15px;
             }
+
+            .input-container {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: sticky;
+                top: 0;
+                background-color: white;
+                padding: 10px;
+            }
+
+            .fixed-text {
+                font-weight: bold;
+            }
+
+            input[type="text"] {
+                flex-grow: 1;
+                margin: 0 10px;
+                padding: 5px;
+                border: none;
+            }
+
+            .sticky-button {
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                position: sticky;
+                right: 0;
+            }
         </style>
     </head>
 
@@ -226,49 +261,22 @@
             <div class="w-full lg:w-1/2 text-center lg:text-left">
                 <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
                     All of your online <br>presence in one link.</h1>
-                <p class="pt-4 px-8 lg:px-0 md:px-4 mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+                <p class="pt-4 px-8 lg:px-0 md:px-4 mb-6 font-normal text-gray-700 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
                     Centralize all of your online presence in one place. Create a custom personal page
                     that showcases your personality, services, abilities and a lot more...
                 </p>
 
-                <div class="max-w-xl mx-auto w-full mt-4 rounded-full overflow-hidden p-4 lg:p-0 md:p-0">
-                    <div class="flex items-center relative">
-                        <div class="absolute left-0 top-0
-                  flex items-center justify-center
-                  border border-transparent rounded-l-lg
-                  h-full
-                  text-gray-800
-                  bg-white
-                  pointer-events-none pl-4">
-                            <div>mylinx.site/</div>
-                        </div>
+                <div class="max-w-xl mx-auto w-full mt-4 rounded-lg overflow-hidden p-4 lg:p-0 md:p-0">
+
                         <form @submit.prevent="submit">
-                            <input v-model="username" type="text" class="flex flex-grow
-                    appearance-none
-                    inline-block
-                    text-gray-900 placeholder-gray-400
-                    shadow
-                    focus:outline-none focus:ring focus:ring-pink-300
-                    px-28 py-6
-                    border-gray-300
-                    rounded-lg" placeholder="yourname">
-                            <button class="
-                flex items-center justify-center
-                absolute right-0 top-0
-                bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-green-400
-                disabled:bg-green-500 disabled:cursor-not-allowed disabled:opacity-50
-                text-white
-                h-full w-16
-                w-auto px-4
-                shadow
-                font-semibold
-                rounded-r-lg
-                appearance-none
-                focus:outline-none">
-                                Claim Your Mylinx
-                            </button>
+                            <div class="input-container rounded-lg">
+                                <span class="fixed-text -mr-2">mylinx.site/</span>
+                                <input v-model="username"  type="text" class="focus:outline-none" placeholder="yourname">
+                                <button class="rounded-lg sticky-button bg-gradient-to-r from-purple-500 to-pink-500 hidden md:block">Claim your mylinx!</button>
+                            </div>
+                            <button class="mt-2 w-full rounded-lg sticky-button bg-gradient-to-r from-purple-500 to-pink-500 block md:hidden">Claim your mylinx!</button>
+
                         </form>
-                    </div>
                 </div>
 
 
@@ -278,8 +286,7 @@
                     --scale: 0.8;
                     transform: scale(var(--scale));
                     transform-origin: top center;
-                    margin-bottom: calc((var(--scale) - 1) * 100%);" 
-                />
+                    margin-bottom: calc((var(--scale) - 1) * 100%);" />
             </div>
         </div>
 
@@ -295,7 +302,7 @@
                         <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">
                             Unlock Your Linking Potential
                         </h2>
-                        <p class="mb-8 font-normal lg:text-xl">With MyLinx, you can effortlessly create a customizable and
+                        <p class="mb-8 text-gray-700 font-normal lg:text-xl">With MyLinx, you can effortlessly create a customizable and
                             visually appealing link in bio page that speaks to your personal or professional brand. Showcase
                             your latest blog posts, products, social media accounts, and more - all in one
                             convenient location.</p>
@@ -343,7 +350,7 @@
                 <div class="items-center gap-8 lg:grid lg:grid-cols-2 xl:gap-16 pb-12 pt-6">
                     <div class="text-gray-500 sm:text-lg dark:text-gray-400">
                         <h2 class="mb-4 text-3xl font-extrabold tracking-tight text-gray-900 dark:text-white">Why Mylinx is the best?</h2>
-                        <p class="mb-8 font-light lg:text-xl">With Mylinx <u>you</u> decide how your page should look. By using our link and background customization options, different themes, and various link block layouts you will find everything you need to shine in online space. Plus, we are the most affordable among our competitors, with enough features in free plan to make you excited!</p>
+                        <p class="mb-8 font-normal text-gray-700 lg:text-xl">With Mylinx <u>you</u> decide how your page should look. By using our link and background customization options, different themes, and various link block layouts you will find everything you need to shine in online space. Plus, we are the most affordable among our competitors, with enough features in free plan to make you excited!</p>
                         <!-- List -->
                         <ul role="list" class="pt-8 space-y-5 border-t border-gray-200 my-7 dark:border-gray-700">
                             <li class="flex space-x-3">
@@ -384,7 +391,7 @@
             <div class="max-w-screen-sm mx-auto text-center">
                 <h2 class="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white">Create a
                     mylinx page now</h2>
-                <p class="mb-6 font-light text-gray-500 dark:text-gray-400 md:text-lg">Getting Started is totally free, no
+                <p class="mb-6 font-normal text-gray-500 dark:text-gray-500 md:text-lg">Getting Started is totally free, no
                     credit card required.</p>
 
                 <a href="/login" class="inline-block rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 text-center font-bold text-white">
