@@ -87,7 +87,7 @@
                     <div v-for="social in this.socials" class="bg-white rounded-lg" :key="social">
                         <div class="p-4 flex items-center relative">
                             <v-icon :name="'fa-' + social.type" scale="1.8" fill="black" />
-                            <span class="pl-4">{{ social.hyperlink }}</span>
+                            <span class="truncate pl-2 pr-8">{{ social.hyperlink }}</span>
                             <div class="absolute right-4">
                                 <button @click="destroySocial(social)">
                                     <v-icon name="bi-trash-fill" fill="black" scale="1.2" />
@@ -1273,6 +1273,9 @@ export default {
             ).then((response) => {
                 this.isLoading = false;
                 this.isToastError = false;
+                this.isSocialModal = false;
+                this.selectedSocial = 'youtube';
+                this.socialValue = null;
                 this.toastMessage = "The social icon was added successfully!";
                 this.showToast();
             })
