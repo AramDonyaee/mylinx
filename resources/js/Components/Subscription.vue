@@ -96,7 +96,7 @@
                                     </svg>
                                 </span>Hide Mylinx branding
                             </p>
-                            <Link href="/payment">
+                            <Link href="">
                             <button
                                 class="flex font-bold justify-center items-center mt-auto text-white bg-pink-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded-full">
                                 Upgrade to PRO

@@ -145,7 +145,7 @@ const logout = () => {
 
                             <!-- Settings Dropdown -->
                             <div class="ml-3  flex lg:flex-row">
-                                <!-- <button type="button"
+                                <button type="button"
                                     class="inline-flex invisible lg:visible justify-center items-center px-2 py-2 mr-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-400 hover:text-[yellow] text-center">
                                     <Link href="/upgrade">
                                     <span>
@@ -153,7 +153,7 @@ const logout = () => {
                                         Upgrade
                                     </span>
                                     </Link>
-                                </button> -->
+                                </button>
                                 <button type="button"
                                     class="inline-flex invisible lg:visible items-center px-3 py-2 mr-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-[yellow]">
                                     <Link :href="'/@' +  $page.props.user.username">
@@ -198,6 +198,9 @@ const logout = () => {
 
                                         <DropdownLink :href="route('profile.show')">
                                             Profile
+                                        </DropdownLink>
+                                        <DropdownLink :href="'/upgrade'">
+                                            Upgrade
                                         </DropdownLink>
 
                                         <DropdownLink v-if="$page.props.jetstream.hasApiFeatures"
@@ -254,6 +257,9 @@ const logout = () => {
                         <ResponsiveNavLink :href="route('design')" :active="route().current('design')">
                             Design
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="'/upgrade'" :active="route().current('design')">
+                            Upgrade
+                        </ResponsiveNavLink>
                         <!-- <ResponsiveNavLink :href="route('stats')" :active="route().current('stats')">
                             Stats
                         </ResponsiveNavLink> -->
@@ -289,6 +295,8 @@ const logout = () => {
                                 :active="route().current('api-tokens.index')">
                                 API Tokens
                             </ResponsiveNavLink>
+
+
 
                             <!-- Authentication -->
                             <form method="POST" @submit.prevent="logout">

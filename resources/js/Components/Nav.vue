@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo -->
-                <Link href="/"><ApplicationMark class="h-9 ml-6" /></Link>
+                <a href="/"><ApplicationMark class="h-9 ml-6" /></a>
                 <!-- Links -->
                 <div class="hidden md:block">
                     <div class="ml-4 flex items-center md:ml-6 gap-x-2">
@@ -34,12 +34,14 @@
         <!-- Responsive menu -->
         <div :class="[isOpen ? 'block' : 'hidden', 'md:hidden']">
             <div class="px-2 pt-2 sm:px-3">
-                <Link href="/pricing" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 rounded-tl-lg rounded-tr-lg   text-base font-medium">Pricing
-                    </Link>
-                <Link href="/register" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 text-base font-medium">Sign
+                <!-- <Link href="/pricing" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 rounded-tl-lg rounded-tr-lg text-base font-medium">Pricing
+                    </Link> -->
+                <Link v-if="!$page.props.user" href="/register" class="bg-gray-800 text-white hover:text-indigo-400 rounded-tl-lg rounded-tr-lg block px-3 py-2 text-base font-medium">Sign
                     up</Link>
-                <Link href="/login" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 rounded-bl-lg rounded-br-lg  text-base font-medium">Log
+                <Link v-if="!$page.props.user" href="/login" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 rounded-bl-lg rounded-br-lg text-base font-medium">Log
                     in</Link>
+                <Link v-if="$page.props.user" href="/content" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 rounded-lg text-base font-medium">Dashboard</Link>
+
             </div>
         </div>
     </nav>

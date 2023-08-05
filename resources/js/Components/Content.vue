@@ -2,7 +2,7 @@
     <Toast v-if="showNotification" :message="toastMessage" :isError="isToastError" />
 
 
-    <div class="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2">
+    <div v-show="!isMockupModalVisible" class="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2">
         <div>
 
             <div class="grid grid-cols-2 overflow-hidden mx-8 mt-10 rounded-xl ">
@@ -94,7 +94,7 @@
                                 </button>
                             </div>
                         </div>
-                    </div>   
+                    </div>
                 </div>
             </transition>
 
@@ -119,7 +119,7 @@
                                     <input v-model="question.choices[choiceIndex]" placeholder="choice" />
                                 </div>
                             </div> -->
-<!-- 
+                            <!-- 
 
                             <button @click="createGenderField">Gender</button>
                             <button @click="createTelField">Tel</button>
@@ -154,11 +154,34 @@
         </div>
 
 
+        <div @click="showMockupModal"
+            class="bg-indigo-600 text-white h-8 py-6 px-4 text-center rounded-full fixed bottom-4 left-1/2 transform -translate-x-1/2 z-10 cursor-pointer flex items-center justify-center block sm:hidden">
+            <v-icon name="bi-eye-fill" scale="1.2" class="mr-2" />
+            <div class="pb-0.5">Preview</div>
+        </div>
 
-        <div class="h-screen sticky top-0 justify-center items-center bg-slate-200">
+
+        <div v-show="isMockupModalVisible" class="absolute top-0 z-10 inset-0 mx-auto bg-white h-full w-full">
+            <div @click="closeMockupModal"
+                class="cursor-pointer flex items-center justify-center bg-indigo-600 rounded-full absolute top-10 px-4 py-2 text-white text-sm font-bold left-1/2 transform -translate-x-1/2">
+                <v-icon name="bi-arrow-left" scale="1.2" />
+                <div class="pb-0.5 ml-1">Back to Dashboard</div>
+            </div>
+            <div class="justify-center items-center w-full ">
+                <Mockup class="scale-[0.7] origin-top top-28 "
+                :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
+                :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.background_path"
+                :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
+                :borderColor="link.border.color" :linkTextColor="link.textColor" :links="links" :socials="socials" />
+            </div>
+        </div>
+
+
+
+        <div class="h-screen sticky top-0 justify-center items-center bg-slate-200 hidden sm:block">
 
             <!-------------------------------mockup start-------------------------------->
-            <Mockup class="scale-[0.55] origin-top mt-10"
+            <Mockup class="scale-[0.55] origin-top mt-10 "
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
                 :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.background_path"
                 :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
@@ -770,6 +793,9 @@ export default {
             genderField: false,
             telField: false,
 
+            isMockupModalVisible: false,
+
+
 
 
         };
@@ -847,6 +873,14 @@ export default {
         }
     },
     methods: {
+
+        showMockupModal() {
+            this.isMockupModalVisible = true;
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        },
+        closeMockupModal() {
+            this.isMockupModalVisible = false;
+        },
 
         // addQuestion() {
         //     this.questions.push({ question: "", choices: [] });

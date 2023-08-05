@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="https://js.stripe.com/v3/"></script>
+    <!-- <script src="https://js.stripe.com/v3/"></script> -->
     @routes
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
     @inertiaHead

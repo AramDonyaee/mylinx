@@ -3,7 +3,7 @@
     <div class="container mx-auto my-8 p-4">
 
         <p class="text-4xl font-bold mb-4">Terms of Service (Terms and Conditions)</p>
-        <p class="mb-4 text-justify">
+        <p class="mb-4 ">
             Welcome to MyLinx! We are thrilled to have you as a user of our innovative link-in-bio platform. By using our
             services, you agree to abide by the following Terms of Service. Please read them carefully as they form a legal
             agreement between you and MyLinx.
@@ -100,7 +100,7 @@
             right to pursue legal actions if necessary.</p>
 
 
-        <p class="text-justify mb-4 mt-8">It is important to note that these Terms of Service may be subject to change, and
+        <p class="mb-4 mt-8">It is important to note that these Terms of Service may be subject to change, and
             it is your responsibility to
             review them periodically for any updates. By continuing to use MyLinx, you accept any modifications made to
             these terms.

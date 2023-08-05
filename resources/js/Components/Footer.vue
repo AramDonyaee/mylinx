@@ -17,13 +17,13 @@
         <div class="flex gap-4">
 
 
-          <a href="#" target="_blank"
+          <!-- <a href="#" target="_blank"
             class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100">
             <v-icon class="-mr-2" name="fa-twitter" scale="1.2" />
 
-          </a>
+          </a> -->
 
-          <a href="#" target="_blank"
+          <a href="https://www.instagram.com/mylinx_official" target="_blank"
             class="text-gray-400 hover:text-gray-500 active:text-gray-600 transition duration-100">
             <v-icon class="-mr-2" name="fa-instagram" scale="1.2" />
 
