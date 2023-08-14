@@ -163,10 +163,10 @@
         <div class="h-screen sticky top-0 justify-center items-center bg-slate-200 hidden sm:block">
             <Mockup class="scale-[0.55] origin-top mt-10"
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
-                :bio="this.bio" :backgroundColor="this.backgroundColor"
-                :backgroundImage="this.selected_background" :borderThickness="link.border.thickness"
-                :borderRadius="link.border.radius" :linkBgColor="link.bgColor" :borderColor="link.border.color"
-                :linkTextColor="link.textColor" :links="this.links" :socials="this.socials" />
+                :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.selected_background"
+                :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
+                :borderColor="link.border.color" :linkTextColor="link.textColor" :links="this.links"
+                :socials="this.socials" />
         </div>
 
     </div>
@@ -179,10 +179,10 @@
         <div class="justify-center items-center w-full ">
             <Mockup class="scale-[0.7] origin-top top-28 "
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
-                :bio="this.bio" :backgroundColor="this.backgroundColor"
-                :backgroundImage="this.selected_background" :borderThickness="link.border.thickness"
-                :borderRadius="link.border.radius" :linkBgColor="link.bgColor" :borderColor="link.border.color"
-                :linkTextColor="link.textColor" :links="this.links" :socials="this.socials" />
+                :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.selected_background"
+                :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
+                :borderColor="link.border.color" :linkTextColor="link.textColor" :links="this.links"
+                :socials="this.socials" />
         </div>
     </div>
 
@@ -676,20 +676,7 @@ export default {
     },
 
     mounted() {
-        axios
-            .get(route('mockupData'))
-            .then(response => {
-                this.title = response.data.title;
-                this.bio = response.data.bio;
-                this.background_path = response.data.background_path;
-                this.backgroundColor = response.data.background_color;
-                this.avatar = response.data.avatar_path;
-                this.link.border.thickness = response.data.link_border_thickness,
-                    this.link.border.radius = response.data.link_border_radius,
-                    this.link.border.color = response.data.link_border_color,
-                    this.link.bgColor = response.data.link_background_color,
-                    this.link.textColor = response.data.link_text_color
-            });
+        this.getMockupData();
         this.getLinks();
         this.getSocials();
         Array.prototype.move = function (from, to) {
@@ -1253,6 +1240,7 @@ export default {
                 this.uploadPercentageEdit = 0;
                 this.isProgressVisibleEdit = false;
                 this.isLinkEditModalVisible = false;
+                this.getMockupData();
                 this.getLinks();
             })
                 .catch(error => {
@@ -1326,6 +1314,23 @@ export default {
             axios.get('/getSocials')
                 .then(response => {
                     this.socials = response.data.socials;
+                });
+        },
+
+        async getMockupData() {
+            axios
+                .get(route('mockupData'))
+                .then(response => {
+                    this.title = response.data.title;
+                    this.bio = response.data.bio;
+                    this.background_path = response.data.background_path;
+                    this.backgroundColor = response.data.background_color;
+                    this.avatar = response.data.avatar_path;
+                    this.link.border.thickness = response.data.link_border_thickness,
+                        this.link.border.radius = response.data.link_border_radius,
+                        this.link.border.color = response.data.link_border_color,
+                        this.link.bgColor = response.data.link_background_color,
+                        this.link.textColor = response.data.link_text_color
                 });
         }
 
