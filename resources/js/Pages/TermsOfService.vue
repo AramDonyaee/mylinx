@@ -100,6 +100,15 @@
             right to pursue legal actions if necessary.</p>
 
 
+        <h1 class="text-2xl font-bold mt-8 mb-4">16. Payment and Lifetime Deal</h1>
+        <p>
+            MyLinx offers a lifetime deal for its Services, which grants you access to all features for the duration of the
+            Service. However, lifetime in this context does not mean forever. It refers to the estimated lifespan of the
+            Service, which is subject to change or discontinuation at the discretion of MyLinx.
+        </p>
+
+
+
         <p class="mb-4 mt-8">It is important to note that these Terms of Service may be subject to change, and
             it is your responsibility to
             review them periodically for any updates. By continuing to use MyLinx, you accept any modifications made to

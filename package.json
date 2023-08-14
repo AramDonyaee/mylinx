@@ -1,6 +1,5 @@
 {
     "private": true,
-
     "scripts": {
         "dev": "vite --host",
         "build": "vite build"
@@ -28,6 +27,8 @@
         "@vue/server-renderer": "^3.3.4",
         "chart.js": "^4.3.0",
         "chartjs-adapter-moment": "^1.0.1",
+        "dino-color-picker": "^0.2.3",
+        "lucid-color-picker": "^0.1.0",
         "moment": "^2.29.4",
         "nekoo_vue_swipemodal": "^2.0.4",
         "oh-vue-icons": "^1.0.0-rc3",

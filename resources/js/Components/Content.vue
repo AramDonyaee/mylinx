@@ -940,14 +940,14 @@ export default {
             let nextLink = this.links[index + 1];
             let link = this.links[index];
 
-            let position = link.link_order;
+            let position = link.order;
 
             if (prevLink && nextLink) {
-                position = (prevLink.link_order + nextLink.link_order) / 2;
+                position = (prevLink.order + nextLink.order) / 2;
             } else if (prevLink) {
-                position = prevLink.link_order + (prevLink.link_order / 2);
+                position = prevLink.order + (prevLink.order / 2);
             } else if (nextLink) {
-                position = nextLink.link_order / 2;
+                position = nextLink.order / 2;
             }
 
             axios.put(route('links.move', { link: link.id }), {

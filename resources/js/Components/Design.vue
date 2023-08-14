@@ -3,176 +3,352 @@
 
 
     <div v-show="!isMockupModalVisible" class="grid grid-flow-col md:grid-rows-1 md:grid-cols-2 relative">
-        <div class="mt-10 ml-8 mb-8 mr-8">
-
-            <div class="bg-white p-4 rounded-lg flex gap-2 mb-4">
-
-                <div class="flex-none items-center justify-center overflow-hidden bg-gray-100 rounded-full w-24 h-24">
-                    <img v-bind:src="this.$store.state.image ? this.$store.state.image : this.avatar" />
-                </div>
-
-                <div class="flex-auto">
-                    <button type="button" @click="showModal"
-                        class="mb-1 w-full h-12 text-white bg-rose-500 font-medium rounded-xl text-[12px] md:text-sm md:text-normal lg:text-normal px-2 py-2.5 text-center">Add
-                        a Profile Picture</button>
-                    <button type="button" @click="removeAvatar"
-                        class=" w-full h-12 text-black bg-white font-medium rounded-xl border border-rose-200 text-normal px-5 py-2.5 text-center hover:bg-gray-100">
-                        Remove
-                    </button>
-                </div>
-            </div>
-
-            <span class="text-xl text-black font-bold">Profile</span>
-            <div class="bg-white p-4 rounded-lg gap-2 mt-4 mb-4">
-                <div class="rounded-lg overflow-hidden ">
-                    <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
-                        placeholder="Your Name" v-model="title" required />
-                </div>
-
-                <div class="mt-2">
-                    <textarea class="rounded-lg h-24 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
-                        placeholder="Write a brief bio about yourself" v-model="bio" required></textarea>
-                </div>
-
-                <div class="flex gap-2.5 mt-2">
-                    <button @click="storePage"
-                        class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">Save</button>
-                </div>
-                <loading v-model:active="storePage_isLoading" :can-cancel="false" color="#0000FF" />
-            </div>
-
-            <span class="text-xl text-black font-bold">Themes</span>
-            <div class="mb-8 md:mb-10 mt-4">
-                <div class="flex flex-wrap gap-1 lg:gap-2 justify-center bg-white rounded-lg p-2 lg:p-5">
-                    <div v-for="theme in this.themes" type="button"
-                        class="cursor-pointer w-28 h-18 lg:w-36 lg:h-32 flex flex-col overflow-hidden justify-center items-center bg-white hover:bg-gray-100 active:ring-gray-800 active:bg-gray-200 text-gray-800 text-sm font-semibold text-center border rounded-md transition duration-100"
-                        @click=storeTheme(theme)>
-                        <div v-for="n in 2"
-                            class=" my-1 flex justify-center flex-wrap gap-1 lg:gap-2 items-center h-6 lg:h-10 w-3/4"
-                            v-bind:style="{
-                                'border-width': theme.link.border.thickness + 'px',
-                                'border-color': theme.link.border.color,
-                                'border-radius': theme.link.border.radius + 'px',
-                                'background-color': theme.link.bgColor,
-                                'color': theme.link.textColor
-                            }">
-                            <span class="text-sm">Link Text</span>
-
+        <div class="mt-10 ml-8 mb-8 mr-8 relative">
+            <transition name="fade">
+                <div class="absolute top-0 w-full rounded-2xl flex flex-col bg-white  mb-4 overflow-hidden"
+                    v-show="!this.activeMainMenuItem">
+                    <div class="flex flex-row border-b-[1px] border-gray-200 cursor-pointer focus:bg-gray-50 hover:bg-gray-50"
+                        v-for="(menuItem, index) in mainMenu" :key="index"
+                        @click="this.activeMainMenuItem = menuItem.title">
+                        <div class="flex items-center flex-none p-4">
+                            <v-icon :name=menuItem.icon scale="1.3" />
+                        </div>
+                        <div class="flex flex-col grow py-2">
+                            <div class="text-gray-700 font-bold">{{ menuItem.title }}</div>
+                            <div class="flex-none text-[#A9B4C0] text-sm">{{ menuItem.description }}</div>
+                        </div>
+                        <div class="flex items-center px-1">
+                            <v-icon name="md-navigatenext-round" scale="1.7" />
                         </div>
                     </div>
                 </div>
-                <loading v-model:active="storeBackground_isLoading" :can-cancel="false" color="#0000FF" />
-            </div>
-
-            <!-- color - start -->
-            <div class="mb-2 mt-8 ">
-                <span class="inline-block text-black text-xl font-bold md:text-xl font-semibold mb-3">Background</span>
-
-                <div class="flex flex-wrap gap-2 rounded-lg py-2 bg-white justify-center items-center">
-
-                    <button type="button"
-                        class="w-12 h-12 bg-[red] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
-                        @click="backgroundChange('red')"></button>
-                    <button type="button"
-                        class="w-12 h-12 bg-[blue] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
-                        @click="backgroundChange('blue')"></button>
-                    <button type="button"
-                        class="w-12 h-12 bg-[black] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
-                        @click="backgroundChange('black')"></button>
-                    <button type="button"
-                        class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
-                        style="background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)"
-                        @click="backgroundChange('linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)')"></button>
-                    <button type="button"
-                        class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
-                        style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)"
-                        @click="backgroundChange('radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)')"></button>
-                    <button type="button"
-                        class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
-                        style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)"
-                        @click="backgroundChange('linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)')"></button>
-                    <button type="button"
-                        class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
-                        style="background: linear-gradient(0deg, rgba(240,255,0,1) 0%, rgba(45,47,253,1) 100%)"
-                        @click="backgroundChange('linear-gradient(0deg, rgba(240,255,0,1) 0%, rgba(45,47,253,1) 100%)')"></button>
-                    <button type="button"
-                        class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
-                        style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(239,255,0,1) 0%, rgba(255,166,0,1) 100%)"
-                        @click="backgroundChange('linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(239,255,0,1) 0%, rgba(255,166,0,1) 100%)')"></button>
+            </transition>
 
 
+            <transition name="fade">
+                <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Avatar'">
+                    <span class="text-xl text-black font-bold relative flex justify-center items-center">
+                        <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
+                            @click="this.activeMainMenuItem = null" />
+                        <div>Avatar</div>
+                    </span>
+                    <div class="bg-white p-4 rounded-lg flex gap-2 mt-10">
+                        <div
+                            class="flex-none items-center justify-center overflow-hidden bg-gray-100 rounded-full w-24 h-24">
+                            <img v-bind:src="this.$store.state.image ? this.$store.state.image : this.avatar" />
+                        </div>
 
-                    
-                </div>
-            </div>
-            <!-- color - end -->
-
-
-            <!-- size - start -->
-            <div class="mb-8 md:mb-10 mt-2">
-                <div class="flex flex-wrap gap-6 justify-center bg-white rounded-lg p-5">
-                    <div v-for="bg in background_urls" type="button"
-                        class="cursor-pointer w-24 h-32 flex overflow-hidden justify-center items-center bg-white hover:bg-gray-100 active:ring-gray-800 active:bg-gray-200 text-gray-800 text-sm font-semibold text-center border rounded-md transition duration-100">
-                        <img @click=backgroundImageSetter(bg.id) class="object-cover overflow-hidden" :src=bg.url />
+                        <div class="flex-auto">
+                            <button type="button" @click="showModal"
+                                class="mb-1 w-full h-12 text-white bg-rose-500 font-medium rounded-xl text-[12px] md:text-sm md:text-normal lg:text-normal px-2 py-2.5 text-center">Add
+                                a Profile Picture</button>
+                            <button type="button" @click="removeAvatar"
+                                class=" w-full h-12 text-black bg-white font-medium rounded-xl border border-rose-200 text-normal px-5 py-2.5 text-center hover:bg-gray-100">
+                                Remove
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <loading v-model:active="storeBackground_isLoading" :can-cancel="false" color="#0000FF" />
-            </div>
-            <!-- size - end -->
+            </transition>
 
-            <div class="mb-8 md:mb-10 mt-2">
-                <span class="inline-block text-black text-xl font-bold md:text-xl font-semibold mb-3">Link Style</span>
 
-                <div class="bg-white rounded-lg p-5">
+            <transition name="fade">
+                <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Profile'">
+                    <span class="text-xl text-black font-bold relative flex justify-center items-center">
+                        <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
+                            @click="this.activeMainMenuItem = null" />
+                        <div>Profile</div>
+                    </span>
 
-                    <div class="m-auto grid">
-                        Link Border
-                        <input type="range" min="0" max="5" step="1" v-model="link.border.thickness" />
-                    </div>
-
-                    <div class="m-auto grid">
-                        Border Radius
-                        <input type="range" min="0" max="35" step="1" v-model="link.border.radius" />
-                    </div>
-
-                    <div class="container m-auto grid grid-cols-2 mt-3 bg-gray-200 rounded-lg p-3">
-                        <div>
-                            <h1>Link Backgroud Color</h1>
+                    <div class="bg-white p-4 rounded-lg gap-2 mt-10 mb-4">
+                        <div class="rounded-lg overflow-hidden ">
+                            <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
+                                placeholder="Your Name" v-model="title" required />
                         </div>
-                        <div class="grid place-items-end">
-                            <color-picker v-model:pureColor="link.bgColor" shape="circle" />
+
+                        <div class="mt-2">
+                            <textarea class="rounded-lg h-24 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100"
+                                type="text" placeholder="Write a brief bio about yourself" v-model="bio"
+                                required></textarea>
                         </div>
+
+                        <div class="flex gap-2.5 mt-2">
+                            <button @click="storePage"
+                                class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">Save</button>
+                        </div>
+                        <loading v-model:active="storePage_isLoading" :can-cancel="false" color="#0000FF" />
                     </div>
-
-                    <div class="container m-auto grid grid-cols-2 mt-3 bg-gray-200 rounded-lg p-3">
-                        <div>
-                            <h1>Link Border Color</h1>
-                        </div>
-                        <div class="grid place-items-end">
-                            <color-picker v-model:pureColor="link.border.color" shape="circle" />
-                        </div>
-                    </div>
-
-                    <div class="container m-auto grid grid-cols-2 mt-3 bg-gray-200 rounded-lg p-3">
-                        <div>
-                            <h1>Link Text Color</h1>
-                        </div>
-                        <div class="grid place-items-end">
-                            <color-picker v-model:pureColor="link.textColor" shape="circle" />
-                        </div>
-                    </div>
-
-                    <div class="container m-auto grid mt-3">
-                        <button @click="storeLinkStyles"
-                            class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">Save</button>
-                    </div>
-
-                    <loading v-model:active="storeLinkStyles_isLoading" :can-cancel="false" color="#0000FF" />
-
-
                 </div>
+            </transition>
 
-            </div>
+            <transition name="fade">
+
+                <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Theme'">
+                    <span class="text-xl text-black font-bold relative flex justify-center items-center">
+                        <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
+                            @click="this.activeMainMenuItem = null" />
+                        <div>Theme</div>
+                    </span>
+                    <div class="mb-8 md:mb-10 mt-10">
+                        <div class="flex flex-wrap gap-1 lg:gap-2 justify-center bg-white rounded-lg p-2 lg:p-5">
+                            <div v-for="theme in this.themes" type="button"
+                                class="cursor-pointer w-28 h-18 lg:w-36 lg:h-32 flex flex-col overflow-hidden justify-center items-center bg-white hover:bg-gray-100 active:ring-gray-800 active:bg-gray-200 text-gray-800 text-sm font-semibold text-center border rounded-md transition duration-100"
+                                @click=storeTheme(theme)>
+                                <div v-for="n in 2"
+                                    class=" my-1 flex justify-center flex-wrap gap-1 lg:gap-2 items-center h-6 lg:h-10 w-3/4"
+                                    v-bind:style="{
+                                        'border-width': theme.link.border.thickness + 'px',
+                                        'border-color': theme.link.border.color,
+                                        'border-radius': theme.link.border.radius + 'px',
+                                        'background-color': theme.link.bgColor,
+                                        'color': theme.link.textColor
+                                    }">
+                                    <span class="text-sm">Link Text</span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <loading v-model:active="storeBackground_isLoading" :can-cancel="false" color="#0000FF" />
+                    </div>
+                </div>
+            </transition>
+
+
+            <transition name="fade">
+
+                <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Background'">
+                    <span class="text-xl text-black font-bold relative flex justify-center items-center">
+                        <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
+                            @click="this.activeMainMenuItem = null" />
+                        <div>Background</div>
+                    </span>
+                    <div class="mb-2 mt-10">
+
+                        <div class="flex flex-wrap gap-2 rounded-lg py-2 bg-white justify-center items-center">
+
+                            <button type="button"
+                                class="w-12 h-12 bg-[red] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                                @click="backgroundChange('red')"></button>
+                            <button type="button"
+                                class="w-12 h-12 bg-[blue] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                                @click="backgroundChange('blue')"></button>
+                            <button type="button"
+                                class="w-12 h-12 bg-[black] border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                                @click="backgroundChange('black')"></button>
+                            <button type="button"
+                                class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                                style="background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)"
+                                @click="backgroundChange('linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(253,187,45,1) 100%)')"></button>
+                            <button type="button"
+                                class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                                style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)"
+                                @click="backgroundChange('radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)')"></button>
+                            <button type="button"
+                                class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                                style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)"
+                                @click="backgroundChange('linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%)')"></button>
+                            <button type="button"
+                                class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                                style="background: linear-gradient(0deg, rgba(240,255,0,1) 0%, rgba(45,47,253,1) 100%)"
+                                @click="backgroundChange('linear-gradient(0deg, rgba(240,255,0,1) 0%, rgba(45,47,253,1) 100%)')"></button>
+                            <button type="button"
+                                class="w-12 h-12 border ring-2 ring-offset-1 ring-transparent hover:ring-gray-200 rounded-[8px] transition duration-100 focus:ring-gray-800"
+                                style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(239,255,0,1) 0%, rgba(255,166,0,1) 100%)"
+                                @click="backgroundChange('linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(239,255,0,1) 0%, rgba(255,166,0,1) 100%)')"></button>
+
+
+
+
+                        </div>
+                    </div>
+                    <!-- color - end -->
+
+
+                    <!-- size - start -->
+                    <div class="mb-8 md:mb-10 mt-2">
+                        <div class="flex flex-wrap gap-6 justify-center bg-white rounded-lg p-5">
+                            <div v-for="bg in background_urls" type="button"
+                                class="cursor-pointer w-24 h-32 flex overflow-hidden justify-center items-center bg-white hover:bg-gray-100 active:ring-gray-800 active:bg-gray-200 text-gray-800 text-sm font-semibold text-center border rounded-md transition duration-100">
+                                <img @click=backgroundImageSetter(bg.id) class="object-cover overflow-hidden" :src=bg.url />
+                            </div>
+                        </div>
+                        <loading v-model:active="storeBackground_isLoading" :can-cancel="false" color="#0000FF" />
+                    </div>
+                    <!-- size - end -->
+                </div>
+            </transition>
+
+            <transition name="fade">
+
+
+
+                <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Link Style'">
+
+
+                    <div class="mb-8 md:mb-10 ">
+
+                        <transition name="fade">
+
+                            <div>
+                                <span class="text-xl text-black font-bold relative flex justify-center items-center"
+                                    v-show="!this.activeLinkStyleMenuItem">
+                                    <v-icon name="md-navigatebefore-round" scale="2.5"
+                                        class="absolute left-0 mr-2 cursor-pointer"
+                                        @click="this.activeMainMenuItem = null" />
+                                    <div>Link Style</div>
+                                </span>
+
+                                <div class="rounded-2xl flex flex-col bg-white mb-4 overflow-hidden mt-10"
+                                    v-show="!this.activeLinkStyleMenuItem">
+                                    <div class="flex flex-row border-b-[1px] border-gray-200 cursor-pointer focus:bg-gray-50 hover:bg-gray-50"
+                                        v-for="(menuItem, index) in linkStyleMenu" :key="index"
+                                        @click="this.activeLinkStyleMenuItem = menuItem.title">
+                                        <div class="flex items-center flex-none p-4">
+                                            <v-icon :name=menuItem.icon scale="1.3" />
+                                        </div>
+                                        <div class="flex flex-col grow py-2">
+                                            <div class="text-gray-700 font-bold">{{ menuItem.title }}</div>
+                                            <div class="flex-none text-[#A9B4C0]  text-sm">{{ menuItem.description }}
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center px-1">
+                                            <v-icon name="md-navigatenext-round" scale="1.7" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </transition>
+
+                        <transition name="fade">
+                            <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Link Border'">
+                                <span class="text-xl text-black font-bold relative flex justify-center items-center">
+                                    <v-icon name="md-navigatebefore-round" scale="2.5"
+                                        class="absolute left-0 mr-2 cursor-pointer"
+                                        @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
+                                    <div>Link Border</div>
+                                </span>
+
+                                <div class="bg-white rounded-lg px-5 py-4 mt-10">
+                                    <div class="m-auto grid">
+                                        <input type="range" min="0" max="5" step="1" v-model="link.border.thickness" />
+                                    </div>
+                                    <div class="container m-auto grid mt-4">
+                                        <button @click="storeLinkStyles"
+                                            class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">Save</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </transition>
+
+                        <transition name="fade">
+                            <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Border Radius'">
+                                <span class="text-xl text-black font-bold relative flex justify-center items-center">
+                                    <v-icon name="md-navigatebefore-round" scale="2.5"
+                                        class="absolute left-0 mr-2 cursor-pointer"
+                                        @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
+                                    <div>Border Radius</div>
+                                </span>
+                                <div class="bg-white rounded-lg py-4 px-5 mt-10"
+                                    v-show="this.activeLinkStyleMenuItem === 'Border Radius'">
+                                    <div class="m-auto grid">
+                                        Border Radius
+                                        <input type="range" min="0" max="35" step="1" v-model="link.border.radius" />
+                                    </div>
+
+                                    <div class="container m-auto grid mt-4">
+                                        <button @click="storeLinkStyles"
+                                            class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </transition>
+
+                        <transition name="fade">
+                            <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Background Color'">
+                                <span class="text-xl text-black font-bold relative flex justify-center items-center">
+                                    <v-icon name="md-navigatebefore-round" scale="2.5"
+                                        class="absolute left-0 mr-2 cursor-pointer"
+                                        @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
+                                    <div>Background Color</div>
+                                </span>
+                                <div class="bg-white rounded-lg py-4 px-5 mt-10"
+                                    v-show="this.activeLinkStyleMenuItem === 'Background Color'">
+
+                                    <lucid-color-picker class="w-full rounded-lg overflow-hidden"
+                                        @change="this.onLinkBgColorChange">
+                                    </lucid-color-picker>
+
+                                    <div class="container m-auto grid mt-4">
+                                        <button @click="storeLinkStyles"
+                                            class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+
+                        <transition name="fade">
+                            <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Border Color'">
+                                <span class="text-xl text-black font-bold relative flex justify-center items-center">
+                                    <v-icon name="md-navigatebefore-round" scale="2.5"
+                                        class="absolute left-0 mr-2 cursor-pointer"
+                                        @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
+                                    <div>Border Color</div>
+                                </span>
+                                <div class="bg-white rounded-lg py-4 px-5 mt-10"
+                                    v-show="this.activeLinkStyleMenuItem === 'Border Color'">
+
+                                    <lucid-color-picker class="w-full rounded-lg overflow-hidden"
+                                        @change="this.onLinkBorderColorChange">
+                                    </lucid-color-picker>
+
+                                    <div class="container m-auto grid mt-4">
+                                        <button @click="storeLinkStyles"
+                                            class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+
+                        <transition name="fade">
+                            <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Text Color'">
+                                <span class="text-xl text-black font-bold relative flex justify-center items-center">
+                                    <v-icon name="md-navigatebefore-round" scale="2.5"
+                                        class="absolute left-0 mr-2 cursor-pointer"
+                                        @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
+                                    <div>Text Color</div>
+                                </span>
+                                <div class="bg-white rounded-lg py-4 px-5 mt-10"
+                                    v-show="this.activeLinkStyleMenuItem === 'Text Color'">
+
+                                    <lucid-color-picker class="w-full rounded-lg overflow-hidden"
+                                        @change="this.onLinkTextColorChange">
+                                    </lucid-color-picker>
+
+                                    <div class="container m-auto grid mt-4">
+                                        <button @click="storeLinkStyles"
+                                            class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </transition>
+
+                        
+
+                        <loading v-model:active="storeLinkStyles_isLoading" :can-cancel="false" color="#0000FF" />
+
+
+
+
+                    </div>
+                </div>
+            </transition>
+
+
         </div>
 
         <div @click="showMockupModal"
@@ -213,11 +389,13 @@ import PhotoCropperModal from './PhotoCropperModal.vue'
 import Mockup from './Mockup.vue'
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Navigation, Slide } from 'vue3-carousel'
-import { ColorPicker } from "vue3-colorpicker";
-import "vue3-colorpicker/style.css";
+// import { ColorPicker } from "vue3-colorpicker";
+// import "vue3-colorpicker/style.css";
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 import swipeModal from '@takuma-ru/vue-swipe-modal';
+import "lucid-color-picker";
+
 
 
 
@@ -226,7 +404,7 @@ export default {
 
     name: 'Content',
     components: {
-        PhotoCropperModal, Carousel, Slide, Navigation, Mockup, ColorPicker, Loading, swipeModal
+        PhotoCropperModal, Carousel, Slide, Navigation, Mockup, Loading, swipeModal
 
     },
 
@@ -354,6 +532,70 @@ export default {
 
             links: [],
             socials: [],
+            mainMenu: [
+                {
+                    title: 'Profile',
+                    description: 'Add your name and a brief bio to your page',
+                    icon: 'ri-profile-fill'
+                },
+                {
+                    title: 'Avatar',
+                    description: 'Add a profile picture',
+                    icon: 'md-accountcircle-round'
+                },
+                {
+                    title: 'Background',
+                    description: 'Add a background to your profile',
+                    icon: 'md-wallpaper'
+                },
+                {
+                    title: 'Theme',
+                    description: 'Pick a theme for your profile',
+                    icon: 'hi-solid-template'
+                },
+                {
+                    title: 'Link Style',
+                    description: 'Decide how your links should look',
+                    icon: 'la-brush-solid'
+                },
+                {
+                    title: 'Fonts',
+                    description: 'Pick beautiful fonts for different parts of your page',
+                    icon: 'md-fontdownload-round'
+                },
+
+
+            ],
+            activeMainMenuItem: null,
+
+            linkStyleMenu: [
+                {
+                    title: 'Link Border',
+                    description: 'Adjust the tickness of the link border',
+                    icon: 'bi-border-width'
+                },
+                {
+                    title: 'Border Radius',
+                    description: 'Adjust the roundness of link blocks',
+                    icon: 'fa-regular-square'
+                },
+                {
+                    title: 'Background Color',
+                    description: 'Pick a background color for your link blocks',
+                    icon: 'bi-back'
+                },
+                {
+                    title: 'Border Color',
+                    description: 'Pick a color for border of the links',
+                    icon: 'oi-paintbrush'
+                },
+                {
+                    title: 'Text Color',
+                    description: 'Pick a color for text that appears in links',
+                    icon: 'co-text-square'
+                },
+            ],
+            activeLinkStyleMenuItem: null,
 
 
 
@@ -385,6 +627,20 @@ export default {
     // },
 
     methods: {
+
+
+        onLinkBgColorChange(event) {
+            this.link.bgColor = event.target.value;
+        },
+
+        onLinkBorderColorChange(event) {
+            this.link.border.color = event.target.value;
+        },
+
+        onLinkTextColorChange(event) {
+            this.link.textColor = event.target.value;
+        },
+
 
         showLoading(loading) {
             this.storePage_isLoading = loading;
@@ -576,5 +832,21 @@ export default {
 <style scoped>
 *:focus {
     outline: none;
+}
+
+.fade-enter-from {
+    opacity: 0;
+}
+
+.fade-enter-to {
+    opacity: 1;
+}
+
+.fade-enter-active {
+    transition: opacity 1s ease;
+}
+
+#textSection {
+    display: none;
 }
 </style>

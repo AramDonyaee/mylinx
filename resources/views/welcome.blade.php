@@ -391,7 +391,7 @@
 
         <!-- Pricing -->
 
-        <section class="text-gray-600 body-font overflow-hidden bg-gray-100 pb-16 pt-6">
+        <!-- <section class="text-gray-600 body-font overflow-hidden bg-gray-100 pb-16 pt-6">
             <div class="container px-5 py-7 mx-auto">
                 <div class="flex flex-col text-center w-full mb-20">
                     <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Pricing that just works!</h1>
@@ -523,7 +523,201 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
+
+        <div class="flex flex-wrap bg-gray-100 pb-12">
+            <div class="flex flex-col text-center w-full mb-12">
+                <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Pricing that just works!</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500">Get started for free, upgrade to PRO for more!</p>
+            </div>
+
+            <div class="p-4 xl:w-1/3 md:w-1/3 w-full mx-auto">
+                <div class="h-full rounded-xl flex flex-col relative overflow-hidden bg-white border-4">
+                    <h2 class="text-sm tracking-widest title-font  font-bold py-2 text-center bg-gradient-to-r from-purple-500 to-pink-500 text-white">Free</h2>
+                    <div class="p-6">
+                        <h1 class="text-5xl font-bold text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
+                            Free
+                        </h1>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Unlimited Links
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>25+ Themes
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Request Verification Badge
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Page and Clicks Analytics
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Font Customization
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-6">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Hide Mylinx branding
+                        </p>
+                        <a href="/register">
+                            <button class="flex font-bold items-center mt-auto text-white bg-pink-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded-full">Get Started
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 xl:w-1/3 md:w-1/3 w-full mx-auto">
+                <div class="h-full rounded-xl flex flex-col relative overflow-hidden bg-white border-4">
+                    <h2 class="text-sm tracking-widest title-font  font-bold py-2 text-center bg-gradient-to-r from-purple-500 to-pink-500 text-white">PRO</h2>
+                    <div class="p-6">
+                        <h1 class="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
+                            <div>
+                                $<span class="font-bold">30</span>
+                                <span class="text-lg ml-1 font-normal text-gray-500">/yearly</span>
+                            </div>
+                        </h1>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Unlimited Links
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>25+ Themes
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Request Verification Badge
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Page and Clicks Analytics
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Font Customization
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-6">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Hide Mylinx branding
+                        </p>
+                        <a href="/register">
+                            <button class="flex font-bold items-center mt-auto text-white bg-purple-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded-full">Get Started
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="p-4 xl:w-1/3 md:w-1/3 w-full mx-auto">
+                <div class="h-full rounded-xl flex flex-col relative overflow-hidden bg-white border-4">
+                    <h2 class="text-sm tracking-widest title-font font-bold py-2 text-center bg-gradient-to-r from-purple-500 to-pink-500 text-white">Lifetime Deal</h2>
+                    <div class="p-6">
+                        <h1 class="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
+                            <div>
+                                $<span class="font-bold">40</span>
+                                <span class="text-lg ml-1 font-normal text-gray-500">One-time Payment</span>
+                            </div>
+                        </h1>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Unlimited Links
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>25+ Themes
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Request Verification Badge
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Page and Clicks Analytics
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Font Customization
+                        </p>
+                        <p class="flex items-center text-gray-600 mb-6">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>Hide Mylinx branding
+                        </p>
+                        <a href="/register">
+                            <button class="flex font-bold items-center mt-auto text-white bg-purple-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded-full">Get Started
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- End of Pricing -->
 

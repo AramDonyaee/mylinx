@@ -98,6 +98,10 @@ const submit = () => {
                 </InputLabel>
             </div>
 
+            <div class="flex items-center justify-center mt-2 text-center text-sm text-gray-500">
+                By joining, you agree to our <a class="mx-1 underline text-indigo-500" href="/tos"> Terms of Service </a> and <a class="mx-1 underline text-indigo-500" href="/privacy-policy">Privacy Policy</a>  
+            </div>
+
             <div class="flex items-center justify-end mt-4">
                 <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900">
                     Already registered?

@@ -13,6 +13,7 @@ use App\Models\Page;
 use App\Models\User;
 use App\Models\Link;
 use App\Models\Social;
+use App\Models\Order;
 use App\Enums\SocialType;
 
 
@@ -32,7 +33,11 @@ class PagesController extends Controller
         }
 
         $page = $user->page;
-        $links = Link::where('page_id', $page->id)->orderBy('link_order', 'asc')->get();
+        // $links = Link::where('page_id', $page->id)->orderBy('link_order', 'asc')->get();
+        $links = Order::join('links', 'orders.element_id', '=', 'links.id')
+        ->where('links.page_id', $page->id)
+        ->orderBy('orders.order', 'asc')
+        ->get();
         $socials = Social::where('page_id', $page->id)->get();
 
         return Inertia::render('Mylinx/UserPage', [

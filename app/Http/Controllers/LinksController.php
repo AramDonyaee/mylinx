@@ -11,6 +11,8 @@ use App\Models\Page;
 use App\Models\User;
 use App\Models\Link;
 use App\Models\Click;
+use App\Models\Order;
+
 
 
 class LinksController extends Controller
@@ -40,22 +42,28 @@ class LinksController extends Controller
             if ($previous_link) {
                 $previous_link_order = $previous_link->link_order;
                 $link_order = $previous_link_order + 1;
-                Link::create([
+                $link = Link::create([
                     'title' => $request->input('title'),
                     'description' => $request->input('description'),
                     'type' => $request->input('type'),
                     'hyperlink' => self::fixURL($request->input('url')),
                     'page_id' => $page->id,
-                    'link_order' => $link_order
+                ]);
+                $link->order()->create([
+                    'page_id' => $page->id, 
+                    'order' => $request->input('link_order'),
                 ]);
             } else {
-                Link::create([
+                $link = Link::create([
                     'title' => $request->input('title'),
                     'description' => $request->input('description'),
                     'type' => $request->input('type'),
                     'hyperlink' => self::fixURL($request->input('url')),
                     'page_id' => $page->id,
-                    'link_order' => 0
+                ]);
+                $link->order()->create([
+                    'page_id' => $page->id,
+                    'order' => 0
                 ]);
             }
             return response('success');
@@ -74,7 +82,7 @@ class LinksController extends Controller
             if ($previous_link) {
                 $previous_link_order = $previous_link->link_order;
                 $link_order = $previous_link_order + 1;
-                Link::create([
+                $link = Link::create([
                     'thumbnail_path' => $filename,
                     'title' => $request->input('title'),
                     'description' => $request->input('description'),
@@ -83,8 +91,12 @@ class LinksController extends Controller
                     'page_id' => $page->id,
                     'link_order' => $link_order
                 ]);
+                $link->order()->create([
+                    'page_id' => $page->id, 
+                    'order' => $request->input('link_order'),
+                ]);
             } else {
-                Link::create([
+                $link = Link::create([
                     'thumbnail_path' => $filename,
                     'title' => $request->input('title'),
                     'description' => $request->input('description'),
@@ -92,6 +104,10 @@ class LinksController extends Controller
                     'hyperlink' => self::fixURL($request->input('url')),
                     'page_id' => $page->id,
                     'link_order' => 0
+                ]);
+                $link->order()->create([
+                    'page_id' => $page->id, 
+                    'order' => 0,
                 ]);
             }
 
@@ -190,8 +206,10 @@ class LinksController extends Controller
         }
 
         $link = Link::find($request->input('id'));
+        $link->order()->delete();
         $link->delete();
         return back();
+
     }
 
 
@@ -200,12 +218,23 @@ class LinksController extends Controller
     {
         $user_id = $request->user()->id;
         $page = Page::where('user_id', $user_id)->first();
-        $links = Link::where('page_id', $page->id)->orderBy('link_order', 'asc')->get();
+        // $links = Link::where('page_id', $page->id)->orderBy('link_order', 'asc')->get();
+        // $links = Link::where('page_id', $page->id)->get();
+        $links = Order::join('links', 'orders.element_id', '=', 'links.id')
+             ->where('links.page_id', $page->id)
+             ->orderBy('orders.order', 'asc')
+             ->get();
+
+        // $links = $links->map(function ($link) {
+        //     $link->click_count = self::getSingleLinkClicksByID($link->id);
+        //     return $link;
+        // });
 
         $links = $links->map(function ($link) {
-            $link->click_count = self::getSingleLinkClicksByID($link->id);
+            $link->order = Order::select('order')->where('element_id',$link->id)->value('order');
             return $link;
         });
+
         $links->toArray();
 
         return ['links' => $links];
@@ -217,11 +246,13 @@ class LinksController extends Controller
         $validator = Validator::make($request->all(), [
             'link_order' => 'required|integer',
         ]);
+       
 
-
-        $link->update([
-            'link_order' => round($request->input('link_order'), 5)
+        $link->order()->update([
+            'order' => round($request->input('link_order'), 5)
         ]);
+
+
     }
 
     public function linkClick(Request $request)

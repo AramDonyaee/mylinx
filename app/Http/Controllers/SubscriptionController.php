@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use NasrinRezaei45\Shepacom\Exceptions\SendException;
+use NasrinRezaei45\Shepacom\Exceptions\VerifyException;
+
 
 
 class SubscriptionController extends Controller
@@ -13,5 +16,10 @@ class SubscriptionController extends Controller
     {
         return Inertia::render('Subscription', [
         ]);
+    }
+
+    public function pay()
+    {
+        ShepaFacade::via("merchant")->send($amount, $email, $mobile, $description);
     }
 }
