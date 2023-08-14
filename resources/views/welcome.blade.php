@@ -29,6 +29,8 @@
         <meta property="og:description" content="Mylinx is a link in bio platform that gathers all of your online presence in one link. Create a custom page that showcases your personality, services, and abilities." />
         <meta property="og:url" content="https://www.mylinx.site/" />
 
+        <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon"/>
+
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
             #txt {
@@ -543,42 +545,42 @@
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
                                     <path d="M20 6L9 17l-5-5"></path>
                                 </svg>
-                            </span>Unlimited Links
+                            </span>25 Links
                         </p>
                         <p class="flex items-center text-gray-600 mb-2">
                             <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
                                     <path d="M20 6L9 17l-5-5"></path>
                                 </svg>
-                            </span>25+ Themes
+                            </span>3 Themes
                         </p>
                         <p class="flex items-center text-gray-600 mb-2">
                             <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
                                     <path d="M20 6L9 17l-5-5"></path>
                                 </svg>
-                            </span>Request Verification Badge
+                            </span>Customize Link Appearance
                         </p>
                         <p class="flex items-center text-gray-600 mb-2">
                             <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
                                     <path d="M20 6L9 17l-5-5"></path>
                                 </svg>
-                            </span>Page and Clicks Analytics
+                            </span>Image Background
                         </p>
                         <p class="flex items-center text-gray-600 mb-2">
                             <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
                                     <path d="M20 6L9 17l-5-5"></path>
                                 </svg>
-                            </span>Font Customization
+                            </span>Social Links
                         </p>
                         <p class="flex items-center text-gray-600 mb-6">
                             <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
                                     <path d="M20 6L9 17l-5-5"></path>
                                 </svg>
-                            </span>Hide Mylinx branding
+                            </span>Custom Mylinx URL
                         </p>
                         <a href="/register">
                             <button class="flex font-bold items-center mt-auto text-white bg-pink-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded-full">Get Started

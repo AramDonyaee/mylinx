@@ -843,7 +843,7 @@ export default {
 }
 
 .fade-enter-active {
-    transition: opacity 1s ease;
+    transition: opacity 0.1s ease;
 }
 
 #textSection {

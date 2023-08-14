@@ -95,6 +95,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </transition>
 
@@ -153,51 +154,39 @@
 
         </div>
 
-
         <div @click="showMockupModal"
             class="bg-indigo-600 text-white h-8 py-6 px-4 text-center rounded-full fixed bottom-4 left-1/2 transform -translate-x-1/2 z-10 cursor-pointer flex items-center justify-center block sm:hidden">
             <v-icon name="bi-eye-fill" scale="1.2" class="mr-2" />
             <div class="pb-0.5">Preview</div>
         </div>
 
-
-        <div v-show="isMockupModalVisible" class="absolute top-0 z-10 inset-0 mx-auto bg-white h-full w-full">
-            <div @click="closeMockupModal"
-                class="cursor-pointer flex items-center justify-center bg-indigo-600 rounded-full absolute top-10 px-4 py-2 text-white text-sm font-bold left-1/2 transform -translate-x-1/2">
-                <v-icon name="bi-arrow-left" scale="1.2" />
-                <div class="pb-0.5 ml-1">Back to Dashboard</div>
-            </div>
-            <div class="justify-center items-center w-full ">
-                <Mockup class="scale-[0.7] origin-top top-28 "
+        <div class="h-screen sticky top-0 justify-center items-center bg-slate-200 hidden sm:block">
+            <Mockup class="scale-[0.55] origin-top mt-10"
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
-                :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.background_path"
-                :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
-                :borderColor="link.border.color" :linkTextColor="link.textColor" :links="links" :socials="socials" />
-            </div>
+                :bio="this.bio" :backgroundColor="this.selected_background_color"
+                :backgroundImage="this.selected_background" :borderThickness="link.border.thickness"
+                :borderRadius="link.border.radius" :linkBgColor="link.bgColor" :borderColor="link.border.color"
+                :linkTextColor="link.textColor" :links="this.links" :socials="this.socials" />
         </div>
 
-
-
-        <div class="h-screen sticky top-0 justify-center items-center bg-slate-200 hidden sm:block">
-
-            <!-------------------------------mockup start-------------------------------->
-            <Mockup class="scale-[0.55] origin-top mt-10 "
+    </div>
+    <div v-show="isMockupModalVisible" class="absolute top-0 z-10 inset-0 mx-auto bg-white h-full w-full">
+        <div @click="closeMockupModal"
+            class="cursor-pointer flex items-center justify-center bg-indigo-600 rounded-full absolute top-10 px-4 py-2 text-white text-sm font-bold left-1/2 transform -translate-x-1/2">
+            <v-icon name="bi-arrow-left" scale="1.2" />
+            <div class="pb-0.5 ml-1">Back to Dashboard</div>
+        </div>
+        <div class="justify-center items-center w-full ">
+            <Mockup class="scale-[0.7] origin-top top-28 "
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
-                :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.background_path"
-                :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
-                :borderColor="link.border.color" :linkTextColor="link.textColor" :links="links" :socials="socials" />
-            <!------------------------mockup end------------------------------>
-
-        </div><!--second half end-->
-
+                :bio="this.bio" :backgroundColor="this.selected_background_color"
+                :backgroundImage="this.selected_background" :borderThickness="link.border.thickness"
+                :borderRadius="link.border.radius" :linkBgColor="link.bgColor" :borderColor="link.border.color"
+                :linkTextColor="link.textColor" :links="this.links" :socials="this.socials" />
+        </div>
     </div>
 
 
-
-    <div class="flex mx-autoh-screen">
-
-
-    </div> <!--container end-->
 
 
 
@@ -1312,6 +1301,7 @@ export default {
                 this.socialValue = null;
                 this.toastMessage = "The social icon was added successfully!";
                 this.showToast();
+                this.getSocials();
             })
                 .catch(error => {
                     this.isLoading = false;

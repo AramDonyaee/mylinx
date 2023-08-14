@@ -89,7 +89,6 @@ class LinksController extends Controller
                     'type' => $request->input('type'),
                     'hyperlink' => self::fixURL($request->input('url')),
                     'page_id' => $page->id,
-                    'link_order' => $link_order
                 ]);
                 $link->order()->create([
                     'page_id' => $page->id, 
@@ -103,7 +102,6 @@ class LinksController extends Controller
                     'type' => $request->input('type'),
                     'hyperlink' => self::fixURL($request->input('url')),
                     'page_id' => $page->id,
-                    'link_order' => 0
                 ]);
                 $link->order()->create([
                     'page_id' => $page->id, 
@@ -225,10 +223,10 @@ class LinksController extends Controller
              ->orderBy('orders.order', 'asc')
              ->get();
 
-        // $links = $links->map(function ($link) {
-        //     $link->click_count = self::getSingleLinkClicksByID($link->id);
-        //     return $link;
-        // });
+        $links = $links->map(function ($link) {
+            $link->click_count = self::getSingleLinkClicksByID($link->id);
+            return $link;
+        });
 
         $links = $links->map(function ($link) {
             $link->order = Order::select('order')->where('element_id',$link->id)->value('order');
