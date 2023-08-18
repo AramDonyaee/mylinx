@@ -1,5 +1,11 @@
 
 <template>
+<a v-if="$page.props.user" href="/content" class="text-white">
+    <div class="flex text-center justify-center py-2 bg-black">
+            Back to dashboard
+    </div>
+</a>
+
     <div class="bg-scroll" v-bind:style="{ backgroundColor: data.backgroundc, background: data.backgroundc }">
 
         <div :style="{ 'background-image': 'url(' + page.background_path + ')' }"
@@ -8,8 +14,6 @@
                 <div class=" ease-linear duration-200 mx-auto md:w-3/5 w-full h-fit relative overflow-hidden bg-cover bg-center shadow-2xl pb-24 bg-fixed"
                     v-bind:style="{ backgroundColor: data.backgroundc, background: data.backgroundc }"
                     :style="{ 'background-image': 'url(' + page.background_path + ')' }">
-
-
 
                     <div class="relative mb-[300px]">
 
@@ -97,10 +101,10 @@
 
                     </div>
                     <!-- Flashlight, camera and bottom swipe menu -->
-                    <div class="text-[12px] absolute flex left-1/2 transform -translate-x-1/2 font-bold ">
+                    <!-- <div class="text-[12px] absolute flex left-1/2 transform -translate-x-1/2 font-bold ">
                         <span class="text-white [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">POWERED BY</span>
                         <ApplicationMark class=" h-5 ml-4" />
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

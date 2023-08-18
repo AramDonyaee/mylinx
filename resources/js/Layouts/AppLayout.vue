@@ -156,7 +156,7 @@ const logout = () => {
                                 </button>
                                 <button type="button"
                                     class="inline-flex invisible lg:visible items-center px-3 py-2 mr-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-[yellow]">
-                                    <Link :href="'/@' +  $page.props.user.username">
+                                    <Link :href="'/' +  $page.props.user.username">
                                     My Page
                                     </Link>
                                 </button>

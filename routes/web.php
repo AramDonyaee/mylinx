@@ -86,7 +86,7 @@ Route::middleware([
 });
 
 
-Route::get('@{username}', [Controllers\PagesController::class, 'show'])
+Route::get('{username}', [Controllers\PagesController::class, 'show'])
 ->where('username', '^(?!admin(?:\/login)?)[\w.-]+$')
 ->name('userpage');
 
