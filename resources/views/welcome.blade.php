@@ -29,7 +29,7 @@
         <meta property="og:description" content="Mylinx is a link in bio platform that gathers all of your online presence in one link. Create a custom page that showcases your personality, services, and abilities." />
         <meta property="og:url" content="https://www.mylinx.site/" />
 
-        <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon"/>
+        <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon" />
 
         <script src="https://cdn.tailwindcss.com"></script>
         <style>
@@ -75,6 +75,20 @@
                 cursor: pointer;
                 position: sticky;
                 right: 0;
+            }
+
+            tr td:nth-last-child(2) {
+                background-color: #F3F4F6;
+            }
+
+            th.pro-yearly {
+                background-color: #F3F4F6;
+            }
+
+            .before-discount {
+                text-decoration: line-through;
+                text-decoration-thickness: 1px;
+
             }
         </style>
     </head>
@@ -389,145 +403,9 @@
             </div>
         </section>
 
+        <!--Start of Pricing-->
 
-
-        <!-- Pricing -->
-
-        <!-- <section class="text-gray-600 body-font overflow-hidden bg-gray-100 pb-16 pt-6">
-            <div class="container px-5 py-7 mx-auto">
-                <div class="flex flex-col text-center w-full mb-20">
-                    <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Pricing that just works!</h1>
-                    <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500">Get started for free, upgrade to PRO for more!</p>
-                </div>
-                <div class="flex flex-wrap -m-4">
-                    <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
-                        <div class="h-full p-6 rounded-lg flex flex-col relative overflow-hidden bg-white">
-                            <h2 class="text-sm tracking-widest title-font mb-1 font-medium">START</h2>
-                            <h1 class="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">Free</h1>
-                            <p class="flex items-center text-gray-600 mb-2">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>25 Links
-                            </p>
-                            <p class="flex items-center text-gray-600 mb-2">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>3 Themes
-                            </p>
-                            <p class="flex items-center text-gray-600 mb-2">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>Customize Links Apperance
-                            </p>
-                            <p class="flex items-center text-gray-600 mb-2">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>Custom Image Background
-                            </p>
-                            <p class="flex items-center text-gray-600 mb-2">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>Social Links
-                            </p>
-                            <p class="flex items-center text-gray-600 mb-2">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>Custom Mylinx URL
-                            </p>
-                            <p class="flex items-center text-gray-600 mb-6">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>Profile Picture & Bio
-                            </p>
-                            <a href="/register">
-                                <button class="flex font-bold items-center mt-auto text-white bg-purple-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded-full">Get Started
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                    </svg>
-                                </button>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="p-4 xl:w-1/4 md:w-1/2 w-full">
-                        <div class="h-full p-6 rounded-lg flex flex-col relative overflow-hidden bg-white">
-                            <span class="bg-indigo-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">POPULAR</span>
-                            <h2 class="text-sm tracking-widest title-font mb-1 font-medium">PRO</h2>
-                            <h1 class="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
-                                <span>$3.5</span>
-                                <span class="text-lg ml-1 font-normal text-gray-500">/mo</span>
-                            </h1>
-                            <p class="flex items-center text-gray-600 mb-2">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>All Features in Free Plan
-                            </p>
-                            <p class="flex items-center text-gray-600 mb-2">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>Unlimited Links
-                            </p>
-                            <p class="flex items-center text-gray-600 mb-2">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>25+ Themes
-                            </p>
-                            <p class="flex items-center text-gray-600 mb-2">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>Request Verification Badge
-                            </p>
-                            <p class="flex items-center text-gray-600 mb-2">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>Page and Clicks Analytics
-                            </p>
-                            <p class="flex items-center text-gray-600 mb-6">
-                                <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path d="M20 6L9 17l-5-5"></path>
-                                    </svg>
-                                </span>Hide Mylinx branding
-                            </p>
-                            <a href="/register">
-                                <button class="flex font-bold items-center mt-auto text-white bg-pink-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded-full">Get Started
-                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
-                                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                    </svg>
-                                </button>
-                            </a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
-        <div class="flex flex-wrap bg-gray-100 pb-12">
+        <!-- <div class="flex flex-wrap bg-gray-100 pb-12">
             <div class="flex flex-col text-center w-full mb-12">
                 <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Pricing that just works!</h1>
                 <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500">Get started for free, upgrade to PRO for more!</p>
@@ -545,15 +423,9 @@
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
                                     <path d="M20 6L9 17l-5-5"></path>
                                 </svg>
-                            </span>25 Links
+                            </span>Unlimited Links
                         </p>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>3 Themes
-                        </p>
+
                         <p class="flex items-center text-gray-600 mb-2">
                             <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
@@ -599,10 +471,17 @@
                     <div class="p-6">
                         <h1 class="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
                             <div>
-                                $<span class="font-bold">30</span>
-                                <span class="text-lg ml-1 font-normal text-gray-500">/yearly</span>
+                                $<span class="font-bold">3.5</span>
+                                <span class="text-lg ml-1 font-normal text-gray-500">/monthly</span>
                             </div>
                         </h1>
+                        <p class="flex items-center text-gray-600 mb-2">
+                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
+                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                                    <path d="M20 6L9 17l-5-5"></path>
+                                </svg>
+                            </span>All the features in free plan
+                        </p>
                         <p class="flex items-center text-gray-600 mb-2">
                             <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
@@ -631,13 +510,7 @@
                                 </svg>
                             </span>Page and Clicks Analytics
                         </p>
-                        <p class="flex items-center text-gray-600 mb-2">
-                            <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
-                                    <path d="M20 6L9 17l-5-5"></path>
-                                </svg>
-                            </span>Font Customization
-                        </p>
+
                         <p class="flex items-center text-gray-600 mb-6">
                             <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
@@ -663,8 +536,10 @@
                     <div class="p-6">
                         <h1 class="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
                             <div>
-                                $<span class="font-bold">40</span>
-                                <span class="text-lg ml-1 font-normal text-gray-500">One-time Payment</span>
+                                $<span class="font-bold">35</span>
+                                <span class="text-lg ml-1 font-normal text-gray-500">/Yearly</span>
+                                <span class="text-sm bg-green-400 rounded-full px-2 py-1 font-bold">2 months
+                                    free</span>
                             </div>
                         </h1>
                         <p class="flex items-center text-gray-600 mb-2">
@@ -719,21 +594,248 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <!-- End of Pricing -->
 
+        <!-- New Table Pricing -->
+        <section class="dark:bg-gray-800 dark:text-gray-100">
+            <div class="flex flex-col text-center w-full mb-12 mt-12">
+                <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Pricing that just works!</h1>
+                <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500">Get started for free, upgrade to PRO for more!</p>
+            </div>
 
-        <div class="max-w-screen-xl px-4 py-8 mx-auto lg:py-16 lg:px-6">
-            <div class="max-w-screen-sm mx-auto text-center">
-                <h2 class="mb-4 text-3xl font-extrabold leading-tight tracking-tight text-gray-900 dark:text-white">Create a
-                    mylinx page now</h2>
-                <p class="mb-6 font-normal text-gray-500 dark:text-gray-500 md:text-lg">Getting Started is totally free, no
-                    credit card required.</p>
+            <div class="container mx-auto p-6 overflow-x-auto">
+                <table class="w-full">
+                    <caption class="sr-only">Pricing plan comparison</caption>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th scope="col">
+                                <h2 class="px-2 text-lg font-medium">Starter</h2>
+                                <p class="mb-3">
+                                    <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50">0$</span>
+                                    <span class="font-medium dark:text-gray-400">/mo</span>
+                                </p>
+                            </th>
+                            <th scope="col" class="pro-yearly rounded-tl-lg	rounded-tr-lg overflow-hidden">
+                                <h2 class="px-2 text-lg font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white py-2">Popular</h2>
+                                <h2 class="px-2 text-lg font-medium py-2">Pro Yearly</h2>
+                                <p class="mb-3">
+                                    <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50 before-discount">36$</span>
+                                    <span class="font-medium dark:text-gray-400">/year</span>
+                                    <span class="font-medium dark:text-gray-400 block pt-4 pb-2">
+                                        <span class="text-[8px] sm:text-sm bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg px-2 py-1 font-bold">
+                                            3 months free
+                                        </span>
+                                    </span>
 
-                <a href="/login" class="inline-block rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 text-center font-bold text-white">
-                    Start
-                    now for free</a>
+                                <div class="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row items-center justify-center">
+                                    <span class="text-sm font-bold dark:text-gray-50 text-green-500 pr-2">You Pay</span>
+                                    <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50 text-green-500 ">27$</span>
+                                    <span class="text-2xl font-medium dark:text-gray-400 text-green-500">/year</span>
+                                </div>
+
+
+
+                                </p>
+                            </th>
+                            <th scope="col">
+                                <h2 class="px-2 text-lg font-medium">Pro Monthly</h2>
+                                <p class="mb-3">
+                                    <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50">5.95$</span>
+                                    <span class="font-medium dark:text-gray-400">/mo</span>
+                                </p>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="space-y-6 text-center divide-y divide-gray-700">
+                        <tr>
+                            <th scope="row" class="text-left">
+                                <h3 class="py-3">Unlimited links</h3>
+                            </th>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Free plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Standard plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Premium plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-left">
+                                <h3 class="py-3">Social icons</h3>
+                            </th>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Free plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Standard plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Premium plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-left">
+                                <h3 class="py-3">Profile picture and bio</h3>
+                            </th>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Free plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Standard plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Premium plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-left">
+                                <h3 class="py-3">Custom mylinx.site url</h3>
+                            </th>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Free plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Standard plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Premium plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row" class="text-left">
+                                <h3 class="py-3">Hide mylinx branding</h3>
+                            </th>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Standard plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Standard plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Premium plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="text-left">
+                                <h3 class="py-3">Custom mylinx.site url</h3>
+                            </th>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Free plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Standard plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Premium plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row" class="text-left">
+                                <h3 class="py-3">Request Verification Badge</h3>
+                            </th>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Not included in Free plan" class="w-5 h-5 mx-auto dark:text-gray-600">
+                                    <path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Standard plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Premium plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th scope="row" class="text-left">
+                                <h3 class="py-3"> Page and Clicks Analytics</h3>
+                            </th>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Not included in Free plan" class="w-5 h-5 mx-auto dark:text-gray-600">
+                                    <path fill-rule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Standard plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                            <td>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-label="Included in Premium plan" class="w-5 h-5 mx-auto dark:text-violet-400">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <!-- End of New Table Pricing -->
+
+        <div class="flex h-screen justify-center items-center flex-col mt-6">
+            <div class="w-full h-screen bg-[url(https://images.unsplash.com/photo-1583127812417-7c06e950a432?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)] bg-cover bg-center">
+                <div class="w-full h-full flex  justify-center items-center backdrop-brightness-50">
+                    <div class="max-w-screen-sm mx-auto text-center">
+                        <h2 class="mb-4 text-3xl font-bold leading-tight tracking-tight text-white dark:text-white">Create a
+                            mylinx page now</h2>
+                        <p class="mb-6 font-normal text-gray-100 dark:text-gray-100 md:text-lg">Getting Started is totally free, no
+                            credit card required.</p>
+
+                        <a href="/login" class="inline-block rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-3 text-center font-bold text-white">
+                            Start
+                            now for free</a>
+                    </div>
+                </div>
             </div>
         </div>
 
