@@ -81,13 +81,23 @@ Route::middleware([
     Route::post('socials/store', [Controllers\SocialsController::class, 'store'])->name('socials.store');
     Route::post('socials/destroy', [Controllers\SocialsController::class, 'destroy'])->name('socials.destroy');
 
+    Route::post('dividers/store', [Controllers\DividersController::class, 'store'])->name('dividers.store');
+    Route::get('/getDividers', [Controllers\DividersController::class, 'getDividers']);
+
+    Route::get('/getItems', [Controllers\ItemsController::class, 'getItems']);
+    Route::put('items/{item}/move', [Controllers\ItemsController::class, 'move'])->name('items.move');
 
 
 });
 
 
+// testing routes
+
+
+
 Route::get('{username}', [Controllers\PagesController::class, 'show'])
 ->where('username', '^(?!admin(?:\/login)?)[\w.-]+$')
+->where('username', '^(?!tos|privacy-policy|contact-us$).*$')
 ->name('userpage');
 
 

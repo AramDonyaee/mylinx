@@ -298,12 +298,23 @@
                         </svg>
                     </a>
                     <!-- Links -->
+                    @guest
                     <div class="hidden md:block">
                         <div class="ml-4 flex items-center md:ml-6 gap-x-2">
                             <a href="/register" class="text-white bg-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Sign Up</a>
                             <a href="/login" class="text-white bg-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Log in</a>
                         </div>
                     </div>
+                    @endguest
+
+                    @auth
+                    <div class="hidden md:block">
+                        <div class="ml-4 flex items-center md:ml-6 gap-x-2">
+                            <a href="/content" class="text-white bg-black hover:text-gray-500 px-3 py-2 rounded-md text-sm font-bold">Dashboard</a>
+                        </div>
+                    </div>
+                    @endauth
+
                     <!-- Hamburger -->
                     <div class="-mr-2 flex md:hidden pr-4">
                         <button @click="isOpen = !isOpen" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out">
@@ -321,11 +332,21 @@
             <!-- Responsive menu -->
             <div v-bind:class="[isOpen ? 'block' : 'hidden', 'md:hidden']">
                 <div class="px-2 pt-2 sm:px-3">
+                    @guest
                     <a href="/register" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 text-base font-medium rounded-tl-lg rounded-tr-lg">Sign
                         up</a>
                     <a href="/login" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 rounded-bl-lg rounded-br-lg  text-base font-medium">Log
                         in</a>
+                    @endguest
+
+                    @auth
+                    <a href="/content" class="bg-gray-800 text-white hover:text-indigo-400 block px-3 py-2 text-base font-medium rounded-tl-lg rounded-tr-lg">
+                        Dashboard
+                    </a>
+                    @endauth
+
                 </div>
+
             </div>
         </nav>
 
@@ -473,40 +494,39 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th scope="col">
-                                <h2 class="px-2 text-lg font-medium">Starter</h2>
-                                <p class="mb-3">
-                                    <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50">0$</span>
-                                    <span class="font-medium dark:text-gray-400">/mo</span>
+                            <th scope="col" class="flex flex-col">
+                                <h2 class="px-2 text-[11px] sm:text-lg font-bold sm:font-medium sm:py-2">Starter</h2>
+                                <p >
+                                    <span class="text-[10px] sm:text-2xl font-bold sm:text-4xl dark:text-gray-50">0$</span>
+                                    <span class="text-[10px] sm:text-base font-medium dark:text-gray-400">/mo</span>
                                 </p>
                             </th>
                             <th scope="col" class="box relative pro-yearly rounded-tl-lg rounded-tr-lg">
-                                    <div class="ribbon invisible sm:visible"><span>POPULAR</span></div>
-                                <h2 class="px-2 text-lg font-medium py-2">Pro Yearly</h2>
-                                <p class="mb-3">
-                                    <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50 before-discount">36$</span>
-                                    <span class="font-medium dark:text-gray-400">/year</span>
-                                    <span class="font-medium dark:text-gray-400 block pt-4 pb-2">
-                                        <span class="text-[8px] sm:text-sm bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-lg px-2 py-1 font-bold">
+                                <div class="ribbon invisible sm:visible"><span>POPULAR</span></div>
+                                <h2 class="text-[10px] px-1 sm:text-lg font-bold sm:font-medium sm:py-2">Pro Yearly</h2>
+                                <p>
+                                    <span class="text-[10px] sm:text-xl font-bold sm:text-4xl dark:text-gray-50 before-discount">36$</span>
+                                    <span class="text-[10px] sm:text-base font-medium dark:text-gray-400">/year</span>
+                                    <span class="font-medium dark:text-gray-400 block sm:pt-4 sm:pb-2">
+                                        <span class="hidden sm:inline-block text-[8px] sm:text-sm bg-gradient-to-r from-purple-500 to-pink-500 text-white sm:rounded-lg px-0.5 sm:px-2 py-1 font-bold">
                                             3 months free
                                         </span>
                                     </span>
 
-                                <div class="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row items-center justify-center">
-                                    <span class="text-sm font-bold dark:text-gray-50 text-green-500 pr-2">You Pay</span>
-                                    <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50 text-green-500 ">27$</span>
-                                    <span class="text-2xl font-medium dark:text-gray-400 text-green-500">/year</span>
+                                <div class="flex flex-col sm:flex-row items-center justify-center">
+                                    <span class="text-[11px] sm:text-2xl font-bold sm:text-4xl dark:text-gray-50 text-green-500 sm:pb-2">27$/year</span>
+                                    <span class="text-[11px] font-medium dark:text-gray-400 text-green-500 sm:hidden">3 months free</span>
                                 </div>
 
 
 
                                 </p>
                             </th>
-                            <th scope="col">
-                                <h2 class="px-2 text-lg font-medium">Pro Monthly</h2>
+                            <th scope="col" class="flex flex-col">
+                                <h2 class="sm:px-2 text-[11px] sm:text-lg font-bold sm:font-medium sm:py-2">Pro Monthly</h2>
                                 <p class="mb-3">
-                                    <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50">5.95$</span>
-                                    <span class="font-medium dark:text-gray-400">/mo</span>
+                                    <span class="text-[11px] sm:text-2xl font-bold sm:text-4xl dark:text-gray-50">5.95$</span>
+                                    <span class="text-[11px] sm:text-base font-medium dark:text-gray-400">/mo</span>
                                 </p>
                             </th>
 
@@ -517,20 +537,28 @@
                             <th scope="row" class="text-left">
 
                             </th>
-                            <td class="p-2">
-                                <div class="py-2 bg-black rounded-lg text-white font-bold">
-                                    Buy
-                                </div>
+                            <td class="p-1 sm:p-2">
+                                <a href="/upgrade">
+                                    <div class="text-[10px] px-1 sm:text-base py-2 bg-black rounded-lg text-white font-bold">
+                                        Get Started
+                                    </div>
+                                </a>
                             </td>
-                            <td class="p-2">
-                                <div class="py-2 bg-black rounded-lg text-white font-bold">
-                                    Buy
-                                </div>
+
+
+                            <td class="p-1 sm:p-2">
+                                <a href="/upgrade">
+                                    <div class="py-2 text-[10px] sm:text-base bg-black rounded-lg text-white font-bold">
+                                        Buy
+                                    </div>
+                                </a>
                             </td>
-                            <td class="p-2">
-                                <div class="py-2 bg-black rounded-lg text-white font-bold">
-                                    Buy
-                                </div>
+                            <td class="p-1 sm:p-2">
+                                <a href="/upgrade">
+                                    <div class="py-2 text-[10px] sm:text-base bg-black rounded-lg text-white font-bold">
+                                        Buy
+                                    </div>
+                                </a>
                             </td>
                         </tr>
 

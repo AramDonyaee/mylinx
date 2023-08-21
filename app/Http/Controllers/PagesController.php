@@ -33,16 +33,55 @@ class PagesController extends Controller
         }
 
         $page = $user->page;
-        // $links = Link::where('page_id', $page->id)->orderBy('link_order', 'asc')->get();
-        $links = Order::join('links', 'orders.element_id', '=', 'links.id')
-        ->where('links.page_id', $page->id)
-        ->orderBy('orders.order', 'asc')
-        ->get();
         $socials = Social::where('page_id', $page->id)->get();
+
+
+        // getting all the links
+        $links = Order::join('links', 'orders.element_id', '=', 'links.id')
+            ->where('links.page_id', $page->id)
+            ->orderBy('orders.order', 'asc')
+            ->get();
+
+        $links = $links->map(function ($link) {
+            $link->order = Order::select('order')->where('element_id', $link->id)->value('order');
+            return $link;
+        });
+
+        $links = $links->map(function ($link) {
+            $link->block_type = 'link';
+            return $link;
+        });
+
+        $links = $links->toArray();
+
+
+        //getting all the dividers
+        $dividers = Order::join('dividers', 'orders.element_id', '=', 'dividers.id')
+            ->where('dividers.page_id', $page->id)
+            ->orderBy('orders.order', 'asc')
+            ->get();
+
+        $dividers = $dividers->map(function ($divider) {
+            $divider->order = Order::select('order')->where('element_id', $divider->id)->value('order');
+            return $divider;
+        });
+
+        $dividers = $dividers->map(function ($divider) {
+            $divider->block_type = 'divider';
+            return $divider;
+        });
+
+        $dividers = $dividers->toArray();
+
+        $items = array_merge($links, $dividers);
+
+        usort($items, function ($a, $b) {
+            return $a['order'] - $b['order'];
+        });
 
         return Inertia::render('Mylinx/UserPage', [
             'page' => $page,
-            'links' => $links ?? null,
+            'items' => $items ?? null,
             'socials' => $socials ?? null,
         ]);
     }

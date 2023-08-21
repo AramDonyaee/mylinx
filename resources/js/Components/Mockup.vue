@@ -1,6 +1,6 @@
 <template>
     <div class="ease-linear duration-200 mx-auto h-[712px] w-[350px] bg-black rounded-[50px] border-[10px] border-black relative overflow-hidden ring ring-purple-400 shadow-xl"
-        :style="{ backgroundColor: backgroundColor, background: backgroundColor}">
+        :style="{ backgroundColor: backgroundColor, background: backgroundColor }">
         <div class="max-h-[712px] overflow-y-auto no-scroll" v-bind:style="{
             'padding-right': '1em',
             'padding-left': '1em'
@@ -32,89 +32,97 @@
                 </div>
                 <!-- Notification Summary -->
                 <div class="relative mt-6  ">
-                    <!-- Stacked panels (sitting below) -->
-
-                    <!-- Main, current panel -->
-
-                        <!-- <div v-for="n in 1" id="link"
-                            class=" h-16 p-4 flex bg-white text-sm font-bold mb-2 text-center justify-center items-center contents-center ">
-                            Example Link
-                        </div>
-
-                        <span class="flex flex-col w-full items-center overflow-hidden" id="link">
-                            <div class="w-full ">
-                                <img loading="lazy" class="object-cover w-full h-32" src="landscape.jpg" />
-                            </div>
-                            <div class="py-4 font-bold">Example link with picture!</div>
-                        </span> -->
-
-
 
                     <div class="relative mt-4 cursor-pointer mb-24" id="links_id">
-                        <a v-for="link in links" id="link" @click="linkClick(link)"
-                            class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-2 text-xl justify-center text-center content-center"
-                            v-bind:href=link.hyperlink>
+
+                        <div v-for="item in items">
 
                             <!-- -->
 
-                            <span v-if="link.type == 1" class="flex flex-col w-full items-center py-4">
-                                <div class="font-bold px-2">{{ link.title }}</div>
-                                <div class="text-sm font-normal px-2">{{ link.description }}</div>
+                            <a id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
+                                class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-0.5 text-xl justify-center text-center content-center">
+                                <span v-if="item.type == 1" class="flex flex-col w-full items-center py-4">
+                                    <div class="font-bold px-2">{{ item.title }}</div>
+                                    <div class="text-sm font-normal px-2">{{ item.description }}</div>
+                                </span>
+                            </a>
+
+                            <a id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
+                                class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-0.5 text-xl justify-center text-center content-center">
+                                <span v-if="item.type == 2" class="flex w-full items-center h-28">
+                                    <div class="w-28 h-full">
+                                        <img loading="lazy" class="object-cover w-28 h-full" :src="item.thumbnail_path" />
+                                    </div>
+
+                                    <div class="flex flex-col">
+                                        <div class="font-bold pl-4 text-left">{{ item.title }}</div>
+                                        <div class="text-sm font-normal pl-4 text-left">{{ item.description }}</div>
+                                    </div>
+                                </span>
+                            </a>
+
+                            <a id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
+                                class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-0.5 text-xl justify-center text-center content-center">
+                                <span v-if="item.type == 3" class="flex w-full items-center py-2">
+                                    <div class="w-1/4 flex justify-center ">
+                                        <img loading="lazy" class="object-cover rounded-xl w-[52px] h-[52px] ml-8 "
+                                            :src="item.thumbnail_path" />
+                                    </div>
+
+                                    <div class="flex flex-col w-3/4">
+                                        <div class="font-bold ">{{ item.title }}</div>
+                                        <div class="text-sm font-normal ">{{ item.description }}</div>
+                                    </div>
+                                </span>
+                            </a>
+
+                            <a id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
+                                class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-0.5 text-xl justify-center text-center content-center">
+                                <span v-if="item.type == 4" class="flex flex-col w-full items-center">
+                                    <div class="w-full">
+                                        <img loading="lazy" class="object-cover w-full h-full" :src="item.thumbnail_path" />
+                                    </div>
+                                    <div class="flex flex-col py-2">
+                                        <div class="font-bold px-4">{{ item.title }}</div>
+                                        <div class="text-sm font-normal px-4">{{ item.description }}</div>
+                                    </div>
+                                </span>
+                            </a>
+
+                            <span v-if="item.block_type == 'divider'" class="flex justify-center">
+                                <div v-if="item.divider_type == 'threedots'" class="mb-5">
+                                    <svg fill="#000000" height="50px" width="50px" version="1.1" id="Capa_1"
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        viewBox="0 0 32.055 32.055" xml:space="preserve">
+                                        <g>
+                                            <path
+                                                d="M3.968,12.061C1.775,12.061,0,13.835,0,16.027c0,2.192,1.773,3.967,3.968,3.967c2.189,0,3.966-1.772,3.966-3.967
+                                                    C7.934,13.835,6.157,12.061,3.968,12.061z M16.233,12.061c-2.188,0-3.968,1.773-3.968,3.965c0,2.192,1.778,3.967,3.968,3.967
+                                                    s3.97-1.772,3.97-3.967C20.201,13.835,18.423,12.061,16.233,12.061z M28.09,12.061c-2.192,0-3.969,1.774-3.969,3.967
+                                                    c0,2.19,1.774,3.965,3.969,3.965c2.188,0,3.965-1.772,3.965-3.965S30.278,12.061,28.09,12.061z" />
+                                        </g>
+                                    </svg>
+                                </div>
+
+                                <div v-if="item.divider_type == 'twolines'" class="mb-5">
+                                    <svg width="65px" height="65px" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4 10H20M4 14H20" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+
                             </span>
 
-                            <span v-if="link.type == 2" class="flex w-full items-center h-28">
-                                <div class="w-28 h-full">
-                                    <img loading="lazy" class="object-cover w-28 h-full" :src="link.thumbnail_path" />
-                                </div>
 
-                                <div class="flex flex-col">
-                                    <div class="font-bold pl-4 text-left">{{ link.title }}</div>
-                                    <div class="text-sm font-normal pl-4 text-left">{{ link.description }}</div>
-                                </div>
-                            </span>
-
-                            <span v-if="link.type == 3" class="flex w-full items-center py-2">
-                                <div class="w-1/4 flex justify-center ">
-                                    <img loading="lazy" class="object-cover rounded-xl w-[52px] h-[52px] ml-8 "
-                                        :src="link.thumbnail_path" />
-                                </div>
-                                
-                                <div class="flex flex-col w-3/4">
-                                    <div class="font-bold ">{{ link.title }}</div>
-                                    <div class="text-sm font-normal ">{{ link.description }}</div>
-                                </div>
-                            </span>
-
-                            <span v-if="link.type == 4" class="flex flex-col w-full items-center">
-                                <div class="w-full">
-                                    <img loading="lazy" class="object-cover w-full h-full" :src="link.thumbnail_path" />
-                                </div>
-                                <div class="flex flex-col py-2">
-                                    <div class="font-bold px-4">{{ link.title }}</div>
-                                    <div class="text-sm font-normal px-4">{{ link.description }}</div>
-                                </div>
-                            </span>
-
-
-                        </a>
+                        </div>
 
                     </div>
 
-                    <!-- <Carousel :items-to-show="1">
-                    <Slide class="bg-white backdrop-blur h-48 rounded-3xl mr-4" v-for="slide in 10" :key="slide">
-                        <div class="carousel__item">{{ slide }}</div>
-                    </Slide>
-                </Carousel> -->
 
                 </div>
             </div>
-            <!-- Flashlight, camera and bottom swipe menu -->
-            <!-- <div class="absolute bottom-1 inset-x-0">
-            <div class="flex justify-center pb-3 text-white">
-                <span class=" text-sm  [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">POWERED BY</span>
-                <ApplicationMark class=" h-5 ml-4" />
-            </div>
-        </div> -->
+
         </div>
 
 
@@ -133,7 +141,7 @@ import ApplicationMark from '../Components/ApplicationMark.vue';
 export default {
 
     name: 'Mockup',
-    props: ['size', 'avatarImage', 'title', 'bio', 'backgroundColor', 'backgroundImage', 'borderThickness', 'borderRadius', 'linkBgColor', 'borderColor', 'linkTextColor', 'links', 'socials'],
+    props: ['size', 'avatarImage', 'title', 'bio', 'backgroundColor', 'backgroundImage', 'borderThickness', 'borderRadius', 'linkBgColor', 'borderColor', 'linkTextColor', 'items', 'socials'],
     components: {
         Carousel, Slide, Navigation, Loading, ApplicationMark
     },

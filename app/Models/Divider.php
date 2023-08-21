@@ -10,9 +10,9 @@ class Divider extends Model
     use HasFactory;
 
     protected $fillable = [
-        'hyperlink',
         'page_id',
-        'type'
+        'divider_type',
+        'color'
     ];
 
     public function order()

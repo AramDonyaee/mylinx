@@ -20,6 +20,7 @@
         "vue-stripe-js": "^1.0.1"
     },
     "dependencies": {
+        "@egjs/vue3-flicking": "^4.11.0",
         "@shopify/draggable": "^1.0.0-beta.8",
         "@stripe/stripe-js": "^1.54.1",
         "@takuma-ru/vue-swipe-modal": "^4.0.0",

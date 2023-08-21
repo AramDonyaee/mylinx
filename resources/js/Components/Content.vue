@@ -1,153 +1,240 @@
 <template>
     <Toast v-if="showNotification" :message="toastMessage" :isError="isToastError" />
 
-
     <div v-show="!isMockupModalVisible" class="grid grid-flow-col grid-rows-2 sm:grid-rows-1 sm:grid-cols-2">
         <div>
-
-            <div class="grid grid-cols-2 overflow-hidden mx-8 mt-10 rounded-xl ">
-                <div class="cursor-pointer hover:bg-gray-50 text-center bg-white py-4 " v-for="(tab, index) in tabs"
-                    :key="index" @click="this.activeTab = tab">
-                    {{ tab }}
-                </div>
-            </div>
-
-            <transition name="fade">
-                <div class="grid grid-cols-1 gap-4 mx-8 mt-4" v-show="this.activeTab === 'Link'">
-
-                    <div class="bg-white p-4 rounded-lg gap-2 mt-2">
-                        <div class="flex flex-col">
-                            <button @click="showLinkModal"
-                                class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">
-                                <v-icon name="fa-link" scale="1.2" />
-                                Add a Link
-                            </button>
-                        </div>
+            <accordion class="mb-4">
+                <template v-slot:title>
+                    <div class="bg-black text-white text-center p-4 mx-8 mt-8 cursor-pointer font-bold "
+                        @click="this.isAddBlockOpen = !this.isAddBlockOpen"
+                        :class="{ 'rounded-tl-xl rounded-tr-xl': isAddBlockOpen, 'rounded-xl': !isAddBlockOpen }">
+                        <v-icon name="fa-plus" fill="white" scale="1" />
+                        Add a block
                     </div>
-
-
-                    <transition-group name="list" tag="ul" class="mt-2">
-
-                        <li v-for="(link, index) in this.links"
-                            class="flex bg-white rounded-lg  overflow-hidden transition duration-100 mb-2 text-xl justify-center"
-                            :key="link">
-
-                            <div class="flex flex-row w-full">
-                                <div class="w-full flex flex-col ">
-                                    <div class="flex-grow p-4">
-                                        <p>{{ link.title }}</p>
-                                        <p class="text-sm font-normal">{{ link.description }}</p>
-                                    </div>
-
-                                    <div class="flex flex-row flex-none items-center pl-4 pb-4">
-                                        <button @click="destroyLink(link)">
-                                            <v-icon name="bi-trash-fill" fill="black" scale="1" />
-                                        </button>
-                                        <button class="ml-2" @click="showEditModal(link)">
-                                            <v-icon name="md-edit-outlined" fill="black" scale="1" />
-                                        </button>
-                                    </div>
+                </template>
+                <template v-slot:content>
+                    <div class="bg-white mb-4 mx-8 px-4 pt-6 pb-4 rounded-bl-xl rounded-br-xl">
+                        <Flicking :options="{ align: 'prev', horizontal: true, bound: true }" @move-end="onMoveEnd"
+                            class="grid grid-cols-1">
+                            <div class="panel mr-1 flex flex-col cursor-pointer" @click="showLinkModal" key="link">
+                                <div class="h-28 w-28 rounded-xl bg-gray-200 flex items-center justify-center">
+                                    <v-icon name="fa-link" fill="black" scale="2" />
                                 </div>
-
-                                <div class="flex flex-col items-center">
-                                    <div class="h-full bg-black flex items-center cursor-pointer hover:bg-gray-700 px-2"
-                                        @click="move(index, index - 1)" :disabled="index == 0">
-                                        <button>
-                                            <v-icon name="bi-arrow-up" fill="white" scale="1.2" />
-                                        </button>
-                                    </div>
-                                    <div class="h-full bg-black flex items-center cursor-pointer hover:bg-gray-700 px-2"
-                                        @click="move(index, index + 1)" :disabled="index == (this.links.length - 1)">
-
-                                        <button>
-                                            <v-icon name="bi-arrow-down" fill="white" scale="1.2" />
-                                        </button>
-                                    </div>
+                                <div class="text-center text-sm font-bold mt-1">Link</div>
+                            </div>
+                            <div class="panel mr-1 flex flex-col cursor-pointer" @click="showSocialModal" key="social">
+                                <div class="h-28 w-28 rounded-xl bg-gray-200 flex items-center justify-center">
+                                    <v-icon name="fa-twitter" fill="black" scale="2" />
                                 </div>
+                                <div class="text-center text-sm font-bold mt-1">Social Icon</div>
+                            </div>
+                            <div class="panel mr-1 flex flex-col cursor-pointer" @click="showDividerModal" key="divide">
+                                <div class="h-28 w-28 rounded-xl bg-gray-200 flex items-center justify-center">
+                                    <v-icon name="fa-divide" fill="black" scale="2" />
+                                </div>
+                                <div class="text-center text-sm font-bold mt-1">Divider</div>
+                            </div>
+                            <div class="panel mr-1 flex flex-col bg-black-400 " key="textblock">
+                                <div
+                                    class="overflow-hidden relative h-28 w-28 rounded-xl bg-gray-200 flex items-center justify-center">
+                                    <div
+                                        class="backdrop-brightness-50 h-full w-full absolute flex justify-center items-center text-white font-bold text-sm">
+                                        Coming Soon</div>
+
+                                    <v-icon name="co-text-square" fill="black" scale="2" />
+                                </div>
+                                <div class="text-center text-sm font-bold mt-1">Text Block</div>
+                            </div>
+                            <div class="panel mr-1 flex flex-col bg-black-400 " key="store">
+                                <div
+                                    class="overflow-hidden relative h-28 w-28 rounded-xl bg-gray-200 flex items-center justify-center">
+                                    <div
+                                        class="backdrop-brightness-50 h-full w-full absolute flex justify-center items-center text-white font-bold text-sm">
+                                        Coming Soon</div>
+
+                                    <v-icon name="fa-store" fill="black" scale="2" />
+                                </div>
+                                <div class="text-center text-sm font-bold mt-1">Store</div>
+                            </div>
+                            <div class="panel mr-1 flex flex-col bg-black-400" key="poll">
+                                <div
+                                    class="overflow-hidden relative h-28 w-28 rounded-xl bg-gray-200 flex items-center justify-center">
+                                    <div
+                                        class="backdrop-brightness-50 h-full w-full absolute flex justify-center items-center text-white font-bold text-sm">
+                                        Coming Soon</div>
+                                    <v-icon name="fa-poll-h" fill="black" scale="2" />
+                                </div>
+                                <div class="text-center text-sm font-bold mt-1">Poll</div>
+                            </div>
+                            <div class="panel mr-1 flex flex-col bg-black-400" key="story">
+                                <div
+                                    class="overflow-hidden relative h-28 w-28 rounded-xl bg-gray-200 flex items-center justify-center">
+                                    <div
+                                        class="backdrop-brightness-50 h-full w-full absolute flex justify-center items-center text-white font-bold text-sm">
+                                        Coming Soon</div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none"
+                                        viewBox="0 0 24 24" id="instagram-story">
+                                        <path fill="#000" fill-rule="evenodd"
+                                            d="M10.2263 2.128C10.3296 2.52914 10.0881 2.93802 9.68694 3.04127 9.19056 3.16903 8.7103 3.33698 8.24979 3.54149 7.87123 3.7096 7.42806 3.539 7.25994 3.16044 7.09183 2.78187 7.26243 2.3387 7.64099 2.17059 8.17667 1.9327 8.73547 1.73727 9.31306 1.58861 9.7142 1.48537 10.1231 1.72686 10.2263 2.128zM5.75633 4.15238C6.03781 4.45625 6.01966 4.93078 5.71579 5.21226 4.97148 5.90172 4.34093 6.71184 3.85525 7.61113 3.65841 7.97559 3.2034 8.11148 2.83894 7.91464 2.47448 7.71781 2.33859 7.26279 2.53543 6.89834 3.1 5.85298 3.83243 4.91218 4.69645 4.11183 5.00032 3.83035 5.47485 3.8485 5.75633 4.15238zM2.25612 9.61903C2.66481 9.6865 2.94142 10.0725 2.87396 10.4812 2.79247 10.9748 2.75 11.4821 2.75 11.9999 2.75 12.5177 2.79247 13.025 2.87396 13.5186 2.94142 13.9273 2.66481 14.3133 2.25612 14.3808 1.84744 14.4482 1.46145 14.1716 1.39399 13.7629 1.29922 13.1888 1.25 12.5998 1.25 11.9999 1.25 11.4 1.29922 10.811 1.39399 10.2369 1.46145 9.82819 1.84744 9.55157 2.25612 9.61903zM2.83894 16.0851C3.2034 15.8883 3.65841 16.0242 3.85525 16.3887 4.34093 17.288 4.97147 18.0981 5.71578 18.7875 6.01966 19.069 6.03781 19.5435 5.75633 19.8474 5.47485 20.1513 5.00032 20.1694 4.69644 19.888 3.83243 19.0876 3.1 18.1468 2.53543 17.1015 2.33859 16.737 2.47448 16.282 2.83894 16.0851zM7.25994 20.8394C7.42805 20.4608 7.87122 20.2902 8.24979 20.4583 8.7103 20.6628 9.19056 20.8308 9.68694 20.9585 10.0881 21.0618 10.3296 21.4707 10.2263 21.8718 10.1231 22.2729 9.7142 22.5144 9.31306 22.4112 8.73547 22.2625 8.17667 22.0671 7.64099 21.8292 7.26243 21.6611 7.09183 21.2179 7.25994 20.8394zM11.25 2C11.25 1.58579 11.5858 1.25 12 1.25 17.9371 1.25 22.75 6.06294 22.75 12 22.75 12.4142 22.4142 12.75 22 12.75 21.5858 12.75 21.25 12.4142 21.25 12 21.25 6.89137 17.1086 2.75 12 2.75 11.5858 2.75 11.25 2.41421 11.25 2zM21.4682 15.3127C21.8478 15.4786 22.021 15.9207 21.8552 16.3003 20.197 20.0954 16.4094 22.75 12 22.75 11.5858 22.75 11.25 22.4142 11.25 22 11.25 21.5858 11.5858 21.25 12 21.25 15.7919 21.25 19.0526 18.9682 20.4806 15.6997 20.6465 15.3202 21.0886 15.1469 21.4682 15.3127z"
+                                            clip-rule="evenodd">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="text-center text-sm font-bold mt-1">Story</div>
+                            </div>
+                            <div class="panel mr-1 flex flex-col bg-black-400" key="question">
+                                <div
+                                    class="overflow-hidden relative h-28 w-28 rounded-xl bg-gray-200 flex items-center justify-center">
+                                    <div
+                                        class="backdrop-brightness-50 h-full w-full absolute flex justify-center items-center text-white font-bold text-sm">
+                                        Coming Soon</div>
+
+                                    <v-icon name="md-questionanswer-round" fill="black" scale="2" />
+                                </div>
+                                <div class="text-center text-sm font-bold mt-1">Q&A</div>
+                            </div>
+                            <div class="panel mr-1 flex flex-col bg-black-400" key="form">
+                                <div
+                                    class="overflow-hidden relative h-28 w-28 rounded-xl bg-gray-200 flex items-center justify-center">
+                                    <div
+                                        class="backdrop-brightness-50 h-full w-full absolute flex justify-center items-center text-white font-bold text-sm">
+                                        Coming Soon</div>
+
+                                    <svg width="36pt" height="512pt" viewBox="0 0 512 512" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="#000000ff">
+                                            <path fill="#000000" opacity="1.00"
+                                                d=" M 41.38 0.00 L 472.05 0.00 C 482.96 0.89 493.56 5.79 500.88 14.00 C 507.70 21.43 511.62 31.34 512.00 41.40 L 512.00 472.03 C 511.04 483.93 505.21 495.44 495.73 502.79 C 489.06 508.19 480.71 511.15 472.22 512.00 L 39.53 512.00 C 27.29 510.84 15.54 504.58 8.31 494.55 C 3.46 488.10 0.81 480.22 0.00 472.24 L 0.00 41.39 C 0.38 31.11 4.47 20.96 11.59 13.50 C 19.22 5.27 30.19 0.40 41.38 0.00 M 17.20 40.18 C 16.89 49.53 17.15 58.90 17.07 68.26 C 176.36 68.27 335.65 68.28 494.94 68.25 C 494.84 58.89 495.12 49.52 494.79 40.17 C 493.82 27.32 481.89 16.65 469.02 17.08 C 327.01 17.06 184.99 17.06 42.98 17.08 C 30.10 16.64 18.16 27.33 17.20 40.18 M 17.07 85.34 C 17.07 213.22 17.06 341.11 17.08 469.00 C 16.54 482.90 29.08 495.44 42.98 494.92 C 183.33 494.95 323.68 494.92 464.03 494.94 C 468.03 494.92 472.12 495.15 476.01 494.02 C 484.64 491.76 491.78 484.63 494.02 475.99 C 495.24 471.76 494.88 467.31 494.93 462.96 C 494.94 337.09 494.93 211.21 494.94 85.34 C 335.65 85.32 176.36 85.34 17.07 85.34 Z" />
+                                            <path fill="#000000" opacity="1.00"
+                                                d=" M 48.44 34.60 C 52.59 33.74 56.92 34.13 61.14 34.28 C 67.13 34.98 70.37 42.79 66.70 47.56 C 63.20 52.67 56.31 50.97 51.06 51.15 C 45.91 51.28 41.67 45.98 42.85 40.98 C 43.41 38.07 45.62 35.54 48.44 34.60 Z" />
+                                            <path fill="#000000" opacity="1.00"
+                                                d=" M 101.20 34.26 C 104.81 34.04 108.45 34.03 112.06 34.25 C 117.06 34.70 120.65 40.25 119.12 45.02 C 118.07 48.98 113.97 51.55 109.95 51.20 C 105.02 51.06 98.62 52.39 95.42 47.54 C 91.72 42.71 95.10 34.79 101.20 34.26 Z" />
+                                            <path fill="#000000" opacity="1.00"
+                                                d=" M 330.41 34.49 C 331.90 34.10 333.46 34.15 335.00 34.11 C 374.03 34.18 413.06 34.09 452.09 34.16 C 456.84 33.93 461.11 38.29 460.76 43.03 C 460.69 47.57 456.49 51.43 451.97 51.18 C 412.64 51.23 373.31 51.17 333.99 51.21 C 330.24 51.52 326.30 49.52 324.94 45.91 C 322.92 41.45 325.67 35.71 330.41 34.49 Z" />
+                                            <path fill="#000000" opacity="1.00"
+                                                d=" M 65.58 119.68 C 67.04 119.47 68.52 119.47 69.99 119.45 C 194.69 119.50 319.39 119.42 444.09 119.49 C 452.83 119.43 460.67 127.14 460.76 135.88 C 460.82 144.91 460.84 153.95 460.75 162.98 C 460.56 172.06 452.07 179.72 443.04 179.20 C 318.05 179.18 193.05 179.23 68.06 179.18 C 59.34 179.29 51.44 171.70 51.25 162.98 C 51.16 153.97 51.18 144.96 51.24 135.96 C 51.30 128.01 57.74 120.79 65.58 119.68 M 68.28 162.15 C 193.43 162.13 318.58 162.12 443.74 162.15 C 443.75 153.61 443.74 145.07 443.72 136.53 C 318.61 136.49 193.50 136.63 68.39 136.46 C 68.12 145.01 68.33 153.58 68.28 162.15 Z" />
+                                            <path fill="#000000" opacity="1.00"
+                                                d=" M 66.32 196.39 C 191.89 196.10 317.47 196.35 443.05 196.27 C 451.90 195.75 460.27 203.12 460.72 212.00 C 460.87 221.34 460.84 230.69 460.73 240.03 C 460.41 249.02 451.95 256.53 443.00 256.00 C 318.01 255.98 193.01 256.04 68.02 255.97 C 59.40 256.07 51.57 248.61 51.26 240.00 C 51.14 230.98 51.20 221.96 51.23 212.95 C 51.20 204.68 58.10 197.14 66.32 196.39 M 68.27 213.33 C 68.26 221.86 68.27 230.39 68.26 238.93 C 193.42 238.94 318.59 238.94 443.75 238.93 C 443.74 230.40 443.74 221.86 443.73 213.33 C 318.57 213.33 193.42 213.33 68.27 213.33 Z" />
+                                            <path fill="#000000" opacity="1.00"
+                                                d=" M 66.12 273.21 C 89.73 272.87 113.36 273.17 136.97 273.07 C 239.34 273.09 341.70 273.03 444.07 273.10 C 452.99 273.01 460.92 281.04 460.78 289.96 C 460.80 318.66 460.84 347.37 460.76 376.08 C 460.70 385.26 452.11 393.10 442.98 392.53 C 317.97 392.51 192.96 392.57 67.95 392.50 C 59.18 392.58 51.29 384.83 51.24 376.06 C 51.16 347.35 51.20 318.65 51.22 289.94 C 51.11 281.68 57.91 274.08 66.12 273.21 M 68.26 290.14 C 68.27 318.58 68.26 347.02 68.27 375.46 C 193.39 375.52 318.52 375.36 443.63 375.54 C 443.89 347.08 443.66 318.61 443.74 290.14 C 318.58 290.13 193.42 290.13 68.26 290.14 Z" />
+                                            <path fill="#000000" opacity="1.00"
+                                                d=" M 283.33 410.53 C 290.12 408.63 297.64 409.73 303.62 413.44 C 312.31 418.75 317.22 429.51 315.35 439.55 C 313.49 451.53 302.15 461.08 290.01 460.77 C 277.40 461.00 265.80 450.52 264.70 437.96 C 263.11 425.85 271.55 413.57 283.33 410.53 M 287.15 427.22 C 281.31 429.11 279.70 437.59 284.41 441.50 C 288.92 445.98 297.51 443.16 298.48 436.87 C 300.05 430.64 293.06 424.68 287.15 427.22 Z" />
+                                            <path fill="#000000" opacity="1.00"
+                                                d=" M 360.38 410.46 C 364.50 409.34 368.81 409.62 373.04 409.60 C 392.00 409.60 410.97 409.60 429.93 409.60 C 434.28 409.59 438.75 409.39 442.93 410.82 C 451.27 413.38 457.99 420.54 460.02 429.03 C 461.97 436.63 460.11 445.08 455.16 451.17 C 450.39 457.22 442.76 460.86 435.06 460.78 C 412.35 460.81 389.64 460.81 366.93 460.78 C 359.46 460.82 352.11 457.37 347.34 451.64 C 342.08 445.49 340.09 436.75 342.13 428.92 C 344.28 420.06 351.57 412.75 360.38 410.46 M 363.36 427.46 C 359.83 429.02 357.73 433.16 358.60 436.94 C 359.32 440.80 363.03 443.78 366.96 443.70 C 389.67 443.76 412.39 443.75 435.11 443.70 C 438.86 443.79 442.43 441.12 443.39 437.49 C 445.07 432.24 440.51 426.36 435.00 426.69 C 412.99 426.62 390.98 426.71 368.97 426.65 C 367.08 426.68 365.10 426.62 363.36 427.46 Z" />
+                                        </g>
+                                    </svg>
+
+                                </div>
+                                <div class="text-center text-sm font-bold mt-1">Form</div>
                             </div>
 
 
-                        </li>
-                    </transition-group>
-                </div>
-            </transition>
 
-            <transition name="fade">
-                <div class="grid grid-cols-1 gap-4 mx-8 mt-4" v-show="this.activeTab === 'Social'">
-                    <div class="bg-white p-4 rounded-lg gap-2 mt-2">
-                        <div class="flex flex-col">
-                            <button @click="showSocialModal"
-                                class="w-full inline-block flex-1 sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3">
-                                Add a Social Icon
+
+
+                        </Flicking>
+
+                    </div>
+                </template>
+            </accordion>
+
+
+
+            <div class="grid grid-cols-1 gap-4 mx-8 mt-4 realtive">
+
+
+                <div class="flex flex-wrap gap-2 justify-center">
+
+                    <div v-for="social in this.socials"
+                        class="relative flex items-center justify-center w-16 h-16 bg-white rounded-xl mr-4" :key="social">
+                        <v-icon :name="'fa-' + social.type" scale="1.8" fill="black" />
+                        <div class="absolute -top-2 -right-2">
+                            <button @click="destroySocial(social)">
+                                <v-icon name="io-close-circle" fill="black" scale="1.5" />
                             </button>
                         </div>
                     </div>
+                </div>
 
 
-                    <div v-for="social in this.socials" class="bg-white rounded-lg" :key="social">
-                        <div class="p-4 flex items-center relative">
-                            <v-icon :name="'fa-' + social.type" scale="1.8" fill="black" />
-                            <span class="truncate pl-2 pr-8">{{ social.hyperlink }}</span>
-                            <div class="absolute right-4">
-                                <button @click="destroySocial(social)">
-                                    <v-icon name="bi-trash-fill" fill="black" scale="1.2" />
+                <transition-group name="list" tag="ul" class="aboslute top-0">
+
+                    <li v-for="(item, index) in this.items"
+                        class="flex bg-white rounded-lg overflow-hidden transition duration-100 mb-2 text-xl justify-center"
+                        :key="item" type="links">
+
+                        <div v-if="item.block_type == 'divider'" class="flex flex-row w-full">
+                            <div class="h-full bg-indigo-500 flex items-center cursor-pointer hover:bg-gray-700 px-2"
+                                @click="move(index, index + 1)" :disabled="index == (this.items.length - 1)">
+
+                                <button>
+                                    <v-icon name="bi-arrow-down" fill="white" scale="1.2" />
                                 </button>
                             </div>
-                        </div>
-                    </div>
+                            <div class="w-full flex flex-row items-center">
 
-                </div>
-            </transition>
-
-            <transition name="fade">
-                <div class="grid grid-cols-1 gap-4 mx-8 mt-4" v-show="this.activeTab === 'Questionnaire'">
-                    <div class="bg-white p-4 rounded-lg gap-2 mt-2">
-                        <div class="flex flex-col">
-                            <!-- <button @click="addInput">Add Input</button>
-
-
-                            <div v-for="(input, index) in inputs" :key="index">
-                                <textarea v-model="input.value" type="text"></textarea>
-                                <button @click="removeInput(index)">Remove</button>
-                            </div>
-
-                            <button @click="addQuestion">add question</button>
-                            <div v-for="(question, index) in questions" :key="index">
-                                <input v-model="question.question" placeholder="question" />
-                                <button @click="addChoice(question)">add choice</button>
-                                <div v-for="(choice, choiceIndex) in question.choices" :key="choiceIndex">
-                                    <input type="radio" v-model="question.selectedChoice" :value="choiceIndex" />
-                                    <input v-model="question.choices[choiceIndex]" placeholder="choice" />
+                                <div class="bg-gray-300 flex p-2 rounded-lg ml-2">
+                                    <v-icon name="fa-divide" fill="black" scale="1" />
                                 </div>
-                            </div> -->
-                            <!-- 
 
-                            <button @click="createGenderField">Gender</button>
-                            <button @click="createTelField">Tel</button>
+                                <div class="flex-grow ">
+                                    <p class="text-base pl-2 font-bold py-4">Divider</p>
+                                </div>
 
-                            <div v-if="genderField">
-                                <label>What is your gender?</label>
-                                <br />
-                                <input type="radio" id="male" name="gender" value="male" />
-                                <label for="male">Male</label>
-                                <br />
-                                <input type="radio" id="female" name="gender" value="female" />
-                                <label for="female">Female</label>
-                                <br />
-                                <input type="radio" id="preferNotToSay" name="gender" value="preferNotToSay" />
-                                <label for="preferNotToSay">Prefer not to say</label>
+                                <div class="flex flex-none items-center pb-1 pr-2 h-full">
+                                    <button @click="destroyLink(item)"
+                                        class="ml-2 bg-red-600 rounded-full text-sm text-white font-bold py-0.5 px-2 ml-2">
+                                        delete
+                                    </button>
+                                </div>
                             </div>
 
-                            <div v-if="telField">
-                                <label>What is your phone number?</label>
-                                <input type="text" v-model="phoneNumber" />
-                            </div> -->
-
+                            <div class="flex flex-col items-center">
+                                <div class="h-full w-full bg-indigo-500 flex items-center hover:bg-gray-700 px-2">
+                                    <button class="h-full w-full" @click="move(index, index - 1)" :disabled="index == 0">
+                                        <v-icon name="bi-arrow-up" fill="white" scale="1.2" />
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                </div>
-            </transition>
+                        <div v-if="item.block_type == 'link'" class="flex flex-row w-full">
+                            <div class="h-full bg-indigo-500 flex items-center cursor-pointer hover:bg-gray-700 px-2"
+                                @click="move(index, index + 1)" :disabled="index == (this.items.length - 1)">
+
+                                <button>
+                                    <v-icon name="bi-arrow-down" fill="white" scale="1.2" />
+                                </button>
+                            </div>
+                            <div class="w-full flex flex-grow ">
+                                <div class="flex flex-grow items-center ">
+                                    <div class="bg-gray-300 flex p-2 rounded-lg ml-2">
+                                        <v-icon name="fa-link" fill="black" scale="1" />
+                                    </div>
+
+                                    <p class="text-base pl-2 font-bold py-4">{{ item.title }}</p>
+                                </div>
+
+                                <div class="flex flex-row flex-none items-center pr-2">
+                                    <button class="ml-2 bg-gray-100 rounded-full text-sm font-bold py-0.5 px-2"
+                                        @click="showEditModal(item)">
+                                        edit
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-col items-center">
+                                <div class="h-full w-full bg-indigo-500 flex items-center hover:bg-gray-700 px-2">
+                                    <button class="h-full w-full" @click="move(index, index - 1)" :disabled="index == 0">
+                                        <v-icon name="bi-arrow-up" fill="white" scale="1.2" />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                </transition-group>
+            </div>
 
 
         </div>
@@ -163,7 +250,7 @@
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
                 :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.background_path"
                 :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
-                :borderColor="link.border.color" :linkTextColor="link.textColor" :links="this.links"
+                :borderColor="link.border.color" :linkTextColor="link.textColor" :items="this.items"
                 :socials="this.socials" />
         </div>
 
@@ -179,14 +266,10 @@
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
                 :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.background_path"
                 :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
-                :borderColor="link.border.color" :linkTextColor="link.textColor" :links="this.links"
+                :borderColor="link.border.color" :linkTextColor="link.textColor" :items="this.items"
                 :socials="this.socials" />
         </div>
     </div>
-
-
-
-
 
     <!-- Social Modal -->
     <swipe-modal v-model="isSocialModal" contents-height="auto" v-bind:contents-width=this.modalWidth
@@ -628,19 +711,56 @@
         </div>
 
     </swipe-modal>
+
+
+    <!-- Divider Modal -->
+    <swipe-modal v-model="isDividerModal" contents-height="auto" v-bind:contents-width=this.modalWidth
+        border-top-radius="30px" contents-color="white" tip-color="red">
+
+        <div class="grid grid-cols-4 md:grid-cols-4 gap-2 mb-2 px-5">
+
+            <div class="bg-white rounded-lg flex justify-center items-center cursor-pointer h-20"
+                v-bind:class="{ 'border-4 border-indigo-600': this.selectedDivider == 'threedots' }" @click="this.selectedDivider='threedots'">
+                <svg fill="#000000" height="50px" width="50px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32.055 32.055" xml:space="preserve">
+                    <g>
+                        <path d="M3.968,12.061C1.775,12.061,0,13.835,0,16.027c0,2.192,1.773,3.967,3.968,3.967c2.189,0,3.966-1.772,3.966-3.967
+		C7.934,13.835,6.157,12.061,3.968,12.061z M16.233,12.061c-2.188,0-3.968,1.773-3.968,3.965c0,2.192,1.778,3.967,3.968,3.967
+		s3.97-1.772,3.97-3.967C20.201,13.835,18.423,12.061,16.233,12.061z M28.09,12.061c-2.192,0-3.969,1.774-3.969,3.967
+		c0,2.19,1.774,3.965,3.969,3.965c2.188,0,3.965-1.772,3.965-3.965S30.278,12.061,28.09,12.061z" />
+                    </g>
+                </svg>
+            </div>
+            <div class="bg-white rounded-lg flex justify-center items-center cursor-pointer h-20"
+                v-bind:class="{ 'border-4 border-indigo-600': this.selectedDivider == 'twolines' }" @click="this.selectedDivider='twolines'">
+                <svg width="65px" height="65px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 10H20M4 14H20" stroke="#000000" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+
+        </div>
+
+        <div class="relative rounded-2xl overflow-hidden px-5 mb-4">
+            <div class="w-full text-center inline-block flex-1 cursor-pointer sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3 mt-2"
+                @click="storeDivider">
+                Add Divider
+            </div>
+        </div>
+
+    </swipe-modal>
 </template>
 
 <script>
 import Mockup from './Mockup.vue'
 import Toast from './Toast.vue'
 import Modal from './Modal.vue'
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Navigation, Slide } from 'vue3-carousel'
 import swipeModal from '@takuma-ru/vue-swipe-modal'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
-
-
+import Accordion from "./Accordion.vue";
+import Flicking from "@egjs/vue3-flicking";
+import "@egjs/vue3-flicking/dist/flicking.css";
 
 
 
@@ -649,14 +769,14 @@ export default {
 
     name: 'Content',
     components: {
-        Carousel,
-        Slide,
-        Navigation,
         Mockup,
         swipeModal,
         Loading,
         Toast,
         Modal,
+        Accordion,
+        Flicking: Flicking
+
     },
 
     created() {
@@ -668,14 +788,14 @@ export default {
     },
 
     watch: {
-        links(newLinks) {
-            this.links = newLinks;
+        items(newItems) {
+            this.items = newItems;
         }
     },
 
     mounted() {
         this.getMockupData();
-        this.getLinks();
+        this.getItems();
         this.getSocials();
         Array.prototype.move = function (from, to) {
             this.splice(to, 0, this.splice(from, 1)[0]);
@@ -693,6 +813,7 @@ export default {
             modal: false,
             isSocialModal: false,
             isLinkModal: false,
+            isDividerModal: false,
             modalWidth: null,
             backgroundColor: '#111111',
             linkTitle: null,
@@ -727,6 +848,7 @@ export default {
             isThirdLinkSelected: false,
             isForthLinkSelected: false,
 
+
             isFirstLinkSelectedEdit: false,
             isSecondLinkSelectedEdit: false,
             isThirdLinkSelectedEdit: false,
@@ -753,23 +875,21 @@ export default {
 
             socials: [],
             links: [],
-
-            tabs: ['Link', 'Social'],
-            activeTab: 'Link',
+            dividers: [],
+            items: [],
 
             editableLink: null,
 
             isLinkEditModalVisible: false,
-
-            // inputs: [],
-            // questions: [],
 
             genderField: false,
             telField: false,
 
             isMockupModalVisible: false,
 
+            isAddBlockOpen: false,
 
+            selectedDivider: 'threedots',
 
 
         };
@@ -856,29 +976,6 @@ export default {
             this.isMockupModalVisible = false;
         },
 
-        // addQuestion() {
-        //     this.questions.push({ question: "", choices: [] });
-        // },
-
-        // addChoice(question) {
-        //     question.choices.push("");
-        // },
-
-        // addInput() {
-        //     this.inputs.push({ value: "" });
-        // },
-        // removeInput(index) {
-        //     this.inputs.splice(index, 1);
-        // },
-
-        // createGenderField() {
-        //     this.genderField = true;
-        // },
-
-        // createTelField() {
-        //     this.telField = true;
-        // },
-
         showEditModal(link) {
             this.isLinkEditModalVisible = true;
             this.editableLink = link;
@@ -906,15 +1003,15 @@ export default {
         },
 
 
-        move(from, to) {
-            this.links.move(from, to);
-            let index = to;
+        async move(from, to) {
+            this.items.move(from, to);
+            let index = from;
 
-            let prevLink = this.links[index - 1];
-            let nextLink = this.links[index + 1];
-            let link = this.links[index];
+            let prevLink = this.items[index - 1];
+            let nextLink = this.items[index + 1];
+            let item = this.items[index];
 
-            let position = link.order;
+            let position = item.order;
 
             if (prevLink && nextLink) {
                 position = (prevLink.order + nextLink.order) / 2;
@@ -924,10 +1021,14 @@ export default {
                 position = nextLink.order / 2;
             }
 
-            axios.put(route('links.move', { link: link.id }), {
-                link_order: position,
+            axios.put(route('items.move', { item: item.id }), {
+                order: position,
+            }).then((response) => {
+                this.getItems();
             });
         },
+
+
 
         handleImageUpload() {
             this.image = this.$refs.file.files[0];
@@ -990,8 +1091,14 @@ export default {
         showLinkModal() {
             this.isLinkModal = true
         },
+        showDividerModal() {
+            this.isDividerModal = true
+        },
         closeLinkModal() {
             this.isLinkModal = false
+        },
+        closeDividerModal() {
+            this.isDividerModal = false
         },
         showImageUpload() {
             this.isLinkImageUploadVisible = true
@@ -1009,8 +1116,6 @@ export default {
                     this.showNotification = false;
                 }, 7000);
             }
-
-
         },
 
         hideImageUpload() {
@@ -1129,12 +1234,42 @@ export default {
             this.isForthLinkSelectedEdit = true;
         },
 
+
         handleResize() {
             if (window.innerWidth < 640) {
                 this.modalWidth = '100%';
             } else {
                 this.modalWidth = '65%';
             }
+        },
+
+        async storeDivider() {
+            axios.post(
+                route('dividers.store'), {
+                color: 'red',
+                type: this.selectedDivider,
+            },
+                {
+                    onUploadProgress: function (progressEvent) {
+                        this.isLoading = true;
+                    }.bind(this)
+                }
+            ).then((response) => {
+                this.isLoading = false;
+                this.isToastError = false;
+                this.toastMessage = "The Divider was created successfully!";
+                this.showToast();
+                this.dividerColor = null;
+                this.dividerType = null;
+                this.getItems();
+
+            })
+                .catch(error => {
+                    this.isLoading = false;
+                    this.isToastError = true;
+                    this.toastMessage = error.response.data;
+                    this.showToast();
+                })
         },
 
         async storeLink() {
@@ -1188,7 +1323,7 @@ export default {
                 this.isForthLinkSelected = false;
                 this.isForthLinkTypeVisible = false;
                 this.isLinkImageUploadVisible = false;
-                this.getLinks();
+                this.getItems();
 
             })
                 .catch(error => {
@@ -1239,7 +1374,7 @@ export default {
                 this.isProgressVisibleEdit = false;
                 this.isLinkEditModalVisible = false;
                 this.getMockupData();
-                this.getLinks();
+                this.getItems();
             })
                 .catch(error => {
                     this.isLoading = false;
@@ -1256,7 +1391,7 @@ export default {
                 id: $link['id']
             }
             );
-            this.getLinks();
+            this.getItems();
         },
 
         async destroySocial($social) {
@@ -1298,12 +1433,21 @@ export default {
             this.getSocials();
         },
 
-        async getLinks() {
+        async getItems() {
             axios
-                .get('/getLinks')
+                .get('/getItems')
                 .then(response => {
-                    this.links = response.data.links;
-                    console.log(this.links);
+                    this.items = response.data.items;
+                    console.log(this.items);
+                });
+        },
+
+        async getDividers() {
+            axios
+                .get('/getDividers')
+                .then(response => {
+                    this.dividers = response.data.dividers;
+                    console.log(this.dividers);
                 });
         },
 
@@ -1325,10 +1469,10 @@ export default {
                     this.backgroundColor = response.data.background_color;
                     this.avatar = response.data.avatar_path;
                     this.link.border.thickness = response.data.link_border_thickness,
-                        this.link.border.radius = response.data.link_border_radius,
-                        this.link.border.color = response.data.link_border_color,
-                        this.link.bgColor = response.data.link_background_color,
-                        this.link.textColor = response.data.link_text_color
+                    this.link.border.radius = response.data.link_border_radius,
+                    this.link.border.color = response.data.link_border_color,
+                    this.link.bgColor = response.data.link_background_color,
+                    this.link.textColor = response.data.link_text_color
                 });
         }
 

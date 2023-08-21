@@ -4,7 +4,7 @@
 
     <div v-show="!isMockupModalVisible" class="grid grid-flow-col md:grid-rows-1 md:grid-cols-2 relative">
         <div class="mt-10 ml-8 mb-8 mr-8 relative">
-            <transition name="fade" mode="out-in">
+
                 <div class="absolute top-0 w-full rounded-2xl flex flex-col bg-white  mb-4 overflow-hidden"
                     v-show="!this.activeMainMenuItem">
                     <div class="flex flex-row border-b-[1px] border-gray-200 cursor-pointer focus:bg-gray-50 hover:bg-gray-50"
@@ -22,10 +22,10 @@
                         </div>
                     </div>
                 </div>
-            </transition>
 
 
-            <transition name="fade" mode="out-in">
+
+
                 <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Avatar'">
                     <span class="text-xl text-black font-bold relative flex justify-center items-center">
                         <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
@@ -49,10 +49,10 @@
                         </div>
                     </div>
                 </div>
-            </transition>
 
 
-            <transition name="fade" mode="out-in">
+
+
                 <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Profile'">
                     <span class="text-xl text-black font-bold relative flex justify-center items-center">
                         <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
@@ -79,9 +79,8 @@
                         <loading v-model:active="storePage_isLoading" :can-cancel="false" color="#0000FF" />
                     </div>
                 </div>
-            </transition>
 
-            <transition name="fade" mode="out-in">
+
 
                 <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Theme'">
                     <span class="text-xl text-black font-bold relative flex justify-center items-center">
@@ -111,10 +110,10 @@
                         <loading v-model:active="storeBackground_isLoading" :can-cancel="false" color="#0000FF" />
                     </div>
                 </div>
-            </transition>
 
 
-            <transition name="fade" mode="out-in">
+
+
 
                 <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Background'">
                     <span class="text-xl text-black font-bold relative flex justify-center items-center">
@@ -176,10 +175,6 @@
                     </div>
                     <!-- size - end -->
                 </div>
-            </transition>
-
-            <transition name="fade" mode="out-in">
-
 
 
                 <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Link Style'">
@@ -187,7 +182,7 @@
 
                     <div class="mb-8 md:mb-10 ">
 
-                        <transition name="fade" mode="out-in">
+
 
                             <div>
                                 <span class="text-xl text-black font-bold relative flex justify-center items-center"
@@ -218,9 +213,9 @@
                                 </div>
                             </div>
 
-                        </transition>
 
-                        <transition name="fade" mode="out-in">
+
+
                             <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Link Border'">
                                 <span class="text-xl text-black font-bold relative flex justify-center items-center">
                                     <v-icon name="md-navigatebefore-round" scale="2.5"
@@ -242,9 +237,9 @@
 
                             </div>
 
-                        </transition>
 
-                        <transition name="fade" mode="out-in">
+
+
                             <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Border Radius'">
                                 <span class="text-xl text-black font-bold relative flex justify-center items-center">
                                     <v-icon name="md-navigatebefore-round" scale="2.5"
@@ -266,9 +261,9 @@
                                 </div>
                             </div>
 
-                        </transition>
 
-                        <transition name="fade" mode="out-in">
+
+
                             <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Background Color'">
                                 <span class="text-xl text-black font-bold relative flex justify-center items-center">
                                     <v-icon name="md-navigatebefore-round" scale="2.5"
@@ -289,9 +284,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </transition>
 
-                        <transition name="fade" mode="out-in">
                             <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Border Color'">
                                 <span class="text-xl text-black font-bold relative flex justify-center items-center">
                                     <v-icon name="md-navigatebefore-round" scale="2.5"
@@ -312,9 +305,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </transition>
 
-                        <transition name="fade" mode="out-in">
                             <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Text Color'">
                                 <span class="text-xl text-black font-bold relative flex justify-center items-center">
                                     <v-icon name="md-navigatebefore-round" scale="2.5"
@@ -335,7 +326,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </transition>
+
 
                         
 
@@ -346,7 +337,7 @@
 
                     </div>
                 </div>
-            </transition>
+
 
 
         </div>
