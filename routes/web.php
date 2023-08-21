@@ -83,6 +83,8 @@ Route::middleware([
 
     Route::post('dividers/store', [Controllers\DividersController::class, 'store'])->name('dividers.store');
     Route::get('/getDividers', [Controllers\DividersController::class, 'getDividers']);
+    Route::post('dividers/destroy', [Controllers\DividersController::class, 'destroy'])->name('dividers.destroy');
+
 
     Route::get('/getItems', [Controllers\ItemsController::class, 'getItems']);
     Route::put('items/{item}/move', [Controllers\ItemsController::class, 'move'])->name('items.move');

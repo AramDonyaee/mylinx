@@ -354,7 +354,7 @@
                 :bio="this.bio" :backgroundColor="this.selected_background_color"
                 :backgroundImage="this.selected_background" :borderThickness="link.border.thickness"
                 :borderRadius="link.border.radius" :linkBgColor="link.bgColor" :borderColor="link.border.color"
-                :linkTextColor="link.textColor" :links="this.links" :socials="this.socials" />
+                :linkTextColor="link.textColor" :items="this.items" :socials="this.socials" />
         </div>
 
     </div>
@@ -370,7 +370,7 @@
                 :bio="this.bio" :backgroundColor="this.selected_background_color"
                 :backgroundImage="this.selected_background" :borderThickness="link.border.thickness"
                 :borderRadius="link.border.radius" :linkBgColor="link.bgColor" :borderColor="link.border.color"
-                :linkTextColor="link.textColor" :links="this.links" :socials="this.socials" />
+                :linkTextColor="link.textColor" :items="this.items" :socials="this.socials" />
         </div>
     </div>
 </template>
@@ -595,7 +595,7 @@ export default {
 
     mounted() {
         this.getMockupData();
-        this.getLinks();
+        this.getItems();
         this.getSocials();
     },
 
@@ -781,12 +781,12 @@ export default {
             }
         },
 
-        async getLinks() {
+        async getItems() {
             axios
-                .get('/getLinks')
+                .get('/getItems')
                 .then(response => {
-                    this.links = response.data.links;
-                    console.log(this.links);
+                    this.items = response.data.items;
+                    console.log(this.items);
                 });
         },
 
@@ -808,7 +808,7 @@ export default {
                     this.selected_background_color = response.data.background_color;
                     this.avatar = response.data.avatar_path;
                     this.link.border.thickness = response.data.link_border_thickness,
-                        this.link.border.radius = response.data.link_border_radius;
+                    this.link.border.radius = response.data.link_border_radius;
                     this.link.border.color = response.data.link_border_color;
                     this.link.bgColor = response.data.link_background_color;
                     this.link.textColor = response.data.link_text_color;

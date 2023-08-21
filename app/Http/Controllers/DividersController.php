@@ -62,4 +62,22 @@ class DividersController extends Controller
 
         return ['dividers' => $dividers];
     }
+
+    public function destroy(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'id' => 'required|integer',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
+        $divider = Divider::find($request->input('id'));
+        $divider->order()->delete();
+        $divider->delete();
+        return back();
+
+    }
 }

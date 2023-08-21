@@ -35,12 +35,12 @@
 
                     <div class="relative mt-4 cursor-pointer mb-24" id="links_id">
 
-                        <div v-for="item in items">
+                        <div v-for="item in items" class="my-2">
 
                             <!-- -->
 
                             <a id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
-                                class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-0.5 text-xl justify-center text-center content-center">
+                                class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
                                 <span v-if="item.type == 1" class="flex flex-col w-full items-center py-4">
                                     <div class="font-bold px-2">{{ item.title }}</div>
                                     <div class="text-sm font-normal px-2">{{ item.description }}</div>
@@ -48,7 +48,7 @@
                             </a>
 
                             <a id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
-                                class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-0.5 text-xl justify-center text-center content-center">
+                                class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
                                 <span v-if="item.type == 2" class="flex w-full items-center h-28">
                                     <div class="w-28 h-full">
                                         <img loading="lazy" class="object-cover w-28 h-full" :src="item.thumbnail_path" />
@@ -62,7 +62,7 @@
                             </a>
 
                             <a id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
-                                class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-0.5 text-xl justify-center text-center content-center">
+                                class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
                                 <span v-if="item.type == 3" class="flex w-full items-center py-2">
                                     <div class="w-1/4 flex justify-center ">
                                         <img loading="lazy" class="object-cover rounded-xl w-[52px] h-[52px] ml-8 "
@@ -77,7 +77,7 @@
                             </a>
 
                             <a id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
-                                class="flex hover:scale-[1.01] overflow-hidden transition duration-100 mb-0.5 text-xl justify-center text-center content-center">
+                                class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
                                 <span v-if="item.type == 4" class="flex flex-col w-full items-center">
                                     <div class="w-full">
                                         <img loading="lazy" class="object-cover w-full h-full" :src="item.thumbnail_path" />
@@ -90,7 +90,7 @@
                             </a>
 
                             <span v-if="item.block_type == 'divider'" class="flex justify-center">
-                                <div v-if="item.divider_type == 'threedots'" class="mb-5">
+                                <div v-if="item.divider_type == 'threedots'" >
                                     <svg fill="#000000" height="50px" width="50px" version="1.1" id="Capa_1"
                                         xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                         viewBox="0 0 32.055 32.055" xml:space="preserve">
@@ -104,7 +104,7 @@
                                     </svg>
                                 </div>
 
-                                <div v-if="item.divider_type == 'twolines'" class="mb-5">
+                                <div v-if="item.divider_type == 'twolines'" >
                                     <svg width="65px" height="65px" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path d="M4 10H20M4 14H20" stroke="#000000" stroke-width="2" stroke-linecap="round"

@@ -129,7 +129,7 @@
 
 
                                 <span v-if="item.block_type == 'divider'" class="flex justify-center">
-                                    <div v-if="item.divider_type == 'threedots'" class="">
+                                    <div v-if="item.divider_type == 'threedots'" >
                                         <svg fill="#000000" height="50px" width="50px" version="1.1" id="Capa_1"
                                             xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                             viewBox="0 0 32.055 32.055" xml:space="preserve">
@@ -143,7 +143,7 @@
                                         </svg>
                                     </div>
 
-                                    <div v-if="item.divider_type == 'twolines'" class="">
+                                    <div v-if="item.divider_type == 'twolines'" >
                                         <svg width="65px" height="65px" viewBox="0 0 24 24" fill="none"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path d="M4 10H20M4 14H20" stroke="#000000" stroke-width="2"

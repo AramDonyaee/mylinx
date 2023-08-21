@@ -182,7 +182,7 @@
                                 </div>
 
                                 <div class="flex flex-none items-center pb-1 pr-2 h-full">
-                                    <button @click="destroyLink(item)"
+                                    <button @click="destroyDivider(item)"
                                         class="ml-2 bg-red-600 rounded-full text-sm text-white font-bold py-0.5 px-2 ml-2">
                                         delete
                                     </button>
@@ -219,6 +219,13 @@
                                     <button class="ml-2 bg-gray-100 rounded-full text-sm font-bold py-0.5 px-2"
                                         @click="showEditModal(item)">
                                         edit
+                                    </button>
+                                </div>
+
+                                <div class="flex flex-none items-center pb-1 pr-2 h-full">
+                                    <button @click="destroyLink(item)"
+                                        class="ml-2 bg-red-600 rounded-full text-sm text-white font-bold py-0.5 px-2 ml-2">
+                                        delete
                                     </button>
                                 </div>
                             </div>
@@ -1389,6 +1396,15 @@ export default {
             await axios.post(
                 route('links.destroy'), {
                 id: $link['id']
+            }
+            );
+            this.getItems();
+        },
+
+        async destroyDivider($divider) {
+            await axios.post(
+                route('dividers.destroy'), {
+                id: $divider['id']
             }
             );
             this.getItems();
