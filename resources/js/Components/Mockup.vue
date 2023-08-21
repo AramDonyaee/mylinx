@@ -39,17 +39,17 @@
 
                             <!-- -->
 
-                            <a id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
+                            <a v-if="item.type == 1" id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
                                 class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
-                                <span v-if="item.type == 1" class="flex flex-col w-full items-center py-4">
+                                <span  class="flex flex-col w-full items-center py-4">
                                     <div class="font-bold px-2">{{ item.title }}</div>
                                     <div class="text-sm font-normal px-2">{{ item.description }}</div>
                                 </span>
                             </a>
 
-                            <a id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
+                            <a v-if="item.type == 2" id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
                                 class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
-                                <span v-if="item.type == 2" class="flex w-full items-center h-28">
+                                <span  class="flex w-full items-center h-28">
                                     <div class="w-28 h-full">
                                         <img loading="lazy" class="object-cover w-28 h-full" :src="item.thumbnail_path" />
                                     </div>
@@ -61,9 +61,9 @@
                                 </span>
                             </a>
 
-                            <a id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
+                            <a v-if="item.type == 3" id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
                                 class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
-                                <span v-if="item.type == 3" class="flex w-full items-center py-2">
+                                <span class="flex w-full items-center py-2">
                                     <div class="w-1/4 flex justify-center ">
                                         <img loading="lazy" class="object-cover rounded-xl w-[52px] h-[52px] ml-8 "
                                             :src="item.thumbnail_path" />
@@ -76,9 +76,9 @@
                                 </span>
                             </a>
 
-                            <a id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
+                            <a v-if="item.type == 4" id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
                                 class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
-                                <span v-if="item.type == 4" class="flex flex-col w-full items-center">
+                                <span class="flex flex-col w-full items-center">
                                     <div class="w-full">
                                         <img loading="lazy" class="object-cover w-full h-full" :src="item.thumbnail_path" />
                                     </div>

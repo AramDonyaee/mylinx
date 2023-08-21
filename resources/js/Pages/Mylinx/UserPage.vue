@@ -49,7 +49,7 @@
                             <div v-for="item in items" class="my-2">
 
 
-                                <a v-bind:style="{
+                                <a v-if="item.type == 1" v-bind:style="{
                                     'border-width': page.link_border_thickness + 'px',
                                     'border-color': page.link_border_color,
                                     'border-radius': page.link_border_radius + 'px',
@@ -58,13 +58,13 @@
 
                                 }" v-bind:href=item.hyperlink id="link" @click="linkClick(item)"
                                     class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
-                                    <span v-if="item.type == 1" class="flex flex-col w-full items-center py-4">
+                                    <span  class="flex flex-col w-full items-center py-4">
                                         <div class="font-bold">{{ item.title }}</div>
                                         <div class="text-sm font-normal">{{ item.description }}</div>
                                     </span>
                                 </a>
 
-                                <a v-bind:style="{
+                                <a v-if="item.type == 2" v-bind:style="{
                                     'border-width': page.link_border_thickness + 'px',
                                     'border-color': page.link_border_color,
                                     'border-radius': page.link_border_radius + 'px',
@@ -73,7 +73,7 @@
 
                                 }" v-bind:href=item.hyperlink id="link" @click="linkClick(item)"
                                     class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
-                                    <span v-if="item.type == 2" class="flex w-full items-center h-36">
+                                    <span  class="flex w-full items-center h-36">
                                         <div class="w-36 h-full">
                                             <img loading="lazy" class="object-cover w-36 h-full"
                                                 :src="item.thumbnail_path" />
@@ -85,7 +85,7 @@
                                     </span>
                                 </a>
 
-                                <a v-bind:style="{
+                                <a v-if="item.type == 3" v-bind:style="{
                                     'border-width': page.link_border_thickness + 'px',
                                     'border-color': page.link_border_color,
                                     'border-radius': page.link_border_radius + 'px',
@@ -94,7 +94,7 @@
 
                                 }" v-bind:href=item.hyperlink id="link" @click="linkClick(item)"
                                     class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
-                                    <span v-if="item.type == 3" class="flex w-full items-center py-2">
+                                    <span  class="flex w-full items-center py-2">
                                         <div class="w-1/4 flex justify-center ">
                                             <img loading="lazy" class="object-cover rounded-xl w-[52px] h-[52px] ml-8 "
                                                 :src="item.thumbnail_path" />
@@ -106,7 +106,7 @@
                                     </span>
                                 </a>
 
-                                <a v-bind:style="{
+                                <a v-if="item.type == 4" v-bind:style="{
                                     'border-width': page.link_border_thickness + 'px',
                                     'border-color': page.link_border_color,
                                     'border-radius': page.link_border_radius + 'px',
@@ -115,7 +115,7 @@
 
                                 }" v-bind:href=item.hyperlink id="link" @click="linkClick(item)"
                                     class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
-                                    <span v-if="item.type == 4" class="flex flex-col w-full items-center">
+                                    <span  class="flex flex-col w-full items-center">
                                         <div class="w-full">
                                             <img loading="lazy" class="object-cover w-full h-full"
                                                 :src="item.thumbnail_path" />
