@@ -19,7 +19,6 @@ class DividersController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'type' => 'required|string',
-            'color' => 'string'
         ]);
 
         if ($validator->fails()) {
@@ -29,7 +28,6 @@ class DividersController extends Controller
         $user_id = $request->user()->id;
         $page = Page::where('user_id', $user_id)->first();
         $divider = Divider::create([
-            'color' => $request->input('color'),
             'divider_type' => $request->input('type'),
             'page_id' => $page->id,
         ]);

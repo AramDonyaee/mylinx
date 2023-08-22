@@ -62,6 +62,7 @@ Route::middleware([
     Route::post('pages/store', [Controllers\PagesController::class, 'store'])->name('pages.store');
     Route::post('pages/updateBackground', [Controllers\PagesController::class, 'updateBackground'])->name('pages.updateBackground');
     Route::post('pages/updateBackgroundColor', [Controllers\PagesController::class, 'updateBackgroundColor'])->name('pages.updateBackgroundColor');
+    Route::post('pages/updateDividerColor', [Controllers\PagesController::class, 'updateDividerColor'])->name('pages.updateDividerColor');
     Route::post('pages/storeAvatar', [Controllers\PagesController::class, 'storeAvatar'])->name('pages.storeAvatar');
     Route::post('pages/removeAvatar', [Controllers\PagesController::class, 'removeAvatar'])->name('pages.removeAvatar');
 

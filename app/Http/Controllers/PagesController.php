@@ -161,6 +161,27 @@ class PagesController extends Controller
         return response('success');
     }
 
+    public function updateDividerColor(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
+            'divider_color' => 'required|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 422);
+        }
+
+        $user = $request->user()->id;
+        $page = Page::where('user_id', $user)->first();
+        $page->divider_color = $request->input('divider_color');
+        $page->save();
+
+        return response('success');
+    }
+
+
+
 
     public function mockupData(Request $request)
     {
@@ -178,6 +199,7 @@ class PagesController extends Controller
             'link_border_color' => $page->link_border_color,
             'link_background_color' => $page->link_background_color,
             'link_text_color' => $page->link_text_color,
+            'divider_color' => $page->divider_color,
         ];
 
         return response()->json($data);

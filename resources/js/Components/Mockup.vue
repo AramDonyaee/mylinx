@@ -37,7 +37,6 @@
 
                         <div v-for="item in items" class="my-2">
 
-                            <!-- -->
 
                             <a v-if="item.type == 1" id="link" v-bind:href=item.hyperlink @click="linkClick(link)"
                                 class="flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
@@ -91,25 +90,15 @@
 
                             <span v-if="item.block_type == 'divider'" class="flex justify-center">
                                 <div v-if="item.divider_type == 'threedots'" >
-                                    <svg fill="#000000" height="50px" width="50px" version="1.1" id="Capa_1"
-                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        viewBox="0 0 32.055 32.055" xml:space="preserve">
-                                        <g>
-                                            <path
-                                                d="M3.968,12.061C1.775,12.061,0,13.835,0,16.027c0,2.192,1.773,3.967,3.968,3.967c2.189,0,3.966-1.772,3.966-3.967
-                                                    C7.934,13.835,6.157,12.061,3.968,12.061z M16.233,12.061c-2.188,0-3.968,1.773-3.968,3.965c0,2.192,1.778,3.967,3.968,3.967
-                                                    s3.97-1.772,3.97-3.967C20.201,13.835,18.423,12.061,16.233,12.061z M28.09,12.061c-2.192,0-3.969,1.774-3.969,3.967
-                                                    c0,2.19,1.774,3.965,3.969,3.965c2.188,0,3.965-1.772,3.965-3.965S30.278,12.061,28.09,12.061z" />
-                                        </g>
-                                    </svg>
+                                    <ThreeDots :color="dividerColor"></ThreeDots>
                                 </div>
 
                                 <div v-if="item.divider_type == 'twolines'" >
-                                    <svg width="65px" height="65px" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M4 10H20M4 14H20" stroke="#000000" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
+                                    <TwoLines :color="dividerColor"></TwoLines>
+                                </div>
+
+                                <div v-if="item.divider_type == 'wavy1'" >
+                                    <Wavy1 :color="dividerColor"></Wavy1>
                                 </div>
 
                             </span>
@@ -130,20 +119,23 @@
 </template>
 
 <script>
-import 'vue3-carousel/dist/carousel.css'
-import { Carousel, Navigation, Slide } from 'vue3-carousel'
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 import ApplicationMark from '../Components/ApplicationMark.vue';
+import ThreeDots from "./Dividers/ThreeDots.vue";
+import TwoLines from "./Dividers/TwoLines.vue";
+import Wavy1 from "./Dividers/Wavy1.vue";
+
+
 
 
 
 export default {
 
     name: 'Mockup',
-    props: ['size', 'avatarImage', 'title', 'bio', 'backgroundColor', 'backgroundImage', 'borderThickness', 'borderRadius', 'linkBgColor', 'borderColor', 'linkTextColor', 'items', 'socials'],
+    props: ['size', 'avatarImage', 'title', 'bio', 'backgroundColor', 'backgroundImage', 'borderThickness', 'borderRadius', 'linkBgColor', 'borderColor', 'linkTextColor', 'items', 'socials','dividerColor'],
     components: {
-        Carousel, Slide, Navigation, Loading, ApplicationMark
+        Loading, ApplicationMark, TwoLines, ThreeDots, Wavy1
     },
 
     data() {

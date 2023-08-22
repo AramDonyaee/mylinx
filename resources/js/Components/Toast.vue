@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div v-if="!isError" class="toast flex flex-row w-full bg-white md:w-2/5 lg:w-2/5 rounded-xl items-center">
+  <div v-if="!isError" class="toast z-10 flex flex-row w-full bg-white md:w-2/5 lg:w-2/5 rounded-xl items-center">
     <div><v-icon name="fa-check-square" scale="2" fill="lightgreen" /></div>
     <div class="ml-2">{{ message }}</div>
   </div>
