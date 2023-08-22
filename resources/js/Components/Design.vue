@@ -2,10 +2,10 @@
     <PhotoCropperModal v-show="isCropperModalVisible" @loading="showLoading($event)" @close="closeModal" />
 
 
-    <div v-show="!isMockupModalVisible" class="grid grid-flow-col md:grid-rows-1 md:grid-cols-2 relative">
-        <div class="mt-10 ml-8 mb-8 mr-8 relative">
+    <div v-show="!isMockupModalVisible" class="grid grid-cols-1 sm:grid-cols-2 relative">
+        <div class="sm:mt-10 sm:mx-8 mb-8 relative">
 
-            <div class="absolute top-0 w-full rounded-2xl flex flex-col bg-white  mb-4 overflow-hidden"
+            <div class="absolute top-0 w-full sm:rounded-2xl flex flex-col bg-white mb-4 overflow-hidden"
                 v-show="!this.activeMainMenuItem">
                 <div class="relative flex flex-row border-b-[1px] border-gray-200 cursor-pointer focus:bg-gray-50 hover:bg-gray-50"
                     v-for="(menuItem, index) in mainMenu" :key="index" @click="this.activeMainMenuItem = menuItem.title">
@@ -25,16 +25,13 @@
                 </div>
             </div>
 
-
-
-
-            <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Avatar'">
+            <div class="absolute top-0 w-full mt-10 sm:mt-0" v-show="this.activeMainMenuItem === 'Avatar'">
                 <span class="text-xl text-black font-bold relative flex justify-center items-center">
                     <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                         @click="this.activeMainMenuItem = null" />
                     <div>Avatar</div>
                 </span>
-                <div class="bg-white p-4 rounded-lg flex gap-2 mt-10">
+                <div class="bg-white p-4 sm:rounded-lg flex gap-2 mt-10">
                     <div class="flex-none items-center justify-center overflow-hidden bg-gray-100 rounded-full w-24 h-24">
                         <img v-bind:src="this.$store.state.image ? this.$store.state.image : this.avatar" />
                     </div>
@@ -54,14 +51,14 @@
 
 
 
-            <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Profile'">
+            <div class="absolute top-0 w-full mt-10 sm:mt-0" v-show="this.activeMainMenuItem === 'Profile'">
                 <span class="text-xl text-black font-bold relative flex justify-center items-center">
                     <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                         @click="this.activeMainMenuItem = null" />
                     <div>Profile</div>
                 </span>
 
-                <div class="bg-white p-4 rounded-lg gap-2 mt-10 mb-4">
+                <div class="bg-white p-4 sm:rounded-lg gap-2 mt-10 mb-4">
                     <div class="rounded-lg overflow-hidden ">
                         <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
                             placeholder="Your Name" v-model="title" required />
@@ -82,14 +79,14 @@
 
 
 
-            <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Theme'">
+            <div class="absolute top-0 w-full mt-10 sm:mt-0" v-show="this.activeMainMenuItem === 'Theme'">
                 <span class="text-xl text-black font-bold relative flex justify-center items-center">
                     <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                         @click="this.activeMainMenuItem = null" />
                     <div>Theme</div>
                 </span>
                 <div class="mb-8 md:mb-10 mt-10">
-                    <div class="flex flex-wrap gap-1 lg:gap-2 justify-center bg-white rounded-lg p-2 lg:p-5">
+                    <div class="flex flex-wrap gap-1 lg:gap-2 justify-center bg-white sm:rounded-lg p-2 lg:p-5">
                         <div v-for="theme in this.themes" type="button"
                             class="cursor-pointer w-28 h-18 lg:w-36 lg:h-32 flex flex-col overflow-hidden justify-center items-center bg-white hover:bg-gray-100 active:ring-gray-800 active:bg-gray-200 text-gray-800 text-sm font-semibold text-center border rounded-md transition duration-100"
                             @click=storeTheme(theme)>
@@ -115,7 +112,7 @@
 
 
 
-            <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Background'">
+            <div class="absolute top-0 w-full mt-10 sm:mt-0" v-show="this.activeMainMenuItem === 'Background'">
                 <span class="text-xl text-black font-bold relative flex justify-center items-center">
                     <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                         @click="this.activeMainMenuItem = null" />
@@ -177,12 +174,9 @@
             </div>
 
 
-            <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Link Style'">
-
+            <div class="absolute top-0 w-full mt-10 sm:mt-0" v-show="this.activeMainMenuItem === 'Link Style'">
 
                 <div class="mb-8 md:mb-10 ">
-
-
 
                     <div>
                         <span class="text-xl text-black font-bold relative flex justify-center items-center"
@@ -215,7 +209,7 @@
 
 
 
-                    <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Link Border'">
+                    <div class="absolute w-full top-0 mt-10 sm:mt-0" v-show="this.activeLinkStyleMenuItem === 'Link Border'">
                         <span class="text-xl text-black font-bold relative flex justify-center items-center">
                             <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                                 @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
@@ -238,7 +232,7 @@
 
 
 
-                    <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Border Radius'">
+                    <div class="absolute w-full top-0 mt-10 sm:mt-0" v-show="this.activeLinkStyleMenuItem === 'Border Radius'">
                         <span class="text-xl text-black font-bold relative flex justify-center items-center">
                             <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                                 @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
@@ -261,7 +255,7 @@
 
 
 
-                    <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Background Color'">
+                    <div class="absolute w-full top-0 mt-10 sm:mt-0" v-show="this.activeLinkStyleMenuItem === 'Background Color'">
                         <span class="text-xl text-black font-bold relative flex justify-center items-center">
                             <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                                 @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
@@ -281,7 +275,7 @@
                         </div>
                     </div>
 
-                    <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Border Color'">
+                    <div class="absolute w-full top-0 mt-10 sm:mt-0" v-show="this.activeLinkStyleMenuItem === 'Border Color'">
                         <span class="text-xl text-black font-bold relative flex justify-center items-center">
                             <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                                 @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
@@ -301,7 +295,7 @@
                         </div>
                     </div>
 
-                    <div class="absolute w-full top-0" v-show="this.activeLinkStyleMenuItem === 'Text Color'">
+                    <div class="absolute w-full top-0 mt-10 sm:mt-0" v-show="this.activeLinkStyleMenuItem === 'Text Color'">
                         <span class="text-xl text-black font-bold relative flex justify-center items-center">
                             <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                                 @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
@@ -334,7 +328,7 @@
 
 
 
-            <div class="absolute top-0 w-full" v-show="this.activeMainMenuItem === 'Divider Color'">
+            <div class="absolute top-0 w-full mt-10 sm:mt-0" v-show="this.activeMainMenuItem === 'Divider Color'">
                 <span class="text-xl text-black font-bold relative flex justify-center items-center">
                     <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                         @click="this.activeMainMenuItem = null" />

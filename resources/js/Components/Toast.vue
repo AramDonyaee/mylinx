@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isError" class="toast bg-white w-full md:w-2/5 lg:w-2/5 rounded-xl">
+  <div v-if="isError" class="toast fixed p-4 sm:mt-8 sm:left-1/2 sm:transform sm:-translate-x-1/2 z-50 bg-white w-full md:w-2/5 lg:w-2/5 rounded-xl">
     <div v-for="(field, k) in message" :key="k">
       <p v-for="error in field" :key="error">
       <div class="flex flex-row items-center">
@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div v-if="!isError" class="toast z-10 flex flex-row w-full bg-white md:w-2/5 lg:w-2/5 rounded-xl items-center">
+  <div v-if="!isError" class="toast fixed p-4 sm:mt-8 sm:left-1/2 sm:transform sm:-translate-x-1/2 z-50 flex flex-row w-full bg-white md:w-2/5 lg:w-2/5 sm:rounded-xl items-center">
     <div><v-icon name="fa-check-square" scale="2" fill="lightgreen" /></div>
     <div class="ml-2">{{ message }}</div>
   </div>
@@ -41,16 +41,10 @@ export default {
 
 <style>
 .toast {
-  position: fixed;
-  left: 50%;
   top: 200px;
-  transform: translate(-50%, 0);
   box-shadow: 0 0 5px gray;
   transition: all 0.5s ease;
-  padding: 15px;
-  z-index: 999999;
   animation: slide-in-out 7s forwards;
-  margin: 25px;
 
 }
 

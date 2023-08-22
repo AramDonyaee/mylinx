@@ -183,8 +183,8 @@
 
                                 <div class="flex flex-none items-center pb-1 pr-2 h-full">
                                     <button @click="destroyDivider(item)"
-                                        class="ml-2 bg-red-600 rounded-full text-sm text-white font-bold py-0.5 px-2 ml-2">
-                                        delete
+                                        class="py-0.5 px-2">
+                                        <v-icon name="bi-trash-fill" fill="red" scale="1" />
                                     </button>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
                                 </div>
 
                                 <div class="flex flex-row flex-none items-center pr-2 border-b-[1px] border-gray-200 sm:border-none">
-                                    <button class="ml-2 bg-gray-100 rounded-full text-sm font-bold py-0.5 px-2 "
+                                    <button class="bg-gray-100 rounded-full text-sm font-bold py-0.5 px-2 "
                                         @click="showEditModal(item)">
                                         edit
                                     </button>
@@ -224,8 +224,8 @@
 
                                 <div class="flex flex-none items-center pb-1 pr-2 h-full border-b-[1px] border-gray-200 sm:border-none">
                                     <button @click="destroyLink(item)"
-                                        class="ml-2 bg-red-600 rounded-full text-sm text-white font-bold py-0.5 px-2 ml-2">
-                                        delete
+                                        class="py-0.5 px-2 ">
+                                        <v-icon name="bi-trash-fill" fill="red" scale="1" />
                                     </button>
                                 </div>
                             </div>
@@ -365,7 +365,7 @@
         </div>
 
         <div class="relative rounded-2xl overflow-hidden px-5 mb-4">
-            <input class="rounded-lg h-12 px-4 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
+            <input class="rounded-lg h-12 px-4 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="url"
                 :placeholder="socialPlaceholder" v-model="socialValue" />
             <p class="font-normal text-sm pl-2 pt-4 pb-2">{{ socialExample }}</p>
             <div class="w-full text-center inline-block flex-1 cursor-pointer sm:flex-none bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold rounded-lg outline-none transition duration-100 px-8 py-3 mt-2"
@@ -529,7 +529,7 @@
                     </div>
 
                     <div class="rounded-lg overflow-hidden mt-2">
-                        <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
+                        <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="url"
                             placeholder="URL" v-model="linkUrl" />
                     </div>
 
@@ -700,7 +700,7 @@
                     </div>
 
                     <div class="rounded-lg overflow-hidden mt-2">
-                        <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="text"
+                        <input class="h-12 px-5 py-2.5 w-full focus:ring-0 border-0 bg-gray-100" type="url"
                             placeholder="URL" v-model="this.editableLink.hyperlink" />
                     </div>
 
