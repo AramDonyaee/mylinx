@@ -49,14 +49,11 @@
 
 
 
-                <button type="button" @click="getPaymentNonceFromAnet"
+                <button type="button" 
                     class="w-full h-12 bg-indigo-500 rounded-lg mt-4 text-white font-bold">Charge My Card and
                     Subscribe</button>
                 <div class="text-center text-sm font-light mt-2">You will be charged ${{ this.plan_amount }} per
                     {{ this.after_slash_text }}</div>
-
-
-
 
             </div>
 
