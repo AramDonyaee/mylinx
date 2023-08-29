@@ -15,11 +15,6 @@ return new class extends Migration
     {
         Schema::create('subscriptions', function (Blueprint $table) {
 
-            /**
-            - plan_id (foreign key referencing Plans.id)
-             * 
-             */
-
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('plan_id');

@@ -149,7 +149,7 @@
 export default {
     data() {
         return {
-            billing: true,
+            billing: false,
         };
     }
 }
