@@ -24,8 +24,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('plan_id');
             $table->string('subscription_id');
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->timestamp('start_date')->nullable()->default(null);
+            $table->timestamp('end_date')->nullable()->default(null);
             $table->string('status');
             $table->timestamps();
 
