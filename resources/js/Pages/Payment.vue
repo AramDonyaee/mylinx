@@ -1,11 +1,11 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
-import Payment from '@/Components/Payment.vue';
+import PaymentAuthorizeNet from '@/Components/PaymentAuthorizeNet.vue';
 
 </script>
 
 <template>
-    <AppLayout title="Design">
-        <Payment />
+    <AppLayout title="Payment">
+        <PaymentAuthorizeNet />
     </AppLayout>
 </template>

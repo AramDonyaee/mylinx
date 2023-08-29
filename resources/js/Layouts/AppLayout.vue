@@ -202,6 +202,9 @@ const logout = () => {
                                         <DropdownLink :href="'/upgrade'">
                                             Upgrade
                                         </DropdownLink>
+                                        <DropdownLink :href="'/billing'">
+                                            Billing
+                                        </DropdownLink>
 
                                         <DropdownLink v-if="$page.props.jetstream.hasApiFeatures"
                                             :href="route('api-tokens.index')">
@@ -257,8 +260,11 @@ const logout = () => {
                         <ResponsiveNavLink :href="route('design')" :active="route().current('design')">
                             Design
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="'/upgrade'" :active="route().current('design')">
+                        <ResponsiveNavLink :href="'/upgrade'" :active="route().current('upgrade')">
                             Upgrade
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink :href="'/billing'" :active="route().current('billing')">
+                            Billing
                         </ResponsiveNavLink>
                         <!-- <ResponsiveNavLink :href="route('stats')" :active="route().current('stats')">
                             Stats

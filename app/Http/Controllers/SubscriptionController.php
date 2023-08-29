@@ -14,12 +14,7 @@ class SubscriptionController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Subscription', [
-        ]);
+        return Inertia::render('Subscription');
     }
 
-    public function pay()
-    {
-        ShepaFacade::via("merchant")->send($amount, $email, $mobile, $description);
-    }
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon"/>
+    <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon" />
 
 
 
@@ -24,6 +24,8 @@
 
 <body class="font-sans antialiased">
     @inertia
+    <script type="text/javascript" src="https://jstest.authorize.net/v1/Accept.js" charset="utf-8"></script>
+
 </body>
 
 </html>

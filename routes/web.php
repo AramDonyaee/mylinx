@@ -72,11 +72,13 @@ Route::middleware([
     Route::get('/getTotalClicks', [Controllers\LinksController::class, 'getTotalClicks']);
 
     Route::get('/upgrade', [Controllers\SubscriptionController::class, 'index']);
+    Route::get('/billing', [Controllers\BillingController::class, 'index']);
+
 
     Route::get('/get-setup-intent', [Controllers\PaymentController::class, 'getSetupIntent']);
     Route::get('/get-monthly-plan-id', [Controllers\PaymentController::class, 'getMonthlyPlanId']);
     Route::get('/payment', [Controllers\PaymentController::class, 'index']);
-    Route::post('/subscribe', [Controllers\PaymentController::class, 'subscribe']);
+    Route::post('/createSubscription', [Controllers\PaymentController::class, 'createSubscription']);
 
     Route::get('/getSocials', [Controllers\SocialsController::class, 'getSocials']);
     Route::post('socials/store', [Controllers\SocialsController::class, 'store'])->name('socials.store');

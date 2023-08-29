@@ -1,16 +1,21 @@
 <template>
-    <section class="dark:bg-gray-800 dark:text-gray-100 bg-white">
+    <div class="flex flex-col text-center w-full mt-12">
+        <h1 class="text-3xl font-bold title-font text-gray-900">Subscribe to mylinx Pro
+        </h1>
+        <p class="font-light">for a much richer link-in-bio experience</p>
+    </div>
+    <section class="dark:bg-gray-800 dark:text-gray-100 mt-8 rounded-xl overflow">
         <div class="container mx-auto p-6 overflow-x-auto">
-            <table class="w-full">
+            <table class="w-full bg-white rounded-xl ">
                 <caption class="sr-only">Pricing plan comparison</caption>
                 <thead>
                     <tr>
                         <th></th>
-                        <th scope="col" class="pro-yearly rounded-tl-lg	rounded-tr-lg overflow-hidden">
+                        <th scope="col" class="pro-yearly  overflow-hidden">
 
                             <h2 class="px-2 text-lg font-medium py-2">Pro Yearly</h2>
                             <p class="mb-3">
-                                <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50 before-discount">36$</span>
+                                <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50 before-discount">$36</span>
                                 <span class="font-medium dark:text-gray-400">/year</span>
                                 <span class="font-medium dark:text-gray-400 block pt-4 pb-2">
                                     <span
@@ -22,7 +27,7 @@
                             <div
                                 class="flex flex-col sm:flex-row md:flex-row lg:flex-row xl:flex-row items-center justify-center">
                                 <span class="text-sm font-bold dark:text-gray-50 text-green-500 pr-2">You Pay</span>
-                                <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50 text-green-500 ">27$</span>
+                                <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50 text-green-500 ">$27</span>
                                 <span class="text-2xl font-medium dark:text-gray-400 text-green-500">/year</span>
                             </div>
 
@@ -34,14 +39,14 @@
                         <th scope="col">
                             <h2 class="px-2 text-lg font-medium">Pro Monthly</h2>
                             <p class="mb-3">
-                                <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50">5.95$</span>
+                                <span class="text-2xl font-bold sm:text-4xl dark:text-gray-50">$5.95</span>
                                 <span class="font-medium dark:text-gray-400">/mo</span>
                             </p>
                         </th>
 
                     </tr>
                 </thead>
-                <tbody class="space-y-6 text-center divide-y divide-gray-700">
+                <tbody class="space-y-6 text-center divide-y divide-gray-200">
                     <tr>
                         <th scope="row" class="text-left">
 
@@ -49,18 +54,20 @@
 
 
                         <td class="p-2">
-                            <a href="#">
-                                <div class="py-2 bg-black rounded-lg text-white font-bold">
-                                    Buy
-                                </div>
-                            </a>
+
+                            <Link href="/payment" :data="{ plan: 'yearly' }">
+                            <div class="py-2 bg-black rounded-lg text-white font-bold">
+                                Buy
+                            </div>
+                            </Link>
                         </td>
                         <td class="p-2">
-                            <a href="#">
-                                <div class="py-2 bg-black rounded-lg text-white font-bold">
-                                    Buy
-                                </div>
-                            </a>
+                            <Link href="/payment" :data="{ plan: 'monthly' }">
+                            <div class="py-2 bg-black rounded-lg text-white font-bold">
+                                <Link href="/payment">Buy</Link>
+                            </div>
+                            </Link>
+
                         </td>
                     </tr>
 
@@ -312,12 +319,16 @@ export default {
     transform: translate(125%, -50%);
 }
 
+tr th:nth-child(1) {
+    padding-left: 15px;
+}
+
 tr td:nth-last-child(2) {
-    background-color: #F3F4F6;
+    background-color: rgb(249 250 251);
 }
 
 th.pro-yearly {
-    background-color: #F3F4F6;
+    background-color: rgb(249 250 251)
 }
 
 .before-discount {
