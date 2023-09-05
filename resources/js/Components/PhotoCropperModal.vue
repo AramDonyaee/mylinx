@@ -153,9 +153,15 @@ export default {
 
             })
                 .catch(error => {
+
+                    if(error.response.status === 422){
+                        this.toastMessage = error.response.data;
+                    } else {
+                        this.toastMessage = "Something went wrong...";
+                    }
                     this.isLoading = false;
                     this.isToastError = true;
-                    this.toastMessage = error.response.data;
+                    
                     this.showToast();
                     setTimeout(() => {
                         this.reset();
