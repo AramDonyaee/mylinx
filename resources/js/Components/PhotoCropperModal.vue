@@ -1,58 +1,68 @@
 <template>
-    <div class="modal-backdrop">
-        <div class="modal relative w-full h-full max-w-2xl md:h-auto rounded-xl">
-            <header class="modal-header">
-                <slot name="header">
-                    Upload your Profile Picture
-                </slot>
-                <button type="button" class="btn-close" @click="close">
-                    <v-icon name="io-close" scale="1.2" />
-                </button>
-            </header>
+    <div>
+        <div class="modal-backdrop">
+            <div class="modal relative w-full h-full max-w-2xl md:h-auto rounded-xl">
+                <header class="modal-header">
+                    <slot name="header">
+                        Upload your Profile Picture
+                    </slot>
+                    <button type="button" class="btn-close" @click="close">
+                        <v-icon name="io-close" scale="1.2" />
+                    </button>
+                </header>
 
-            <section class="modal-body">
+                <section class="modal-body">
 
-                <v-card width="auto" v-show="this.image.src">
-                    <div class="example">
-                        <cropper ref="cropper" :src="image.src" class="example-cropper"
-                            :stencil-component="$options.components.CircleStencil" />
-                        <div class="button-wrapper">
-                            <span class="button" @click="crop">Crop and Save</span>
-                        </div>
-                    </div>
-                </v-card>
-
-                <slot name="body">
-                    <div class="flex items-center justify-center w-full " v-show="!this.image.src">
-
-                        <label for="dropzone-file"
-                            class="flex flex-col items-center justify-center w-full h-46 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                            <div class="flex flex-col items-center justify-center pt-5 pb-6 " @click="$refs.file.click()">
-                                <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none"
-                                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
-                                    </path>
-                                </svg>
-                                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click
-                                        to upload</span></p>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or GIF</p>
+                    <v-card width="auto" v-show="this.image.src">
+                        <div class="example">
+                            <cropper ref="cropper" :src="image.src" class="example-cropper"
+                                :stencil-component="$options.components.CircleStencil" />
+                            <div class="button-wrapper">
+                                <span class="text-white py-2 px-4 cursor-pointer bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl" @click="crop">Crop and Save</span>
                             </div>
-                            <input type="file" class="hidden" ref="file" @change="loadImage($event)" accept="image/*" />
+                        </div>
+                    </v-card>
 
-                        </label>
-                    </div>
-                </slot>
-            </section>
+                    <slot name="body">
+                        <div class="flex items-center justify-center w-full " v-show="!this.image.src">
+
+                            <label for="dropzone-file"
+                                class="flex flex-col items-center justify-center w-full h-46 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6 "
+                                    @click="$refs.file.click()">
+                                    <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                        </path>
+                                    </svg>
+                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                                            class="font-semibold">Click
+                                            to upload</span></p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or SVG</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">less than 2MB</p>
+                                </div>
+                                <input type="file" class="hidden" ref="file" @change="loadImage($event)" accept="image/*" />
+
+                            </label>
+                        </div>
+                    </slot>
+                </section>
+            </div>
         </div>
+        <Toast v-if="showNotification" :message="toastMessage" :isError="isToastError" />
+        <loading v-model:active="isLoading" :can-cancel="false" color="#0000FF" />
     </div>
 </template>
 
 
 <script>
 import { CircleStencil, Cropper } from "vue-advanced-cropper";
-
 import "vue-advanced-cropper/dist/style.css";
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/css/index.css'
+import Toast from './Toast.vue'
+
 
 
 function getMimeType(file, fallback = null) {
@@ -81,7 +91,7 @@ export default {
 
     name: 'PhotoCropperModal',
     components: {
-        Cropper, CircleStencil
+        Cropper, CircleStencil, Loading, Toast
     },
     data() {
         return {
@@ -90,31 +100,72 @@ export default {
                 type: null
             },
 
+            isLoading: false,
+            showNotification: false,
+            toastMessage: "",
+            isToastError: false,
+
+
         };
     },
     methods: {
 
-        async storeAvatar() {
-            try {
-                const avatar = await axios.post(
-                    route('pages.storeAvatar'),
-                    {
-                        avatar_path: this.$store.state.image
-                    },
-                    {
-                        onUploadProgress: function (progressEvent) {
-                            this.$emit('loading', true);
-                            let uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100));
-                            if (uploadPercentage == 100) {  this.$emit('loading', false) }
-                        }.bind(this)
-                    }
-
-                );
-
-                console.log(avatar)
-            } catch (e) {
-                console.log(e);
+        showToast(type) {
+            if (type == "error") {
+                this.isToastError = true;
+                this.showNotification = true;
+                setTimeout(() => {
+                    this.showNotification = false;
+                }, 4000);
+            } else {
+                this.showNotification = true;
+                setTimeout(() => {
+                    this.showNotification = false;
+                }, 4000);
             }
+        },
+
+
+        async storeAvatar() {
+            await axios.post(
+                route('pages.storeAvatar'),
+                {
+                    avatar_path: this.$store.state.image
+                },
+                {
+                    onUploadProgress: function (progressEvent) {
+                        this.isLoading = true;
+                        this.$emit('loading', true);
+                        let uploadPercentage = parseInt(Math.round((progressEvent.loaded / progressEvent.total) * 100));
+                        if (uploadPercentage == 100) { this.$emit('loading', false) }
+                    }.bind(this)
+                }
+
+            ).then((response) => {
+                this.isLoading = false;
+                this.isToastError = false;
+                this.toastMessage = "Avatar was updated successfully";
+                this.showToast();
+                setTimeout(() => {
+                    this.reset();
+                    this.close();
+                }, 4000);
+
+            })
+                .catch(error => {
+                    this.isLoading = false;
+                    this.isToastError = true;
+                    this.toastMessage = error.response.data;
+                    this.showToast();
+                    setTimeout(() => {
+                        this.reset();
+                        this.close();
+                        this.$store.commit('deleteImage');
+                    }, 4000);
+
+
+
+                });
         },
 
         close() {
@@ -130,8 +181,6 @@ export default {
             // }, this.image.type);
             this.$store.commit('updateImageSource', canvas.toDataURL());
             this.storeAvatar();
-            this.reset();
-            this.close();
         },
 
         reset() {

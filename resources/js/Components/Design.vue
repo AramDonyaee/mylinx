@@ -38,7 +38,7 @@
 
                     <div class="flex-auto">
                         <button type="button" @click="showModal"
-                            class="mb-1 w-full h-12 text-white bg-rose-500 font-medium rounded-xl text-[12px] md:text-sm md:text-normal lg:text-normal px-2 py-2.5 text-center">Add
+                            class="mb-1 w-full h-12 text-white bg-indigo-500 font-medium rounded-xl text-[12px] md:text-sm md:text-normal lg:text-normal px-2 py-2.5 text-center">Add
                             a Profile Picture</button>
                         <button type="button" @click="removeAvatar"
                             class=" w-full h-12 text-black bg-white font-medium rounded-xl border border-rose-200 text-normal px-5 py-2.5 text-center hover:bg-gray-100">

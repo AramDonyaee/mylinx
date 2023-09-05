@@ -128,8 +128,8 @@ class PagesController extends Controller
         $image_without_extension = basename($image, '.' . $pathinfo['extension']);
         $temp = explode('.', $image);
         $image_extension = end($temp);
-        $page->background_path = $image_without_extension . '-high.'. $image_extension;
-        if($page->background_color){
+        $page->background_path = $image_without_extension . '-high.' . $image_extension;
+        if ($page->background_color) {
             $page->background_color = '';
         }
         $page->save();
@@ -152,7 +152,7 @@ class PagesController extends Controller
         $user = $request->user()->id;
         $page = Page::where('user_id', $user)->first();
         $page->background_color = $request->input('background_color');
-        if($page->background_path){
+        if ($page->background_path) {
             $page->background_path = '';
         }
         $page->save();
@@ -208,12 +208,26 @@ class PagesController extends Controller
     public function storeAvatar(Request $request)
     {
 
+        Validator::extend('base64_image_size', function ($attribute, $value, $parameters, $validator) {
+            // Decode the image
+            $decodedImage = base64_decode($value);
+
+            // Get image size in kilobytes 
+            $imageSize = strlen($decodedImage) / 1024;
+
+            // Check if image is below max size
+            return $imageSize <= $parameters[0];
+        });
+
         $validator = Validator::make($request->all(), [
-            'avatar_path' => 'required|string',
+            'avatar_path' => 'required|base64_image_size:2048',
+        ], [
+            'base64_image_size' => 'The avatar must not be larger than 2MB.',
         ]);
 
+
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 422);
+            return response()->json($validator->messages(), 422);
         }
 
         $user = $request->user()->id;
@@ -271,5 +285,4 @@ class PagesController extends Controller
 
         $page->save();
     }
-
 }

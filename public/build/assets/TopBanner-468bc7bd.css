@@ -1,0 +1,1 @@
+.toast{top:200px;box-shadow:0 0 5px gray;transition:all .5s ease;animation:slide-in-out 7s forwards}.message{font-size:14px}@keyframes slide-in-out{0%{top:-200px}10%{top:0}90%{top:0}to{top:-200px}}
