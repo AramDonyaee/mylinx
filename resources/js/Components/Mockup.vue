@@ -97,7 +97,7 @@
                                     <TwoLines :color="dividerColor"></TwoLines>
                                 </div>
 
-                                <div v-if="item.divider_type == 'wavy1'" >
+                                <div v-if="item.divider_type == 'wavy1'" class="py-4">
                                     <Wavy1 :color="dividerColor"></Wavy1>
                                 </div>
 

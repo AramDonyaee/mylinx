@@ -13,7 +13,8 @@
                     </div>
                 </template>
                 <template v-slot:content>
-                    <div class="bg-white mb-4 border-b-[1px] border-gray-200 sm:mx-8 px-4 pt-6 pb-4 sm:rounded-bl-xl sm:rounded-br-xl">
+                    <div
+                        class="bg-white mb-4 border-b-[1px] border-gray-200 sm:mx-8 px-4 pt-6 pb-4 sm:rounded-bl-xl sm:rounded-br-xl">
                         <Flicking :options="{ align: 'prev', horizontal: true, bound: true }" @move-end="onMoveEnd"
                             class="grid grid-cols-1">
                             <div class="panel mr-1 flex flex-col cursor-pointer" @click="showLinkModal" key="link">
@@ -159,7 +160,7 @@
 
                 <transition-group name="list" tag="ul" class="aboslute top-0">
 
-                    <li v-for="(item, index) in this.items"
+                    <li v-if="this.items.length"  v-for="(item, index) in this.items"
                         class="flex bg-white sm:rounded-lg overflow-hidden transition duration-100 sm:mb-2 text-xl justify-center"
                         :key="item" type="links">
 
@@ -182,8 +183,7 @@
                                 </div>
 
                                 <div class="flex flex-none items-center pb-1 pr-2 h-full">
-                                    <button @click="destroyDivider(item)"
-                                        class="py-0.5 px-2">
+                                    <button @click="destroyDivider(item)" class="py-0.5 px-2">
                                         <v-icon name="bi-trash-fill" fill="red" scale="1" />
                                     </button>
                                 </div>
@@ -215,16 +215,17 @@
                                     <p class="text-base pl-2 font-bold py-4">{{ item.title }}</p>
                                 </div>
 
-                                <div class="flex flex-row flex-none items-center pr-2 border-b-[1px] border-gray-200 sm:border-none">
+                                <div
+                                    class="flex flex-row flex-none items-center pr-2 border-b-[1px] border-gray-200 sm:border-none">
                                     <button class="bg-gray-100 rounded-full text-sm font-bold py-0.5 px-2 "
                                         @click="showEditModal(item)">
                                         edit
                                     </button>
                                 </div>
 
-                                <div class="flex flex-none items-center pb-1 pr-2 h-full border-b-[1px] border-gray-200 sm:border-none">
-                                    <button @click="destroyLink(item)"
-                                        class="py-0.5 px-2 ">
+                                <div
+                                    class="flex flex-none items-center pb-1 pr-2 h-full border-b-[1px] border-gray-200 sm:border-none">
+                                    <button @click="destroyLink(item)" class="py-0.5 px-2 ">
                                         <v-icon name="bi-trash-fill" fill="red" scale="1" />
                                     </button>
                                 </div>
@@ -240,7 +241,17 @@
                         </div>
 
                     </li>
+
+                    <li v-else class="flex flex-col text-center w-full mt-2 w-full">
+                        <h1 class="text-base sm:text-2xl font-bold title-font text-gray-300 py-2">
+                            You don't have any links yet!
+                        </h1>
+                    </li>
+
                 </transition-group>
+
+
+
             </div>
 
 
@@ -257,8 +268,8 @@
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
                 :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.background_path"
                 :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
-                :borderColor="link.border.color" :linkTextColor="link.textColor" :items="this.items"
-                :socials="this.socials" :dividerColor="this.dividerColor"/>
+                :borderColor="link.border.color" :linkTextColor="link.textColor" :items="this.items" :socials="this.socials"
+                :dividerColor="this.dividerColor" />
         </div>
 
     </div>
@@ -273,8 +284,8 @@
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
                 :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.background_path"
                 :borderThickness="link.border.thickness" :borderRadius="link.border.radius" :linkBgColor="link.bgColor"
-                :borderColor="link.border.color" :linkTextColor="link.textColor" :items="this.items"
-                :socials="this.socials" :dividerColor="this.dividerColor"/>
+                :borderColor="link.border.color" :linkTextColor="link.textColor" :items="this.items" :socials="this.socials"
+                :dividerColor="this.dividerColor" />
         </div>
     </div>
 
@@ -725,21 +736,24 @@
         border-top-radius="30px" contents-color="white" tip-color="red">
 
         <div class="grid grid-cols-2 sm:grid-cols-2 gap-2 mb-2 px-5">
-                <div :style="{ backgroundColor: this.backgroundColor, background: this.background_path ? 'url(' + this.background_path + ') center/100%' : this.backgroundColor }" class="bg-white rounded-lg flex justify-center items-center cursor-pointer h-20"
-                    v-bind:class="{ 'border-4 border-indigo-600': this.selectedDivider == 'threedots' }"
-                    @click="this.selectedDivider = 'threedots'" >
-                    <ThreeDots :color="this.dividerColor"></ThreeDots>
-                </div>
-                <div :style="{ backgroundColor: this.backgroundColor, background: this.background_path ? 'url(' + this.background_path + ') center/100%' : this.backgroundColor }" class="bg-white rounded-lg flex justify-center items-center cursor-pointer h-20"
-                    v-bind:class="{ 'border-4 border-indigo-600': this.selectedDivider == 'twolines' }"
-                    @click="this.selectedDivider = 'twolines'">
-                    <TwoLines :color="this.dividerColor"></TwoLines>
-                </div>
-                <div :style="{ backgroundColor: this.backgroundColor, background: this.background_path ? 'url(' + this.background_path + ') center/100%' : this.backgroundColor }" class="bg-white rounded-lg flex justify-center items-center cursor-pointer h-20"
-                    v-bind:class="{ 'border-4 border-indigo-600': this.selectedDivider == 'wavy1' }"
-                    @click="this.selectedDivider = 'wavy1'">
-                    <Wavy1 :color="this.dividerColor"></Wavy1>
-                </div>
+            <div :style="{ backgroundColor: this.backgroundColor, background: this.background_path ? 'url(' + this.background_path + ') center/100%' : this.backgroundColor }"
+                class="bg-white rounded-lg flex justify-center items-center cursor-pointer h-20"
+                v-bind:class="{ 'border-4 border-indigo-600': this.selectedDivider == 'threedots' }"
+                @click="this.selectedDivider = 'threedots'">
+                <ThreeDots :color="this.dividerColor"></ThreeDots>
+            </div>
+            <div :style="{ backgroundColor: this.backgroundColor, background: this.background_path ? 'url(' + this.background_path + ') center/100%' : this.backgroundColor }"
+                class="bg-white rounded-lg flex justify-center items-center cursor-pointer h-20"
+                v-bind:class="{ 'border-4 border-indigo-600': this.selectedDivider == 'twolines' }"
+                @click="this.selectedDivider = 'twolines'">
+                <TwoLines :color="this.dividerColor"></TwoLines>
+            </div>
+            <div :style="{ backgroundColor: this.backgroundColor, background: this.background_path ? 'url(' + this.background_path + ') center/100%' : this.backgroundColor }"
+                class="bg-white rounded-lg flex justify-center items-center cursor-pointer h-20"
+                v-bind:class="{ 'border-4 border-indigo-600': this.selectedDivider == 'wavy1' }"
+                @click="this.selectedDivider = 'wavy1'">
+                <Wavy1 :color="this.dividerColor"></Wavy1>
+            </div>
         </div>
 
         <div class="relative rounded-2xl overflow-hidden px-5 mb-4">
@@ -1270,6 +1284,7 @@ export default {
                 this.toastMessage = "The Divider was created successfully!";
                 this.showToast();
                 this.selectedDivider = 'threedots';
+                this.isDividerModal = false;
                 this.getItems();
 
             })
@@ -1487,10 +1502,10 @@ export default {
                     this.backgroundColor = response.data.background_color;
                     this.avatar = response.data.avatar_path;
                     this.link.border.thickness = response.data.link_border_thickness,
-                    this.link.border.radius = response.data.link_border_radius,
-                    this.link.border.color = response.data.link_border_color,
-                    this.link.bgColor = response.data.link_background_color,
-                    this.link.textColor = response.data.link_text_color
+                        this.link.border.radius = response.data.link_border_radius,
+                        this.link.border.color = response.data.link_border_color,
+                        this.link.bgColor = response.data.link_background_color,
+                        this.link.textColor = response.data.link_text_color
                     this.dividerColor = response.data.divider_color ? response.data.divider_color : '#000000'
                 });
         }
