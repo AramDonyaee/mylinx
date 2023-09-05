@@ -96,19 +96,13 @@ Route::middleware([
 });
 
 
-// testing routes
-
-
 
 Route::get('{username}', [Controllers\PagesController::class, 'show'])
-->where('username', '^(?!admin(?:\/login)?)[\w.-]+$')
+// ->where('username', '^(?!admin(?:\/login)?)[\w.-]+$')
 ->where('username', '^(?!tos|privacy-policy|contact-us$).*$')
 ->name('userpage');
 
 
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
 
 Route::post('/linkClick', [Controllers\LinksController::class, 'linkClick'])->name('linkClick');
 

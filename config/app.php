@@ -188,7 +188,6 @@ return [
          * 
          * 
          */
-        TCG\Voyager\VoyagerServiceProvider::class,
         /*
          * Application Service Providers...
          */

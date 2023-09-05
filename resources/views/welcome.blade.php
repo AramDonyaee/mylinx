@@ -153,6 +153,14 @@
 <body>
     <div id="app">
 
+        <div class="px-8 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white dark:bg-gray-900 dark:text-gray-100">
+            <div class="flex items-center mx-auto container justify-center py-2">
+                <div>
+                    <span class="text-sm sm:text-base">Mylinx with all of its pro features is free for the rest of 2023!</span>
+                </div>
+            </div>
+        </div>
+
         <nav class="bg-gray-100 py-3">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex items-center justify-between h-16">
@@ -360,15 +368,15 @@
                     that showcases your personality, services, abilities and a lot more...
                 </p>
 
-                <div class="max-w-xl mx-auto w-full mt-4 rounded-lg overflow-hidden p-4 lg:p-0 md:p-0">
+                <div class="max-w-xl mx-auto w-full mt-4 rounded-full overflow-hidden p-4 lg:p-0 md:p-0">
 
                     <form @submit.prevent="submit">
-                        <div class="input-container rounded-lg">
+                        <div class="input-container rounded-full pl-6">
                             <span class="fixed-text -mr-2">mylinx.site/</span>
                             <input v-model="username" type="text" class="focus:outline-none" placeholder="yourname">
-                            <button class="rounded-lg sticky-button bg-gradient-to-r from-purple-500 to-pink-500 hidden md:block">Claim your mylinx!</button>
+                            <button class="rounded-full sticky-button bg-gradient-to-r from-purple-500 to-pink-500 hidden md:block overflow-hidden">Claim your mylinx!</button>
                         </div>
-                        <button class="mt-2 w-full rounded-lg sticky-button bg-gradient-to-r from-purple-500 to-pink-500 block md:hidden">Claim your mylinx!</button>
+                        <button class="mt-2 w-full rounded-full sticky-button bg-gradient-to-r from-purple-500 to-pink-500 block md:hidden overflow-hidden">Claim your mylinx!</button>
 
                     </form>
                 </div>
@@ -482,7 +490,7 @@
         </section>
 
         <!-- New Table Pricing -->
-        <section class="dark:bg-gray-800 dark:text-gray-100">
+        <!-- <section class="dark:bg-gray-800 dark:text-gray-100">
             <div class="flex flex-col text-center w-full mb-12 mt-12">
                 <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">Pricing that just works!</h1>
                 <p class="lg:w-2/3 mx-auto leading-relaxed text-base text-gray-500">Get started for free, upgrade to PRO for more!</p>
@@ -496,7 +504,7 @@
                             <th></th>
                             <th scope="col" class="flex flex-col">
                                 <h2 class="px-2 text-[11px] sm:text-lg font-bold sm:font-medium sm:py-2">Starter</h2>
-                                <p >
+                                <p>
                                     <span class="text-[10px] sm:text-2xl font-bold sm:text-4xl dark:text-gray-50">0$</span>
                                     <span class="text-[10px] sm:text-base font-medium dark:text-gray-400">/mo</span>
                                 </p>
@@ -730,10 +738,10 @@
                     </tbody>
                 </table>
             </div>
-        </section>
+        </section> -->
         <!-- End of New Table Pricing -->
 
-        <div class="flex h-screen justify-center items-center flex-col mt-6">
+        <div class="flex h-screen justify-center items-center flex-col ">
             <div class="w-full h-screen bg-[url(https://images.unsplash.com/photo-1583127812417-7c06e950a432?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)] bg-cover bg-center">
                 <div class="w-full h-full flex  justify-center items-center backdrop-brightness-50">
                     <div class="max-w-screen-sm mx-auto text-center">
