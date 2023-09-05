@@ -11,12 +11,12 @@
 
         <div :style="{ 'background-image': 'url(' + page.background_path + ')' }"
             class="w-full h-full flex flex-col justify-center items-center ">
-            <div class="backdrop-blur-xl w-full h-full">
-                <div class=" ease-linear duration-200 mx-auto md:w-3/5 w-full h-fit relative overflow-hidden bg-cover bg-center shadow-2xl pb-24 bg-fixed"
+            <div class="w-full h-full">
+                <div class="ease-linear duration-200 mx-auto  w-full h-fit relative overflow-hidden bg-cover bg-center shadow-2xl pb-24 bg-fixed"
                     v-bind:style="{ backgroundColor: data.backgroundc, background: data.backgroundc }"
                     :style="{ 'background-image': 'url(' + page.background_path + ')' }">
 
-                    <div class="relative mb-[300px]">
+                    <div class="relative mb-[300px] md:w-3/5 mx-auto">
 
                         <!-- Avatar - Title - Bio -->
                         <div class="flex flex-col items-center lg:pt-12 md:pt-12 sm:pt-12">

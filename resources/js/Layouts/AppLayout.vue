@@ -145,9 +145,9 @@ const logout = () => {
 
                             <!-- Settings Dropdown -->
                             <div class="ml-3  flex lg:flex-row">
-                                <button type="button"
+                                <button disabled type="button"
                                     class="inline-flex invisible lg:visible justify-center items-center px-2 py-2 mr-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-indigo-400 hover:text-[yellow] text-center">
-                                    <Link href="/upgrade">
+                                    <Link href="#">
                                     <span>
                                         <v-icon name="bi-lightning-charge-fill" scale="0.8"  />
                                         Upgrade
@@ -199,7 +199,7 @@ const logout = () => {
                                         <DropdownLink :href="route('profile.show')">
                                             Profile
                                         </DropdownLink>
-                                        <DropdownLink :href="'/upgrade'">
+                                        <DropdownLink :href="'#'">
                                             Upgrade
                                         </DropdownLink>
                                         <DropdownLink :href="'/billing'">
@@ -260,7 +260,7 @@ const logout = () => {
                         <ResponsiveNavLink :href="route('design')" :active="route().current('design')">
                             Design
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="'/upgrade'" :active="route().current('upgrade')">
+                        <ResponsiveNavLink :href="'#'" :active="route().current('upgrade')">
                             Upgrade
                         </ResponsiveNavLink>
                         <ResponsiveNavLink :href="'/billing'" :active="route().current('billing')">
