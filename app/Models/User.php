@@ -11,8 +11,12 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Page;
 use Laravel\Cashier\Billable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasName;
 
-class User extends Authenticatable implements MustVerifyEmail
+
+
+class User extends Authenticatable implements MustVerifyEmail, FilamentUser, HasName
 {
     use HasApiTokens;
     use HasFactory;
@@ -67,5 +71,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
     {
         return $this->hasOne(Page::class);
+    }
+
+    // Filament Admin Panel methods
+    public function canAccessFilament(): bool
+    {
+        return str_ends_with($this->email, 'adonyaee@yahoo.com');
+    }
+
+    public function getFilamentName(): string
+    {
+        return "{$this->name}";
     }
 }

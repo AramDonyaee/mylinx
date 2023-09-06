@@ -9,6 +9,7 @@
         "authorizenet/authorizenet": "^2.0",
         "bensampo/laravel-enum": "^6.3",
         "doctrine/dbal": "^3.6",
+        "filament/filament": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "inertiajs/inertia-laravel": "^0.6.9",
         "intervention/image": "^2.7",
