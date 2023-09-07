@@ -127,9 +127,6 @@ import TwoLines from "./Dividers/TwoLines.vue";
 import Wavy1 from "./Dividers/Wavy1.vue";
 
 
-
-
-
 export default {
 
     name: 'Mockup',

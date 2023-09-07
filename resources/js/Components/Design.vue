@@ -209,7 +209,8 @@
 
 
 
-                    <div class="absolute w-full top-0 mt-10 sm:mt-0" v-show="this.activeLinkStyleMenuItem === 'Link Border'">
+                    <div class="absolute w-full top-0 mt-10 sm:mt-0"
+                        v-show="this.activeLinkStyleMenuItem === 'Link Border'">
                         <span class="text-xl text-black font-bold relative flex justify-center items-center">
                             <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                                 @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
@@ -232,7 +233,8 @@
 
 
 
-                    <div class="absolute w-full top-0 mt-10 sm:mt-0" v-show="this.activeLinkStyleMenuItem === 'Border Radius'">
+                    <div class="absolute w-full top-0 mt-10 sm:mt-0"
+                        v-show="this.activeLinkStyleMenuItem === 'Border Radius'">
                         <span class="text-xl text-black font-bold relative flex justify-center items-center">
                             <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                                 @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
@@ -255,7 +257,8 @@
 
 
 
-                    <div class="absolute w-full top-0 mt-10 sm:mt-0" v-show="this.activeLinkStyleMenuItem === 'Background Color'">
+                    <div class="absolute w-full top-0 mt-10 sm:mt-0"
+                        v-show="this.activeLinkStyleMenuItem === 'Background Color'">
                         <span class="text-xl text-black font-bold relative flex justify-center items-center">
                             <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                                 @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
@@ -275,7 +278,8 @@
                         </div>
                     </div>
 
-                    <div class="absolute w-full top-0 mt-10 sm:mt-0" v-show="this.activeLinkStyleMenuItem === 'Border Color'">
+                    <div class="absolute w-full top-0 mt-10 sm:mt-0"
+                        v-show="this.activeLinkStyleMenuItem === 'Border Color'">
                         <span class="text-xl text-black font-bold relative flex justify-center items-center">
                             <v-icon name="md-navigatebefore-round" scale="2.5" class="absolute left-0 mr-2 cursor-pointer"
                                 @click="this.activeMainMenuItem = 'Link Style'; this.activeLinkStyleMenuItem = null" />
@@ -360,6 +364,9 @@
         </div>
 
         <div class="h-screen sticky top-0 justify-center items-center bg-slate-200 hidden sm:block">
+
+            <CopyToClipboard/>
+
             <Mockup class="scale-[0.55] origin-top mt-10"
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
                 :bio="this.bio" :backgroundColor="this.selected_background_color"
@@ -389,6 +396,8 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
 import PhotoCropperModal from './PhotoCropperModal.vue'
 import Mockup from './Mockup.vue'
 import 'vue3-carousel/dist/carousel.css'
@@ -400,6 +409,8 @@ import 'vue-loading-overlay/dist/css/index.css';
 import swipeModal from '@takuma-ru/vue-swipe-modal';
 import "lucid-color-picker";
 
+import CopyToClipboard from './CopyToClipboard.vue'
+
 
 
 
@@ -408,7 +419,7 @@ export default {
 
     name: 'Content',
     components: {
-        PhotoCropperModal, Carousel, Slide, Navigation, Mockup, Loading, swipeModal
+        PhotoCropperModal, Carousel, Slide, Navigation, Mockup, Loading, swipeModal,CopyToClipboard
 
     },
 
@@ -637,6 +648,7 @@ export default {
     // },
 
     methods: {
+
 
         onDividerColorChange(event) {
             this.dividerColor = event.target.value;

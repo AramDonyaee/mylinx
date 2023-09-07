@@ -263,7 +263,10 @@
             <div class="pb-0.5">Preview</div>
         </div>
 
+
         <div class="h-screen sticky top-0 justify-center items-center bg-slate-200 hidden sm:block">
+        <CopyToClipboard/>
+            
             <Mockup class="scale-[0.55] origin-top mt-10"
                 :avatarImage="this.$store.state.image ? this.$store.state.image : this.avatar" :title="this.title"
                 :bio="this.bio" :backgroundColor="this.backgroundColor" :backgroundImage="this.background_path"
@@ -770,6 +773,7 @@
 import Mockup from './Mockup.vue'
 import Toast from './Toast.vue'
 import Modal from './Modal.vue'
+import CopyToClipboard from './CopyToClipboard.vue'
 import swipeModal from '@takuma-ru/vue-swipe-modal'
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/css/index.css'
@@ -795,11 +799,12 @@ export default {
         Loading,
         Toast,
         Modal,
+        CopyToClipboard,
         Accordion,
         Flicking: Flicking,
         ThreeDots,
         TwoLines,
-        Wavy1
+        Wavy1,
 
     },
 

@@ -159,10 +159,22 @@
                 border-bottom: 3px solid transparent;
                 border-top: 3px solid #1E5799;
             }
+
+            .no-scroll {
+                overflow-y: scroll;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+
+            .no-scroll::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+            }
         </style>
+        
     </head>
 
-<body>
+<body class="bg-gray-100">
     <div id="app">
 
         <div class="px-8 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white dark:bg-gray-900 dark:text-gray-100">
@@ -372,10 +384,10 @@
 
 
         <div class="flex flex-col lg:flex-row bg-gray-100 lg:pl-12 lg:py-8 mx-auto justify-center">
-            <div class="w-full lg:w-1/2 text-center lg:text-left">
-                <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
+            <div class="w-full text-center lg:text-left">
+                <h1 class="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
                     All of your online <br>presence in one link.</h1>
-                <p class="pt-4 px-8 lg:px-0 md:px-4 mb-6 font-normal text-gray-700 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
+                <p class="text-center pt-4 px-8 lg:px-0 md:px-4 mb-6 font-normal text-gray-700 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
                     Centralize all of your online presence in one place. Create a custom personal page
                     that showcases your personality, services, abilities and a lot more...
                 </p>
@@ -395,14 +407,17 @@
 
 
             </div>
-            <div class="w-full lg:w-1/2 flex justify-center ">
+            <!-- <div class="w-full lg:w-1/2 flex justify-center ">
                 <img src="/mobile.png" class="mt-12 sm:mt-12 md:mt-12 lg:mt-0" style="
                     --scale: 0.8;
                     transform: scale(var(--scale));
                     transform-origin: top center;
                     margin-bottom: calc((var(--scale) - 1) * 100%);" />
-            </div>
+            </div> -->
         </div>
+
+
+        <my-component class="mt-5 mb-10"></my-component>
 
 
         <section class="bg-gray-100 dark:bg-gray-800 md:pt-24 lg:pt-2">
@@ -819,6 +834,294 @@
                     window.location.href = '/register?' + this.username;
                 }
             }
+        });
+    </script>
+
+    <script>
+        const Mockup = {
+            template: `
+            
+            <div class="ease-linear duration-200 mx-auto h-[712px] w-[350px] bg-black rounded-[50px] border-[10px] border-black relative overflow-hidden ring ring-purple-400 shadow-xl"
+        :style="{ backgroundColor: backgroundColor, background: backgroundColor }">
+        <div class="max-h-[712px] overflow-y-auto no-scroll" v-bind:style="{
+            'padding-right': '1em',
+            'padding-left': '1em'
+        }">
+
+            <img v-if="backgroundImage" class="absolute inset-0 h-full w-full object-cover" v-bind:src=backgroundImage />
+
+            <div class="relative">
+
+                <!-- Avatar - Title - Bio -->
+                <div class="flex flex-col items-center ">
+
+                    <div
+                        class="relative inline-flex items-center justify-center w-32 h-32 mt-12 rounded-full overflow-hidden bg-gray-100 dark:bg-gray-600">
+                        <!-- <span class="font-medium text-gray-600 dark:text-gray-300">JL</span> -->
+                        <img v-if="avatarImage" v-bind:src=avatarImage />
+                    </div>
+
+                    <p class="mt-2 text-white text-center text-2xl font-bold">@{{title}}</p>
+                    <p
+                        class="mt-4 text-white text-center w-3/4  text-normal font-normal [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
+                        @{{bio}}</p>
+                    <div class="flex flex-wrap justify-evenly mt-4 space-x-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="2em" fill="white" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="2em" fill="white" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="2em" fill="white" viewBox="0 0 496 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M496 256c0 137-111 248-248 248-25.6 0-50.2-3.9-73.4-11.1 10.1-16.5 25.2-43.5 30.8-65 3-11.6 15.4-59 15.4-59 8.1 15.4 31.7 28.5 56.8 28.5 74.8 0 128.7-68.8 128.7-154.3 0-81.9-66.9-143.2-152.9-143.2-107 0-163.9 71.8-163.9 150.1 0 36.4 19.4 81.7 50.3 96.1 4.7 2.2 7.2 1.2 8.3-3.3.8-3.4 5-20.3 6.9-28.1.6-2.5.3-4.7-1.7-7.1-10.1-12.5-18.3-35.3-18.3-56.6 0-54.7 41.4-107.6 112-107.6 60.9 0 103.6 41.5 103.6 100.9 0 67.1-33.9 113.6-78 113.6-24.3 0-42.6-20.1-36.7-44.8 7-29.5 20.5-61.3 20.5-82.6 0-19-10.2-34.9-31.4-34.9-24.9 0-44.9 25.7-44.9 60.2 0 22 7.4 36.8 7.4 36.8s-24.5 103.8-29 123.2c-5 21.4-3 51.6-.9 71.2C65.4 450.9 0 361.1 0 256 0 119 111 8 248 8s248 111 248 248z"/></svg>
+                    </div>
+                </div>
+                <!-- Notification Summary -->
+                <div class="relative mt-6  ">
+
+                    <div class="relative mt-4 cursor-pointer mb-24 space-y-2" id="links_id">
+
+                        
+
+                            <a id="link" 
+                                class="bg-white rounded-lg flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
+                                <span class="flex flex-col w-full items-center py-4">
+                                    <div class="font-bold px-2">My Website</div>
+                                    <div class="text-sm font-normal px-2">You can find more information about my services</div>
+                                </span>
+                            </a>
+
+                            <a  id="link" 
+                                class="bg-white rounded-lg flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
+                                <span  class="flex w-full items-center h-28">
+                                    <div class="w-28 h-full">
+                                        <img loading="lazy" class="object-cover w-28 h-full" src="https://fffuel.co/images/dddepth/dddepth-246.jpg" />
+                                    </div>
+
+                                    <div class="flex flex-col">
+                                        <div class="font-bold pl-4 text-left">Design Course</div>
+                                        <div class="text-sm font-normal pl-4 text-left"></div>
+                                    </div>
+                                </span>
+                            </a>
+
+                            <a  id="link" 
+                                class="bg-white rounded-lg flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
+                                <span class="flex w-full items-center py-2">
+                                    <div class="w-1/4 flex justify-center ">
+                                        <img loading="lazy" class="object-cover rounded-xl w-[52px] h-[52px] ml-8"
+                                             src="https://fffuel.co/images/dddepth/dddepth-236.jpg" />
+                                    </div>
+
+                                    <div class="flex flex-col w-3/4">
+                                        <div class="font-bold ">Photoshop Assets</div>
+                                        <div class="text-sm font-normal "></div>
+                                    </div>
+                                </span>
+                            </a>
+
+                            <a id="link" 
+                                class="bg-white rounded-lg flex hover:scale-[1.01] overflow-hidden transition duration-100 text-xl justify-center text-center content-center">
+                                <span class="flex flex-col w-full items-center">
+                                    <div class="w-full">
+                                        <img loading="lazy" class="object-cover w-full h-full" src="https://fffuel.co/images/dddepth/dddepth-086.jpg" />
+                                    </div>
+                                    <div class="flex flex-col py-2">
+                                        <div class="font-bold px-4">The Infinity Project</div>
+                                        <div class="text-sm font-normal px-4">where science and art merge</div>
+                                    </div>
+                                </span>
+                            </a>
+
+
+
+                        
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+            `,
+            props: ['size', 'avatarImage', 'title', 'bio', 'backgroundColor', 'backgroundImage', 'borderThickness', 'borderRadius', 'linkBgColor', 'borderColor', 'linkTextColor', 'items', 'socials', 'dividerColor'],
+            data() {
+                return {
+                    isLoading: false,
+                    fullPage: false
+                }
+            },
+
+
+        };
+
+
+        Vue.component('my-component', {
+            components: {
+                'Mockup': Mockup
+            },
+            template: `
+            <div><Mockup v-once class="shadow-none  origin-top"
+                :avatarImage=this.getRandomAvatar() :title=this.getRandomName() :bio=this.getRandomBio()
+                :backgroundImage=this.getRandomBackgroundImage() :borderThickness=3 :borderRadius=10
+                linkBgColor="white" :borderColor=this.generateRandomColors()
+                :linkTextColor=this.generateRandomColors() /></div>
+                `,
+
+            data() {
+                return {
+
+                    username: null,
+                    names: ["Lorena Collins", "Jordan Owens", "Morgan Hubbard", "Wyatt Black", "Pedro Becker", "Patrick Stanley", "Alec Santiago", "Karl Garrett", "Alejandra Higgins", "Amber Sparks", "David Hartman", "Marissa Solis", "Elliott Wolf", "Ethan Barnes", "Avery Carpenter", "Derek Hines", "Evelyn Henry", "Avery Wood", "Grayson Mccarthy", "Arturo Moore", "Moises Cortez", "Jeffrey Sharp", "Meredith Kennedy", "Riley Bush", "Melody Hernandez", "Miriam Ruiz", "Cristal Ford", "Troy Wells", "Makenzie Jacobs", "Efrain Bowman"],
+                    bios: ["Lifelong learner, traveler, and optimist. Passionate about exploring new cultures and pushing personal boundaries.", "Nature enthusiast and outdoor adventure seeker. Find me hiking, camping, or skiing in my free time.", "Music lover and avid festival-goer. Always on the hunt for new artists and live experiences.", "Fitness fanatic and lover of all things health and wellness. Dedicated yogi and runner.", "Coffee addict and aspiring foodie. Always on the lookout for the best brunch spots and local cafes.", "Bookworm and writer at heart. Constantly consuming literature and creating stories of my own.", "Photoshop wizard and creative designer. Always pushing the boundaries of art and technology.", "Social media guru and digital marketing strategist. Passionate about building brands and engaging audiences.", "Animal lover and advocate for furry friends everywhere. Proud owner of two rescue cats.", "Serial entrepreneur and startup enthusiast. Always chasing the next big idea.", "Fashionista and lover of all things style. Constantly experimenting with new trends and makeup looks.", "Travel blogger and content creator. Journeying around the world one adventure at a time.", "DIY enthusiast and crafty creator. Always getting hands-on with new projects and designs.", "Wine connoisseur and food pairing expert. Dedicated to the art of wine and cuisine.", "Movie buff and avid film lover. Constantly exploring new genres and directors.", "Tech geek and early adopter. Always testing out the latest gadgets and software.", "Musician and lover of all things sound. Composing new music and experimenting with digital audio.", "Fitness coach and personal trainer. Dedicated to helping others reach their health and fitness goals.", "Social justice warrior and political activist. Passionate about fighting for equality and protecting human rights.", "Environmentalist and eco-conscious advocate. Working towards a healthier planet and sustainable future.", "Gamer and esports enthusiast. Always practicing and competing to improve my skills.", "Chef and culinary expert. Specializing in fusion cuisine and international flavors.", "Collector of rare books and antiques. Always searching for unique treasures and historical artifacts.", "Historian and archaeology enthusiast. Delving into the past to uncover new insights and stories.", "Graphic designer and visual storyteller. Creating stunning graphics and illustrations that capture the imagination.", "Crypto investor and blockchain enthusiast. Constantly exploring new possibilities in decentralized finance.", "Astrology buff and horoscope reader. Using the stars to guide my life and decisions.", "Literature professor and academic researcher. Specializing in postmodern literature and theories.", "Linguist and polyglot. Fluent in multiple languages and always learning more.", "Psychologist and mental health advocate. Working towards a better understanding of the human mind and emotional wellbeing."],
+                    background_urls: [{
+                            url: '/bg1.jpg'
+                        },
+                        {
+                            url: '/bg2.jpg'
+                        },
+                        {
+                            url: '/bg3.jpg'
+                        },
+                        {
+                            url: '/bg4.jpg'
+                        },
+                        {
+                            url: '/bg5.jpg'
+                        },
+                        {
+                            url: '/bg6.jpg'
+                        },
+                        {
+                            url: '/bg7.jpg'
+                        },
+                        {
+                            url: '/bg8.jpg'
+                        },
+                        {
+                            url: '/bg9.jpg'
+                        },
+                        {
+                            url: '/bg10.jpg'
+                        },
+                        {
+                            url: '/bg11.jpg'
+                        },
+                        {
+                            url: '/bg12.jpg'
+                        },
+                        {
+                            url: '/bg13.jpg'
+                        },
+                        {
+                            url: '/bg14.jpg'
+                        },
+                        {
+                            url: '/bg15.jpg'
+                        },
+                        {
+                            url: '/bg16.jpg'
+                        },
+                        {
+                            url: '/bg17.jpg'
+                        },
+                        {
+                            url: '/bg18.jpg'
+                        },
+                        {
+                            url: '/bg19.jpg'
+                        },
+                        {
+                            url: '/bg20.jpg'
+                        },
+                        {
+                            url: '/bg21.jpg'
+                        },
+                        {
+                            url: '/bg22.jpg'
+                        },
+                        {
+                            url: '/bg23.jpg'
+                        },
+                    ],
+
+                    avatar_urls: [{
+                            url: 'https://i.pravatar.cc/400?img=47'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=30'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=11'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=58'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=57'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=55'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=49'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=38'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=33'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=32'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=24'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=15'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=14'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=13'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=12'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=10'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=7'
+                        },
+                        {
+                            url: 'https://i.pravatar.cc/400?img=68'
+                        },
+                    ]
+
+                }
+            },
+            methods: {
+                getRandomNumber(range) {
+                    return Math.floor(Math.random() * range);
+                },
+                generateRandomColors() {
+                    return '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
+                },
+                getRandomName() {
+                    return this.names[this.getRandomNumber(this.names.length)];
+                },
+                getRandomBio() {
+                    return this.bios[this.getRandomNumber(this.bios.length)];
+                },
+                getRandomBackgroundImage() {
+                    return this.background_urls[this.getRandomNumber(this.background_urls.length)].url;
+                },
+                getRandomAvatar() {
+                    return this.avatar_urls[this.getRandomNumber(this.avatar_urls.length)].url;
+                },
+            },
         });
     </script>
 
