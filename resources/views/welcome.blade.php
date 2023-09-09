@@ -22,12 +22,15 @@
         <meta property="twitter:url" content="https://www.mylinx.site/">
         <meta property="twitter:title" content="Mylinx | All of your online presence in one link">
         <meta property="twitter:description" content="Mylinx is a link in bio platform that gathers all of your online presence in one link. Create a custom page that showcases your personality, services, and abilities.">
+		<meta property="twitter:image" content="https://mylinx.site/homepage.png">
 
         <!-- Open Graph -->
         <meta property="og:type" content="article" />
         <meta property="og:title" content="Mylinx | All of your online presence in one link" />
         <meta property="og:description" content="Mylinx is a link in bio platform that gathers all of your online presence in one link. Create a custom page that showcases your personality, services, and abilities." />
         <meta property="og:url" content="https://www.mylinx.site/" />
+        <meta property="og:image" content="https://mylinx.site/homepage.png">
+
 
         <link rel="icon" href="{{ URL::asset('favicon.ico') }}" type="image/x-icon" />
 
