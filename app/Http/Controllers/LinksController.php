@@ -116,18 +116,20 @@ class LinksController extends Controller
     public function update(Request $request)
     {
 
-        Validator::extend('image_or_path', function ($attribute, $value) {
-            $patternJPG = '/images\/[\w.-]+\.jpg/';
-            $patternJPEG = '/images\/[\w.-]+\.jpeg/';
-            $patternPNG = '/images\/[\w.-]+\.png/';
+        Validator::extend('path', function ($attribute, $value) {
+            $patternJPG = '/images\/[\w\s.-]+\.jpg/';
+            $patternJPEG = '/images\/[\w\s.-]+\.jpeg/';
+            $patternPNG = '/images\/[\w\s.-]+\.png/';
+
+
+            // if (in_array($value->getClientOriginalExtension(), ['jpeg', 'jpg', 'png'])) {
+            //     return true;
+            // }
 
             if (preg_match($patternJPG, $value) || preg_match($patternJPEG, $value) || preg_match($patternPNG, $value)) {
                 return true;
             }
 
-            if (in_array($value->getClientOriginalExtension(), ['jpeg', 'jpg', 'png'])) {
-                return true;
-            }
 
             return false;
         }, 'Supported Image Formats are: jpg, jpeg, and png');
@@ -137,12 +139,15 @@ class LinksController extends Controller
             'description' => 'nullable|string',
             'type' => 'required|integer',
             'url' => ['required', 'regex:/^(https?:\/\/)?([A-Za-z][\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i'],
-            'image' => $request->input('type') == 2
+            'image' => 
+                $request->hasFile('image') && 
+                ($request->input('type') == 2
                 | $request->input('type') == 3
-                | $request->input('type') == 4
-                ? 'required|image_or_path|max:2048'
-                : 'nullable|image_or_path|max:2048',
+                | $request->input('type') == 4)
+                ? 'required|mimes:jpeg,jpg,png|max:2048'
+                : 'nullable|path|max:2048',
         ]);
+
 
         if ($validator->fails()) {
             return response()->json($validator->messages(), 422);
