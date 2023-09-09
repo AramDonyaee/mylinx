@@ -383,8 +383,8 @@
         </nav>
 
 
-        <div class="flex flex-col lg:flex-row bg-gray-100 lg:pl-12 lg:py-8 mx-auto justify-center">
-            <div class="w-full text-center lg:text-left">
+        <div class="flex bg-gray-100 lg:pl-12 lg:py-8 mx-auto justify-center">
+            <div class="w-full sm:w-3/4 text-center">
                 <h1 class="text-center mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
                     All of your online <br>presence in one link.</h1>
                 <p class="text-center pt-4 px-8 lg:px-0 md:px-4 mb-6 font-normal text-gray-700 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">

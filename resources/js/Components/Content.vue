@@ -1369,7 +1369,7 @@ export default {
                 route('links.update'),
                 {
                     id: this.editableLink.id,
-                    image: this.imageEdit ? this.imageEdit : this.editableLink.thumbnail_path,
+                    image: this.imageEdit ? this.imageEdit : this.editableLink.thumbnail_path.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "-"),
                     type: this.editableLink.type,
                     title: this.editableLink.title,
                     description: this.editableLink.description,

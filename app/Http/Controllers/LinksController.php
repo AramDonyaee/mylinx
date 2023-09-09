@@ -124,6 +124,7 @@ class LinksController extends Controller
             if (preg_match($patternJPG, $value) || preg_match($patternJPEG, $value) || preg_match($patternPNG, $value)) {
                 return true;
             }
+
             if (in_array($value->getClientOriginalExtension(), ['jpeg', 'jpg', 'png'])) {
                 return true;
             }
