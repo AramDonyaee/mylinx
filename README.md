@@ -12,6 +12,8 @@ Mylinx is a link in bio generator built with Laravel and Vue.js. This project al
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" height="30" />
 </div>
 
+## Dashboard Preview
+
 <img src="https://github.com/AramDonyaee/mylinx/blob/main/dashboard%20preview.png?raw=true" />
 
 ## Features
