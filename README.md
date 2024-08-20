@@ -8,23 +8,23 @@ Mylinx is a link in bio generator built with Laravel and Vue.js. This project al
 
 ## Features
 
-- **Different Link Types**: Support for various types of links to accommodate different user needs.
+**Different Link Types**: Support for various types of links to accommodate different user needs.
 
 <img src="https://github.com/AramDonyaee/mylinx/blob/main/different%20link%20types.png?raw=true" />
   
-- **Customization Options**: Users can change the style and color of links to match their branding.
+**Customization Options**: Users can change the style and color of links to match their branding.
   
 <img src="https://github.com/AramDonyaee/mylinx/blob/main/customizations.PNG?raw=true" />
 
-- **Background Changes**: Flexibility to change backgrounds for a personalized touch.
+**Background Changes**: Flexibility to change backgrounds for a personalized touch.
 
 <img src="https://github.com/AramDonyaee/mylinx/blob/main/different%20backgrounds.PNG?raw=true" />
 
-- **Link Management**: Add, edit, sort, and delete links easily.
+**Link Management**: Add, edit, sort, and delete links easily.
 
 <img src="https://github.com/AramDonyaee/mylinx/blob/main/sortable%20links.PNG?raw=true" />
 
-- **Responsive Design**: Optimized for various screen sizes and devices.
+**Responsive Design**: Optimized for various screen sizes and devices.
   
 
 
