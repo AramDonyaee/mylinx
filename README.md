@@ -3,6 +3,7 @@
 Mylinx is a link in bio generator built with Laravel and Vue.js. This project allows users to create customizable landing pages that aggregate multiple links, making it easy to share various online resources in one place.
 
 ## Built with
+
 <div align="left">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/laravel/laravel-original.svg" height="30" />
   <img width="12" />
