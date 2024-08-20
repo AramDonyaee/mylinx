@@ -53,5 +53,24 @@ Mylinx is a link in bio generator built with Laravel and Vue.js. This project al
 
 <img src="https://github.com/AramDonyaee/mylinx/blob/main/landing%20page.png?raw=true" />
 
+## Installation
+
+To get started with mylinx, clone the repository and install the necessary dependencies:
+
+```bash
+git clone https://github.com/AramDonyaee/mylinx.git
+cd mylinx
+composer install
+npm install
+
+Then, you should run the migrations with this command:
+```bash
+php artisan migrate
+
+Finally, run these commands and head over to your favorite browser:
+```bash
+php artisan serve
+npm run dev
+
 
 
