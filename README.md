@@ -1,4 +1,4 @@
-# mylinx - Link in Bio Generator
+# mylinx - link in bio Generator
 
 ## Overview
 
@@ -25,6 +25,15 @@ Mylinx is a link in bio generator built with Laravel and Vue.js. This project al
 <img src="https://github.com/AramDonyaee/mylinx/blob/main/sortable%20links.PNG?raw=true" />
 
 **Responsive Design**: Optimized for various screen sizes and devices.
+
+<div align="center">
+  <a href="https://github.com/JosManoel">
+    <img src="https://github.com/AramDonyaee/mylinx/blob/main/page%20desktop%20version.png?raw=true" width="412px"/> 
+  </a>
+  <a href="https://github.com/JosManoel">
+    <img src="https://github.com/AramDonyaee/mylinx/blob/main/page%20mobile%20version.png?raw=true" width="412px"/>
+  </a>
+</div>
   
 
 
