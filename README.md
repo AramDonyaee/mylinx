@@ -41,4 +41,9 @@ Mylinx is a link in bio generator built with Laravel and Vue.js. This project al
   </tr>
 </table>
 
+**Landing Page**
+
+<img src="https://github.com/AramDonyaee/mylinx/blob/main/landing%20page.png?raw=true" />
+
+
 
