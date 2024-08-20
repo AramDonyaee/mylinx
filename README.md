@@ -26,11 +26,6 @@ Mylinx is a link in bio generator built with Laravel and Vue.js. This project al
 
 **Responsive Design**: Optimized for various screen sizes and devices.
 
-<div align="center">
-    <img src="https://github.com/AramDonyaee/mylinx/blob/main/page%20desktop%20version.png?raw=true" width="412px"/> 
-    <img src="https://github.com/AramDonyaee/mylinx/blob/main/page%20mobile%20version.png?raw=true" width="412px"/>
-</div>
-
 <table align="center">
   <tr>
     <th style="text-align: center;">Desktop Version</th>
@@ -38,10 +33,10 @@ Mylinx is a link in bio generator built with Laravel and Vue.js. This project al
   </tr>
   <tr>
     <td style="text-align: center;">
-      <img src="desktop.png" alt="Desktop Screenshot" style="max-width: 100%; height: auto;">
+      <img src="https://github.com/AramDonyaee/mylinx/blob/main/page%20desktop%20version.png?raw=true" alt="Desktop Screenshot" style="max-width: 100%; height: auto;">
     </td>
     <td style="text-align: center;">
-      <img src="mobile.png" alt="Mobile Screenshot" style="max-width: 100%; height: auto;">
+      <img src="https://github.com/AramDonyaee/mylinx/blob/main/page%20mobile%20version.png?raw=true" alt="Mobile Screenshot" style="max-width: 100%; height: auto;">
     </td>
   </tr>
 </table>
