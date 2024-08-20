@@ -62,15 +62,17 @@ git clone https://github.com/AramDonyaee/mylinx.git
 cd mylinx
 composer install
 npm install
+```
 
 Then, you should run the migrations with this command:
 ```bash
 php artisan migrate
+```
 
 Finally, run these commands and head over to your favorite browser:
 ```bash
 php artisan serve
 npm run dev
-
+```
 
 
