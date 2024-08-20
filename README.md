@@ -69,10 +69,10 @@ Then, you should run the migrations with this command:
 php artisan migrate
 ```
 
-Finally, run these commands and head over to your favorite browser:
+Finally, run these commands and head over to your favorite browser and enter ```localhost:8000```:
 ```bash
 php artisan serve
 npm run dev
 ```
-
+Don't forget to download, install and configure mailhog as the local email server. Moreover, you have to create the database and database admin for your project before running the migrations. Finally, update your .env file accordingly.
 
